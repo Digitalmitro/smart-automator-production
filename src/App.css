@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  text-decoration: none !important;
+ list-style: none ;
+ font-family: "Manrope", sans-serif;
+}
+
+:root{
+
+  --primary-color:#F9AC25;
+  --secendary-color:#000000;
+  --bg-color:#fef6e7;
+
+}
+a{
+  color: #000000;
+ font-weight:300 ;
+}
+.top-header {
+  display: flex;
+  /* align-items: center; */
+  line-height: 45px;
+  justify-content: space-around;
+  background-color: #000000;
+  color: aliceblue;
+  height: 45px !important;
+}
+.icon {
+  margin-top: 15px;
+  display: flex;
+  gap: 25px;
+}
+.headerbtn{
+  background-color: transparent;
+  border: 2px solid #f0cc00;
+  color: #f0cc00;
+  border-radius: 20px;
+  margin-left: 40px;
+}
+.user-pannel{
+  display: flex;
+ font-size: 25px;
+ margin: 20px;
+ gap:25px
+}
+.main-nav li a{
+  color: #000000;
+  font-weight: 600;
+}
+.footer-nav li a{
+  color: #ffffff !important;
+  line-height: 40px !important;
+  
+}
+.social i{
+  color: var(--primary-color);
+}
+.banner-bg{
+  width: 100%;
+  height: 500px;
+  background: url("../src/assets/image\ 1.png"),rgba(0, 0, 0, 0.7);
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 500px; */
+  background-position: center;
+}
+.search-bar{
+  display: flex;
+  justify-content: center;
+}
+.bannersearch{
+  width: 50%;
+  height: 50px;
+  border: 3px solid #fff !important;
+  color: #ffffff;
+  background-color: transparent;
+  border-radius: 13px 0px 0px 13px;
+}
+.bannersearchbtn{
+  background-color: var(--primary-color);
+  border-radius: 0px 13px 13px 0px;
+  width:60px;
+  border: 0px;
+}
+.service-tab{
+  width: 131px;
+    padding: 36px;
+    height: 119px;
+    border-radius: 59px !important;
+    background-color: #fff !important;
+}
+.my-tabs{
+  justify-content: space-around;
+}
+.service-tab-box{
+  width: 100px;
+  height: 100px;
+  border-radius:50px !important;
+}
+.service-tab svg{
+  margin-bottom:20px;
+  color:#fff;
+}
+.project-card{
+  background-color: var(--bg-color);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   /* width: 400px; */
+   /* height: 500px; */
+}
+.countdown-bg{
+  background-color: var(--primary-color);
+  height: 300px;
+
+}
+.blog-card:hover{
+
+  background-color: #f9ac25;
+  /* color: #fdfdfd !important; */
+}
+.blog-card img{
+  width: 100%;
+  height: 250px;
+
+}
+.footer-input{
+  background-color: transparent;
+  border-radius: 20px;
+  width:70%;
+color: #fff !important;
+  border: 2px solid #fff ;
+}
+.counter {
+  display: block;
+  font-size: 45px;
+  text-align: center;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 28px
+}
+.counter-box p {
+  margin: 5px 0 0;
+  padding: 0;
+  text-align: center;
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 500
+}
+.board {
+  width: 75%;
+  margin: 60px auto;
+  height: 500px;
+  background: #fff;
+  /*box-shadow: 10px 10px #ccc,-10px 20px #ddd;*/
+}
+
+.form-box{
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  padding: 30px 70px;
+  height: auto;
+  border-radius: 20px;
+
+}
+.task-location{
+  height: 70px;
+  border-radius: 20px;
+}
+.form-check{
+  margin-bottom: 1.125rem !important;
+}
+.btn-type-4{
+  background-color:transparent;
+  border: 2px solid #fff;
+  padding: 8px 20px;
+  font-size: 20px;
+  border-radius: 5px;
+  color: #fffcfc;
+  cursor: pointer
+}
+
+.past-order-box{
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;;
+   width: 100%;
+   height:auto ;
+   padding: 40px 40px;
+ }
+ .wrap{
+   display: inline-flex;
+   gap: 50px;
+   align-items: center;
+ }
+ .address1{
+  border: 2px solid #000000;
+  padding: 20px 40px;
+}
+.address-btn{
+  background-color: transparent;
+  color: #0056b3;
+  border: 0px;
+  padding: 20px;
+  font-weight: 600;
+  font-size: 15px;
+}
+.btn-order{
+  background-color:transparent;
+  border: 2px solid #fff;
+  padding: 8px 20px;
+  width: 100%;
+  font-weight: 700;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  font-size: 20px;
+  border-radius: 5px;
+  color: #000000;
+  cursor: pointer
+}
+.tab-btn{
+  color: #fff;
+  background-color: #F9AC25;
+  font-weight: 700;
+}
+.tab-btn:hover{
+  background-color: transparent;
+  border: 3px solid #F9AC25;
+ 
+}
+.tasker-form{
+  background-color: #fff;
+  line-height: 50px;
+  width: 85%;
+  padding: 20px 40px;
+  border-radius: 20px;
+}
+.tasker-form-select{
+  line-height: 53px;
+  width: 80%;
+}
+.login-bg{
+  background: url(../src/assets/Mask\ group.jpg),rgba(0, 0, 0, 0.7);
+  /* min-height: 600px; */
+  height: 700px;
+  background-blend-mode: multiply;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  
+}
+.login-form-bg {
+  height: auto;
+  
+}
+
+.login-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #f7f7f7;
+  padding: 20px 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100% ;
+  max-width: 400px;
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+
+.login-form button:hover {
+  background: #4cae4c;
+}
+// doesnt work funnly on firefox or edge, need to fix
+
+.range-slider {
+  width: 300px;
+  text-align: center;
+  position: relative;
+  .rangeValues {
+    display: block;
+  }
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  border: 1px solid white;
+  width: 300px;
+  position: absolute;
+  left: 10%;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 300px;
+  height: 5px;
+  background: #ddd;
+  border: none;
+  border-radius: 3px;
+
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #21c1ff;
+  margin-top: -4px;
+    cursor: pointer;
+      position: relative;
+    z-index: 1;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #ccc;
+}
+
+input[type=range]::-moz-range-track {
+  width: 300px;
+  height: 5px;
+  background: #ddd;
+  border: none;
+  border-radius: 3px;
+}
+
+input[type=range]::-moz-range-thumb {
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #21c1ff;
+  
+}
+
+
+/*hide the outline behind the border*/
+
+input[type=range]:-moz-focusring {
+  outline: 1px solid white;
+  outline-offset: -1px;
+}
+
+input[type=range]::-ms-track {
+  width: 300px;
+  height: 5px;
+  /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+  background: transparent;
+  /*leave room for the larger thumb to overflow with a transparent border */
+  border-color: transparent;
+  border-width: 6px 0;
+  /*remove default tick marks*/
+  color: transparent;
+    z-index: -4;
+
+}
+
+input[type=range]::-ms-fill-lower {
+  background: #777;
+  border-radius: 10px;
+}
+
+input[type=range]::-ms-fill-upper {
+  background: #ddd;
+  border-radius: 10px;
+}
+
+input[type=range]::-ms-thumb {
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #21c1ff;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: #888;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  background: #ccc;
+}
+.date{
+  color: #000000;
+  margin: 20px 10px;
+  padding: 10px 30px;
+  border-radius: 20px;
+  border: 1px solid #000000;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+  gap: 50px;
+  zoom: 1.9;
+  height: 75px;
+  background-color: #f9ac25;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  border-radius: 50%;
+}
+.nav-pills .nav-link{
+  color: #f9ac25;
+  gap: 50px;
+  zoom: 1.9;
+  height: 75px;
+  width: 75px;
+  background-color: #f8edd9;
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  border-radius: 50%;
+}
+ul{
+  gap: 80px;
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link i{
+  color: white;
+}
