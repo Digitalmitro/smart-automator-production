@@ -26,12 +26,12 @@ const Signup = () => {
 
                             <div data-mdb-input-init class="form-outline mb-4">
                         
-                                <input type="password" id="form2Example2" class="form-control" />
+                                <input type="password" id="form2Example2" class="form-control" placeholder="Password"/>
                             </div>
 
                             <div class="form-group col-mb-4">
                               
-                                <input type="text" class="form-control" id="inputZip" />
+                                <input type="text" class="form-control" id="inputZip" placeholder="ZipCode"/>
                             </div>
 
                             <p className="text-center">By signing up you agree to our <span><a className="text-warning" href="">TERMS OF USE </a></span>  and <span><a className="text-warning" href="">PRIVACY POLICY. </a></span> </p>

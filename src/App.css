@@ -435,3 +435,12 @@ ul{
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link i{
   color: white;
 }
+/* .css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected{
+  height: 100px;
+  margin-bottom: 20px;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  height: 100px;
+  margin-bottom: 20px;
+  cursor: pointer;
+} */

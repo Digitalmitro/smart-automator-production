@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Cookies from "js-cookie";
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -6,6 +7,10 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import user from "../assets/user.png";
 // import burger1 from "../assets/image 18.png"
+const handelLogout = () => {
+  Cookies.remove("token");
+  window.location.href = "/login";
+};
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -58,9 +63,9 @@ export default function VerticalTabs() {
         aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
-      <Tab className='sidenav' label={<i className="fa-solid fa-address-book"> Address </i>} {...a11yProps(0)} />
-      <Tab className='sidenav' label={<i className="fa-solid fa-bag-shopping"> Order History</i> } {...a11yProps(1)} />
-      <Tab className='sidenav' label={<i className="fa-solid fa-right-from-bracket"> Logout </i>}  {...a11yProps(2)} />
+      <Tab style={{marginBottom:"20px",height:"100px"}} className='sidenav' label={<i className="fa-solid fa-address-book"> Address </i>} {...a11yProps(0)} />
+      <Tab style={{marginBottom:"20px",height:"100px"}} className='sidenav' label={<i className="fa-solid fa-bag-shopping"> Order History</i> } {...a11yProps(1)} />
+      <Tab style={{marginBottom:"20px",height:"100px"}} onClick={handelLogout} className='sidenav' label={<i className="fa-solid fa-right-from-bracket"> Logout </i>}  {...a11yProps(2)} />
        
       </Tabs>
       <TabPanel value={value} index={1}>

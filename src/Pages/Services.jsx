@@ -45,19 +45,24 @@ const services = () => {
               <p>
                 <span className="fw-bold">Date</span>
               </p>
-
+              <div className="col" style={{zoom:"0.8"}} >
               <button type="button" class="btn btn-link date">
                 Today
               </button>
               <button type="button" class="btn btn-link date">
                 Choose dates
               </button>
+              </div>
+              <div className="col mb-5" style={{zoom:"0.8"}}>
               <button type="button" class="btn btn-link date">
                 Within a week
               </button>
               <button type="button" class="btn btn-link date">
                 Within 3 days
               </button>
+              </div>
+              
+              
 
               <div className="time">
                 <h5>Time of the Day</h5>

@@ -1,6 +1,18 @@
+import { useEffect } from "react";
 import profile from "../assets/profile1.png";
 import VerticalTabs from "../components/Tabs";
+import Cookies from "js-cookie";
+import { Navigate, useNavigate } from "react-router-dom";
 const Profile = () => {
+    const navigate = useNavigate();
+    const token = Cookies.get("token");
+    useEffect(() => {
+        if (token) {
+         
+        } else {
+          return navigate("/login");
+        }
+      }, [token]);
     return (
         <>
 
@@ -20,10 +32,10 @@ const Profile = () => {
                             </ul>
                         </div>
 
-                        <div className="col-md-4 pt-4" >
-                            <button className="btn-type-4" type="button" style={{ marginRight: "15px" }}>CHANGE PASSWORD</button>
+                        <div className="col-md-4 d-flex" style={{gap:"20px"}}>
+                            <button  className="btn-type-4" type="button" style={{ marginRight: "15px",width:"400px",height:"55px",fontSize:"13px" }}>CHANGE PASSWORD</button>
 
-                            <button className="btn-type-4" type="button">EDIT PROFILE</button>
+                            <button className="btn-type-4" type="button" style={{width:"350px",height:"55px",fontSize:"13px" }}>EDIT PROFILE</button>
 
                         </div>
                     </div>
