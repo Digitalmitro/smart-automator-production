@@ -33,8 +33,8 @@ const Navbar = () => {
       <header>
         <div className="container">
           <nav class="navbar navbar-expand-lg ">
-            <a class="navbar-brand" href="#">
-              <img src={logo} />
+            <a class="navbar-brand"  style={{cursor:"pointer"}}>
+              <img onClick={() => navigate("/")} src={logo} />
             </a>
             <button
               class="navbar-toggler"
@@ -54,6 +54,7 @@ const Navbar = () => {
               <ul class="navbar-nav main-nav">
                 <li class="nav-item">
                   <a
+                  style={{cursor:"pointer"}}
                     class="nav-link active"
                     aria-current="page"
                     onClick={() => navigate("/")}
@@ -62,18 +63,18 @@ const Navbar = () => {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" onClick={() => navigate("/services")}>
+                  <a style={{cursor:"pointer"}} class="nav-link" onClick={() => navigate("/services")}>
                     Services
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a  class="nav-link" href="#">
                     System Funnels
                   </a>
                 </li>
                 {!decodedToken ? (
                   <li class="nav-item">
-                    <a class="nav-link" onClick={() => navigate("/login")}>
+                    <a style={{cursor:"pointer"}} class="nav-link" onClick={() => navigate("/login")}>
                       Sign Up/Log in
                     </a>
                   </li>

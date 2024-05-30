@@ -8,10 +8,10 @@ import project4 from "../assets/Rectangle 15 (2).png";
 import project5 from "../assets/Rectangle 15.png";
 import project6 from "../assets/Rectangle 9.png";
 import tab1 from "../assets/tab1.png";
-import tab2 from "../assets/tab2.png"
-import tab3 from "../assets/tab3.png"
-import tab4 from "../assets/Rectangle10.png"
-import tab5 from "../assets/MaskGroup.jpg"
+import tab2 from "../assets/tab2.png";
+import tab3 from "../assets/tab3.png";
+import tab4 from "../assets/Rectangle10.png";
+import tab5 from "../assets/MaskGroup.jpg";
 import blog1 from "../assets/blog1 (1).png";
 import blog2 from "../assets/blog2.png";
 import blog3 from "../assets/blog3.png";
@@ -221,9 +221,21 @@ const Home = () => {
                         </div>
                       </div>
                     </div>
-                    <button className="p-2" style={{marginTop:"50px" ,marginLeft:"30px", borderRadius:"15px", background:"#f9ac25",color:"white",border:'none'}}>View More</button>
+                    <button
+                      className="p-2"
+                      style={{
+                        marginTop: "50px",
+                        marginLeft: "30px",
+                        borderRadius: "15px",
+                        background: "#f9ac25",
+                        color: "white",
+                        border: "none",
+                      }}
+                    >
+                      View More
+                    </button>
                   </div>
-                  
+
                   <div className="col">
                     <img
                       className="img-fluid"
@@ -232,11 +244,8 @@ const Home = () => {
                       alt=""
                     />
                   </div>
-                  
                 </div>
-                
               </div>
-             
             </div>
             <div
               class="tab-pane fade  mt-5"
@@ -249,9 +258,9 @@ const Home = () => {
                 <div className="row">
                   <div className="col">
                     <p>
-                      Our handymen are extremely well-qualified and have years
-                      of professional experience under their belt. experience
-                      under their belt
+                      Clean your home or office; deep clean appliances and other
+                      spaces. Now Trending: Eco-friendly products, home cleaning
+                      checklists, and cleaning hacks
                     </p>
                     <div className="container-fluid">
                       <div className="row">
@@ -261,27 +270,13 @@ const Home = () => {
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              IKEA Assembly
+                              Home Cleaning
                             </button>
                             <button
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              Furniture Assembly
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Crib Assembly
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              PAX Assembly
+                              Office Cleaning
                             </button>
                           </div>
                           <div className="d-flex mt-3" style={{ gap: "10px" }}>
@@ -289,15 +284,47 @@ const Home = () => {
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              Desk Assembly
+                              Carpet Cleaning
+                            </button>
+                            <button
+                              className="p-1"
+                              style={{ borderRadius: "15px" }}
+                            >
+                              Window Cleaning
+                            </button>
+                          </div>
+                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
+                            <button
+                              className="p-1"
+                              style={{ borderRadius: "15px" }}
+                            >
+                              Upholstery Cleaning
+                            </button>
+                            <button
+                              className="p-1"
+                              style={{ borderRadius: "15px" }}
+                            >
+                              Tile & Grout Cleaning
                             </button>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <button className="p-2" style={{marginTop:"50px" ,marginLeft:"30px", borderRadius:"15px", background:"#f9ac25",color:"white",border:'none'}}>View More</button>
+                    <button
+                      className="p-2"
+                      style={{
+                        marginTop: "50px",
+                        marginLeft: "30px",
+                        borderRadius: "15px",
+                        background: "#f9ac25",
+                        color: "white",
+                        border: "none",
+                      }}
+                    >
+                      View More
+                    </button>
                   </div>
-                  
+
                   <div className="col">
                     <img
                       className="img-fluid"
@@ -306,9 +333,7 @@ const Home = () => {
                       alt=""
                     />
                   </div>
-                  
                 </div>
-                
               </div>
             </div>
             <div
@@ -322,9 +347,9 @@ const Home = () => {
                 <div className="row">
                   <div className="col">
                     <p>
-                      Our handymen are extremely well-qualified and have years
-                      of professional experience under their belt. experience
-                      under their belt
+                      Moving help such as packing/unpacking, loading, and
+                      lifting heavy items. Now Trending: Single-item moves,
+                      apartment moves, and junk removal.
                     </p>
                     <div className="container-fluid">
                       <div className="row">
@@ -334,27 +359,13 @@ const Home = () => {
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              IKEA Assembly
+                              Local Moving
                             </button>
                             <button
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              Furniture Assembly
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Crib Assembly
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              PAX Assembly
+                              Long Distance Moving
                             </button>
                           </div>
                           <div className="d-flex mt-3" style={{ gap: "10px" }}>
@@ -362,15 +373,55 @@ const Home = () => {
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              Desk Assembly
+                              Furniture Moving
+                            </button>
+                            <button
+                              className="p-1"
+                              style={{ borderRadius: "15px" }}
+                            >
+                              Packing and unpacking
+                            </button>
+                          </div>
+                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
+                            <button
+                              className="p-1"
+                              style={{ borderRadius: "15px" }}
+                            >
+                              Loading & Unloading
+                            </button>
+                            <button
+                              className="p-1"
+                              style={{ borderRadius: "15px" }}
+                            >
+                              Piano moving
+                            </button>
+                          </div>
+                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
+                            <button
+                              className="p-1"
+                              style={{ borderRadius: "15px" }}
+                            >
+                              Storage Services
                             </button>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <button className="p-2" style={{marginTop:"50px" ,marginLeft:"30px", borderRadius:"15px", background:"#f9ac25",color:"white",border:'none'}}>View More</button>
+                    <button
+                      className="p-2"
+                      style={{
+                        marginTop: "50px",
+                        marginLeft: "30px",
+                        borderRadius: "15px",
+                        background: "#f9ac25",
+                        color: "white",
+                        border: "none",
+                      }}
+                    >
+                      View More
+                    </button>
                   </div>
-                  
+
                   <div className="col">
                     <img
                       className="img-fluid"
@@ -379,9 +430,7 @@ const Home = () => {
                       alt=""
                     />
                   </div>
-                  
                 </div>
-                
               </div>
             </div>
             <div
@@ -395,9 +444,9 @@ const Home = () => {
                 <div className="row">
                   <div className="col">
                     <p>
-                      Our handymen are extremely well-qualified and have years
-                      of professional experience under their belt. experience
-                      under their belt
+                      Paint walls, ceilings, molding, and doors; includes prep
+                      and cleanup. Now Trending: Color blocking, stripe details,
+                      and statement colors
                     </p>
                     <div className="container-fluid">
                       <div className="row">
@@ -407,13 +456,13 @@ const Home = () => {
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              IKEA Assembly
+                              Interior Painting
                             </button>
                             <button
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              Furniture Assembly
+                              Exterior Painting
                             </button>
                           </div>
                           <div className="d-flex mt-3" style={{ gap: "10px" }}>
@@ -421,13 +470,13 @@ const Home = () => {
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              Crib Assembly
+                              Wall Painting
                             </button>
                             <button
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              PAX Assembly
+                              Fence Painting
                             </button>
                           </div>
                           <div className="d-flex mt-3" style={{ gap: "10px" }}>
@@ -435,15 +484,42 @@ const Home = () => {
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              Desk Assembly
+                              Cabinet Painting
                             </button>
+                            <button
+                              className="p-1"
+                              style={{ borderRadius: "15px" }}
+                            >
+                              Texture Painting
+                            </button>
+                          </div>
+                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
+                            <button
+                              className="p-1"
+                              style={{ borderRadius: "15px" }}
+                            >
+                              Trim Painting
+                            </button>
+                           
                           </div>
                         </div>
                       </div>
                     </div>
-                    <button className="p-2" style={{marginTop:"50px" ,marginLeft:"30px", borderRadius:"15px", background:"#f9ac25",color:"white",border:'none'}}>View More</button>
+                    <button
+                      className="p-2"
+                      style={{
+                        marginTop: "50px",
+                        marginLeft: "30px",
+                        borderRadius: "15px",
+                        background: "#f9ac25",
+                        color: "white",
+                        border: "none",
+                      }}
+                    >
+                      View More
+                    </button>
                   </div>
-                  
+
                   <div className="col">
                     <img
                       className="img-fluid"
@@ -452,9 +528,7 @@ const Home = () => {
                       alt=""
                     />
                   </div>
-                  
                 </div>
-                
               </div>
             </div>
             <div
@@ -480,27 +554,13 @@ const Home = () => {
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              IKEA Assembly
+                              Plumbing Repairs
                             </button>
                             <button
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              Furniture Assembly
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Crib Assembly
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              PAX Assembly
+                              Exterior Painting
                             </button>
                           </div>
                           <div className="d-flex mt-3" style={{ gap: "10px" }}>
@@ -508,26 +568,64 @@ const Home = () => {
                               className="p-1"
                               style={{ borderRadius: "15px" }}
                             >
-                              Desk Assembly
+                              HVAC Repairs
+                            </button>
+                            <button
+                              className="p-1"
+                              style={{ borderRadius: "15px" }}
+                            >
+                              Carpentry Work
+                            </button>
+                          </div>
+                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
+                            <button
+                              className="p-1"
+                              style={{ borderRadius: "15px" }}
+                            >
+                              Drywall Repair
+                            </button>
+                            <button
+                              className="p-1"
+                              style={{ borderRadius: "15px" }}
+                            >
+                              Door & Window Repair
+                            </button>
+                          </div>
+                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
+                            <button
+                              className="p-1"
+                              style={{ borderRadius: "15px" }}
+                            >
+                              Roof Repair
                             </button>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <button className="p-2" style={{marginTop:"50px" ,marginLeft:"30px", borderRadius:"15px", background:"#f9ac25",color:"white",border:'none'}}>View More</button>
+                    <button
+                      className="p-2"
+                      style={{
+                        marginTop: "50px",
+                        marginLeft: "30px",
+                        borderRadius: "15px",
+                        background: "#f9ac25",
+                        color: "white",
+                        border: "none",
+                      }}
+                    >
+                      View More
+                    </button>
                   </div>
-                  
+
                   <div className="col">
                     <img
                       className="img-fluid"
-                      style={{ zoom: "0.7",height:"500px",width:"500px" }}
+                      style={{ zoom: "0.7", height: "500px", width: "500px" }}
                       src={tab5}
                       alt=""
                     />
                   </div>
-                  
                 </div>
-                
               </div>
             </div>
           </div>
@@ -897,25 +995,35 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <div className="container-fluid" style={{backgroundColor:"#F9AC25", height:"200px"}}>
+      <div
+        className="container-fluid"
+        style={{ backgroundColor: "#F9AC25", height: "200px" }}
+      >
         <div className="container p-5">
-        <div className="row">
-        
-        <div className="col">
-        <h3>STAY TUNED WITH UPDATES</h3>
+          <div className="row">
+            <div className="col">
+              <h3>STAY TUNED WITH UPDATES</h3>
+            </div>
+            <div className="col">
+              <input
+                type="text"
+                class="form-control footer-input"
+                placeholder="serach"
+                aria-label="search"
+                aria-describedby="basic-addon1"
+              />
+            </div>
+            <div className="col-1">
+              <button
+                className="p-1"
+                style={{ width: "100px", border: "none", borderRadius: "15px" }}
+              >
+                SIGN UP
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="col">
-        <input type="text" class="form-control footer-input" placeholder="serach" aria-label="search" aria-describedby="basic-addon1" />
-        
-        </div>
-        <div className="col-1">
-        <button className="p-1" style={{width:"100px",border:"none",borderRadius:"15px"}}>SIGN UP</button>
-        
-        </div>
-        </div>
-        
-        </div>
-        </div>
+      </div>
     </>
   );
 };
