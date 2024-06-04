@@ -9,6 +9,9 @@ import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import Services from "../Pages/Services";
 import Popup from "../Pages/Popup";
+import OrderConfirmation from '../Pages/orderConfirmation'
+
+
 const AllRoute =()=>{
     return (
         <>
@@ -23,6 +26,7 @@ const AllRoute =()=>{
         <Route path="/Signup" element={<Signup/>}>Signup </Route>
         <Route path="/services" element={<Services/>}> Services </Route>
         <Route path="/Popup" element={<Popup/>}>Popup </Route>
+        <Route path="/services/:id" element={<OrderConfirmation/>}>order confirmation</Route>
         </Routes>
         </>
     )

@@ -47,7 +47,7 @@ const Profile = () => {
         }}
       >
         <div className="container">
-          <div className="row" style={{}}>
+          <div className="row" >
             <div className="col-img" style={{ width: "10%" }}>
               <img src={profile} />
             </div>

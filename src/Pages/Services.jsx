@@ -104,7 +104,7 @@ const services = () => {
         totaltask: filteredData.totaltask + 1,
       };
       const taskResponse = await axios.put(
-        `${import.meta.env.VITE_SOME_KEY}/service/${filteredData._id}`,
+        `${import.meta.env.VITE_SOME_KEY}/service/${id}`,
         totalTaskPayload
       );
 
@@ -115,7 +115,7 @@ const services = () => {
       console.log(response);
       message.success(response.data);
       setTimeout(() => {
-        navigate("/profile");
+        navigate(`/services/${id}`);
       }, 1200);
     } catch (error) {
       // message.warning(error.response.data.status, {});
