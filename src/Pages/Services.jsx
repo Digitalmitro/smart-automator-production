@@ -1,7 +1,39 @@
 import { useNavigate } from "react-router-dom";
 import user from "../assets/user.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { message } from "antd";
+import { jwtDecode } from "jwt-decode";
+import Cookies from "js-cookie";
+import moment from 'moment'
+
 const services = () => {
-    const navigate =useNavigate()
+  // filter data by id
+  const token = Cookies.get("token");
+  const decodedToken = token && jwtDecode(token);
+  const userId = decodedToken?._id;
+
+  const navigate = useNavigate();
+  const serviceForm = JSON.parse(localStorage.getItem("serviceDetails"));
+
+  const [taskers, setTaskers] = useState();
+  const handleServiceDetails = async () => {
+    try {
+      console.log("try");
+      const response = await axios.get(
+        `${import.meta.env.VITE_SOME_KEY}/service`
+      );
+      setTaskers(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(taskers);
+  useEffect(() => {
+    handleServiceDetails();
+  }, []);
+
+  console.log(serviceForm);
   function getVals() {
     // Get slider values
     let parent = this.parentNode;
@@ -33,6 +65,64 @@ const services = () => {
       }
     }
   };
+
+  // implement paggination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(2);
+  // Calculate the index of the first and last item of the current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  // Slice the array of taskers to display only the items for the current page
+  const currentTaskers =
+    taskers && taskers.slice(indexOfFirstItem, indexOfLastItem);
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  // data filter by Id
+  const handleOrder = async (id) => {
+    console.log(id);
+    const [filteredData] = taskers.filter((data) => id === data._id);
+    console.log(filteredData);
+
+    try {
+      const payload = {
+        description: filteredData.description,
+        image: filteredData.image,
+        location: filteredData.location,
+        phone: filteredData.phone,
+        pricePerHour: filteredData.pricePerHour,
+        review: filteredData.review,
+        orderTime: moment().format('MMMM Do YYYY, h:mm:ss a'),
+        serviceCategory: filteredData.serviceCategory,
+        userName: filteredData.userName,
+        user_id: userId,
+        _id: filteredData._id,
+        vehicle: filteredData.vehicle
+      };
+
+      const totalTaskPayload = {
+        totaltask: filteredData.totaltask + 1,
+      };
+      const taskResponse = await axios.put(
+        `${import.meta.env.VITE_SOME_KEY}/service/${filteredData._id}`,
+        totalTaskPayload
+      );
+
+      const response = await axios.post(
+        `${import.meta.env.VITE_SOME_KEY}/order`,
+        payload
+      );
+      console.log(response);
+      message.success(response.data);
+      setTimeout(() => {
+        navigate("/profile");
+      }, 1200);
+    } catch (error) {
+      // message.warning(error.response.data.status, {});
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <section style={{ backgroundColor: "#fef6e7" }}>
@@ -45,24 +135,22 @@ const services = () => {
               <p>
                 <span className="fw-bold">Date</span>
               </p>
-              <div className="col" style={{zoom:"0.8"}} >
-              <button type="button" class="btn btn-link date">
-                Today
-              </button>
-              <button type="button" class="btn btn-link date">
-                Choose dates
-              </button>
+              <div className="col" style={{ zoom: "0.8" }}>
+                <button type="button" class="btn btn-link date">
+                  Today
+                </button>
+                <button type="button" class="btn btn-link date">
+                  Choose dates
+                </button>
               </div>
-              <div className="col mb-5" style={{zoom:"0.8"}}>
-              <button type="button" class="btn btn-link date">
-                Within a week
-              </button>
-              <button type="button" class="btn btn-link date">
-                Within 3 days
-              </button>
+              <div className="col mb-5" style={{ zoom: "0.8" }}>
+                <button type="button" class="btn btn-link date">
+                  Within a week
+                </button>
+                <button type="button" class="btn btn-link date">
+                  Within 3 days
+                </button>
               </div>
-              
-              
 
               <div className="time">
                 <h5>Time of the Day</h5>
@@ -171,146 +259,126 @@ const services = () => {
             </div>
 
             <div className="col-md-8 py-5 border border-dark bg-white">
-              <div className="row">
-                <div className="col-4 px-4">
-                  <img className="px-5" src={user} />
-                  <p className="text-center">
-                    <a href="" style={{ color: "#F9AC25", fontWeight: "500" }}>
-                      view profile & <br></br>review
+              {currentTaskers &&
+                currentTaskers.map((data, i) => {
+                  return (
+                    <>
+                      <div className="row" key={data._id}>
+                        <div className="col-4 px-4">
+                          <img className="px-5" src={data.image} />
+                          <p className="text-center">
+                            <a
+                              href=""
+                              style={{ color: "#F9AC25", fontWeight: "500" }}
+                            >
+                              view profile & <br></br>review
+                            </a>
+                          </p>
+
+                          <button
+                            onClick={() => handleOrder(data._id)}
+                            type="button"
+                            class="btn btn-warning text-center fw-bold"
+                            style={{ width: "100%", color: "#fff" }}
+                          >
+                            select & continue
+                          </button>
+
+                          <p className="text-center py-3">
+                            You can chat with your Tasker, adjust task details,
+                            or change task time after booking.
+                          </p>
+                        </div>
+
+                        <div className="col-8 px-4">
+                          <div className="user">
+                            <span
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                fontWeight: "700",
+                                fontSize: "25px",
+                              }}
+                            >
+                              <h2>{data.userName}</h2> ${data.pricePerHour}/hr
+                            </span>
+                            <p
+                              style={{
+                                backgroundColor: "#fffaf2",
+                                width: "90px",
+                                color: "#ff8a00",
+                              }}
+                            >
+                              Great value
+                            </p>
+
+                            <p>
+                              You rated{" "}
+                              <span style={{ fontSize: "20px" }}> ★ 5</span>
+                            </p>
+                            <p>{data.totaltask || 0} Furniture Assembly tasks</p>
+                            <p>{data.totaltask || 0} Assembly tasks overall</p>
+                          </div>
+                          <div
+                            className="comment"
+                            style={{
+                              backgroundColor: "#f5f7f6",
+                              padding: "20px 20px",
+                            }}
+                          >
+                            <h4>How can i Help:</h4>
+
+                            <p>{data.description} </p>
+                            <a href="#">Read more</a>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })}
+
+              <nav aria-label="Page navigation example">
+                <ul className="pagination">
+                  <li className="page-item">
+                    <a
+                      className="page-link"
+                      href="#"
+                      onClick={() => paginate(currentPage - 1)}
+                    >
+                      Previous
                     </a>
-                  </p>
-
-                  <button
-                  onClick={()=>navigate("/Servicedetails")}
-                    type="button"
-                    class="btn btn-warning text-center fw-bold"
-                    style={{ width: "100%", color: "#fff" }}
-                  >
-                    select & continue
-                  </button>
-
-                  <p className="text-center py-3">
-                    You can chat with your Tasker, adjust task details, or
-                    change task time after booking.
-                  </p>
-                </div>
-
-                <div className="col-8 px-4">
-                  <div className="user">
-                    <span
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        fontWeight: "700",
-                        fontSize: "25px",
-                      }}
+                  </li>
+                  {taskers &&
+                    Array.from({
+                      length: Math.ceil(taskers.length / itemsPerPage),
+                    }).map((_, index) => (
+                      <li
+                        key={index}
+                        className={`page-item ${
+                          currentPage === index + 1 ? "active" : ""
+                        }`}
+                      >
+                        <a
+                          onClick={() => paginate(index + 1)}
+                          className="page-link"
+                          href="#"
+                        >
+                          {index + 1}
+                        </a>
+                      </li>
+                    ))}
+                  <li className="page-item">
+                    <a
+                      className="page-link"
+                      href="#"
+                      onClick={() => paginate(currentPage + 1)}
                     >
-                      <h2>Mykta k. </h2> $41.29/hr
-                    </span>
-                    <p
-                      style={{
-                        backgroundColor: "#fffaf2",
-                        width: "90px",
-                        color: "#ff8a00",
-                      }}
-                    >
-                      Great value
-                    </p>
-
-                    <p>
-                      You rated <span style={{ fontSize: "20px" }}> ★ 5</span>
-                    </p>
-                    <p>199 Furniture Assembly tasks</p>
-                    <p>210 Assembly tasks overall</p>
-                  </div>
-                  <div
-                    className="comment"
-                    style={{ backgroundColor: "#f5f7f6", padding: "20px 20px" }}
-                  >
-                    <h4>How can i Help:</h4>
-
-                    <p>
-                      In publishing and graphic design, Lorem ipsum is a
-                      placeholder text commonly used to demonstrate the visual
-                      form of a document or a typeface without relying on
-                      meaningful content. Lorem ipsum may be used as a
-                      placeholder before the final copy is available.{" "}
-                    </p>
-                    <a href="#">Read more</a>
-                  </div>
-                </div>
-              </div>
-              <div className="row mt-5">
-                <div className="col-4 px-4">
-                  <img className="px-5" src={user} />
-                  <p className="text-center">
-                    <a href="" style={{ color: "#F9AC25", fontWeight: "500" }}>
-                      view profile & <br></br>review
+                      Next
                     </a>
-                  </p>
-
-                  <button
-                  onClick={()=>navigate("/Servicedetails")}
-                    type="button"
-                    class="btn btn-warning text-center fw-bold"
-                    style={{ width: "100%", color: "#fff" }}
-                  >
-                    select & continue
-                  </button>
-
-                  <p className="text-center py-3">
-                    You can chat with your Tasker, adjust task details, or
-                    change task time after booking.
-                  </p>
-                </div>
-
-                <div className="col-8 px-4">
-                  <div className="user">
-                    <span
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        fontWeight: "700",
-                        fontSize: "25px",
-                      }}
-                    >
-                      <h2>Mykta k. </h2> $41.29/hr
-                    </span>
-                    <p
-                      style={{
-                        backgroundColor: "#fffaf2",
-                        width: "90px",
-                        color: "#ff8a00",
-                      }}
-                    >
-                      Great value
-                    </p>
-
-                    <p>
-                      You rated <span style={{ fontSize: "20px" }}> ★ 5</span>
-                    </p>
-                    <p>199 Furniture Assembly tasks</p>
-                    <p>210 Assembly tasks overall</p>
-                  </div>
-                  <div
-                    className="comment"
-                    style={{ backgroundColor: "#f5f7f6", padding: "20px 20px" }}
-                  >
-                    <h4>How can i Help:</h4>
-
-                    <p>
-                      In publishing and graphic design, Lorem ipsum is a
-                      placeholder text commonly used to demonstrate the visual
-                      form of a document or a typeface without relying on
-                      meaningful content. Lorem ipsum may be used as a
-                      placeholder before the final copy is available.{" "}
-                    </p>
-                    <a href="#">Read more</a>
-                  </div>
-                </div>
-              </div>
+                  </li>
+                </ul>
+              </nav>
             </div>
-            
           </div>
         </div>
       </section>

@@ -77,7 +77,7 @@ const Home = () => {
             </h2>
           </div>
           <div
-            className="d-flex"
+            className="d-flex homeService"
             style={{
               margin: "auto",
               justifyContent: "center",

@@ -63,7 +63,7 @@ const Navbar = () => {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a style={{cursor:"pointer"}} class="nav-link" onClick={() => navigate("/services")}>
+                  <a style={{cursor:"pointer"}} class="nav-link" onClick={() => navigate("/Servicedetails")}>
                     Services
                   </a>
                 </li>

@@ -429,7 +429,7 @@ input[type=range]:focus::-ms-fill-upper {
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   border-radius: 50%;
 }
-ul{
+.navbar ul, .homeService ul{
   gap: 80px;
 }
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link i{
@@ -444,3 +444,9 @@ ul{
   margin-bottom: 20px;
   cursor: pointer;
 } */
+
+.orderDetails {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1em;
+}
