@@ -18,6 +18,7 @@ const services = () => {
 
   const [taskers, setTaskers] = useState();
   const handleServiceDetails = async () => {
+   
     try {
       console.log("try");
       const response = await axios.get(
@@ -28,8 +29,17 @@ const services = () => {
       console.log(error);
     }
   };
+  
+  useEffect(()=>{
+    window.scrollTo(0, 0)
+},[])
+
+
   console.log(taskers);
   useEffect(() => {
+    if(!token){
+      return navigate("/login");
+    }
     handleServiceDetails();
   }, []);
 
@@ -265,7 +275,7 @@ const services = () => {
                     <>
                       <div className="row" key={data._id}>
                         <div className="col-4 px-4">
-                          <img className="px-5" src={data.image} />
+                          <img className="px-5" src={`${import.meta.env.VITE_SOME_KEY}/uploads/${data.image}`} />
                           <p className="text-center">
                             <a
                               href=""

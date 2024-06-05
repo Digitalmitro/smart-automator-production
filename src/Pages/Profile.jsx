@@ -11,6 +11,11 @@ const Profile = () => {
   const userId = decodedToken?._id;
   const navigate = useNavigate();
   const [orderDetails, setOrderDetails] = useState();
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
+  const [zipCode, setZipCode] = useState();
 
   useEffect(() => {
     if (token) {
@@ -19,6 +24,22 @@ const Profile = () => {
     }
   }, [token]);
 
+  const handleServiceDetails = async () => {
+   
+    try {
+      const payload = {
+
+      }
+      console.log("try");
+      const response = await axios.post(
+        `${import.meta.env.VITE_SOME_KEY}/service`, payload
+      );
+      setTaskers(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   // data filter by Id
   useEffect(() => {
     const handleOrderDetails = async () => {

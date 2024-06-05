@@ -1,8 +1,10 @@
 import React from "react";
 import image from "../assets/profile1.png";
 import CheckMark from "../assets/carbon_checkmark-filled.png";
+import { useNavigate } from "react-router-dom";
 
 const OrderConfirmation = () => {
+  const navigate = useNavigate()
   return (
     <div style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems:"center", margin: "auto", zoom: ".8"}}>
         <img
@@ -44,12 +46,12 @@ const OrderConfirmation = () => {
           <button
             type="button"
             className="btn btn-warning tab-btn"
-           
+           onClick={() => navigate('/services')}
           >
             Book Again
           </button>
-          <button className="btn btn-warning tab-btn" type="button">
-            Share Profile
+          <button className="btn btn-warning tab-btn" type="button" onClick={() => navigate('/profile')}>
+           veiw Order History
           </button>
         </div>
       </div>

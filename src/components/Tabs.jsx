@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
@@ -9,6 +9,8 @@ import user from "../assets/user.png";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
+import { message } from "antd";
+
 // import burger1 from "../assets/image 18.png"
 const handelLogout = () => {
   Cookies.remove("token");
@@ -52,16 +54,90 @@ export default function VerticalTabs() {
 
   const token = Cookies.get("token");
   const decodedToken = token && jwtDecode(token);
-  const userId = decodedToken?._id;
+  const user_id = decodedToken?._id;
   const navigate = useNavigate();
-  const [orderDetails, setOrderDetails] = React.useState();
+  const [orderDetails, setOrderDetails] = useState();
+
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
+  const [zipCode, setZipCode] = useState();
+  const [oldPassword, setOldPassword] = useState();
+  const [newPassword, setNewPassword] = useState();
+
+  const [clientDetails, setClientDetails] = useState();
+
+  useEffect(() => {
+    if (token) {
+    } else {
+      return navigate("/login");
+    }
+  }, [token]);
+
+  const handleClientsDetails = async (e) => {
+    e.preventDefault();
+    try {
+      const payload = {
+        firstName,
+        lastName,
+        zipCode,
+        phone,
+        email,
+        newPassword,
+        oldPassword,
+        user_id,
+      };
+      console.log("try");
+      const response = await axios.put(
+        `${import.meta.env.VITE_SOME_KEY}/updateclient`,
+        payload
+      );
+  
+      console.log(response)
+    
+      if (response.status === 200) {
+        Cookies.set("token", response.data.token);
+        console.log(response);
+        message.success("Profile Updated successfully");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1200); // 1.2 seconds
+      } else {
+        message.error("An error occurred while updating the profile");
+      }
+
+    } catch (error) {
+      console.log(error);
+      message.error("profile do not updated");
+    }
+  };
+
+
+
+  // data filter by Id
+  useEffect(() => {
+    const handleOrderDetails = async () => {
+      try {
+        const Response = await axios.get(
+          `${import.meta.env.VITE_SOME_KEY}/order/${user_id}`
+        );
+        orderDetails(Response);
+      } catch (error) {
+        // message.warning(error.response.data.status, {});
+        console.log(error);
+      }
+    };
+    // handleOrderDetails()
+    console.log(orderDetails);
+  }, []);
 
   const handleOrderDetails = async () => {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_SOME_KEY}/order/${userId}`
+        `${import.meta.env.VITE_SOME_KEY}/order/${user_id}`
       );
-      console.log(res.data.order);
+      console.log("order details", res.data.order);
       setOrderDetails(res.data.order);
     } catch (error) {
       // message.warning(error.response.data.status, {});
@@ -78,6 +154,75 @@ export default function VerticalTabs() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+
+  // Adress code
+  const [address1, setAddress1] = useState();
+  const [address2, setAddress2] = useState();
+  const [city, setCity] = useState();
+  const [state, setState] = useState();
+  const [addressType, setAddressType] = useState("");
+  const [zip, setZip] = useState();
+
+  
+  const handleAddressDetails = async (e) => {
+    e.preventDefault();
+
+    try {
+      const payload = {
+        address1,
+        address2,
+        city,
+        state,
+        zip,
+        addressType,
+        user_id,
+      };
+      console.log("try");
+      if(addressType === "home"){
+        const response = await axios.post(
+          `${import.meta.env.VITE_SOME_KEY}/homeAddress`,
+          payload
+        );
+      console.log(response)
+      if (response.status === 200) {
+        console.log(response);
+        message.success("address Updated successfully");
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 1200); // 1.2 seconds
+      } else {
+        message.error("An error occurred while updating the address");
+      }
+      }else if(addressType === "work"){
+        const response = await axios.post(
+          `${import.meta.env.VITE_SOME_KEY}/workAddress`,
+          payload
+        );
+        if (response.status === 200) {
+          console.log(response);
+          message.success("address Updated successfully");
+          // setTimeout(() => {
+          //   window.location.reload();
+          // }, 1200); // 1.2 seconds
+        } else {
+          message.error("An error occurred while updating the address");
+        }
+      }else{
+        message.error("select addres type")
+      }
+     
+  
+    
+     
+
+    } catch (error) {
+      console.log(error);
+      message.error("address  not updated");
+    }
+  };
+
+
 
   return (
     <>
@@ -128,53 +273,82 @@ export default function VerticalTabs() {
             <h2 className="py-3">Manage Profile</h2>
             <div className="profileDetails">
               <>
-                <form class="row g-3">
+                <form class="row g-3" >
                   <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">
                       First Name
                     </label>
-                    <input type="email" class="form-control" id="inputEmail4" />
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="inputEmail4"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
                   </div>
                   <div class="col-md-6">
                     <label for="inputPassword4" class="form-label">
                       Last Name
                     </label>
                     <input
-                      type="password"
+                      type="text"
                       class="form-control"
                       id="inputPassword4"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
                     />
                   </div>
                   <div class="col-md-6">
                     <label for="inputCity" class="form-label">
-                      Email
+                     Confirm Email <span style={{color: "red"}}>*</span>
                     </label>
-                    <input type="text" class="form-control" id="inputCity" />
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputCity"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
                   </div>
                   <div class="col-md-4">
                     <label for="inputState" class="form-label">
                       Phone
                     </label>
 
-                    <input type="text" class="form-control" id="inputCity" />
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputCity"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
                   </div>
                   <div class="col-md-2">
                     <label for="inputZip" class="form-label">
                       Zip Code
                     </label>
-                    <input type="text" class="form-control" id="inputZip" />
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="inputZip"
+                      value={zipCode}
+                      onChange={(e) => setZipCode(e.target.value)}
+                    />
                   </div>
                 </form>
                 <p class="text-warning pt-5 py-2">Change Password</p>
                 <form class="row g-3">
                   <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">
-                      Old Password
+                      Old Password  <span style={{color: "red"}}>*</span>
                     </label>
                     <input
-                      type="email"
+                      type="password"
                       class="form-control"
                       id="inputEmail4"
+                      value={oldPassword}
+                      onChange={(e) => setOldPassword(e.target.value)}
                       required
                     />
                   </div>
@@ -187,10 +361,13 @@ export default function VerticalTabs() {
                       type="password"
                       class="form-control"
                       id="inputPassword4"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
                     />
                   </div>
                   <div className="text-center">
-                    <button type="submit" class="btn btn-warning text-white">
+                    <button type="btn" class="btn btn-warning text-white"
+                    onClick={handleClientsDetails}>
                       Update
                     </button>
                   </div>
@@ -199,79 +376,102 @@ export default function VerticalTabs() {
             </div>
           </div>
         </TabPanel>
+
         <TabPanel value={value} index={1}>
-          <div className="past-order container-fluid w-120" >
+          <div className=" container past-order">
             <h2>Manage Address</h2>
             <div class="d-flex  justify-content-center p-2 align-items-center">
-             <div class="pt-3">
+              <div class="pt-3">
+                <form className="addressForm" onSubmit={handleAddressDetails}>
+                  <div class="mb-3 ">
+                    <label for="formGroupExampleInput" class="form-label">
+                      Address Line
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="formGroupExampleInput"
+                      placeholder="Example input placeholder"
+                      value={address1}
+                      onChange={(e) => setAddress1(e.target.value)}
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">
+                      Address Line 2
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="formGroupExampleInput2"
+                      placeholder="Another input placeholder"
+                      value={address2}
+                      onChange={(e) => setAddress2(e.target.value)}
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label">
+                      City
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="formGroupExampleInput"
+                      placeholder="Example input placeholder"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput2" class="form-label">
+                      State
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="formGroupExampleInput2"
+                      placeholder="Another input placeholder"
+                      value={state}
+                      onChange={(e) => setState(e.target.value)}
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label">
+                      Zip Code
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="formGroupExampleInput"
+                      placeholder="Example input placeholder"
+                      value={zip}
+                      onChange={(e) => setZip(e.target.value)}
+                    />
+                  </div>
+                  <div class="form-group ">
+                    <label for="input">AddressType</label>
+                    <select
 
-             <form className="addressForm" >
-                <div class="mb-3">
-                  <label for="formGroupExampleInput" class="form-label">
-                   Address Line
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="formGroupExampleInput"
-                    placeholder="Example input placeholder"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="formGroupExampleInput2" class="form-label">
-                  Address Line 2
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="formGroupExampleInput2"
-                    placeholder="Another input placeholder"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="formGroupExampleInput" class="form-label">
-                   City
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="formGroupExampleInput"
-                    placeholder="Example input placeholder"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="formGroupExampleInput2" class="form-label">
-                  State
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="formGroupExampleInput2"
-                    placeholder="Another input placeholder"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="formGroupExampleInput" class="form-label">
-                    Zip Code
-                  </label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="formGroupExampleInput"
-                    placeholder="Example input placeholder"
-                  />
-                </div>
-                <div class="form-group ">
-                  <label for="input">AddressType</label>
-                  <select class="form-select form-select-sm w-100" aria-label=".form-select-sm example">
-  <option selected>Choose</option>
-
-</select>
-                </div>
-              </form>
-             </div>
+                      class="form-select form-select-sm w-100"
+                      aria-label=".form-select-sm example"
+                      value={addressType}
+                      onChange={(e) => setAddressType(e.target.value)}
+                    >
+                      <option selected>Choose</option>
+                      <option value={"home"}>Home</option>
+                      <option value={"work"}>Work</option>
+                    </select>
+                  </div>
+                  <div>
+                    <button type="submit">Add Address</button>
+                  </div>
+                </form>
+              </div>
               <div className="addressDetails">
-                <div className="address1" style={{ marginBottom: "40px" , zoom:".8"}}>
+                <div
+                  className="address1"
+                  style={{ marginBottom: "40px", zoom: ".8" }}
+                >
                   <span>
                     <i class="fa-solid fa-location-dot"></i> <h2>Home</h2>{" "}
                   </span>
@@ -284,7 +484,10 @@ export default function VerticalTabs() {
                   </button>
                 </div>
 
-                <div className="address1" style={{ marginBottom: "40px" , zoom:".8"}}>
+                <div
+                  className="address1"
+                  style={{ marginBottom: "40px", zoom: ".8" }}
+                >
                   <span>
                     <i class="fa-solid fa-location-dot"></i> <h2>Work</h2>{" "}
                   </span>
