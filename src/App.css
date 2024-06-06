@@ -185,8 +185,10 @@ color: #fff !important;
 
 .past-order-box{
   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;;
-   width: 100%;
+   /* width: 100%; */
    height:auto ;
+   padding: 1rem;
+
    /* padding: 40px 40px; */
  }
  .wrap{
@@ -457,8 +459,10 @@ input[type=range]:focus::-ms-fill-upper {
 } */
 
 .orderDetails {
-  display: grid !important;
-  grid-template-columns: repeat(3, 1fr) !important;
-  gap: 1em;
+  display: flex !important;
+ justify-content: center;
+ align-items: center;
+ flex-wrap: wrap;
+ gap: 1.5rem;
 
 }

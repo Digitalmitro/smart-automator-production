@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { message } from "antd";
+import './tabs.css'
 
 // import burger1 from "../assets/image 18.png"
 const handelLogout = () => {
@@ -68,6 +69,7 @@ export default function VerticalTabs() {
 
   const [clientDetails, setClientDetails] = useState();
 
+
   useEffect(() => {
     if (token) {
     } else {
@@ -75,6 +77,17 @@ export default function VerticalTabs() {
     }
   }, [token]);
 
+
+  useEffect(() => {
+    const storedValue = localStorage.getItem('tabIndex');
+    if (storedValue !== null) {
+      setValue(parseInt(storedValue, 10));
+    }
+  }, []);
+
+
+
+  
   const handleClientsDetails = async (e) => {
     e.preventDefault();
     try {
@@ -114,24 +127,6 @@ export default function VerticalTabs() {
   };
 
 
-
-  // data filter by Id
-  useEffect(() => {
-    const handleOrderDetails = async () => {
-      try {
-        const Response = await axios.get(
-          `${import.meta.env.VITE_SOME_KEY}/order/${user_id}`
-        );
-        orderDetails(Response);
-      } catch (error) {
-        // message.warning(error.response.data.status, {});
-        console.log(error);
-      }
-    };
-    // handleOrderDetails()
-    console.log(orderDetails);
-  }, []);
-
   const handleOrderDetails = async () => {
     try {
       const res = await axios.get(
@@ -146,13 +141,27 @@ export default function VerticalTabs() {
   };
   console.log(orderDetails);
 
+  
+
   React.useEffect(() => {
     handleOrderDetails();
   }, []);
   console.log(orderDetails);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(3);
+  // Calculate the index of the first and last item of the current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  // Slice the array of taskers to display only the items for the current page
+  const currentOrderDetails =
+        orderDetails && orderDetails.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    localStorage.setItem('tabIndex', newValue);
   };
 
 
@@ -163,6 +172,8 @@ export default function VerticalTabs() {
   const [state, setState] = useState();
   const [addressType, setAddressType] = useState("");
   const [zip, setZip] = useState();
+  const [homeAddressData, setHomeAddressData] = useState();
+  const [workAddressData, setWorkAddressData] = useState();
 
   
   const handleAddressDetails = async (e) => {
@@ -184,13 +195,13 @@ export default function VerticalTabs() {
           `${import.meta.env.VITE_SOME_KEY}/homeAddress`,
           payload
         );
-      console.log(response)
       if (response.status === 200) {
         console.log(response);
-        message.success("address Updated successfully");
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 1200); // 1.2 seconds
+
+        message.success("home address Updated successfully");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1200); 
       } else {
         message.error("An error occurred while updating the address");
       }
@@ -202,27 +213,97 @@ export default function VerticalTabs() {
         if (response.status === 200) {
           console.log(response);
           message.success("address Updated successfully");
-          // setTimeout(() => {
-          //   window.location.reload();
-          // }, 1200); // 1.2 seconds
+          setTimeout(() => {
+            window.location.reload();
+          }, 1200);
         } else {
           message.error("An error occurred while updating the address");
         }
       }else{
         message.error("select addres type")
       }
-     
-  
-    
-     
 
     } catch (error) {
       console.log(error);
       message.error("address  not updated");
     }
+    getHomeAddressData()
+    getWorkAddressData()
+  };
+    
+  const getHomeAddressData = async() => {
+    try{
+      let response = await axios.get(
+        `${import.meta.env.VITE_SOME_KEY}/homeAddress/${user_id}`,
+        
+      );
+      setHomeAddressData(response.data.data.homeAddress[0])
+      console.log("address get response",response.data.data.homeAddress)
+    }catch (error) {
+      console.log(error);
+      // message.error("address not get");
+    }
+ 
+
+  }
+  const getWorkAddressData = async() => {
+    try{
+      let response = await axios.get(
+        `${import.meta.env.VITE_SOME_KEY}/workAddress/${user_id}`,
+        
+      );
+      setWorkAddressData(response.data.data.workAddress[0])
+      // console.log("address get response",response.data.data.workAddress)
+    }catch (error) {
+      console.log(error);
+      // message.error("address not get");
+    }
+   
+
+  }
+  useEffect(() => {
+    getHomeAddressData()
+    getWorkAddressData()
+   
+  },[])
+  const handleDeleteAddress = async () => {
+
+    try {
+      const res = await axios.delete(
+        `${import.meta.env.VITE_SOME_KEY}/homeAddress/${homeAddressData?._id}`
+      );
+      console.log("deleted", res)
+      // console.log("order details", res.data.order);
+      // setOrderDetails(res.data.order);
+    } catch (error) {
+      // message.warning(error.response.data.status, {});
+      console.log(error);
+    }
+    getHomeAddressData()
+    getWorkAddressData()
   };
 
+  const handleDeleteworkAddress = async () => {
 
+    try {
+      const res = await axios.delete(
+        `${import.meta.env.VITE_SOME_KEY}/workAddress/${workAddressData?._id}`
+      );
+      console.log("work add deleted", res)
+      // console.log("order details", res.data.order);
+      // setOrderDetails(res.data.order);
+    } catch (error) {
+      // message.warning(error.response.data.status, {});
+      console.log(error);
+    }
+    getHomeAddressData()
+    getWorkAddressData()
+  };
+ 
+
+  console.log("home address",homeAddressData)
+  console.log("work address",workAddressData)
+ 
 
   return (
     <>
@@ -380,12 +461,12 @@ export default function VerticalTabs() {
         <TabPanel value={value} index={1}>
           <div className=" container past-order">
             <h2>Manage Address</h2>
-            <div class="d-flex  justify-content-center p-2 align-items-center">
-              <div class="pt-3">
+            <div class="d-flex  justify-content-center p-2 align-items-center m-auto">
+              <div class="pt-3 d-flex  justify-content-center p-2 align-items-center m-auto">
                 <form className="addressForm" onSubmit={handleAddressDetails}>
                   <div class="mb-3 ">
                     <label for="formGroupExampleInput" class="form-label">
-                      Address Line
+                      Address Line 1
                     </label>
                     <input
                       type="text"
@@ -467,48 +548,55 @@ export default function VerticalTabs() {
                   </div>
                 </form>
               </div>
-              <div className="addressDetails">
-                <div
-                  className="address1"
-                  style={{ marginBottom: "40px", zoom: ".8" }}
-                >
-                  <span>
-                    <i class="fa-solid fa-location-dot"></i> <h2>Home</h2>{" "}
-                  </span>
-                  <p>5198 Commons Dr, Rocklin, CA 95677, USA</p>
-                  <button className="address-btn" type="button">
-                    Edit
-                  </button>
-                  <button className="address-btn" type="button">
-                    Delete
-                  </button>
-                </div>
-
-                <div
-                  className="address1"
-                  style={{ marginBottom: "40px", zoom: ".8" }}
-                >
-                  <span>
-                    <i class="fa-solid fa-location-dot"></i> <h2>Work</h2>{" "}
-                  </span>
-                  <p>5198 Commons Dr, Rocklin, CA 95677, USA</p>
-                  <button className="address-btn" type="button">
-                    Edit
-                  </button>
-                  <button className="address-btn" type="button">
-                    Delete
-                  </button>
-                </div>
-              </div>
+              
+    {(homeAddressData || workAddressData) &&
+      <div className="addressDetails" style={{padding:".7rem"}}>
+      {homeAddressData && 
+     
+          <div
+          className="address1"
+          style={{ marginBottom: "40px", zoom: ".8" }}
+        >
+          <span>
+            <i className="fa-solid fa-location-dot"></i> <h2>{homeAddressData.addressType}</h2>{" "}
+          </span>
+          <p>Address 1- {homeAddressData.address1}</p>
+          <p>{homeAddressData.city}, {homeAddressData.state}, {homeAddressData.zip}</p>
+         
+          <button className="btn btn-danger" type="button"  onClick={handleDeleteAddress}>
+            Delete
+          </button>
+        </div>
+      
+       }
+     {workAddressData  &&
+        <div
+          className="address1"
+          style={{ marginBottom: "40px", zoom: ".8" }}
+        >
+          <span>
+            <i className="fa-solid fa-location-dot"></i> <h2>Work</h2>{" "}
+          </span>
+          <p>Address 1- {workAddressData.address1}</p>
+          <p>{workAddressData.city}, {workAddressData.state}, {workAddressData.zip}</p>
+          
+          <button className="btn btn-danger" type="button" onClick={handleDeleteworkAddress}>
+            Delete
+          </button>
+        </div>
+     }
+     
+    </div>
+}
             </div>
           </div>
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <div className="past-order" style={{ marginLeft: "170px" }}>
+          <div className="past-order" style={{ textAlign: "center" }}>
             <h2 className="py-3">Orders</h2>
             <div className="orderDetails">
-              {orderDetails &&
-                orderDetails.map((data) => {
+              {currentOrderDetails &&
+                currentOrderDetails.map((data) => {
                   return (
                     <>
                       <div className="past-order-box" style={{ zoom: ".6" }}>
@@ -532,7 +620,7 @@ export default function VerticalTabs() {
                             <img
                               className="rounded-circle"
                               style={{ width: "135px", height: "135px" }}
-                              src={data.image}
+                              src={`${import.meta.env.VITE_SOME_KEY}/uploads/${data?.image}`}
                             />
                           </div>
                           <div className="col-md-8 py-4 px-5">
@@ -569,6 +657,51 @@ export default function VerticalTabs() {
                   );
                 })}
             </div>
+
+
+           <div style={{textAlign: "center"}} className="orderPagination">
+           <nav aria-label="Page navigation example">
+                <ul className="pagination">
+                  <li className="page-item">
+                    <a
+                      className="page-link"
+                      href="#"
+                      onClick={() => paginate(currentPage - 1)}
+                    >
+                      Previous
+                    </a>
+                  </li>
+                  {orderDetails &&
+                    Array.from({
+                      length: Math.ceil(orderDetails.length / itemsPerPage),
+                    }).map((_, index) => (
+                      <li
+                        key={index}
+                        className={`page-item ${
+                          currentPage === index + 1 ? "active" : ""
+                        }`}
+                      >
+                        <a
+                          onClick={() => paginate(index + 1)}
+                          className="page-link"
+                          href="#"
+                        >
+                          {index + 1}
+                        </a>
+                      </li>
+                    ))}
+                  <li className="page-item">
+                    <a
+                      className="page-link"
+                      href="#"
+                      onClick={() => paginate(currentPage + 1)}
+                    >
+                      Next
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+           </div>
           </div>
         </TabPanel>
         <TabPanel value={value} index={3}>
@@ -619,6 +752,7 @@ export default function VerticalTabs() {
           Item Six
         </TabPanel>
       </Box>
+     
     </>
   );
 }
