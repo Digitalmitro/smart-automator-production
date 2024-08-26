@@ -1,0 +1,14 @@
+
+#vertical-tabpanel-1, #vertical-tabpanel-2{
+    width: 100%;
+}
+
+.orderPagination {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+.css-19kzrtu{
+padding:.5rem
+}
