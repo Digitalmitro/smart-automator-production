@@ -19,12 +19,12 @@ import $ from "jquery";
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { motion } from 'framer-motion';
+import { motion, useScroll  } from 'framer-motion';
 import CountUp from 'react-countup';
 
 
 const Home = () => {
-
+  const { scrollYProgress } = useScroll();
 AOS.init()
 
   $(document).ready(function () {
@@ -57,10 +57,11 @@ AOS.init()
           >
    <motion.h1
           className="para"
-          style={{ fontWeight: 600, fontSize: "38px", letterSpacing:"9px", wordSpacing:"1px"  }}
+          style={{ fontWeight: 600, fontSize: "38px", letterSpacing:"9px", wordSpacing:"1px" ,  scaleX: scrollYProgress  }}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 2.5}}
+          viewport={{ once: true, amount: 0.5 }} 
         >
            
               CREATE THE BEST HOME
@@ -700,10 +701,10 @@ AOS.init()
         <div className="container">
           <motion.h2 className="text-center p-4 fw-bold mt-5"
           style={{ padding: "25px 0px", letterSpacing:"3px", wordSpacing:"5px" }} 
-
-          initial={{ opacity: 0, x: 10 }}
+          initial={{ opacity: 0, x: -60 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 3, delay:"1"}}
+          transition={{ duration: 5 }}
+          viewport={{ once: true, amount: 0.5 }} 
           >
             POPULAR PROJECT</motion.h2>
 
@@ -1133,8 +1134,8 @@ AOS.init()
             -News-
           </h4>
           <h1 className="text-center"
-          data-aos="zoom-in-out"
-          data-aos-delay="100" 
+          data-aos="zoom-in"
+          data-aos-delay="300" 
           data-aos-duration="2000"
           >LATEST ARTICLES</h1>
 

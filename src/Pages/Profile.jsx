@@ -60,14 +60,7 @@ const Profile = () => {
   return (
     <>
       <section
-        style={
-          {
-            // backgroundColor: "#f9ac25",
-            // marginTop: "10px",
-            // marginBottom: "50px",
-            // padding: "40px 10px",
-          }
-        }
+       
       >
       <img src={BannerImage} className="BannerImage" />
 
@@ -121,7 +114,7 @@ const Profile = () => {
         </div>
       </section>
 
-      <section>
+      <section className="containerDetails"  style={ styles.containerDetails }>
         <div className="profile">
           <VerticalTabs />
         </div>
@@ -130,3 +123,10 @@ const Profile = () => {
   );
 };
 export default Profile;
+
+
+const styles = {
+  containerDetails:{
+    marginTop:'7rem',
+  }
+}

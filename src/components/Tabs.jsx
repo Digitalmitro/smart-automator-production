@@ -241,7 +241,6 @@ export default function VerticalTabs() {
       console.log("address get response",response.data.data.homeAddress)
     }catch (error) {
       console.log(error);
-      // message.error("address not get");
     }
  
 

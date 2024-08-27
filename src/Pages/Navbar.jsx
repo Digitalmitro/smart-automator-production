@@ -121,7 +121,8 @@ const Navbar = () => {
               </ul>
 
               {/* User Panel */}
-              <div className="user-panel">
+              <div className="user-panel"
+              style={{width:'', height:''}}>
                 {decodedToken ? (
                   <>
                     <i
