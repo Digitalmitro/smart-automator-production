@@ -22,6 +22,7 @@ import 'aos/dist/aos.css';
 import { motion, useScroll  } from 'framer-motion';
 import CountUp from 'react-countup';
 
+import "./styles/home.scss"
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
@@ -70,7 +71,10 @@ AOS.init()
               initial={{ opacity: 0, x: -60 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 2.5, delay: 0.2 }}
-            style={{ fontSize: "24px", margin: "25px 0px", letterSpacing:"4px",   wordSpacing:"3px" }}>
+           
+            className="banner-heading"
+            
+            >
               Ready to dive into the internet of things to automate your home?
               Start with the op products we’ve tested for every room{" "}
             </motion.p>
@@ -79,7 +83,6 @@ AOS.init()
                data-aos-delay="100" 
                data-aos-duration="2000">
               <input
-              style={{marginTop:"68px"}}
                 type="text"
                 class="form-control bannersearch"
                 placeholder="search"
@@ -87,7 +90,7 @@ AOS.init()
                 aria-describedby="basic-addon1"
               />
 
-              <button type="button" style={{marginTop:"68px"}} class="btn btn-primary bannersearchbtn">
+              <button type="button"  class="btn btn-primary bannersearchbtn">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
             </div>
@@ -220,8 +223,8 @@ AOS.init()
               //  data-aos-delay="100" 
                data-aos-duration="2000"
               >
-                <div className="d-flex align-items-center">
-                  <div className="flex-1" style={{marginRight:"3rem"}}>
+                <div className="section-3 d-flex align-items-center">
+                  <div className="desc flex-1" style={{marginRight:"3rem"}}>
                     <p   data-aos="fade-right"
                           data-aos-delay="100" 
                           data-aos-duration="1500">
@@ -231,7 +234,7 @@ AOS.init()
                       under their belt
                      </strong>
                     </p>
-                    <div className="container-fluid pt-3" >
+                    <div className="assembly-container container-fluid pt-3 pr-sm-0" >
                       <div className=" ">
                         <div className=""
                          
@@ -725,12 +728,9 @@ AOS.init()
             >
               <div class="card project-card mx-5" data-aos="fade-up"
                data-aos-duration="1300"
-               style={{
-                // width:"272px", 
-               height:"230px"}} >
-                <img src={project1}  style={{
-                  // width:"272px", 
-                  height:"230px"}} alt="Product 1" class="card-img-top" />
+             
+                >
+                <img src={project1} alt="Product 1" class="card-img-top" />
                 <div class="card-body project-card">
                   <h6 class="card-title text-center fw-bold">
                     Smart Home Devices
@@ -891,8 +891,8 @@ AOS.init()
 
       <section>
         <div className="container-fluid countdown-bg mt-5">
-          <div className="container pt-5">
-            <div className="row pt-5 c">
+          <div className="container pt-lg-4 pt-3">
+            <div className="row pt-lg-5 gap-4 ">
               <div className="col-md-3">
                 <div class="counter-box colored"  data-aos="fade-up"
                   data-aos-delay="200" 
@@ -1212,10 +1212,10 @@ AOS.init()
       >
         <div className="container pt-5">
           <div className="row">
-            <div className="col">
+            <div className="col-12 col-md">
               <h3 className="pt-1">STAY TUNED WITH UPDATES</h3>
             </div>
-            <div className="col d-flex ">
+            <div className="col d-flex py-sm-5 pt-sm-3 ">
               <input
                 type="text"
                 class="form-control footer-input"
@@ -1223,9 +1223,8 @@ AOS.init()
                 aria-label="search"
                 aria-describedby="basic-addon1"
               />
-
               <button
-                className=" mx-2"
+                className="mx-2"
                 style={{ width: "80px", border: "none", margin:"", borderRadius: "20px", border:"2px solid grey" }}
               >
               <strong style={{color:"grey"}}>SIGN UP</strong>

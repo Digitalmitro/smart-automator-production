@@ -4,11 +4,13 @@ import Navbar from "../Pages/Navbar";
 import Footer from "../Pages/Footer";
 import Servicedetails from "../Pages/servicedetails"
 import Profile from "../Pages/Profile";
-import Tasker from "../Pages/Tasker";
+import Tasker from "../Pages/Tasker/Tasker";
+import TaskerLogin from "../Pages/Tasker/TaskerLogin";
+import TaskerSignup from "../Pages/Tasker/TaskerSignup";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import Services from "../Pages/Services";
-import Popup from "../Pages/Popup";
+import Popup from "../Pages/Tasker/Popup";
 import ImageUpload from "../Pages/imageUpload";
 import ConfirmDetails from "../Pages/ConfirmDetails";
 import OrderConfirmation from '../Pages/orderConfirmation'
@@ -24,6 +26,8 @@ const AllRoute =()=>{
         <Route path="/Servicedetails" element={<Servicedetails />}>servicedetails</Route>
         <Route path="/profile" element={< Profile />}>Profile</Route>
         <Route path="/Tasker" element={< Tasker />}>Tasker</Route>
+        <Route path="/taskerlogin" element={< TaskerLogin />}>Tasker Login</Route>
+        <Route path="/taskersignup" element={< TaskerSignup />}>Tasker Signup</Route>
         <Route path="/login" element={< Login />}>Login</Route>
         <Route path="/Signup" element={<Signup/>}>Signup </Route>
         <Route path="/services" element={<Services/>}> Services </Route>

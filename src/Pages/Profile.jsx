@@ -64,58 +64,12 @@ const Profile = () => {
       >
       <img src={BannerImage} className="BannerImage" />
 
-        <div className="container profile">
-          <div className="row">
-            <div className="col-img" style={{ width: "10%" }}>
-              <img src={profile} />
-            </div>
-            <div className="col-md-6">
-              <h2 style={{ fontSize: "25px", color: "#fff" }}>
-                {decodedToken.firstName.toUpperCase()}{" "}
-                {decodedToken.lastName.toUpperCase()}
-              </h2>
-              <ul
-                style={{
-                  display: "flex",
-                  gap: "25px",
-                  marginTop: "20px",
-                  color: "#fff",
-                  paddingLeft: "0px",
-                }}
-              >
-                <li>{decodedToken.phone}</li>
-                <li>{decodedToken.email}</li>
-              </ul>
-            </div>
-
-            <div className="col-md-4 d-flex" style={{ gap: "20px" }}>
-              <button
-                className="btn-type-4"
-                type="button"
-                style={{
-                  marginRight: "15px",
-                  width: "400px",
-                  height: "55px",
-                  fontSize: "13px",
-                }}
-              >
-                CHANGE PASSWORD
-              </button>
-
-              <button
-                className="btn-type-4"
-                type="button"
-                style={{ width: "350px", height: "55px", fontSize: "13px" }}
-              >
-                EDIT PROFILE
-              </button>
-            </div>
-          </div>
-        </div>
+       
       </section>
 
       <section className="containerDetails"  style={ styles.containerDetails }>
         <div className="profile">
+       
           <VerticalTabs />
         </div>
       </section>

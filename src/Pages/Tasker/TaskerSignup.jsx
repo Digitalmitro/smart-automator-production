@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const TaskerSignup = () => {
   const navigate = useNavigate();
   
 
@@ -25,20 +25,23 @@ const Signup = () => {
       zip: zip,
     };
 console.log(credentials)
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_SOME_KEY}/registerclient`,
-        credentials
-      );
-      console.log(response);
-      message.success(response.data, {});
-      setTimeout(() => {
-        navigate("/login");
-      }, 1200);
-    } catch (error) {
-      // message.warning(error.response.data.status, {});
-      console.log(error);
-    }
+    // try {
+    // //   const response = await axios.post(
+    // //     `${import.meta.env.VITE_SOME_KEY}/registerclient`,
+    // //     credentials
+    // //   );
+    //   console.log(response);
+    //   message.success(response.data, {});
+    //   setTimeout(() => {
+    //     navigate("/login");
+    //   }, 1200);
+    // } catch (error) {
+    //   // message.warning(error.response.data.status, {});
+    //   console.log(error);
+    // }
+
+    navigate("/login");
+
   };
 
   return (
@@ -59,7 +62,8 @@ console.log(credentials)
                     
                   }
                 />
-            
+              </div>
+              <div data-mdb-input-init class="form-outline mb-4">
                 <input
                   type="text"
                   class="form-control"
@@ -70,7 +74,9 @@ console.log(credentials)
                   
                   }
                 />
-          
+              </div>
+
+              <div data-mdb-input-init class="form-outline mb-4">
                 <input
                   type="email"
                   class="form-control"
@@ -80,7 +86,9 @@ console.log(credentials)
                     setEmail(e.target.value )
                   }
                 />
-           
+              </div>
+
+              <div data-mdb-input-init class="form-outline mb-4">
                 <input
                 
                  
@@ -91,7 +99,9 @@ console.log(credentials)
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
-             
+              </div>
+
+              <div data-mdb-input-init class="form-outline mb-4">
                 <input
                   type="password"
                   id="form2Example2"
@@ -151,10 +161,11 @@ console.log(credentials)
                   <br></br>
           </div>
             </form>
+          
           </div>
         </div>
       </section>
     </>
   );
 };
-export default Signup;
+export default TaskerSignup;

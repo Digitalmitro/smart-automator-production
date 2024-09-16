@@ -4,14 +4,19 @@ import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import './navbar.css';
+import './styles/navbar.scss';
 import { useEffect, useState } from "react";
+import { svg } from "./Svg";
+import { LogoutModal } from "./modals/Logoutmodals";
+import Tooltip from '@mui/material/Tooltip';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const token = Cookies.get("token");
   const decodedToken = token && jwtDecode(token);
   const user = decodedToken?.email;
+
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   AOS.init(); 
 
@@ -35,6 +40,15 @@ const Navbar = () => {
   const handelLogout = () => {
     Cookies.remove("token");
     window.location.href = "/login";
+  };
+
+
+  const openLogoutModal = () => {
+    setShowLogoutModal(true);  // Show modal when logout button is clicked
+  };
+
+  const closeLogoutModal = () => {
+    setShowLogoutModal(false); // Hide modal
   };
 
   return (
@@ -67,7 +81,7 @@ const Navbar = () => {
 
             {/* Mobile View Menu Toggle Button */}
             <button
-              className="navbar-toggler"
+              className="navbar-btn"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNav"
@@ -75,7 +89,10 @@ const Navbar = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span className="navbar-toggler-icon"></span>
+              <span className="">
+
+                 {svg.menubar}
+              </span>
             </button>
 
             {/* Menu Items */}
@@ -125,14 +142,17 @@ const Navbar = () => {
               style={{width:'', height:''}}>
                 {decodedToken ? (
                   <>
-                    <i
+                   <Tooltip title="Profile">
+                   <i
                       onClick={() => navigate("/profile")}
                       className="fa-solid fa-user"
                     ></i>
+                    </Tooltip>
+                    <Tooltip title="Logout">
                     <i
-                      onClick={handelLogout}
+                      onClick={openLogoutModal}  
                       className="fa-solid fa-right-from-bracket"
-                    ></i>
+                    ></i></Tooltip>
                   </>
                 ) : (
                   ""
@@ -142,13 +162,15 @@ const Navbar = () => {
                   <span className="circle" aria-hidden="true">
                     <span className="icon arrow"></span>
                   </span>
-                  <span className="button-text">Become a Tasker</span>
+                  <span className="button-text" onClick={() => navigate('/Tasker')}>Become a Tasker</span>
                 </button>
               </div>
             </div>
           </nav>
         </div>
       </header>
+      <LogoutModal handelLogout={handelLogout} closeLogoutModal={closeLogoutModal} showLogoutModal={showLogoutModal} />
+      
     </div>
   );
 };

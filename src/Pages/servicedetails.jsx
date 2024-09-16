@@ -54,8 +54,8 @@ const servicedetails = () => {
   return (
     <>
       <section style={{ backgroundColor: "#fef6e7" }}>
-        <div className="container">
-          <h1>Furniture Assembly</h1>
+        <div className="container  pt-md-5 ">
+          <h1 className="py-5">Furniture Assembly</h1>
         </div>
         <div className="container">
           <div className="form-box">

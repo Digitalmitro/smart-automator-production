@@ -8,7 +8,7 @@ import timeLogo from "../assets/Group.png";
 import { jwtDecode } from "jwt-decode";
 import { message } from "antd";
 import Cookies from "js-cookie";
-import "./ConfirmDetails.css";
+import "./styles/ConfirmDetails.scss";
 
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
