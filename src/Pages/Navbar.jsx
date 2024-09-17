@@ -4,7 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import './styles/navbar.scss';
+import './Styles/navbar.scss';
 import { useEffect, useState } from "react";
 import { svg } from "./Svg";
 import { LogoutModal } from "./modals/Logoutmodals";

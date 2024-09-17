@@ -22,7 +22,7 @@ import 'aos/dist/aos.css';
 import { motion, useScroll  } from 'framer-motion';
 import CountUp from 'react-countup';
 
-import "./styles/home.scss"
+import "./Styles/home.scss"
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
@@ -56,13 +56,12 @@ AOS.init()
             className="content"
             style={{ textAlign: "center", padding: "100px", color: "#fff" }}
           >
-   <motion.h1
-          className="para"
-          style={{ fontWeight: 600, fontSize: "38px", letterSpacing:"9px", wordSpacing:"1px" ,  scaleX: scrollYProgress  }}
+            <motion.h1
+          className="para my-3 mb-5"
+          style={{ fontWeight: 600, fontSize: "38px", letterSpacing:"5px", wordSpacing:"1px"     }}
           initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
+          animate={{ opacity: .9, x: 0 }}
           transition={{ duration: 2.5}}
-          viewport={{ once: true, amount: 0.5 }} 
         >
            
               CREATE THE BEST HOME
