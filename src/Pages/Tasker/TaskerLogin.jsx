@@ -53,7 +53,11 @@ const Taskerslogin = () => {
         <div className="container-fluid login-bg">
           <div className="container login-form-bg">
             <form class="login-form">
-              <h2 className="fw-bold"> Smart Automator</h2>
+            <div className="text-center">
+            <h2 className="fw-bold"> Smart Automator</h2>
+            <h5>Login as Tasker</h5>
+            
+            </div>
               <div data-mdb-input-init class="form-outline mb-4">
                 <label class="form-label fw-bold" for="form2Example1">
                   Email address

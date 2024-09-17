@@ -81,6 +81,5 @@ export default Profile;
 
 const styles = {
   containerDetails:{
-    marginTop:'7rem',
   }
 }

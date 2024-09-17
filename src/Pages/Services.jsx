@@ -25,7 +25,7 @@ const services = () => {
   const navigate = useNavigate();
   const serviceForm = JSON.parse(localStorage.getItem("serviceDetails"));
 
-  const [taskers, setTaskers] = useState();
+  const [taskers, setTaskers] = useState([]);
 
   
 
@@ -94,7 +94,7 @@ const services = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   // Slice the array of taskers to display only the items for the current page
   const currentTaskers =
-    taskers && taskers.slice(indexOfFirstItem, indexOfLastItem);
+    taskers && taskers.slice(indexOfFirstItem, indexOfLastItem) || 0;
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -187,12 +187,6 @@ const services = () => {
   return (
     <>
       <Modal
-        // title={<p>Loading Modal</p>}
-        // footer={
-        //   <Button type="primary" onClick={() => setOpen(true)} >
-        //     cancel
-        //   </Button>
-        // }
         loading={loading}
         open={open}
         onCancel={() => setOpen(false)}
@@ -261,12 +255,12 @@ tasker</p>
         </div>
       </Modal>
       <section style={{ backgroundColor: "#fef6e7" }}>
-        <div className="container">
+        <div className="container mt-5">
           <div
             className="row gx-5 p-5 "
             style={{ justifyContent: "space-between" }}
           >
-            <div className="col-md-4 py-5 border border-dark bg-white">
+            <div className="col-md-4 py-5 border border-dark bg-white px-3">
               <p>
                 <span className="fw-bold">Date</span>
               </p>
@@ -340,9 +334,9 @@ tasker</p>
               </div>
               <hr></hr>
 
-              <div class="form-group">
+              <div class="form-group  py-3">
                 <p>Price Range</p>
-                <div class="range-slider">
+                <div class="range-slider pb-4">
                   <span class="rangeValues"></span>
                   <input
                     value="1000"
@@ -366,8 +360,8 @@ tasker</p>
               </div>
               <hr></hr>
 
-              <h5>Tasker Type</h5>
-              <div class="form-check">
+              <h5 className="mt-3">Tasker Type</h5>
+              <div class="form-check mt-3">
                 <input
                   class="form-check-input"
                   type="radio"
@@ -394,7 +388,7 @@ tasker</p>
             </div>
 
             <div className="col-md-8 py-5 border border-dark bg-white">
-              {currentTaskers &&
+              {currentTaskers.lenght >0 ?
                 currentTaskers.map((data, i) => {
                   return (
                     <>
@@ -477,49 +471,127 @@ tasker</p>
                       </div>
                     </>
                   );
-                })}
+                }) :(
+                  <div className="row" >
+                        <div className="col-4 px-4 ">
+                          <img
+                            className="px-5"
+                            src={user}
+                          />
+                          <p className="text-center">
+                            <a
+                              href=""
+                              style={{ color: "#F9AC25", fontWeight: "500" }}
+                            >
+                              view profile & <br></br>review
+                            </a>
+                          </p>
 
-              <nav aria-label="Page navigation example">
-                <ul className="pagination">
-                  <li className="page-item">
-                    <a
-                      className="page-link"
-                      href="#"
-                      onClick={() => paginate(currentPage - 1)}
-                    >
-                      Previous
-                    </a>
-                  </li>
-                  {taskers &&
-                    Array.from({
-                      length: Math.ceil(taskers.length / itemsPerPage),
-                    }).map((_, index) => (
-                      <li
-                        key={index}
-                        className={`page-item ${
-                          currentPage === index + 1 ? "active" : ""
-                        }`}
-                      >
-                        <a
-                          onClick={() => paginate(index + 1)}
-                          className="page-link"
-                          href="#"
-                        >
-                          {index + 1}
-                        </a>
-                      </li>
-                    ))}
-                  <li className="page-item">
-                    <a
-                      className="page-link"
-                      href="#"
-                      onClick={() => paginate(currentPage + 1)}
-                    >
-                      Next
-                    </a>
-                  </li>
-                </ul>
-              </nav>
+                          <button
+                            onClick={() => showLoading()}
+                            type="button"
+                            class="btn btn-warning text-center fw-bold"
+                            style={{ width: "100%", color: "#fff" }}
+                          >
+                            select & continue
+                          </button>
+
+                          <p className="text-center py-3">
+                            You can chat with your Tasker, adjust task details,
+                            or change task time after booking.
+                          </p>
+                        </div>
+
+                        <div className="col-8 px-4">
+                          <div className="user">
+                            <span
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                fontWeight: "700",
+                                fontSize: "25px",
+                              }}
+                            >
+                              <h2>Taskers name</h2> $20/hr
+                            </span>
+                            <p
+                              style={{
+                                backgroundColor: "#fffaf2",
+                                width: "90px",
+                                color: "#ff8a00",
+                              }}
+                            >
+                              Great value
+                            </p>
+
+                            <p>
+                              You rated{" "}
+                              <span style={{ fontSize: "20px" }}> ★ 5</span>
+                            </p>
+                            <p>
+                               2 Furniture Assembly tasks
+                            </p>
+                            <p>3 Assembly tasks overall</p>
+                          </div>
+                          <div
+                            className="comment"
+                            style={{
+                              backgroundColor: "#f5f7f6",
+                              padding: "20px 20px",
+                            }}
+                          >
+                            <h4>How can i Help:</h4>
+
+                            <p>Task Desc or Task Details </p>
+                            <a href="#">Read more</a>
+                          </div>
+                        </div>
+                      </div>
+                )}
+{(taskers.length >0  && currentTaskers.length >0) && (
+ <nav aria-label="Page navigation example">
+ <ul className="pagination">
+   <li className="page-item">
+     <a
+       className="page-link"
+       href="#"
+       onClick={() => paginate(currentPage - 1)}
+     >
+       Previous
+     </a>
+   </li>
+   {(taskers.length >0  && currentTaskers.length >0) &&
+     Array.from({
+       length: Math.ceil(taskers.length / itemsPerPage),
+     }).map((_, index) => (
+       <li
+         key={index}
+         className={`page-item ${
+           currentPage === index + 1 ? "active" : ""
+         }`}
+       >
+         <a
+           onClick={() => paginate(index + 1)}
+           className="page-link"
+           href="#"
+         >
+           {index + 1}
+         </a>
+       </li>
+     ))}
+   <li className="page-item">
+     <a
+       className="page-link"
+       href="#"
+       onClick={() => paginate(currentPage + 1)}
+     >
+       Next
+     </a>
+   </li>
+ </ul>
+</nav>
+)}
+             
             </div>
           </div>
         </div>

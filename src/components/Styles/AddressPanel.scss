@@ -38,6 +38,14 @@ margin-top: 4rem;
 .address-form label{
     margin-top: 1.3rem;
 }
+
+
+.address-shadow{
+    border: 2px solid #f1dc8f ;
+    background-color: #faf6e9;
+    box-shadow: 0 8px 10px 2px rgb(199, 195, 195);
+}
+
 @media (max-width:1200px){
     .addresses{
         flex-direction: column;

@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { message } from "antd";
-import './tabs.css'
+import './Styles/tabs.css'
 import { LogoutModal } from "../Pages/modals/Logoutmodals"; 
 import {AddressPanel} from "./TabsPanel/AddressPanel"
 import {ProfilePanel} from "./TabsPanel/ProfilePanel"
@@ -119,7 +119,7 @@ export default function VerticalTabs() {
 
   // Slice the array of taskers to display only the items for the current page
   const currentOrderDetails =
-        orderDetails && orderDetails.slice(indexOfFirstItem, indexOfLastItem);
+        orderDetails && orderDetails.slice(indexOfFirstItem, indexOfLastItem) || [];
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -185,15 +185,16 @@ export default function VerticalTabs() {
         <TabPanel value={value} index={1}>
         <AddressPanel/>
         </TabPanel>
+        
         <TabPanel value={value} index={2}>
           <div className="past-order" style={{ textAlign: "center" }}>
             <h2 className="py-3">Orders</h2>
             <div className="orderDetails">
-              {currentOrderDetails &&
+              {currentOrderDetails.length > 0 ?
                 currentOrderDetails.map((data) => {
                   return (
                     <>
-                      <div className="past-order-box" style={{ zoom: ".6" }}>
+                      <div className="past-order-box" style={{ zoom: ".9" }}>
                         <div className="wrap">
                           <div className="burger-text">
                             <h5 className="fw-bold">Task Completed</h5>
@@ -249,7 +250,63 @@ export default function VerticalTabs() {
                       </div>
                     </>
                   );
-                })}
+                }) 
+              : (
+                <div className="past-order-box" style={{ zoom: ".9" }}>
+                <div className="wrap">
+                  <div className="burger-text">
+                    <h5 className="fw-bold">Task Completed</h5>
+                    <br></br>
+                    <span>
+                      ,Medium-EST 2-3hr,{" "}
+                    
+                       Task doesn't require car
+                    </span>
+                    <br></br>
+                    <span>01-12-24 16:40</span>
+                  </div>
+                </div>
+
+                <div className="row" style={{ marginTop: "20px" }}>
+                  <div className="col-md-4">
+                    <img
+                      className="rounded-circle mt-1"
+                      style={{ width: "135px", height: "135px" }}
+                      src={user}
+                    />
+                  </div>
+                  <div className="col-md-8 py-4 px-5 mt-2">
+                    <h4 className="fw-bold"
+                    style={{whiteSpace: "nowrap"}}>John doe carpenter</h4>
+                    <p>
+                      You rated{" "}
+                      <span style={{ fontSize: "20px" }}> ★ 5</span>
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style={{
+                    margin: "40px",
+                    display: "flex",
+                    gap: "40px",
+                  }}
+                >
+                  <button
+                    type="button"
+                    className="btn btn-warning tab-btn"
+                    onClick={() => navigate("/Services")}
+                  >
+                    Book Again
+                  </button>
+                  <button
+                    className="btn btn-warning tab-btn"
+                    type="button"
+                  >
+                    Share Profile
+                  </button>
+                </div>
+              </div>
+              )}
             </div>
 
 
@@ -298,9 +355,9 @@ export default function VerticalTabs() {
            </div>
           </div>
         </TabPanel>
-        <TabPanel value={value} index={3}>
+        {/* <TabPanel value={value} index={3}>
           Payment
-        </TabPanel>
+        </TabPanel> */}
 
         <TabPanel value={value} index={4}>
           Item Four

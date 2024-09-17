@@ -64,34 +64,34 @@ export   const ProfilePanel = () => {
 
     <div >
     <div className="container profile">
-          <div className="row mt-5 ">
-            <div className="col-img" style={{ width: "10%" }}>
+          <div className="profile-grid row mt-5 ">
+           <div className='profile-info'>
+           <div className="col-img" style={{ width: "10%" }}>
               <img src={profile} />
             </div>
-            <div className="col-md-6">
+            <div className="info col-md-6">
               <h2 style={{ fontSize: "25px" }}>
                 {decodedToken.firstName.toUpperCase()}{" "}
                 {decodedToken.lastName.toUpperCase()}
               </h2>
               <ul
                 style={{
-                  display: "flex",
-                  gap: "25px",
-                  marginTop: "20px",
+                  marginTop: "10px",
                 }}
               >
-                <li>{decodedToken.phone}</li>
                 <li>{decodedToken.email}</li>
+                <li>{decodedToken.phone}</li>
               </ul>
             </div>
+          
+           </div>
 
-            <div className=" col-md-4 d-flex " style={{ gap: "20px" , marginTop:"40px" }}>
+           <div className=" d-flex  align-items-center justify-content-center" style={{ gap: "2rem" , marginTop:"40px" }}>
               <button
-                className="btn"
+                className="profile-btn"
                 type="button"
                 style={{
-                  marginRight: "15px",
-                  width: "400px",
+                  width: "200px",
                   height: "55px",
                   fontSize: "13px",
                 }}
@@ -100,15 +100,16 @@ export   const ProfilePanel = () => {
               </button>
 
               <button
-                className="btn"
+                className="profile-btn"
                 type="button"
-                style={{ width: "350px", height: "55px", fontSize: "13px" }}
+                style={{ width: "200px", height: "55px", fontSize: "13px" }}
                 onClick={()=> settoggleUpdate(prev => !prev)}
               >
                 EDIT PROFILE
               </button>
             </div>
           </div>
+          
         </div>
     </div>
     {toggleUpdate &&  <div className=" updateProfile container">

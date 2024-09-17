@@ -8,7 +8,7 @@ import timeLogo from "../assets/Group.png";
 import { jwtDecode } from "jwt-decode";
 import { message } from "antd";
 import Cookies from "js-cookie";
-import "./styles/ConfirmDetails.scss";
+import "./Styles/ConfirmDetails.scss";
 
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -112,8 +112,8 @@ console.log("data", data)
   }, [cardNumber, cardDetails]);
 
   return (
-    <div class="container row d-flex justify-content-around  m-auto">
-      <div class=" container col-6 border  rounded p-5">
+    <div class="container row d-flex justify-content-around  m-auto mt-5">
+      <div class=" container col-6 border  rounded p-5 mt-5">
         <div class="frequency">
           <h3>Confirm Details</h3>
           <h5>Select a frequency</h5>
@@ -240,7 +240,7 @@ console.log("data", data)
         </div>
       </div>
 
-      <div class="container col-4 border rounded p-5 ">
+      <div class="container col-4 border rounded p-5 mt-5">
         <div class="ProfileDetails">
           <div class="Profile d-flex flex-column justify-content-center align-items-center">
             <h4>{data?.serviceCategory || "Category"}</h4>

@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './Styles/ServiceDetails.scss'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 
 const servicedetails = () => {
   const [taskLocation, setTaskLocation] = useState("");
@@ -15,6 +19,13 @@ const servicedetails = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,  
+      delay: 200,      
+    });
+  }, []);
+
   const handleGetServiceDetails = async () => {
     e.preventDefault();
     const response = await axios.get(
@@ -22,6 +33,7 @@ const servicedetails = () => {
     );
   };
   const handleServiceDetails = (e) => {
+    console.log("hello services")
     e.preventDefault();
     const servicDetailsObj = {
       taskLocation: taskLocation,
@@ -53,37 +65,47 @@ const servicedetails = () => {
   // console.log(selectedRadio)
   return (
     <>
-      <section style={{ backgroundColor: "#fef6e7" }}>
-        <div className="container  pt-md-5 ">
-          <h1 className="py-5">Furniture Assembly</h1>
+      <section className="services-banner" style={{ backgroundColor: "#fef6e7" }}>
+        <div className="services-form container  pt-md-5 ">
+          <h2 className="pt-5 py-5"
+          data-aos="flip-left"
+          data-aos-delay="200"
+          data-aos-duration="2000" 
+          >FURNITURE ASSEMBLY</h2>
         </div>
-        <div className="container">
+        <div className=" services-form container"
+       
+        >
           <div className="form-box">
-            <label htmlFor="exampleFormControlInput1" className="form-label">
-              Your task location
-            </label>
-            <input
+          
+            <h3 className="mb-3"       
+        
+            >  Your task location</h3>
+            <input 
               type="text"
               className="form-control task-location"
               id="exampleFormControlInput1"
               placeholder="Enter Your task location"
               value={taskLocation}
               onChange={(e) => setTaskLocation(e.target.value)}
-              required
+              required   
             />
             <div style={{ width: "10%", margin: " 20px auto" }}></div>
           </div>
         </div>
 
-        <div className="container">
+        <div className="services-form container"
+       >
           <div className="form-box mt-5">
-            <h3>Your Items</h3>
+            <h3 
+              
+              >Your Items</h3>
             <br />
-            <h2>
+            <h4 className="mb-3"   >
               What type of furniture do you need assembled or disassembled?
-            </h2>
-            <div className="form-check">
-              <hr style={{ width: "90%", height: "2px", color: "#F9AC25" }} />
+            </h4>
+            <div className="form-check"   >
+              {/* <hr style={{ width: "90%", height: "2px", color: "#F9AC25" }} /> */}
               <input
                 className="form-check-input"
                 type="radio"
@@ -92,11 +114,11 @@ const servicedetails = () => {
                 checked={furnitureType === "IKEA furniture items only"}
                 onChange={() => setFurnitureType("IKEA furniture items only")}
               />
-              <label className="form-check-label" htmlFor="type1">
+              <label className="form-check-label" htmlFor="type1"> 
                 IKEA furniture items only
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check"   >
               <input
                 className="form-check-input"
                 type="radio"
@@ -112,7 +134,7 @@ const servicedetails = () => {
               </label>
             </div>
 
-            <div className="form-check">
+            <div className="form-check"   >
               <input
                 className="form-check-input"
                 type="radio"
@@ -130,13 +152,17 @@ const servicedetails = () => {
             <div style={{ width: "10%", margin: " 40px auto" }}></div>
           </div>
         </div>
-        <div className="container">
-          <div className="form-box mt-5">
-            <h3>Task Options</h3>
+        <div className="services-form container" 
+        >
+          <div className="form-box mt-5" >
+            <h3 
+              
+              >Task Options</h3>
             <br />
-            <div className="form-check">
-              <h4>How big is your task?</h4>
-              <hr style={{ width: "20%", height: "2px", color: "#F9AC25" }} />
+            <h4   >How big is your task?</h4>
+
+            <div className="form-check"   >
+              {/* <hr style={{ width: "20%", height: "2px", color: "#F9AC25" }} /> */}
               <input
                 className="form-check-input"
                 type="radio"
@@ -150,7 +176,7 @@ const servicedetails = () => {
               </label>
             </div>
 
-            <div className="form-check">
+            <div className="form-check"   >
               <input
                 className="form-check-input"
                 type="radio"
@@ -164,7 +190,7 @@ const servicedetails = () => {
               </label>
             </div>
 
-            <div className="form-check">
+            <div className="form-check"   >
               <input
                 className="form-check-input"
                 type="radio"
@@ -179,13 +205,17 @@ const servicedetails = () => {
             </div>
             </div>
             </div>
-        <div className="container">
+        <div className=" services-form container"
+        
+         >
 
             <div className="form-box mt-5">
+            <h4 className="my-4"
+           
+              >Vehicle requirements</h4>
 
-            <div className="form-check">
-              <h4>Vehicle requirements</h4>
-              <hr style={{ width: "20%", height: "2px", color: "#F9AC25" }} />
+            <div className="form-check "   >
+              {/* <hr style={{ width: "20%", height: "2px", color: "#F9AC25" }} /> */}
               <input
                 className="form-check-input"
                 type="radio"
@@ -199,7 +229,7 @@ const servicedetails = () => {
               </label>
             </div>
 
-            <div className="form-check">
+            <div className="form-check"    >
               <input
                 className="form-check-input"
                 type="radio"
@@ -213,7 +243,7 @@ const servicedetails = () => {
               </label>
             </div>
 
-            <div className="form-check">
+            <div className="form-check"    >
               <input
                 className="form-check-input"
                 type="radio"
@@ -229,17 +259,24 @@ const servicedetails = () => {
             <div style={{ width: "10%", margin: " 40px auto" }}></div>
           </div>
         </div>
-        <div className="container pb-5">
+        <div className=" services-form container pb-5"
+        
+         >
           <div className="form-box mt-5">
-            <h3> Tell us the details of your task</h3>
-            <p>
+            <h3 className="mb-4"
+             
+              > Tell us the details of your task</h3>
+            <p 
+           >
               Start the conversation and tell your Tasker what you need done.
               This helps us show you only qualified and available Taskers for
               the job. Don't worry, you can edit this later.
             </p>
-            <div className="form-floating">
+            <div className="form-floating"
+            
+             >
               <textarea
-                className="form-control"
+                className="form-control my-4"
                 placeholder="Leave a comment here"
                 id="floatingTextarea2"
                 style={{ height: "100px" }}
@@ -256,10 +293,13 @@ const servicedetails = () => {
           </div>
           <button
             type="button"
-            className="btn btn-warning text-center"
-            style={{ backgroundColor: isFormValid ? "#F9AC25" : "#C8C8C8", border: "none" }}
+            data-aos="fade-up"
+            data-aos-delay="200" 
+            data-aos-duration="1000" 
+            className="btn btn-warning text-center m-4 p-3 px-5"
+            // style={{ backgroundColor: isFormValid ? "#F9AC25" : "#C8C8C8", border: "none" }}
             onClick={handleServiceDetails}
-            disabled={!isFormValid}
+            // disabled={!isFormValid}
           >
             {" "}
             Continue

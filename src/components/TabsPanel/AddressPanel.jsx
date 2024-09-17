@@ -157,166 +157,12 @@ export const AddressPanel = () => {
   }, []);
 
 
-
-
-
-
-
-
-
-
-
-
-  // const [address1, setAddress1] = useState();
-  // const [address2, setAddress2] = useState();
-  // const [city, setCity] = useState();
-  // const [state, setState] = useState();
-  // const [addressType, setAddressType] = useState("");
-  // const [zip, setZip] = useState();
-  // const [homeAddressData, setHomeAddressData] = useState();
-  // const [workAddressData, setWorkAddressData] = useState();
-
-  
-  // const handleAddressDetails = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const payload = {
-  //       address1,
-  //       address2,
-  //       city,
-  //       state,
-  //       zip,
-  //       addressType,
-  //       user_id,
-  //     };
-  //     console.log("try");
-  //     if(addressType === "home"){
-  //       const response = await axios.post(
-  //         `${import.meta.env.VITE_SOME_KEY}/homeAddress`,
-  //         payload
-  //       );
-  //     if (response.status === 200) {
-  //       console.log(response);
-
-  //       message.success("home address Updated successfully");
-  //       setTimeout(() => {
-  //         window.location.reload();
-  //       }, 1200); 
-  //     } else {
-  //       message.error("An error occurred while updating the address");
-  //     }
-  //     }else if(addressType === "work"){
-  //       const response = await axios.post(
-  //         `${import.meta.env.VITE_SOME_KEY}/workAddress`,
-  //         payload
-  //       );
-  //       if (response.status === 200) {
-  //         console.log(response);
-  //         message.success("address Updated successfully");
-  //         setTimeout(() => {
-  //           window.location.reload();
-  //         }, 1200);
-  //       } else {
-  //         message.error("An error occurred while updating the address");
-  //       }
-  //     }else{
-  //       message.error("select addres type")
-  //     }
-
-  //   } catch (error) {
-  //     console.log(error);
-  //     message.error("address  not updated");
-  //   }
-  //   getHomeAddressData()
-  //   getWorkAddressData()
-  // };
-    
-  // const getHomeAddressData = async() => {
-  //   try{
-  //     let response = await axios.get(
-  //       `${import.meta.env.VITE_SOME_KEY}/homeAddress/${user_id}`,
-        
-  //     );
-  //     setHomeAddressData(response.data.data.homeAddress[0])
-  //     console.log("address get response",response.data.data.homeAddress)
-  //   }catch (error) {
-  //     console.log(error);
-  //   }
- 
-
-  // }
-  // const getWorkAddressData = async() => {
-  //   try{
-  //     let response = await axios.get(
-  //       `${import.meta.env.VITE_SOME_KEY}/workAddress/${user_id}`,
-        
-  //     );
-  //     setWorkAddressData(response.data.data.workAddress[0])
-  //     // console.log("address get response",response.data.data.workAddress)
-  //   }catch (error) {
-  //     console.log(error);
-  //     // message.error("address not get");
-  //   }
-   
-
-  // }
-  // useEffect(() => {
-  //   getHomeAddressData()
-  //   getWorkAddressData()
-   
-  // },[])
-  // const handleDeleteAddress = async () => {
-
-  //   try {
-  //     const res = await axios.delete(
-  //       `${import.meta.env.VITE_SOME_KEY}/homeAddress/${homeAddressData?._id}`
-  //     );
-  //     console.log("deleted", res)
-  //     // console.log("order details", res.data.order);
-  //     // setOrderDetails(res.data.order);
-  //   } catch (error) {
-  //     // message.warning(error.response.data.status, {});
-  //     console.log(error);
-  //   }
-  //   getHomeAddressData()
-  //   getWorkAddressData()
-  // };
-
-  // const handleDeleteworkAddress = async () => {
-
-  //   try {
-  //     const res = await axios.delete(
-  //       `${import.meta.env.VITE_SOME_KEY}/workAddress/${workAddressData?._id}`
-  //     );
-  //     console.log("work add deleted", res)
-  //     // console.log("order details", res.data.order);
-  //     // setOrderDetails(res.data.order);
-  //   } catch (error) {
-  //     // message.warning(error.response.data.status, {});
-  //     console.log(error);
-  //   }
-  //   getHomeAddressData()
-  //   getWorkAddressData()
-  // };
- 
-
-  // console.log("home address",homeAddressData)
-  // console.log("work address",workAddressData)
-
-
-
-
-
-
-
-
   return (
     <>
       <div className="d-flex m-3 gap-2 addresses sm:flex-column">
         <div className="w-1/2 p-2 addressForm">
           <h3 className="w-1/2  pb-3">Billing Address</h3>
-          <div className="mb-3 border p-4">
+          <div className=" address-shadow mb-3 border p-4">
             <div className="m-3">
               <button
                 type="button"
@@ -480,7 +326,7 @@ export const AddressPanel = () => {
 
         <div className="mb-3 w-1/2 p-2 addressForm">
           <h3 className="w-1/2 pb-3">Shipping Address</h3>
-          <div className="mb-3 border p-4">
+          <div className="address-shadow mb-3 border p-4">
             <div className="m-3">
               <button
                 type="button"

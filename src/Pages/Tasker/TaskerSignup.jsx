@@ -50,7 +50,11 @@ console.log(credentials)
         <div className="container-fluid login-bg">
           <div className="container login-form-bg">
             <form class="login-form" onSubmit={handleRegister}>
-              <h2 className="fw-bold"> Smart Automator</h2>
+            <div className="text-center">
+            <h2 className="fw-bold"> Smart Automator</h2>
+            <h5>Sign up as Tasker</h5>
+            
+            </div>
               <div data-mdb-input-init class="form-outline mb-4">
                 <input
                   type="text"
