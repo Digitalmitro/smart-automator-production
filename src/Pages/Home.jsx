@@ -22,7 +22,7 @@ import 'aos/dist/aos.css';
 import { motion, useScroll  } from 'framer-motion';
 import CountUp from 'react-countup';
 
-import "./Styles/home.scss"
+import "./Styles/Home.scss"
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
