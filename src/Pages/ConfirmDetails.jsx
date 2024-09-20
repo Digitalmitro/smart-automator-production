@@ -112,9 +112,10 @@ console.log("data", data)
   }, [cardNumber, cardDetails]);
 
   return (
-    <div class="container row d-flex justify-content-around  m-auto mt-5">
-      <div class=" container col-6 border  rounded p-5 mt-5">
+    <div class=" confirmDetails container  d-flex justify-content-around  m-auto mt-5">
+      <div class=" container border  rounded p-5 mt-3">
         <div class="frequency">
+          <h6 className="pb-3" onClick={()=> navigate('/services')}> ---Back</h6>
           <h3>Confirm Details</h3>
           <h5>Select a frequency</h5>
           <p>
@@ -240,7 +241,7 @@ console.log("data", data)
         </div>
       </div>
 
-      <div class="container col-4 border rounded p-5 mt-5">
+      <div class="container border rounded p-5 mt-5">
         <div class="ProfileDetails">
           <div class="Profile d-flex flex-column justify-content-center align-items-center">
             <h4>{data?.serviceCategory || "Category"}</h4>

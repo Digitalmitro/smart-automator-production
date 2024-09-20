@@ -53,3 +53,13 @@
 .form-check{
     border-top: ipx solid grey;
 }
+@media (max-width: 978px){
+    .taskers-details{
+ flex-direction: column;
+
+    }
+    .services-page .taskers-info{
+        flex-direction: column;
+        gap: 2px;
+    }
+}

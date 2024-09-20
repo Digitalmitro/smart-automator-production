@@ -77,9 +77,7 @@ transition: background-color 0.3s ease; /* Smooth transition */
 box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
 height: 6rem
 }
-.navbar-scrolled {
-  background-color: #e7e7e7; /* Background color after scrolling 300px */
-}
+
 .navbar-brand{
   margin: 0px 2.8rem;
 }

@@ -25,22 +25,22 @@ const TaskerSignup = () => {
       zip: zip,
     };
 console.log(credentials)
-    // try {
-    // //   const response = await axios.post(
-    // //     `${import.meta.env.VITE_SOME_KEY}/registerclient`,
-    // //     credentials
-    // //   );
-    //   console.log(response);
-    //   message.success(response.data, {});
-    //   setTimeout(() => {
-    //     navigate("/login");
-    //   }, 1200);
-    // } catch (error) {
-    //   // message.warning(error.response.data.status, {});
-    //   console.log(error);
-    // }
+    try {
+      // const response = await axios.post(
+      //   `${import.meta.env.VITE_SOME_KEY}/registerclient`,
+      //   credentials
+      // );
+      // console.log(response);
+      // message.success(response.data, {});
+      setTimeout(() => {
+        navigate("/taskerlogin");
+      }, 1200);
+    } catch (error) {
+      // message.warning(error.response.data.status, {});
+      console.log(error);
+    }
 
-    navigate("/login");
+    navigate("/taskerlogin");
 
   };
 

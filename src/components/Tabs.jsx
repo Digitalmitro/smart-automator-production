@@ -75,12 +75,12 @@ export default function VerticalTabs() {
     setShowLogoutModal(false); // Hide modal
   };
 
-  useEffect(() => {
-    if (token) {
-    } else {
-      return navigate("/login");
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if (token) {
+  //   } else {
+  //     return navigate("/login");
+  //   }
+  // }, [token]);
 
 
   useEffect(() => {
@@ -142,41 +142,41 @@ export default function VerticalTabs() {
           height: "auto",
         }}
       >
-        <Tabs
-          orientation="vertical"
-          variant="scrollable"
-          value={value}
-          onChange={handleChange}
-          aria-label="Vertical tabs example"
-          sx={{ borderRight: 1, borderColor: "divider" }}
-        >
-          <Tab
-            style={{ marginBottom: "20px", height: "100px" }}
-            className="sidenav"
-            label={<i className="fa-solid fa-address-book"> Profile </i>}
-            {...a11yProps(0)}
-          />
-          <Tab
-            style={{ marginBottom: "20px", height: "100px" }}
-            className="sidenav"
-            label={<i className="fa-solid fa-address-book"> Address </i>}
-            {...a11yProps(1)}
-          />
-          <Tab
-            style={{ marginBottom: "20px", height: "100px" }}
-            className="sidenav"
-            label={<i className="fa-solid fa-bag-shopping"> Order History</i>}
-            {...a11yProps(2)}
-          />
-          <Tab
-            style={{ marginBottom: "20px", height: "100px" }}
-            onClick={openLogoutModal}  
-            className="sidenav"
-            label={<i className="fa-solid fa-right-from-bracket"> Logout </i>}
-            {...a11yProps(3)}
-          />
-               
-        </Tabs>
+<Tabs
+  orientation="vertical"
+  variant="scrollable"
+  value={value}
+  onChange={handleChange}
+  aria-label="Vertical tabs example"
+  sx={{ borderRight: 1, borderColor: "divider" }}
+>
+  <Tab
+    style={{ marginBottom: "20px", height: "100px" }}
+    className="sidenav"
+    label={<i className="fa-solid fa-address-book"> <span className="tab-text">Profile</span> </i>}
+    {...a11yProps(0)}
+  />
+  <Tab
+    style={{ marginBottom: "20px", height: "100px" }}
+    className="sidenav"
+    label={<i className="fa-solid fa-address-book"> <span className="tab-text">Address</span> </i>}
+    {...a11yProps(1)}
+  />
+  <Tab
+    style={{ marginBottom: "20px", height: "100px" }}
+    className="sidenav"
+    label={<i className="fa-solid fa-bag-shopping"> <span className="tab-text">Order History</span> </i>}
+    {...a11yProps(2)}
+  />
+  <Tab
+    style={{ marginBottom: "20px", height: "100px" }}
+    onClick={openLogoutModal}  
+    className="sidenav"
+    label={<i className="fa-solid fa-right-from-bracket"> <span className="tab-text">Logout</span> </i>}
+    {...a11yProps(3)}
+  />
+</Tabs>
+
         <TabPanel value={value} index={0}>
        <ProfilePanel/>
         </TabPanel>

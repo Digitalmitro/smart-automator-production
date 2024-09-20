@@ -255,7 +255,7 @@ tasker</p>
         </div>
       </Modal>
       <section style={{ backgroundColor: "#fef6e7" }}>
-        <div className="container mt-5">
+        <div className="container services-page  mt-5">
           <div
             className="row gx-5 p-5 "
             style={{ justifyContent: "space-between" }}
@@ -392,8 +392,8 @@ tasker</p>
                 currentTaskers.map((data, i) => {
                   return (
                     <>
-                      <div className="row" key={data._id}>
-                        <div className="col-4 px-4">
+                      <div className=" taskers-info d-flex" key={data._id}>
+                        <div className=" px-4">
                           <img
                             className="px-5"
                             src={`${import.meta.env.VITE_SOME_KEY}/uploads/${
@@ -424,7 +424,7 @@ tasker</p>
                           </p>
                         </div>
 
-                        <div className="col-8 px-4">
+                        <div className=" px-4">
                           <div className="user">
                             <span
                               style={{
@@ -472,8 +472,8 @@ tasker</p>
                     </>
                   );
                 }) :(
-                  <div className="row" >
-                        <div className="col-4 px-4 ">
+                  <div className=" taskers-details" >
+                        <div className=" px-4 d-flex flex-column align-items-center">
                           <img
                             className="px-5"
                             src={user}
@@ -491,7 +491,7 @@ tasker</p>
                             onClick={() => showLoading()}
                             type="button"
                             class="btn btn-warning text-center fw-bold"
-                            style={{ width: "100%", color: "#fff" }}
+                            style={{ width: "50%", color: "#fff" }}
                           >
                             select & continue
                           </button>
@@ -502,9 +502,9 @@ tasker</p>
                           </p>
                         </div>
 
-                        <div className="col-8 px-4">
-                          <div className="user">
-                            <span
+                        <div className="px-4">
+                          <div className="user ">
+                            <span className="pb-3"
                               style={{
                                 display: "flex",
                                 justifyContent: "space-between",
@@ -512,7 +512,7 @@ tasker</p>
                                 fontSize: "25px",
                               }}
                             >
-                              <h2>Taskers name</h2> $20/hr
+                              <h2> Taskers name</h2> $20/hr
                             </span>
                             <p
                               style={{
@@ -534,10 +534,10 @@ tasker</p>
                             <p>3 Assembly tasks overall</p>
                           </div>
                           <div
-                            className="comment"
+                            className="comment py-5"
                             style={{
                               backgroundColor: "#f5f7f6",
-                              padding: "20px 20px",
+                              padding: " 20px",
                             }}
                           >
                             <h4>How can i Help:</h4>

@@ -66,21 +66,21 @@ export   const ProfilePanel = () => {
     <div className="container profile">
           <div className="profile-grid row mt-5 ">
            <div className='profile-info'>
-           <div className="col-img" style={{ width: "10%" }}>
+           <div className="col-img">
               <img src={profile} />
             </div>
             <div className="info col-md-6">
               <h2 style={{ fontSize: "25px" }}>
-                {decodedToken.firstName.toUpperCase()}{" "}
-                {decodedToken.lastName.toUpperCase()}
+                {decodedToken?.firstName.toUpperCase() || "John Doe "}{" "}
+                {decodedToken?.lastName.toUpperCase() || "James"}
               </h2>
               <ul
                 style={{
                   marginTop: "10px",
                 }}
               >
-                <li>{decodedToken.email}</li>
-                <li>{decodedToken.phone}</li>
+                <li>{decodedToken?.email || "james@gmail.com"}</li>
+                <li>{decodedToken?.phone || "8765543432"}</li>
               </ul>
             </div>
           
@@ -112,6 +112,9 @@ export   const ProfilePanel = () => {
           
         </div>
     </div>
+
+
+    {/* updates modal code  */}
     {toggleUpdate &&  <div className=" updateProfile container">
     <h2 className="py-3">Manage Profile</h2>
     <div className="profileDetails">

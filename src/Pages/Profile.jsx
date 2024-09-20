@@ -19,12 +19,12 @@ const Profile = () => {
   const [phone, setPhone] = useState();
   const [zipCode, setZipCode] = useState();
 
-  useEffect(() => {
-    if (token) {
-    } else {
-      return navigate("/login");
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if (token) {
+  //   } else {
+  //     return navigate("/login");
+  //   }
+  // }, [token]);
 
   const handleServiceDetails = async () => {
     try {
@@ -56,7 +56,6 @@ const Profile = () => {
     console.log(orderDetails);
   }, []);
 
-  console.log(decodedToken);
   return (
     <>
       <section

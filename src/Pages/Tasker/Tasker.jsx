@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import tasker from "../../assets/image 11.png";
+import tasker from "../../assets/image11.png";
 const Tasker = () => {
     const navigate = useNavigate()
     return (

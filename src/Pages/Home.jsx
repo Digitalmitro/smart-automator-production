@@ -1210,11 +1210,11 @@ AOS.init()
         style={{ backgroundColor: "#F9AC25", height: "180px" }}
       >
         <div className="container pt-5">
-          <div className="row">
-            <div className="col-12 col-md">
-              <h3 className="pt-1">STAY TUNED WITH UPDATES</h3>
+          <div className=" stayTuned d-flex align-items-center">
+            <div className="col-md">
+              <h3 className="">STAY TUNED WITH UPDATES</h3>
             </div>
-            <div className="col d-flex py-sm-5 pt-sm-3 ">
+            <div className="col d-flex py-sm-5 pt-sm-3 mt-3">
               <input
                 type="text"
                 class="form-control footer-input"

@@ -28,7 +28,13 @@ const login = () => {
         window.location.href = "/profile";
       }, 1200);
     } catch (error) {
-      message.warning(error.response.data.status, {});
+      if(error.response.data.status){
+        message.warning(error.response.data.status, {});
+
+      }else{
+      message.warning("login unsuccessful");
+
+      }
       console.log(error.response.data.status);
     }
     if (token) {

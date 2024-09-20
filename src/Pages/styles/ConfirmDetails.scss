@@ -1,0 +1,23 @@
+
+@media (max-width:978px){
+    .confirmDetails, .cardNumber{
+flex-direction: column;
+gap: .2rem;
+    }
+    .cardNumber{
+        flex-direction: column;
+gap: 2rem;
+align-items: end;
+    }
+    .confirmDetails button {
+        width: 80% !important;
+    }
+    .confirmDetails input[type=range]{
+        width: 160px;
+    }
+    .rangeValues{
+        width: fit-content;
+        padding: 10px 0px;
+    }
+   
+}

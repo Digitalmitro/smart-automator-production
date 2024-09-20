@@ -36,7 +36,14 @@ console.log(credentials)
         navigate("/login");
       }, 1200);
     } catch (error) {
-      // message.warning(error.response.data.status, {});
+      
+      if(error.response.data.status){
+        message.warning(error.response.data.status, {});
+
+      }else{
+      message.warning("signup unsuccessful");
+
+      }
       console.log(error);
     }
   };

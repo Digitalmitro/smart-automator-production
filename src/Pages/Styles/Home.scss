@@ -140,3 +140,13 @@
     }
 }
   }
+  @media (max-width:978px){
+    .stayTuned{
+        flex-direction: column;
+  justify-content: center;
+
+    }
+    .stayTuned input{
+        width: 60vw;
+    }
+  }
