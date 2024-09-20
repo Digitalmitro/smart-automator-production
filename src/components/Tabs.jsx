@@ -10,11 +10,10 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { message } from "antd";
-import './Styles/tabs.css'
+import './Styles/Tabs.scss'
 import { LogoutModal } from "../Pages/modals/Logoutmodals"; 
 import {AddressPanel} from "./TabsPanel/AddressPanel"
 import {ProfilePanel} from "./TabsPanel/ProfilePanel"
-// import burger1 from "../assets/image 18.png"
 
 
 function TabPanel(props) {

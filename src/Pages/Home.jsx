@@ -50,7 +50,7 @@ AOS.init()
 
   return (
     <>
-      <section className="">
+      <section className="home-page">
         <div className="banner-bg ">
           <div
             className="content"
@@ -891,7 +891,7 @@ AOS.init()
       <section>
         <div className="container-fluid countdown-bg mt-5">
           <div className="container pt-lg-4 pt-3">
-            <div className="row pt-lg-5 gap-4 ">
+            <div className="row pt-lg-5 ">
               <div className="col-md-3">
                 <div class="counter-box colored"  data-aos="fade-up"
                   data-aos-delay="200" 
