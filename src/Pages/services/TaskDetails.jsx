@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import user from "../assets/user.png";
+import user from "../../assets/user.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { message } from "antd";
@@ -26,8 +26,6 @@ const services = () => {
   const serviceForm = JSON.parse(localStorage.getItem("serviceDetails"));
 
   const [taskers, setTaskers] = useState([]);
-
-  
 
   const handleServiceDetails = async () => {
     try {
@@ -94,7 +92,7 @@ const services = () => {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   // Slice the array of taskers to display only the items for the current page
   const currentTaskers =
-    taskers && taskers.slice(indexOfFirstItem, indexOfLastItem) || 0;
+    (taskers && taskers.slice(indexOfFirstItem, indexOfLastItem)) || 0;
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -113,14 +111,14 @@ const services = () => {
         phone: filteredData.phone,
         pricePerHour: filteredData.pricePerHour,
         review: filteredData.review,
-        orderTime: moment().format(' h:mm:ss a'),
-        orderDate: moment().format('MMMM Do YYYY'),
+        orderTime: moment().format(" h:mm:ss a"),
+        orderDate: moment().format("MMMM Do YYYY"),
         serviceCategory: filteredData.serviceCategory,
         userName: filteredData.userName,
-        
+
         user_id: userId,
         _id: filteredData._id,
-        vehicle: filteredData.vehicle
+        vehicle: filteredData.vehicle,
       };
 
       const totalTaskPayload = {
@@ -149,13 +147,12 @@ const services = () => {
   // modal code
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
-  const [id, setId] = useState()
+  const [id, setId] = useState();
 
   const showLoading = (currentTaskersID) => {
-
     setOpen(true);
     setLoading(true);
-   setId(currentTaskersID)
+    setId(currentTaskersID);
     // Simple loading mock. You should add cleanup logic in real world.
     setTimeout(() => {
       setLoading(false);
@@ -175,14 +172,14 @@ const services = () => {
     console.log(timeString);
   };
 
-  const handleNavigate =  () => {
+  const handleNavigate = () => {
     const storageData = {
       date: date.toDateString(),
-      time: ChangeTime
-    }
-    localStorage.setItem("DateAndTime", JSON.stringify(storageData))
-    navigate(`/confirmdetails/${id}`)
-  }
+      time: ChangeTime,
+    };
+    localStorage.setItem("DateAndTime", JSON.stringify(storageData));
+    navigate(`/confirmdetails/${id}`);
+  };
 
   return (
     <>
@@ -195,10 +192,10 @@ const services = () => {
       >
         <div>
           <h4>Choose your task date and start time</h4>
-         
+
           <div class="d-flex ">
             <div>
-            <div class="d-flex gap-3 align-items-center m-3">
+              <div class="d-flex gap-3 align-items-center m-3">
                 <img
                   src={user}
                   alt="users...."
@@ -231,9 +228,7 @@ const services = () => {
               </p>
             </div>
             <div class="d-flex flex-column gap-2 justify-content-center p-3">
-              <h6>
-                Request for :
-              </h6>
+              <h6>Request for :</h6>
               <h6>
                 {" "}
                 {date.toDateString()} - {ChangeTime}
@@ -243,13 +238,11 @@ const services = () => {
                 onClick={() => handleNavigate()}
                 type="button"
                 class="btn btn-warning text-center fw-bold my-3"
-                style={{color: "#fff", borderRadius:"20px" }}
+                style={{ color: "#fff", borderRadius: "20px" }}
               >
                 select & continue
               </button>
-              <p>next confirm your details
-to get connected with your 
-tasker</p>
+              <p>next confirm your details to get connected with your tasker</p>
             </div>
           </div>
         </div>
@@ -388,7 +381,7 @@ tasker</p>
             </div>
 
             <div className="col-md-8 py-5 border border-dark bg-white">
-              {currentTaskers.lenght >0 ?
+              {currentTaskers.lenght > 0 ? (
                 currentTaskers.map((data, i) => {
                   return (
                     <>
@@ -471,127 +464,123 @@ tasker</p>
                       </div>
                     </>
                   );
-                }) :(
-                  <div className=" taskers-details" >
-                        <div className=" px-4 d-flex flex-column align-items-center">
-                          <img
-                            className="px-5"
-                            src={user}
-                          />
-                          <p className="text-center">
-                            <a
-                              href=""
-                              style={{ color: "#F9AC25", fontWeight: "500" }}
-                            >
-                              view profile & <br></br>review
-                            </a>
-                          </p>
+                })
+              ) : (
+                <div className=" taskers-details">
+                  <div className=" px-4 d-flex flex-column align-items-center">
+                    <img className="px-5" src={user} />
+                    <p className="text-center">
+                      <a
+                        href=""
+                        style={{ color: "#F9AC25", fontWeight: "500" }}
+                      >
+                        view profile & <br></br>review
+                      </a>
+                    </p>
 
-                          <button
-                            onClick={() => showLoading()}
-                            type="button"
-                            class="btn btn-warning text-center fw-bold"
-                            style={{ width: "50%", color: "#fff" }}
+                    <button
+                      onClick={() => showLoading()}
+                      type="button"
+                      class="btn btn-warning text-center fw-bold"
+                      style={{ width: "50%", color: "#fff" }}
+                    >
+                      select & continue
+                    </button>
+
+                    <p className="text-center py-3">
+                      You can chat with your Tasker, adjust task details, or
+                      change task time after booking.
+                    </p>
+                  </div>
+
+                  <div className="px-4">
+                    <div className="user ">
+                      <span
+                        className="pb-3"
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          fontWeight: "700",
+                          fontSize: "25px",
+                        }}
+                      >
+                        <h2> Taskers name</h2> $20/hr
+                      </span>
+                      <p
+                        style={{
+                          backgroundColor: "#fffaf2",
+                          width: "90px",
+                          color: "#ff8a00",
+                        }}
+                      >
+                        Great value
+                      </p>
+
+                      <p>
+                        You rated <span style={{ fontSize: "20px" }}> ★ 5</span>
+                      </p>
+                      <p>2 Furniture Assembly tasks</p>
+                      <p>3 Assembly tasks overall</p>
+                    </div>
+                    <div
+                      className="comment py-5"
+                      style={{
+                        backgroundColor: "#f5f7f6",
+                        padding: " 20px",
+                      }}
+                    >
+                      <h4>How can i Help:</h4>
+
+                      <p>Task Desc or Task Details </p>
+                      <a href="#">Read more</a>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {taskers.length > 0 && currentTaskers.length > 0 && (
+                <nav aria-label="Page navigation example">
+                  <ul className="pagination">
+                    <li className="page-item">
+                      <a
+                        className="page-link"
+                        href="#"
+                        onClick={() => paginate(currentPage - 1)}
+                      >
+                        Previous
+                      </a>
+                    </li>
+                    {taskers.length > 0 &&
+                      currentTaskers.length > 0 &&
+                      Array.from({
+                        length: Math.ceil(taskers.length / itemsPerPage),
+                      }).map((_, index) => (
+                        <li
+                          key={index}
+                          className={`page-item ${
+                            currentPage === index + 1 ? "active" : ""
+                          }`}
+                        >
+                          <a
+                            onClick={() => paginate(index + 1)}
+                            className="page-link"
+                            href="#"
                           >
-                            select & continue
-                          </button>
-
-                          <p className="text-center py-3">
-                            You can chat with your Tasker, adjust task details,
-                            or change task time after booking.
-                          </p>
-                        </div>
-
-                        <div className="px-4">
-                          <div className="user ">
-                            <span className="pb-3"
-                              style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                fontWeight: "700",
-                                fontSize: "25px",
-                              }}
-                            >
-                              <h2> Taskers name</h2> $20/hr
-                            </span>
-                            <p
-                              style={{
-                                backgroundColor: "#fffaf2",
-                                width: "90px",
-                                color: "#ff8a00",
-                              }}
-                            >
-                              Great value
-                            </p>
-
-                            <p>
-                              You rated{" "}
-                              <span style={{ fontSize: "20px" }}> ★ 5</span>
-                            </p>
-                            <p>
-                               2 Furniture Assembly tasks
-                            </p>
-                            <p>3 Assembly tasks overall</p>
-                          </div>
-                          <div
-                            className="comment py-5"
-                            style={{
-                              backgroundColor: "#f5f7f6",
-                              padding: " 20px",
-                            }}
-                          >
-                            <h4>How can i Help:</h4>
-
-                            <p>Task Desc or Task Details </p>
-                            <a href="#">Read more</a>
-                          </div>
-                        </div>
-                      </div>
-                )}
-{(taskers.length >0  && currentTaskers.length >0) && (
- <nav aria-label="Page navigation example">
- <ul className="pagination">
-   <li className="page-item">
-     <a
-       className="page-link"
-       href="#"
-       onClick={() => paginate(currentPage - 1)}
-     >
-       Previous
-     </a>
-   </li>
-   {(taskers.length >0  && currentTaskers.length >0) &&
-     Array.from({
-       length: Math.ceil(taskers.length / itemsPerPage),
-     }).map((_, index) => (
-       <li
-         key={index}
-         className={`page-item ${
-           currentPage === index + 1 ? "active" : ""
-         }`}
-       >
-         <a
-           onClick={() => paginate(index + 1)}
-           className="page-link"
-           href="#"
-         >
-           {index + 1}
-         </a>
-       </li>
-     ))}
-   <li className="page-item">
-     <a
-       className="page-link"
-       href="#"
-       onClick={() => paginate(currentPage + 1)}
-     >
-       Next
-     </a>
-   </li>
- </ul>
-</nav>
-)}
-             
+                            {index + 1}
+                          </a>
+                        </li>
+                      ))}
+                    <li className="page-item">
+                      <a
+                        className="page-link"
+                        href="#"
+                        onClick={() => paginate(currentPage + 1)}
+                      >
+                        Next
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              )}
             </div>
           </div>
         </div>

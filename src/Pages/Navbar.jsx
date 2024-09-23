@@ -112,7 +112,7 @@ const Navbar = () => {
                   <a
                     style={{ cursor: "pointer" }}
                     className="nav-link"
-                    onClick={() => navigate("/Servicedetails")}
+                    onClick={() => navigate("/Services")}
                   >
                     Services
                   </a>

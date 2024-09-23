@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
-import profilePhoto from "../assets/testi.png";
-import CardNumber from "../assets/Vector.png";
-import Logo from "../assets/logo 1.png";
-import dayLogo from "../assets/uis_calender.png";
-import LoactionLogo from "../assets/location.png";
-import timeLogo from "../assets/Group.png";
+import CardNumber from "../../assets/Vector.png";
+import Logo from "../../assets/logo 1.png";
+import dayLogo from "../../assets/uis_calender.png";
+import LoactionLogo from "../../assets/location.png";
+import timeLogo from "../../assets/Group.png";
 import { jwtDecode } from "jwt-decode";
 import { message } from "antd";
 import Cookies from "js-cookie";
-import "./Styles/ConfirmDetails.scss";
-
+import "../Styles/ConfirmDetails.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";

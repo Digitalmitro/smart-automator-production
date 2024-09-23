@@ -13,14 +13,14 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7); /* Black overlay */
-    backdrop-filter: blur(5px); /* Adds blur to the overlay */
+    background: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(5px);
     z-index: 1;
     pointer-events: none; 
   }
   .services-form{
         position: relative;
-        z-index: 2; /* Ensures the content is above the blur effect */
+        z-index: 2;
   }
 
   .services-form{

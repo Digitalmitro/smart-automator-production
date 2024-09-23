@@ -297,11 +297,8 @@ const servicedetails = () => {
             data-aos-delay="200" 
             data-aos-duration="1000" 
             className="btn btn-warning text-center m-4 p-3 px-5"
-            // style={{ backgroundColor: isFormValid ? "#F9AC25" : "#C8C8C8", border: "none" }}
             onClick={handleServiceDetails}
-            // disabled={!isFormValid}
           >
-            {" "}
             Continue
           </button>
         </div>
