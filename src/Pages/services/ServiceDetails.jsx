@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import bagImage from "./assets/backgroundImag.jpg";
 import logoImg from "./assets/logo.jpg";
 import image12 from "./assets/serviceDescription.jpg";
-import "./styles/serviceInfo.scss";
+import "./styles/serviceDetails.scss";
 import { Link } from "react-router-dom";
-export const ServiceInfo = () => {
+import { FAQ } from "./FAQ";
+
+export const ServiceDetails = () => {
   return (
     <div>
-      <div className="service-info">
+      <div className="service-details">
         <div className="content">
           <h1>Furniture Assembly</h1>
           <div className="line my-4"></div>
@@ -20,7 +22,7 @@ export const ServiceInfo = () => {
       </div>
       <ServiceDescription />
       <GetHired />
-      <FAQ/>
+      <FAQ />
     </div>
   );
 };
@@ -128,61 +130,4 @@ export const GetHired = () => {
   );
 };
 
-export const FAQ = () => {
-    const [isOpen, setIsOpen] = useState(false);
-  
-    const toggleFAQ = () => {
-      setIsOpen(!isOpen);
-    };
-  
-    return (
 
-        <div>
-           <div className="faq-container">
-        <h3 className="faq-heading" onClick={toggleFAQ}>
-          Frequently Asked Question
-        </h3>
-        <div className={`faq-content ${isOpen ? "open" : ""}`}>
-          <p>
-            This is the answer to the frequently asked question. It will expand
-            and collapse smoothly when you click on the heading.
-          </p>
-        </div>
-      </div>
-      <div className="faq-container">
-        <h3 className="faq-heading" onClick={toggleFAQ}>
-          Frequently Asked Question
-        </h3>
-        <div className={`faq-content ${isOpen ? "open" : ""}`}>
-          <p>
-            This is the answer to the frequently asked question. It will expand
-            and collapse smoothly when you click on the heading.
-          </p>
-        </div>
-      </div>
-      <div className="faq-container">
-        <h3 className="faq-heading" onClick={toggleFAQ}>
-          Frequently Asked Question
-        </h3>
-        <div className={`faq-content ${isOpen ? "open" : ""}`}>
-          <p>
-            This is the answer to the frequently asked question. It will expand
-            and collapse smoothly when you click on the heading.
-          </p>
-        </div>
-      </div>
-      <div className="faq-container">
-        <h3 className="faq-heading" onClick={toggleFAQ}>
-          Frequently Asked Question
-        </h3>
-        <div className={`faq-content ${isOpen ? "open" : ""}`}>
-          <p>
-            This is the answer to the frequently asked question. It will expand
-            and collapse smoothly when you click on the heading.
-          </p>
-        </div>
-      </div>
-        </div>
-    
-    );
-  };

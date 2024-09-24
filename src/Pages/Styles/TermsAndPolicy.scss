@@ -1,0 +1,62 @@
+
+.termsandprivacy{
+    margin: 1rem 3rem;
+    border: solid;
+    display: flex;
+    .sidebar{
+        flex: 1;
+        // width: 40%;
+        margin-top:3rem ;
+        border-right: 1px solid rgb(252, 211, 137);
+        padding: 1rem;
+        h3{
+            font-weight: 800;
+            font-size: 1.8rem;
+            border-radius: 10px;
+            margin: 2rem 1rem;
+        }
+        h4{
+          background-color:rgb(243, 167, 27);
+          color: white;
+          padding: 10px;
+          border-radius: .4rem;
+        }
+        p{
+            font-size: 22px;
+            color: rgb(243, 167, 27);
+            font-weight: 600;
+            margin: 1rem .8rem;
+        }:hover{
+            color: grey;
+        }
+
+    }
+    
+    .main-content{
+        flex: 2;
+        margin: 3rem;
+        margin-top: 4rem;
+        a{
+            color: #ffcc75;
+        }
+        ol{
+            border: 1px solid  #ffcc75;
+            border-radius: 20px;
+           li{
+              font-size: 20px;
+              margin: 1rem;
+              color: #f09f13;
+              font-weight: 500;
+           }:hover{
+            color: black;
+           }
+        }
+        ul{
+            li{
+                display: list-item; /* Reintroduces the list item display */
+                list-style-type: disc; /* Ensure bullet points or any other list style */
+                margin-left: 20px; /* Optional: customize margin for better presentation */
+            }
+        }
+    }
+}

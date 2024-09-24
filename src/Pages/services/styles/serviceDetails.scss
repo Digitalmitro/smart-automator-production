@@ -1,4 +1,4 @@
-.service-info {
+.service-details {
   width: 100vw;
   background: url(../assets/backgroundImag.jpg), rgba(0, 0, 0, 0.7);
   // background-blend-mode: multiply;
@@ -58,15 +58,56 @@
       font-weight: 600;
       font-size: 18px;
     }
+
+    @media (max-width: 1290px) {
+      width: 60%;
+      height: 300px;
+      margin: auto;
+      margin-top: 7rem;
+      height: 300px;
+      padding: 2rem;
+      h1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: black;
+      }
+      p {
+        width: 80%;
+        margin: auto;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+    }
+    @media (max-width: 596px) {
+      width: 70%;
+      height: 300px;
+      margin: auto;
+      margin-top: 7rem;
+      height: 350px;
+      padding: 2rem;
+      h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        color: black;
+      }
+      p {
+        width: 80%;
+        margin: auto;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+    }
   }
 }
 
 .service-description {
   margin: 2rem;
-  .Links{
-    margin:  1rem;
-    a{
-        margin: .3rem;
+  .Links {
+    margin: 1rem;
+    a {
+      margin: 0.3rem;
     }
   }
   h3 {
@@ -99,23 +140,36 @@
     }
   }
 
-
-  .how-works{
-   h4{
-    span{
-        border: 1px solid grey ;
-        padding: .3rem .8rem;
+  .how-works {
+    h4 {
+      span {
+        border: 1px solid grey;
+        padding: 0.3rem 0.8rem;
         margin: 1rem;
-      border-radius: 50%;
+        border-radius: 50%;
+      }
     }
-   }
-    p{
-        width: 60%;
-        margin: auto;
+    p {
+      width: 60%;
+      margin: auto;
+    }
+    @media (max-width: 598px) {
+      margin: auto;
+      width: 80%;
+      > div {
+        flex-direction: column;
+        justify-content: center;
+        .image {
+          img {
+            width: 80%;
+          }
+        }
+      }
+    }
+    @media (max-width: 598px) {
+      margin: 0.2rem;
     }
   }
-
-
 
   @media (max-width: 1290px) {
     .desc {
@@ -128,65 +182,57 @@
   }
 }
 
-
-.get-hired{
-    background-color: #FEF6E7;
-    width: 100%;
-    height: 600px;
-    margin: 2rem 0rem;
-    margin-bottom: 13rem;
-    img{
-        width: 600px;
-        height: 400px;
-    }
- h2{
+.get-hired {
+  background-color: #fef6e7;
+  width: 100%;
+  height: 600px;
+  margin: 2rem 0rem;
+  margin-bottom: 7rem;
+  img {
+    width: 600px;
+    height: 400px;
+  }
+  h2 {
     font-size: 32px;
     font-weight: 800;
- }
- button{
+  }
+  button {
     font-size: 1.5rem;
- }
- @media (max-width:798px){
+  }
+  @media (max-width: 1290px) {
+    img{
+      width: 500px;
+    }
+  }
+  @media (max-width: 798px) {
     flex-direction: column;
- }
   }
+}
 
-  .faq-container {
-    margin: 1rem 0;
-    border: 1px solid #ccc;
-    padding: 1rem;
-    border-radius: 5px;
-  
-    .faq-heading {
-      cursor: pointer;
-      font-size: 1.5rem;
-      color: #333;
-      font-weight: bold;
-      transition: color 0.3s ease;
-  
-      &:hover {
-        color: #f9ac25; // Optional hover effect for the heading
-      }
-    }
-  
-    .faq-content {
-      height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: height 0.6s ease-in-out, opacity 0.4s ease-in-out;
-      p {
-        margin: 0;
-        padding: 1rem 0;
-        line-height: 1.6;
-        color: #555;
-      }
-    }
-  
-    // When open, apply these styles
-    .faq-content.open {
-      height: auto;
-      opacity: 1;
-      transition: all 0.4s ease; // Same one-line transition when open
-    }
+.FAQ-Accordion {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 4rem;
+  h1 {
+    color: #a36a08;
+    font-weight: 800;
   }
-  
+  p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.9rem;
+  }
+  h2 {
+    margin: 1rem 0rem;
+  }
+  .accordion-button:focus {
+    background-color: #f8f2e8;
+    color: #a36a08;
+    box-shadow: 0 0 0 0.25rem #fddb9f;
+  }
+  .accordion-button:not(.collapsed) {
+    color: #a36a08;
+    background-color: #fef6e7;
+    box-shadow: 0 0 0 0.25rem #fddb9f;
+  }
+}

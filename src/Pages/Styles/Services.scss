@@ -47,6 +47,9 @@
       width: 28vw;
       border-radius: 0.8rem;
       margin-bottom: 2rem;
+      @media (max-width:819px){
+        width: 40vw;
+      }
 
       .image-container {
         position: relative;

@@ -191,22 +191,22 @@ export const ServiceGridCard = () => {
             <img src={gridLayout7} alt="grilayout1" />
           </div>
           <div>
-            <h3 onClick={() => navigate(`/serviceinfo/featuredtask/specificservice`)}>Featured Tasks </h3>
+            <h3 onClick={() => navigate(`/serviceinfo/featuredtask`)}>Featured Tasks </h3>
             <p>Let Taskers help tackle your to-do list.</p>
             <hr />
-            <Link to={`/serviceinfo/featuredtask/specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Furniture Assembly</p>
             </Link>
-            <Link to={`/serviceinfo/featuredtask/specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Home Repairs</p>
             </Link>
-            <Link to={`/serviceinfo/featuredtask/specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Help Moving</p>
             </Link>
-            <Link to={`/serviceinfo/featuredtask/specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Heavy Lifting</p>
             </Link>
-            <Link to={`/serviceinfo/featuredtask/specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Home Cleaning</p>
             </Link>
           </div>
@@ -218,22 +218,22 @@ export const ServiceGridCard = () => {
             <img src={gridLayout7} alt="grilayout1" />
           </div>
           <div>
-            <h3 onClick={() => navigate(`/serviceinfo/:servicetype/:specificservice`)}>Featured Tasks </h3>
+            <h3 onClick={() => navigate(`/serviceinfo/featuredtask`)}>Featured Tasks </h3>
             <p>Let Taskers help tackle your to-do list.</p>
             <hr />
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Furniture Assembly</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Home Repairs</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Help Moving</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Heavy Lifting</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Home Cleaning</p>
             </Link>
           </div>
@@ -246,22 +246,22 @@ export const ServiceGridCard = () => {
           </div>
 
           <div>
-            <h3 onClick={() => navigate(`/serviceinfo/:servicetype/:specificservice`)}>Featured Tasks </h3>
+            <h3 onClick={() => navigate(`/serviceinfo/featuredtask`)}>Featured Tasks </h3>
             <p>Let Taskers help tackle your to-do list.</p>
             <hr />
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Furniture Assembly</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Home Repairs</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Help Moving</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Heavy Lifting</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Home Cleaning</p>
             </Link>
           </div>
@@ -273,22 +273,22 @@ export const ServiceGridCard = () => {
             <img src={gridLayout7} alt="grilayout1" />
           </div>
           <div>
-            <h3 onClick={() => navigate(`/serviceinfo/:servicetype/:specificservice`)}>Featured Tasks </h3>
+            <h3 onClick={() => navigate(`/serviceinfo/featuredtask`)}>Featured Tasks </h3>
             <p>Let Taskers help tackle your to-do list.</p>
             <hr />
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Furniture Assembly</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Home Repairs</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Help Moving</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Heavy Lifting</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Home Cleaning</p>
             </Link>
           </div>
@@ -299,22 +299,22 @@ export const ServiceGridCard = () => {
           <img src={gridLayout7} alt="grilayout1"/>
           </div>
           <div>
-            <h3 onClick={() => navigate('/serviceinfo/:servicetype/:specificservice')}>Featured Tasks </h3>
+            <h3 onClick={() => navigate('/serviceinfo/featuredtask')}>Featured Tasks </h3>
             <p>Let Taskers help tackle your to-do list.</p>
             <hr />
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Furniture Assembly</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Home Repairs</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Help Moving</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Heavy Lifting</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Home Cleaning</p>
             </Link>
           </div>
@@ -327,22 +327,22 @@ export const ServiceGridCard = () => {
           </div>
 
           <div>
-            <h3 onClick={() => navigate("/serviceinfo/:servicetype/:specificservice")}>Featured Tasks </h3>
+            <h3 onClick={() => navigate("/serviceinfo/featuredtask")}>Featured Tasks </h3>
             <p>Let Taskers help tackle your to-do list.</p>
             <hr />
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Furniture Assembly</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Home Repairs</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Help Moving</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Heavy Lifting</p>
             </Link>
-            <Link to={`/serviceinfo/:featuredtask/:specificservice`}>
+            <Link to={`/servicedetails/servicetype/specificService`}>
               <p>Home Cleaning</p>
             </Link>
           </div>

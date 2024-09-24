@@ -28,7 +28,7 @@ const Footer = () => {
                                 <li><a href="">Chicken Tinga nachos</a></li>
                                 <li><a href="">Pork chops</a></li>
                                 <li><a href="">Wraps</a></li>
-                                <li><a href="">Burger</a></li>
+                                <li><a href="/termsandprivacy">Terms and privacy</a></li>
                             </ul>
                         </div>
 

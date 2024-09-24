@@ -112,6 +112,15 @@ const Navbar = () => {
                   <a
                     style={{ cursor: "pointer" }}
                     className="nav-link"
+                    onClick={() => navigate("/aboutus")}
+                  >
+                    About Us
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    style={{ cursor: "pointer" }}
+                    className="nav-link"
                     onClick={() => navigate("/Services")}
                   >
                     Services

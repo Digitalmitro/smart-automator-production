@@ -1,0 +1,28 @@
+.FAQ-Accordion {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 4rem;
+    h1 {
+      color: #a36a08;
+      font-weight: 800;
+    }
+    p {
+      font-size: 1.2rem;
+      font-weight: 600;
+      padding: 0.9rem;
+    }
+    h2 {
+      margin: 1rem 0rem;
+    }
+    .accordion-button:focus {
+      background-color: #f8f2e8;
+      color: #a36a08;
+      box-shadow: 0 0 0 0.25rem #fddb9f;
+    }
+    .accordion-button:not(.collapsed) {
+      color: #a36a08;
+      background-color: #fef6e7;
+      box-shadow: 0 0 0 0.25rem #fddb9f;
+    }
+  }
+  
