@@ -1,30 +1,29 @@
 .services-banner{
     width: 100%;
-    background: url(../../assets/BannerImage2.png), rgba(0, 0, 0, 0.7);
+    color: #fccb47;
+    // background: url(../../assets/BannerImage2.png), rgba(0, 0, 0, 0.7);
     background-blend-mode: multiply;
 // background-size: cover;
     background-position: center;
     position: relative;
 }
-.services-banner::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7); 
-    backdrop-filter: blur(5px);
-    z-index: 1;
-    pointer-events: none; 
-  }
+// .services-banner::before {
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     background: rgba(0, 0, 0, 0.7); 
+//     backdrop-filter: blur(5px);
+//     z-index: 1;
+//     pointer-events: none; 
+//   }
   .services-form{
         position: relative;
         z-index: 2;
   }
 
-  .services-form{
-  }
 .services-form .form-box{
     background-color: #f0f0eb;
     border: 2px solid #dfd368;
@@ -38,7 +37,7 @@
 }
 .services-form h2{
     text-align: center;
-    color: rgb(230, 230, 230);
+    color: rgb(36, 34, 34);
 }
 .services-form h3{
     color: #4b4a49;

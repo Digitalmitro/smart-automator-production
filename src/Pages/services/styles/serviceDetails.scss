@@ -79,12 +79,13 @@
         margin-bottom: 1rem;
       }
     }
+   
     @media (max-width: 596px) {
       width: 70%;
       height: 300px;
       margin: auto;
       margin-top: 7rem;
-      height: 350px;
+      height: 340px;
       padding: 2rem;
       h1 {
         font-size: 2rem;
@@ -98,6 +99,12 @@
         font-weight: 700;
         margin-bottom: 1rem;
       }
+    }
+    @media (max-width: 689px) {
+      height: 380px;
+    }
+    @media (max-width: 449px) {
+     width: 90%;
     }
   }
 }
@@ -170,7 +177,9 @@
       margin: 0.2rem;
     }
   }
-
+  @media (max-width: 718px){
+    flex-direction: column;
+  }
   @media (max-width: 1290px) {
     .desc {
       flex-direction: column;

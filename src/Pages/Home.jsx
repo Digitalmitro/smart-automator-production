@@ -700,7 +700,7 @@ AOS.init()
       </section>
 
       <section>
-        <div className="container">
+        <div className=" popular-project container">
           <motion.h2 className="text-center p-4 fw-bold mt-5"
           style={{ padding: "25px 0px", letterSpacing:"3px", wordSpacing:"5px" }} 
           initial={{ opacity: 0, x: -60 }}
@@ -1125,7 +1125,7 @@ AOS.init()
         </div>
       </section>
 
-      <section style={{ backgroundColor: "#fffaf2" }}>
+      <section className="latest-articles" style={{ backgroundColor: "#fffaf2" }}>
         <div className="container pt-5">
           <h4 className="text-center" style={{ color: "#F9AC25" }} data-aos="zoom-in-out"
                   data-aos-delay="100" 

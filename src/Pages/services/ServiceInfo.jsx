@@ -5,10 +5,11 @@ import serviceInfo2 from "./assets/serviceInfo2.jpg";
 import serviceInfobanner from "./assets/serviceinfobanner.jpg";
 import image12 from "./assets/serviceDescription.jpg";
 import "./styles/ServiceInfo.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FAQ } from "./FAQ";
 
 export const ServiceInfo = () => {
+  const navigate = useNavigate()
   return (
     <div className="service-info">
       <ServiceContent />
@@ -25,6 +26,8 @@ export const ServiceInfo = () => {
 };
 
 export const ServiceContent = () => {
+  const navigate = useNavigate()
+
   return (
     <div className="service-content">
       <div className="content">
@@ -33,13 +36,15 @@ export const ServiceContent = () => {
           Need someone to put together furniture? Hire a Tasker to assemble your
           furniture and leave the building to them.
         </p>
-        <button>Book now</button>
+        <button  onClick={() => navigate('/serviceform')}>Book now</button>
       </div>
     </div>
   );
 };
 
 export const ServiceDescription = () => {
+  const navigate = useNavigate()
+
   return (
     <>
       <div className="service-description">
@@ -58,7 +63,7 @@ export const ServiceDescription = () => {
                 <p>
                   Hire a Tasker to fix your doors, cabinets, and even furniture.
                 </p>
-                <button>Book Now</button>
+                <button onClick={() => navigate('/serviceform')}>Book Now</button>
               </div>
             </div>
             <div className="service-list d-flex gap-3">
@@ -68,7 +73,7 @@ export const ServiceDescription = () => {
                 <p>
                   Hire a Tasker to fix your doors, cabinets, and even furniture.
                 </p>
-                <button>Book Now</button>
+                <button onClick={() => navigate('/serviceform')}>Book Now</button>
               </div>
             </div>
             <div className="service-list d-flex gap-3">
@@ -78,7 +83,7 @@ export const ServiceDescription = () => {
                 <p>
                   Hire a Tasker to fix your doors, cabinets, and even furniture.
                 </p>
-                <button>Book Now</button>
+                <button onClick={() => navigate('/serviceform')}>Book Now</button>
               </div>
             </div>
             <div className="service-list d-flex gap-3">
@@ -88,7 +93,7 @@ export const ServiceDescription = () => {
                 <p>
                   Hire a Tasker to fix your doors, cabinets, and even furniture.
                 </p>
-                <button>Book Now</button>
+                <button onClick={() => navigate('/serviceform')}>Book Now</button>
               </div>
             </div>
             <div className="service-list d-flex gap-3">
@@ -98,7 +103,7 @@ export const ServiceDescription = () => {
                 <p>
                   Hire a Tasker to fix your doors, cabinets, and even furniture.
                 </p>
-                <button>Book Now</button>
+                <button onClick={() => navigate('/serviceform')}>Book Now</button>
               </div>
             </div>
           </div>

@@ -6,8 +6,9 @@ import LoactionLogo from "../../assets/location.png";
 import timeLogo from "../../assets/Group.png";
 import { jwtDecode } from "jwt-decode";
 import { message } from "antd";
+import profilePhoto from "../../assets/profile1.png"
 import Cookies from "js-cookie";
-import "../Styles/ConfirmDetails.scss";
+import "./styles/ConfirmDetails.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
@@ -110,7 +111,7 @@ console.log("data", data)
   }, [cardNumber, cardDetails]);
 
   return (
-    <div class=" confirmDetails container  d-flex justify-content-around  m-auto mt-5">
+    <div class=" confirmDetails container  d-flex justify-content-around  m-auto ">
       <div class=" container border  rounded p-5 mt-3">
         <div class="frequency">
           <h6 className="pb-3" onClick={()=> navigate('/services')}> ---Back</h6>
@@ -190,11 +191,11 @@ console.log("data", data)
              value={cardDetails}
              onChange={(e) => setCardDetails(e.target.value)} />
           </div>
-          <p style={{ color: "#FFC72C" }}>Do you have a promo Code ? </p>
+          <p >Do you have a promo Code ? </p>
           <br />
         </div>
         <div class=" lineBorder border border-2  "></div>
-        <div>
+        <div className="learn-more px-3">
           <img src={Logo} alt="logo...." class="py-3" />
           <p>
             Join us in helping our neighbors in need find work and a place to
@@ -312,7 +313,7 @@ console.log("data", data)
             maxlength="500"
           />
         </div>
-        <div class=" my-3">
+        <div class="rate my-3">
           <h6 style={{ fontWeight: "600" }}>Price Details</h6>
           <div class="d-flex justify-content-between gap-3">
             <p>Hourly Rate</p>

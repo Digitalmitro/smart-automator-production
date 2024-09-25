@@ -3,10 +3,11 @@ import bagImage from "./assets/backgroundImag.jpg";
 import logoImg from "./assets/logo.jpg";
 import image12 from "./assets/serviceDescription.jpg";
 import "./styles/serviceDetails.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FAQ } from "./FAQ";
 
 export const ServiceDetails = () => {
+  const navigate = useNavigate()
   return (
     <div>
       <div className="service-details">
@@ -17,7 +18,7 @@ export const ServiceDetails = () => {
             Need someone to put together furniture? Hire a Tasker to assemble
             your furniture and leave the building to them.
           </p>
-          <button>Book now</button>
+          <button onClick={()=> navigate('/serviceform')}>Book now</button>
         </div>
       </div>
       <ServiceDescription />

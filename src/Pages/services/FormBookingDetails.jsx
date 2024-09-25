@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import user from "../assets/user.png";
+import user from "../../assets/user.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { message } from "antd";
@@ -11,12 +11,9 @@ import { TimePicker, Space } from "antd";
 import moment from "moment";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import "./styles/formDetails.scss"
 
-// type ValuePiece = Date | null;
-
-// type Value = ValuePiece | [ValuePiece, ValuePiece];
-
-const services = () => {
+export const FormBooking = () => {
   // filter data by id
   const token = Cookies.get("token");
   const decodedToken = token && jwtDecode(token);
@@ -196,11 +193,7 @@ const services = () => {
           <div class="d-flex ">
             <div>
               <div class="d-flex gap-3 align-items-center m-3">
-                <img
-                  src={user}
-                  alt="users...."
-                  style={{ width: "50px", height: "50px" }}
-                />
+               
                 <p>maria desouza.</p>
               </div>
               <div>
@@ -247,146 +240,21 @@ const services = () => {
           </div>
         </div>
       </Modal>
-      <section style={{ backgroundColor: "#fef6e7" }}>
+      <section className="form-details" style={{ backgroundColor: "#fef6e7" }}>
         <div className="container services-page  mt-5">
           <div
-            className="row gx-5 p-5 "
+            className="gx-5 p-5 "
             style={{ justifyContent: "space-between" }}
           >
-            <div className="col-md-4 py-5 border border-dark bg-white px-3">
-              <p>
-                <span className="fw-bold">Date</span>
-              </p>
-              <div className="col" style={{ zoom: "0.8" }}>
-                <button type="button" class="btn btn-link date">
-                  Today
-                </button>
-                <button type="button" class="btn btn-link date">
-                  Choose dates
-                </button>
-              </div>
-              <div className="col mb-5" style={{ zoom: "0.8" }}>
-                <button type="button" class="btn btn-link date">
-                  Within a week
-                </button>
-                <button type="button" class="btn btn-link date">
-                  Within 3 days
-                </button>
-              </div>
+         
 
-              <div className="time">
-                <h5>Time of the Day</h5>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="exampleRadios"
-                    id="exampleRadios1"
-                    value="option1"
-                  />
-                  <label class="form-check-label" for="defaultCheck1">
-                    Morning(8am- 12pm)
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="exampleRadios"
-                    id="exampleRadios1"
-                    value="option2"
-                  />
-                  <label class="form-check-label" for="defaultCheck2">
-                    Afternoon(12pm - 5pm)
-                  </label>
-                </div>
-
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="exampleRadios"
-                    id="exampleRadios1"
-                    value="option3"
-                  />
-                  <label class="form-check-label" for="defaultCheck2">
-                    Evening(5pm - 9.30pm)
-                  </label>
-                </div>
-              </div>
-              <p className="text-center fw-bold"> or choose a specific Time</p>
-
-              <div className="tasker-form-select">
-                <select class="form-select" aria-label="Default select example">
-                  <option selected>I'm Flexible</option>
-                  <option value="1">Albany</option>
-                  <option value="2">Texus</option>
-                  <option value="3">Temple</option>
-                  <option value="3">Oklahoma</option>
-                </select>
-              </div>
-              <hr></hr>
-
-              <div class="form-group  py-3">
-                <p>Price Range</p>
-                <div class="range-slider pb-4">
-                  <span class="rangeValues"></span>
-                  <input
-                    value="1000"
-                    min="1000"
-                    max="50000"
-                    step="500"
-                    type="range"
-                  />
-                  <input
-                    value="50000"
-                    min="1000"
-                    max="50000"
-                    step="500"
-                    type="range"
-                  />
-                </div>
-                <p>
-                  {" "}
-                  The average hourly rate is<span>$41.29/hr</span>
-                </p>
-              </div>
-              <hr></hr>
-
-              <h5 className="mt-3">Tasker Type</h5>
-              <div class="form-check mt-3">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="exampleRadios"
-                  id="exampleRadios1"
-                  value="option1"
-                />
-                <label class="form-check-label" for="defaultCheck1">
-                  Morning(8am- 12pm)
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="exampleRadios"
-                  id="exampleRadios1"
-                  value="option2"
-                />
-                <label class="form-check-label" for="defaultCheck2">
-                  Afternoon(12pm - 5pm)
-                </label>
-              </div>
-            </div>
-
-            <div className="col-md-8 py-5 border border-dark bg-white">
+            <div className=" bg-white py-5 ">
               {currentTaskers.lenght > 0 ? (
                 currentTaskers.map((data, i) => {
                   return (
                     <>
-                      <div className=" taskers-info d-flex" key={data._id}>
-                        <div className=" px-4">
+                      <div className="taskers-info d-flex" key={data._id}>
+                        <div className="px-4 ">
                           <img
                             className="px-5"
                             src={`${import.meta.env.VITE_SOME_KEY}/uploads/${
@@ -467,7 +335,7 @@ const services = () => {
                 })
               ) : (
                 <div className=" taskers-details">
-                  <div className=" px-4 d-flex flex-column align-items-center">
+                  <div className="profile-details px-4 d-flex flex-column align-items-center">
                     <img className="px-5" src={user} />
                     <p className="text-center">
                       <a
@@ -588,4 +456,4 @@ const services = () => {
     </>
   );
 };
-export default services;
+ 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './Styles/ServiceDetails.scss'
+import '../Styles/ServiceDetails.scss'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -44,7 +44,7 @@ const servicedetails = () => {
     };
     localStorage.setItem("serviceDetails", JSON.stringify(servicDetailsObj));
     console.log(servicDetailsObj);
-    navigate("/services");
+    navigate("/formBookingDetails");
   };
 
   useEffect(() => {
