@@ -15,7 +15,6 @@ import { LogoutModal } from "../Pages/modals/Logoutmodals";
 import {AddressPanel} from "./TabsPanel/AddressPanel"
 import {ProfilePanel} from "./TabsPanel/ProfilePanel"
 
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -35,13 +34,11 @@ function TabPanel(props) {
     </div>
   );
 }
-
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
 };
-
 function a11yProps(index) {
   return {
     id: `vertical-tab-${index}`,

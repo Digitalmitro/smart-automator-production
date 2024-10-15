@@ -58,17 +58,12 @@ const Profile = () => {
 
   return (
     <>
-      <section
-       
-      >
-      <img src={BannerImage} className="BannerImage" />
-
-       
+      <section  >
+        <img src={BannerImage} className="BannerImage" />
       </section>
-
-      <section className="containerDetails"  style={ styles.containerDetails }>
+      <section className="containerDetails" style={styles.containerDetails}>
         <div className="profile">
-       
+
           <VerticalTabs />
         </div>
       </section>
@@ -79,6 +74,6 @@ export default Profile;
 
 
 const styles = {
-  containerDetails:{
+  containerDetails: {
   }
 }

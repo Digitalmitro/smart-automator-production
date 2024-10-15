@@ -240,6 +240,9 @@ console.log("data", data)
         </div>
       </div>
 
+
+
+
       <div class="container border rounded p-5 mt-5">
         <div class="ProfileDetails">
           <div class="Profile d-flex flex-column justify-content-center align-items-center">
