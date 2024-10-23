@@ -33,14 +33,14 @@ console.log(credentials)
       // console.log(response);
       // message.success(response.data, {});
       setTimeout(() => {
-        navigate("/taskerlogin");
+        navigate("/login");
       }, 1200);
     } catch (error) {
       // message.warning(error.response.data.status, {});
       console.log(error);
     }
 
-    navigate("/taskerlogin");
+    navigate("/login");
 
   };
 
@@ -52,7 +52,7 @@ console.log(credentials)
             <form class="login-form" onSubmit={handleRegister}>
             <div className="text-center">
             <h2 className="fw-bold"> Smart Automator</h2>
-            <h5>Sign up as Tasker</h5>
+            {/* <h5>Sign up</h5> */}
             
             </div>
               <div data-mdb-input-init class="form-outline mb-4">
@@ -158,7 +158,7 @@ console.log(credentials)
                   <button
                     className="fw-bold"
                     style={{ border: "none" }}
-                    onClick={() => navigate("/taskerlogin")}
+                    onClick={() => navigate("/login")}
                   >
                     Sign In
                   </button>{" "}</p>

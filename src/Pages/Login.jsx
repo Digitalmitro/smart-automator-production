@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { message } from "antd";
 const login = () => {
   const navigate = useNavigate();
-  const token = Cookies.get("token");
+  const token = localStorage.getItem("token");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = async (e) => {
@@ -22,10 +22,12 @@ const login = () => {
         credentials
       );
       console.log(response);
-      Cookies.set("token", response.data.token);
+      localStorage.setItem("token", response.data.token)
+      localStorage.setItem("user", JSON.stringify(response.data.user))
+      // Cookies.set("token", response.data.token);
       message.success(response.data.status, {});
       setTimeout(() => {
-        window.location.href = "/profile";
+        navigate('/profile')
       }, 1200);
     } catch (error) {
       if(error.response.data.status){
@@ -102,7 +104,7 @@ const login = () => {
                   <button
                     className="fw-bold"
                     style={{ border: "none" }}
-                    onClick={() => navigate("/Signup")}
+                    onClick={() => navigate("/signup")}
                   >
                     Sign Up
                   </button>{" "}

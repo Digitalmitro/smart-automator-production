@@ -5,7 +5,6 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const navigate = useNavigate();
-  
 
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
@@ -17,35 +16,25 @@ const Signup = () => {
     e.preventDefault();
 
     const credentials = {
-      firstName:firstName,
-      lastName:lastName,
-      email:email,
-      password:password,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
       phone: phone,
       zip: zip,
     };
-console.log(credentials)
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_SOME_KEY}/registerclient`,
-        credentials
-      );
-      console.log(response);
-      message.success(response.data, {});
-      setTimeout(() => {
-        navigate("/login");
-      }, 1200);
-    } catch (error) {
-      
-      if(error.response.data.status){
-        message.warning(error.response.data.status, {});
 
-      }else{
-      message.warning("signup unsuccessful");
-
-      }
-      console.log(error);
-    }
+    await axios
+      .post(`${import.meta.env.VITE_SOME_KEY}/registerclient`, credentials)
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", res.data.user);
+      })
+      .catch((e) => {
+        console.log(e);
+        message.warning("signup unsuccessful");
+      });
   };
 
   return (
@@ -60,55 +49,47 @@ console.log(credentials)
                   type="text"
                   class="form-control"
                   placeholder="First name"
+                  required
                   value={firstName}
-                  onChange={(e) =>
-                    setFirstName( e.target.value)
-                    
-                  }
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
-            
+
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Last name"
+                  required
                   value={lastName}
-                  onChange={(e) =>
-                    setLastName( e.target.value)
-                  
-                  }
+                  onChange={(e) => setLastName(e.target.value)}
                 />
-          
+
                 <input
                   type="email"
                   class="form-control"
                   placeholder="Email Address"
+                  required
                   value={email}
-                  onChange={(e) =>
-                    setEmail(e.target.value )
-                  }
+                  onChange={(e) => setEmail(e.target.value)}
                 />
-           
+
                 <input
-                
-                 
                   type="number"
                   id="typeNumber"
                   class="form-control"
                   placeholder="Enter Phone No"
+                  required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
-             
+
                 <input
                   type="password"
                   id="form2Example2"
                   class="form-control"
                   placeholder="Password"
+                  required
                   value={password}
-                  onChange={(e) =>
-                    setPassword( e.target.value
-                    )
-                  }
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
 
@@ -146,17 +127,18 @@ console.log(credentials)
                 Create Account
               </button>
               <div class="text-center">
-                 have account ?
+                have account ?
                 <p>
                   <button
                     className="fw-bold"
                     style={{ border: "none" }}
-                    onClick={() => navigate("/taskerlogin")}
+                    onClick={() => navigate("/login")}
                   >
                     Sign In
-                  </button>{" "}</p>
-                  <br></br>
-          </div>
+                  </button>{" "}
+                </p>
+                <br></br>
+              </div>
             </form>
           </div>
         </div>

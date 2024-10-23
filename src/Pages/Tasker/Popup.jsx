@@ -12,9 +12,9 @@ const Popup = () => {
 
         <form class="login-form">
         <h2 className="fw-bold"> Smart Automator</h2>
-        <button type="button" class="btn btn-warning text-center fw-bold mt-4 mb-4" style={{width:"100%",color:"#fff",}} onClick={()=> navigate('/taskersignup')}>Sign up</button>
+        <button type="button" class="btn btn-warning text-center fw-bold mt-4 mb-4" style={{width:"100%",color:"#fff",}} onClick={()=> navigate('/signup')}>Sign up</button>
         <button type="button" class="btn btn-warning text-center fw-bold mt-4 mb-4" style={{width:"100%",color:"#fff",}}
-         onClick={()=> navigate('/taskerlogin')}
+         onClick={()=> navigate('/login')}
           > Log in</button>
         
         <p className="text-center">By signing up you agree to our <span><a className="text-warning" href="">TERMS OF USE </a></span>  and <span><a className="text-warning" href="">PRIVACY POLICY. </a></span> </p>

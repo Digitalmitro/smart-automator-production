@@ -2,23 +2,22 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo 1.png";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import './Styles/Navbar.scss'
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "./Styles/Navbar.scss";
 import { useEffect, useState } from "react";
 import { svg } from "./Svg";
 import { LogoutModal } from "./modals/Logoutmodals";
-import Tooltip from '@mui/material/Tooltip';
+import Tooltip from "@mui/material/Tooltip";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const token = Cookies.get("token");
-  const decodedToken = token && jwtDecode(token);
-  const user = decodedToken?.email;
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
 
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-  AOS.init(); 
+  AOS.init();
 
   const [scrolled, setScrolled] = useState(false);
 
@@ -31,20 +30,19 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll); 
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   const handelLogout = () => {
-    Cookies.remove("token");
+    localStorage.clear();
     window.location.href = "/login";
   };
 
-
   const openLogoutModal = () => {
-    setShowLogoutModal(true);  // Show modal when logout button is clicked
+    setShowLogoutModal(true); // Show modal when logout button is clicked
   };
 
   const closeLogoutModal = () => {
@@ -67,8 +65,12 @@ const Navbar = () => {
       </div>
 
       <header>
-        <div className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
-          <nav className={`navbar navbar-expand-lg ${scrolled ? 'navbar-scrolled' : ''}`}>
+        <div className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
+          <nav
+            className={`navbar navbar-expand-lg ${
+              scrolled ? "navbar-scrolled" : ""
+            }`}
+          >
             {/* Logo Section */}
             <a className="navbar-brand" style={{ cursor: "pointer" }}>
               <img
@@ -89,10 +91,7 @@ const Navbar = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span className="">
-
-                 {svg.menubar}
-              </span>
+              <span className="">{svg.menubar}</span>
             </button>
 
             {/* Menu Items */}
@@ -131,7 +130,7 @@ const Navbar = () => {
                     System Funnels
                   </a>
                 </li>
-                {!decodedToken ? (
+                {!token ? (
                   <li className="nav-item">
                     <a
                       style={{ cursor: "pointer" }}
@@ -147,21 +146,23 @@ const Navbar = () => {
               </ul>
 
               {/* User Panel */}
-              <div className="user-panel"
-              style={{width:'', height:''}}>
-                {decodedToken ? (
+              <div className="user-panel" style={{ width: "", height: "" }}>
+                {token ? (
                   <>
-                   <Tooltip title="Profile">
-                   <i
-                      onClick={() => navigate("/profile")}
-                      className="fa-solid fa-user"
-                    ></i>
+                    <Tooltip title="Profile" style={{cursor:"pointer"}}>
+                      <i
+                        onClick={() => navigate("/profile")}
+                        className="fa-solid fa-user"
+                      ></i>
                     </Tooltip>
                     <Tooltip title="Logout">
-                    <i
-                      onClick={openLogoutModal}  
-                      className="fa-solid fa-right-from-bracket"
-                    ></i></Tooltip>
+                    <li className="nav-item">
+                      <a
+                      style={{cursor: "pointer"}}
+                        onClick={openLogoutModal}
+                      >Logout</a>
+                    </li>
+                    </Tooltip>
                   </>
                 ) : (
                   ""
@@ -178,8 +179,11 @@ const Navbar = () => {
           </nav>
         </div>
       </header>
-      <LogoutModal handelLogout={handelLogout} closeLogoutModal={closeLogoutModal} showLogoutModal={showLogoutModal} />
-      
+      <LogoutModal
+        handelLogout={handelLogout}
+        closeLogoutModal={closeLogoutModal}
+        showLogoutModal={showLogoutModal}
+      />
     </div>
   );
 };

@@ -34,10 +34,10 @@ const AllRoute =()=>{
         <Route path="/profile" element={< Profile />}>Profile</Route>
         <Route path="/Tasker" element={< Tasker />}>Tasker</Route>
         <Route path="/termsandprivacy" element={< TermsAndprivacy />}>Terms And privacy</Route>
-        <Route path="/taskerlogin" element={< TaskerLogin />}>Tasker Login</Route>
-        <Route path="/taskersignup" element={< TaskerSignup />}>Tasker Signup</Route>
-        <Route path="/login" element={< Login />}>Login</Route>
-        <Route path="/Signup" element={<Signup/>}>Signup </Route>
+        <Route path="/login" element={< Login />}>Tasker Login</Route>
+        <Route path="/signup" element={< Signup />}>Tasker Signup</Route>
+        {/* <Route path="/login" element={< Login />}>Login</Route>
+        <Route path="/Signup" element={<Signup/>}>Signup </Route> */}
         <Route path="/services" element={<Services/>}> Services </Route>
         <Route path="/formBookingDetails" element={<FormBooking/>}> FormBooking </Route>
         <Route path="/servicedetails/:servicetype/:specificService" element={<ServiceDetails/>}> Service Details </Route>
