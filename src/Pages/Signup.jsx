@@ -28,8 +28,7 @@ const Signup = () => {
       .post(`${import.meta.env.VITE_SOME_KEY}/registerclient`, credentials)
       .then((res) => {
         console.log(res.data);
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", res.data.user);
+        navigate('/login')
       })
       .catch((e) => {
         console.log(e);
