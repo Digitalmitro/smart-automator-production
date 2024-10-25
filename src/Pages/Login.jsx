@@ -27,8 +27,8 @@ const login = () => {
       // Cookies.set("token", response.data.token);
       message.success(response.data.status, {});
       setTimeout(() => {
-        navigate('/profile')
-      }, 1200);
+        navigate('/')
+      }, 1000);
     } catch (error) {
       if(error.response.data.status){
         message.warning(error.response.data.status, {});

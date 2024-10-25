@@ -10,10 +10,10 @@ import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { message } from "antd";
-import './Styles/Tabs.scss'
-import { LogoutModal } from "../Pages/modals/Logoutmodals"; 
-import {AddressPanel} from "./TabsPanel/AddressPanel"
-import {ProfilePanel} from "./TabsPanel/ProfilePanel"
+import "./Styles/Tabs.scss";
+import { LogoutModal } from "../Pages/modals/Logoutmodals";
+import { AddressPanel } from "./TabsPanel/AddressPanel";
+import { ProfilePanel } from "./TabsPanel/ProfilePanel";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -55,19 +55,18 @@ export default function VerticalTabs() {
   const navigate = useNavigate();
   const [orderDetails, setOrderDetails] = useState();
 
-
   const [clientDetails, setClientDetails] = useState();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handelLogout = () => {
-    Cookies.remove("token");
-    window.location.href = "/login";
+    localStorage.clear();
+    navigate('/login')
   };
-  
+
   const openLogoutModal = () => {
-    setShowLogoutModal(true);  // Show modal when logout button is clicked
+    setShowLogoutModal(true); // Show modal when logout button is clicked
   };
-  
+
   const closeLogoutModal = () => {
     setShowLogoutModal(false); // Hide modal
   };
@@ -79,14 +78,12 @@ export default function VerticalTabs() {
   //   }
   // }, [token]);
 
-
   useEffect(() => {
-    const storedValue = localStorage.getItem('tabIndex');
+    const storedValue = localStorage.getItem("tabIndex");
     if (storedValue !== null) {
       setValue(parseInt(storedValue, 10));
     }
   }, []);
-
 
   const handleOrderDetails = async () => {
     try {
@@ -101,8 +98,6 @@ export default function VerticalTabs() {
     }
   };
 
-  
-
   React.useEffect(() => {
     handleOrderDetails();
   }, []);
@@ -115,19 +110,15 @@ export default function VerticalTabs() {
 
   // Slice the array of taskers to display only the items for the current page
   const currentOrderDetails =
-        orderDetails && orderDetails.slice(indexOfFirstItem, indexOfLastItem) || [];
+    (orderDetails && orderDetails.slice(indexOfFirstItem, indexOfLastItem)) ||
+    [];
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    localStorage.setItem('tabIndex', newValue);
+    localStorage.setItem("tabIndex", newValue);
   };
-
-
-
-
- 
 
   return (
     <>
@@ -139,54 +130,74 @@ export default function VerticalTabs() {
           height: "auto",
         }}
       >
-<Tabs
-  orientation="vertical"
-  variant="scrollable"
-  value={value}
-  onChange={handleChange}
-  aria-label="Vertical tabs example"
-  sx={{ borderRight: 1, borderColor: "divider" }}
->
-  <Tab
-    style={{ marginBottom: "20px", height: "100px" }}
-    className="sidenav"
-    label={<i className="fa-solid fa-address-book"> <span className="tab-text">Profile</span> </i>}
-    {...a11yProps(0)}
-  />
-  <Tab
-    style={{ marginBottom: "20px", height: "100px" }}
-    className="sidenav"
-    label={<i className="fa-solid fa-address-book"> <span className="tab-text">Address</span> </i>}
-    {...a11yProps(1)}
-  />
-  <Tab
-    style={{ marginBottom: "20px", height: "100px" }}
-    className="sidenav"
-    label={<i className="fa-solid fa-bag-shopping"> <span className="tab-text">Order History</span> </i>}
-    {...a11yProps(2)}
-  />
-  <Tab
-    style={{ marginBottom: "20px", height: "100px" }}
-    onClick={openLogoutModal}  
-    className="sidenav"
-    label={<i className="fa-solid fa-right-from-bracket"> <span className="tab-text">Logout</span> </i>}
-    {...a11yProps(3)}
-  />
-</Tabs>
+        <Tabs
+          orientation="vertical"
+          variant="scrollable"
+          value={value}
+          onChange={handleChange}
+          aria-label="Vertical tabs example"
+          sx={{ borderRight: 1, borderColor: "divider" }}
+        >
+          <Tab
+            style={{ marginBottom: "20px", height: "100px" }}
+            className="sidenav"
+            label={
+              <i className="fa-solid fa-address-book">
+                {" "}
+                <span className="tab-text">Profile</span>{" "}
+              </i>
+            }
+            {...a11yProps(0)}
+          />
+          <Tab
+            style={{ marginBottom: "20px", height: "100px" }}
+            className="sidenav"
+            label={
+              <i className="fa-solid fa-address-book">
+                {" "}
+                <span className="tab-text">Address</span>{" "}
+              </i>
+            }
+            {...a11yProps(1)}
+          />
+          <Tab
+            style={{ marginBottom: "20px", height: "100px" }}
+            className="sidenav"
+            label={
+              <i className="fa-solid fa-bag-shopping">
+                {" "}
+                <span className="tab-text">Order History</span>{" "}
+              </i>
+            }
+            {...a11yProps(2)}
+          />
+          <Tab
+            style={{ marginBottom: "20px", height: "100px" }}
+            onClick={openLogoutModal}
+            className="sidenav"
+            label={
+              <i className="fa-solid fa-right-from-bracket">
+                {" "}
+                <span className="tab-text">Logout</span>{" "}
+              </i>
+            }
+            {...a11yProps(3)}
+          />
+        </Tabs>
 
         <TabPanel value={value} index={0}>
-       <ProfilePanel/>
+          <ProfilePanel />
         </TabPanel>
 
         <TabPanel value={value} index={1}>
-        <AddressPanel/>
+          <AddressPanel />
         </TabPanel>
-        
+
         <TabPanel value={value} index={2}>
           <div className="past-order" style={{ textAlign: "center" }}>
             <h2 className="py-3">Orders</h2>
             <div className="orderDetails">
-              {currentOrderDetails.length > 0 ?
+              {currentOrderDetails.length > 0 ? (
                 currentOrderDetails.map((data) => {
                   return (
                     <>
@@ -211,7 +222,9 @@ export default function VerticalTabs() {
                             <img
                               className="rounded-circle"
                               style={{ width: "135px", height: "135px" }}
-                              src={`${import.meta.env.VITE_SOME_KEY}/uploads/${data?.image}`}
+                              src={`${import.meta.env.VITE_SOME_KEY}/uploads/${
+                                data?.image
+                              }`}
                             />
                           </div>
                           <div className="col-md-8 py-4 px-5">
@@ -246,68 +259,60 @@ export default function VerticalTabs() {
                       </div>
                     </>
                   );
-                }) 
-              : (
+                })
+              ) : (
                 <div className="past-order-box" style={{ zoom: ".9" }}>
-                <div className="wrap">
-                  <div className="burger-text">
-                    <h5 className="fw-bold">Task Completed</h5>
-                    <br></br>
-                    <span>
-                      ,Medium-EST 2-3hr,{" "}
-                    
-                       Task doesn't require car
-                    </span>
-                    <br></br>
-                    <span>01-12-24 16:40</span>
+                  <div className="wrap">
+                    <div className="burger-text">
+                      <h5 className="fw-bold">Task Completed</h5>
+                      <br></br>
+                      <span>,Medium-EST 2-3hr, Task doesn't require car</span>
+                      <br></br>
+                      <span>01-12-24 16:40</span>
+                    </div>
                   </div>
-                </div>
 
-                <div className="row" style={{ marginTop: "20px" }}>
-                  <div className="col-md-4">
-                    <img
-                      className="rounded-circle mt-1"
-                      style={{ width: "135px", height: "135px" }}
-                      src={user}
-                    />
+                  <div className="row" style={{ marginTop: "20px" }}>
+                    <div className="col-md-4">
+                      <img
+                        className="rounded-circle mt-1"
+                        style={{ width: "135px", height: "135px" }}
+                        src={user}
+                      />
+                    </div>
+                    <div className="col-md-8 py-4 px-5 mt-2">
+                      <h4 className="fw-bold" style={{ whiteSpace: "nowrap" }}>
+                        John doe carpenter
+                      </h4>
+                      <p>
+                        You rated <span style={{ fontSize: "20px" }}> ★ 5</span>
+                      </p>
+                    </div>
                   </div>
-                  <div className="col-md-8 py-4 px-5 mt-2">
-                    <h4 className="fw-bold"
-                    style={{whiteSpace: "nowrap"}}>John doe carpenter</h4>
-                    <p>
-                      You rated{" "}
-                      <span style={{ fontSize: "20px" }}> ★ 5</span>
-                    </p>
+                  <div
+                    style={{
+                      margin: "40px",
+                      display: "flex",
+                      gap: "40px",
+                    }}
+                  >
+                    <button
+                      type="button"
+                      className="btn btn-warning tab-btn"
+                      onClick={() => navigate("/Services")}
+                    >
+                      Book Again
+                    </button>
+                    <button className="btn btn-warning tab-btn" type="button">
+                      Share Profile
+                    </button>
                   </div>
                 </div>
-                <div
-                  style={{
-                    margin: "40px",
-                    display: "flex",
-                    gap: "40px",
-                  }}
-                >
-                  <button
-                    type="button"
-                    className="btn btn-warning tab-btn"
-                    onClick={() => navigate("/Services")}
-                  >
-                    Book Again
-                  </button>
-                  <button
-                    className="btn btn-warning tab-btn"
-                    type="button"
-                  >
-                    Share Profile
-                  </button>
-                </div>
-              </div>
               )}
             </div>
 
-
-           <div style={{textAlign: "center"}} className="orderPagination">
-           <nav aria-label="Page navigation example">
+            <div style={{ textAlign: "center" }} className="orderPagination">
+              <nav aria-label="Page navigation example">
                 <ul className="pagination">
                   <li className="page-item">
                     <a
@@ -348,7 +353,7 @@ export default function VerticalTabs() {
                   </li>
                 </ul>
               </nav>
-           </div>
+            </div>
           </div>
         </TabPanel>
         {/* <TabPanel value={value} index={3}>
@@ -398,9 +403,12 @@ export default function VerticalTabs() {
         <TabPanel value={value} index={6}>
           Item Six
         </TabPanel>
-        <LogoutModal handelLogout={handelLogout} closeLogoutModal={closeLogoutModal} showLogoutModal={showLogoutModal} />
+        <LogoutModal
+          handelLogout={handelLogout}
+          closeLogoutModal={closeLogoutModal}
+          showLogoutModal={showLogoutModal}
+        />
       </Box>
-     
     </>
   );
 }
