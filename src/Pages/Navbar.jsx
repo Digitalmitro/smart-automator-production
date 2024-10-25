@@ -125,11 +125,11 @@ const Navbar = () => {
                     Services
                   </a>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <a className="nav-link" href="#">
                     System Funnels
                   </a>
-                </li>
+                </li> */}
                 {!token ? (
                   <li className="nav-item">
                     <a

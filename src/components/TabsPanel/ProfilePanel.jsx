@@ -117,7 +117,7 @@ export const ProfilePanel = () => {
                   className=" d-flex  align-items-center justify-content-center"
                   style={{ gap: "2rem", marginTop: "40px" }}
                 >
-                  <button
+                  {/* <button
                     className="profile-btn"
                     type="button"
                     style={{
@@ -127,7 +127,7 @@ export const ProfilePanel = () => {
                     }}
                   >
                     CHANGE PASSWORD
-                  </button>
+                  </button> */}
 
                   <button
                     className="profile-btn"
