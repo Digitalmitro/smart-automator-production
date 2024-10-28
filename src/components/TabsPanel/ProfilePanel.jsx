@@ -7,11 +7,12 @@ import axios from "axios";
 import { useEffect } from "react";
 import { message } from "antd";
 
+import { useNavigate } from "react-router-dom";
 export const ProfilePanel = () => {
   const token = localStorage.getItem("token");
+  const navigate = useNavigate()
   // const decodedToken = token && jwtDecode(token);
   // const user_id = decodedToken?._id;
-
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
@@ -30,61 +31,6 @@ export const ProfilePanel = () => {
     zip: "",
   });
 
-  const getUser = async () => {
-    await axios
-      .get(`${import.meta.env.VITE_SOME_KEY}/get-client`, {
-        headers: { token },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setUser(res.data.user);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
-  const handleClientsDetails = async (e) => {
-    e.preventDefault();
-    try {
-      const payload = {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        zip: user.zip,
-        phone: user.phone,
-        email: user.email,
-        newPassword: newPassword,
-        oldPassword: oldPassword,
-      };
-      const response = await axios.put(
-        `${import.meta.env.VITE_SOME_KEY}/updateclient`,
-        payload,
-        { headers: { token } }
-      );
-
-      console.log(response);
-
-      if (response.status === 200) {
-        setCallApi(!callApi);
-        message.success("Profile Updated successfully");
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 1200); // 1.2 seconds
-      } else {
-        message.error("An error occurred while updating the profile");
-      }
-    } catch (e) {
-      message.error(e.response.data.error);
-    }
-  };
-
-  useEffect(() => {
-    if (token) {
-      getUser();
-    } else {
-      return navigate("/login");
-    }
-  }, [token, callApi]);
 
   return (
     <>
@@ -98,41 +44,36 @@ export const ProfilePanel = () => {
                     <img src={profile} />
                   </div>
                   <div className="info col-md-6">
-                    <h2 style={{ fontSize: "25px" }}>
-                      {user?.firstName.toUpperCase()}{" "}
+                    
+                    <p >
+                      {/* {user?.firstName.toUpperCase()}{" "}
                       {user?.lastName.toUpperCase()}
-                    </h2>
+                       */}
+                       <span>kajal gupta</span>
+                    </p>
                     <ul
                       style={{
                         marginTop: "10px",
                       }}
                     >
-                      <li>{user?.email}</li>
+                      {/* <li>{user?.email}</li>
                       <li>{user?.phone}</li>
+                       */}
+
+                       <li><span><b>Email :</b> </span>  <span>kajl@gmail.com </span></li>
+                       <li><span><b>Number :</b> </span> <span>21765 34876 345</span></li>
                     </ul>
                   </div>
                 </div>
 
                 <div
-                  className=" d-flex  align-items-center justify-content-center"
-                  style={{ gap: "2rem", marginTop: "40px" }}
+                  className=" d-flex  align-items-center justify-content-end"
+                  style={{ gap: "2rem" }}
                 >
-                  {/* <button
-                    className="profile-btn"
-                    type="button"
-                    style={{
-                      width: "200px",
-                      height: "55px",
-                      fontSize: "13px",
-                    }}
-                  >
-                    CHANGE PASSWORD
-                  </button> */}
-
                   <button
                     className="profile-btn"
                     type="button"
-                    style={{ width: "200px", height: "55px", fontSize: "13px" }}
+                    style={{ width: "100px", height: "55px", fontSize: "13px" }}
                     onClick={() => settoggleUpdate((prev) => !prev)}
                   >
                     EDIT PROFILE

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import bagImage from "./assets/backgroundImag.jpg";
 import logoImg from "./assets/logo.jpg";
 import image12 from "./assets/serviceDescription.jpg";
@@ -8,6 +8,10 @@ import { FAQ } from "./FAQ";
 
 export const ServiceDetails = () => {
   const navigate = useNavigate()
+
+  useEffect(()=> {
+    window.scrollTo(0,0)
+  },[])
   return (
     <div>
       <div className="service-details">

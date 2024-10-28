@@ -27,7 +27,7 @@ const login = () => {
       // Cookies.set("token", response.data.token);
       message.success(response.data.status, {});
       setTimeout(() => {
-        navigate('/')
+        // navigate('/')
       }, 1000);
     } catch (error) {
       if(error.response.data.status){
@@ -40,7 +40,7 @@ const login = () => {
       console.log(error.response.data.status);
     }
     if (token) {
-      return <Navigate to="/" />;
+      // return <Navigate to="/" />;
     }
   };
 

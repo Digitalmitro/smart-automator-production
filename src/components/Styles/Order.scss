@@ -1,0 +1,76 @@
+.orderPanel{
+    padding: 1rem;
+    h4{
+        font-weight: 600;
+    }
+    table th, td{
+      padding:  20px;
+        text-align: start;
+        border: 1px solid #e7e6e6;
+    }
+    table{
+        width: 100%;
+        text-align: start;
+        border-collapse: collapse;
+        .productsDetails{
+            display: flex;
+            align-items: center;
+            img{
+                margin-top: 4px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+    }
+    .statusCancelled{
+         color: #EA4824;
+         background-color: #ffe7f0;
+         padding: 3px 3px ;
+         text-align: center;
+         border-radius: 20px;
+    }
+    .statusPending{
+        color: #fcbe13;
+        background-color: #faf9d8;
+        padding: 3px 3px ;
+        text-align: center;
+        border-radius: 20px;
+   }
+   .statusCompleted{
+    color: #0baf21;
+    background-color: #e1fad9;
+    padding: 3px 3px ;
+    text-align: center;
+    border-radius: 20px;
+}
+        p{
+            margin: 0;
+            font-size: .9rem;
+        }
+        .buttonList{
+       
+        button{
+            // height: 2rem;
+            border: none;
+            padding: .2rem 1rem ;
+            color: white;
+        text-align: end;
+        background:linear-gradient(to right, rgb(163, 54, 46) , #EA4824);
+            border-radius: 1rem;
+        }
+        }
+
+
+    .newAddress{
+        text-align: end;
+        margin-top: 3.2rem;
+        .newAddressBtn{
+            padding: 0.5rem 2rem;
+            border: none;
+            background:linear-gradient(to right, rgb(189, 54, 44) , #f75a36);
+           color: white;
+        }
+    }
+}
+
+
