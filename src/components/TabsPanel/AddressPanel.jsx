@@ -30,7 +30,7 @@ export const AddressPanel = () => {
           <div className='buttonList'>
 
             <button onClick={showDrawer} icon={<PlusOutlined />}>Edit</button>
-            <button>Delete</button>
+            <button className="delete">Delete</button>
             <input type="radio" name="address" id="address1" />
           </div>
         </div>
@@ -47,7 +47,7 @@ export const AddressPanel = () => {
           <div className='buttonList'>
 
             <button onClick={showDrawer} icon={<PlusOutlined />}>Edit</button>
-            <button>Delete</button>
+            <button className="delete">Delete</button>
             <input type="radio" name="address" id="address2" />
           </div>
         </div>
@@ -64,7 +64,7 @@ export const AddressPanel = () => {
           <div className='buttonList'>
 
             <button onClick={showDrawer} icon={<PlusOutlined />}>Edit</button>
-            <button>Delete</button>
+            <button className="delete">Delete</button>
             <input type="radio" name="address" id="address3" />
           </div>
         </div>
@@ -81,7 +81,7 @@ export const AddressPanel = () => {
           <div className='buttonList'>
 
             <button onClick={showDrawer} icon={<PlusOutlined />}>Edit</button>
-            <button>Delete</button>
+            <button className="delete">Delete</button>
             <input type="radio" name="address" id="address4" />
           </div>
         </div>

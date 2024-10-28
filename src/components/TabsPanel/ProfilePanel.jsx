@@ -73,7 +73,7 @@ export const ProfilePanel = () => {
                   <button
                     className="profile-btn"
                     type="button"
-                    style={{ width: "100px", height: "55px", fontSize: "13px" }}
+                    style={{ width: "100px", height: "35px", fontSize: "13px" }}
                     onClick={() => settoggleUpdate((prev) => !prev)}
                   >
                     EDIT PROFILE
