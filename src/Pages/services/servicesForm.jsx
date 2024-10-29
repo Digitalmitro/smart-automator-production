@@ -65,12 +65,10 @@ const servicedetails = () => {
   // console.log(selectedRadio)
   return (
     <>
-      <section className="services-banner" style={{ backgroundColor: "#fef6e7" }}>
+      <section className="services-banner" >
         <div className="services-form container  pt-md-5 ">
-          <h2 className="pt-5 py-5"
-          data-aos="flip-left"
-          data-aos-delay="200"
-          data-aos-duration="2000" 
+          <h2 className="pt-5 py-5 mt-5"
+         
           >FURNITURE ASSEMBLY</h2>
         </div>
         <div className=" services-form container"
@@ -293,9 +291,7 @@ const servicedetails = () => {
           </div>
           <button
             type="button"
-            data-aos="fade-up"
-            data-aos-delay="200" 
-            data-aos-duration="1000" 
+           
             className="btn btn-warning text-center m-4 p-3 px-5"
             onClick={handleServiceDetails}
           >
