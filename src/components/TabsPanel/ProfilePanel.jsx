@@ -44,61 +44,61 @@ export const ProfilePanel = () => {
   };
 
 
-  // const getUser = async () => {
-  //   await axios
-  //     .get(`${import.meta.env.VITE_SOME_KEY}/get-client`, {
-  //       headers: { token },
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setUser(res.data.user);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // };
+  const getUser = async () => {
+    await axios
+      .get(`${import.meta.env.VITE_SOME_KEY}/get-client`, {
+        headers: { token },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setUser(res.data.user);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
-  // const handleClientsDetails = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const payload = {
-  //       firstName: user.firstName,
-  //       lastName: user.lastName,
-  //       zip: user.zip,
-  //       phone: user.phone,
-  //       email: user.email,
-  //       newPassword: newPassword,
-  //       oldPassword: oldPassword,
-  //     };
-  //     const response = await axios.put(
-  //       `${import.meta.env.VITE_SOME_KEY}/updateclient`,
-  //       payload,
-  //       { headers: { token } }
-  //     );
+  const handleClientsDetails = async (e) => {
+    e.preventDefault();
+    try {
+      const payload = {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        zip: user.zip,
+        phone: user.phone,
+        email: user.email,
+        newPassword: newPassword,
+        oldPassword: oldPassword,
+      };
+      const response = await axios.put(
+        `${import.meta.env.VITE_SOME_KEY}/updateclient`,
+        payload,
+        { headers: { token } }
+      );
 
-  //     console.log(response);
+      console.log(response);
 
-  //     if (response.status === 200) {
-  //       setCallApi(!callApi);
-  //       message.success("Profile Updated successfully");
-  //       // setTimeout(() => {
-  //       //   window.location.reload();
-  //       // }, 1200); // 1.2 seconds
-  //     } else {
-  //       message.error("An error occurred while updating the profile");
-  //     }
-  //   } catch (e) {
-  //     message.error(e.response.data.error);
-  //   }
-  // };
+      if (response.status === 200) {
+        setCallApi(!callApi);
+        message.success("Profile Updated successfully");
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 1200); // 1.2 seconds
+      } else {
+        message.error("An error occurred while updating the profile");
+      }
+    } catch (e) {
+      message.error(e.response.data.error);
+    }
+  };
 
-  // useEffect(() => {
-  //   if (token) {
-  //     getUser();
-  //   } else {
-  //     return navigate("/login");
-  //   }
-  // }, [token, callApi]);
+  useEffect(() => {
+    if (token) {
+      getUser();
+    } else {
+      return navigate("/login");
+    }
+  }, [token, callApi]);
 
 
   return (
