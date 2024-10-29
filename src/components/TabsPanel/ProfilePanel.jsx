@@ -5,9 +5,13 @@ import profile from "../../assets/profile1.png";
 import "../Styles/Profile.scss";
 import axios from "axios";
 import { useEffect } from "react";
-import { message } from "antd";
+
 
 import { useNavigate } from "react-router-dom";
+import { createStyles, useTheme } from 'antd-style';
+import { Row, Col, Button, ConfigProvider, Modal, Space, Form, Input, message, Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+
 export const ProfilePanel = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate()
@@ -30,61 +34,71 @@ export const ProfilePanel = () => {
     phone: "",
     zip: "",
   });
-  const getUser = async () => {
-    await axios
-      .get(`${import.meta.env.VITE_SOME_KEY}/get-client`, {
-        headers: { token },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setUser(res.data.user);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // const token = useTheme();
+  const toggleModal = (idx, target) => {
+    setIsModalOpen(false);
   };
 
-  const handleClientsDetails = async (e) => {
-    e.preventDefault();
-    try {
-      const payload = {
-        firstName: user.firstName,
-        lastName: user.lastName,
-        zip: user.zip,
-        phone: user.phone,
-        email: user.email,
-        newPassword: newPassword,
-        oldPassword: oldPassword,
-      };
-      const response = await axios.put(
-        `${import.meta.env.VITE_SOME_KEY}/updateclient`,
-        payload,
-        { headers: { token } }
-      );
 
-      console.log(response);
+  // const getUser = async () => {
+  //   await axios
+  //     .get(`${import.meta.env.VITE_SOME_KEY}/get-client`, {
+  //       headers: { token },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setUser(res.data.user);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // };
 
-      if (response.status === 200) {
-        setCallApi(!callApi);
-        message.success("Profile Updated successfully");
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 1200); // 1.2 seconds
-      } else {
-        message.error("An error occurred while updating the profile");
-      }
-    } catch (e) {
-      message.error(e.response.data.error);
-    }
-  };
+  // const handleClientsDetails = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     const payload = {
+  //       firstName: user.firstName,
+  //       lastName: user.lastName,
+  //       zip: user.zip,
+  //       phone: user.phone,
+  //       email: user.email,
+  //       newPassword: newPassword,
+  //       oldPassword: oldPassword,
+  //     };
+  //     const response = await axios.put(
+  //       `${import.meta.env.VITE_SOME_KEY}/updateclient`,
+  //       payload,
+  //       { headers: { token } }
+  //     );
 
-  useEffect(() => {
-    if (token) {
-      getUser();
-    } else {
-      return navigate("/login");
-    }
-  }, [token, callApi]);
+  //     console.log(response);
+
+  //     if (response.status === 200) {
+  //       setCallApi(!callApi);
+  //       message.success("Profile Updated successfully");
+  //       // setTimeout(() => {
+  //       //   window.location.reload();
+  //       // }, 1200); // 1.2 seconds
+  //     } else {
+  //       message.error("An error occurred while updating the profile");
+  //     }
+  //   } catch (e) {
+  //     message.error(e.response.data.error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (token) {
+  //     getUser();
+  //   } else {
+  //     return navigate("/login");
+  //   }
+  // }, [token, callApi]);
 
 
   return (
@@ -99,12 +113,12 @@ export const ProfilePanel = () => {
                     <img src={profile} />
                   </div>
                   <div className="info col-md-6">
-                    
+
                     <p >
                       {/* {user?.firstName.toUpperCase()}{" "}
                       {user?.lastName.toUpperCase()}
                        */}
-                       <span>kajal gupta</span>
+                      <span>kajal gupta</span>
                     </p>
                     <ul
                       style={{
@@ -115,8 +129,8 @@ export const ProfilePanel = () => {
                       <li>{user?.phone}</li>
                        */}
 
-                       <li><span><b>Email :</b> </span>  <span>kajl@gmail.com </span></li>
-                       <li><span><b>Number :</b> </span> <span>21765 34876 345</span></li>
+                      <li><span><b>Email :</b> </span>  <span>kajl@gmail.com </span></li>
+                      <li><span><b>Number :</b> </span> <span>21765 34876 345</span></li>
                     </ul>
                   </div>
                 </div>
@@ -129,10 +143,13 @@ export const ProfilePanel = () => {
                     className="profile-btn"
                     type="button"
                     style={{ width: "100px", height: "35px", fontSize: "13px" }}
-                    onClick={() => settoggleUpdate((prev) => !prev)}
+                    onClick={() => setIsModalOpen(true)}
+
+
                   >
                     EDIT PROFILE
                   </button>
+                  <AntDrawer isModalOpen={isModalOpen} toggleModal={toggleModal} />
                 </div>
               </div>
             </div>
@@ -267,3 +284,240 @@ export const ProfilePanel = () => {
     </>
   );
 };
+
+const AntDrawer = ({ isModalOpen, toggleModal }) => {
+
+  const modalStyles = {
+    header: {
+      // borderLeft: `5px solid ${token.colorPrimary}`,
+      borderRadius: 0,
+      paddingInlineStart: 5,
+      
+    },
+    body: {
+      boxShadow: 'inset 0 0 5px #999',
+      borderRadius: 5,
+      padding:20,
+    },
+    mask: {
+      backdropFilter: 'blur(10px)',
+    },
+    footer: {
+      borderTop: '1px solid #333',
+    },
+    content: {
+      boxShadow: '0 0 30px #999',
+    },
+  };
+
+  const useStyle = createStyles(({ token }) => ({
+    'my-modal-body': {
+      background: token.blue1,
+      padding: token.paddingSM,
+    },
+    'my-modal-mask': {
+      boxShadow: `inset 0 0 15px #fff`,
+    },
+    'my-modal-header': {
+      borderBottom: `1px dotted ${token.colorPrimary}`,
+    },
+    'my-modal-footer': {
+      color: token.colorPrimary,
+    },
+    'my-modal-content': {
+      border: '1px solid #333',
+    },
+  }));
+  const { styles } = useStyle();
+  const classNames = {
+    body: styles['my-modal-body'],
+    mask: styles['my-modal-mask'],
+    header: styles['my-modal-header'],
+    footer: styles['my-modal-footer'],
+    content: styles['my-modal-content'],
+  };
+
+
+  const handleFinish = async (values) => {
+    try {
+      // Assume API endpoint here for updating profile
+      await axios.put(
+        `${import.meta.env.VITE_SOME_KEY}/updateclient`,
+        values,
+        { headers: { token: localStorage.getItem("token") } }
+      );
+      message.success("Profile Updated successfully");
+      toggleModal(false);
+    } catch (e) {
+      message.error("An error occurred while updating the profile");
+    }
+  };
+
+
+  const handleProfileUpdate = async (values) => {
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_SOME_KEY}/updateclient`,
+        values,
+        { headers: { token: localStorage.getItem("token") } }
+      );
+      message.success("Profile Updated successfully");
+      toggleModal(false);
+    } catch (e) {
+      message.error("An error occurred while updating the profile");
+    }
+  };
+
+  const handlePasswordChange = async (values) => {
+    try {
+      // Validate old password before updating
+      const passwordCheckResponse = await axios.post(
+        `${import.meta.env.VITE_SOME_KEY}/validate-password`,
+        { oldPassword: values.oldPassword },
+        { headers: { token: localStorage.getItem("token") } }
+      );
+
+      if (!passwordCheckResponse.data.valid) {
+        message.error("Old password is incorrect");
+        return;
+      }
+
+      await axios.put(
+        `${import.meta.env.VITE_SOME_KEY}/update-password`,
+        { newPassword: values.newPassword },
+        { headers: { token: localStorage.getItem("token") } }
+      );
+      message.success("Password updated successfully");
+      toggleModal(false);
+    } catch (e) {
+      message.error("An error occurred while changing the password");
+    }
+  };
+
+
+  return (
+    <div>
+      <Modal
+      title="Edit Profile"
+      open={isModalOpen}
+      onOk={() => toggleModal(false)}
+      onCancel={() => toggleModal(false)}
+      classNames={classNames}
+      width="650px"
+      footer={null}
+      styles={modalStyles}
+    >
+      <Form
+        layout="vertical"
+        onFinish={handleProfileUpdate}
+        initialValues={{
+          firstName: "Kajal",
+          lastName: "Gupta",
+          email: "kajl@gmail.com",
+          phone: "2176534876",
+        }}
+      >
+        <Row gutter={16}>
+          <Col span={12}>
+            <Form.Item
+              label="First Name"
+              name="firstName"
+              rules={[{ required: true, message: 'Please enter your first name' }]}
+            >
+              <Input />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              label="Last Name"
+              name="lastName"
+              rules={[{ required: true, message: 'Please enter your last name' }]}
+            >
+              <Input />
+            </Form.Item>
+          </Col>
+        </Row>
+
+        <Row gutter={16}>
+          <Col span={12}>
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={[{ required: true, message: 'Please enter your email' }]}
+            >
+              <Input type="email" />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              label="Phone"
+              name="phone"
+              rules={[{ required: true, message: 'Please enter your phone number' }]}
+            >
+              <Input type="tel" />
+            </Form.Item>
+          </Col>
+        </Row>
+
+        <Row gutter={16}>
+       
+        <Col span={12}>
+        <Form.Item label="Profile Photo" name="profilePhoto">
+          <Upload>
+            <Button icon={<UploadOutlined />}>Upload</Button>
+          </Upload>
+          </Form.Item>
+       </Col>
+          <Col span={10}>
+          <Form.Item style={{marginTop:"23px"}}>
+          <Button type="primary" htmlType="submit" block>
+            Update Profile
+          </Button>
+          </Form.Item>
+          </Col>
+       
+       
+
+</Row>
+      
+        
+      </Form>
+
+      <Form layout="vertical" onFinish={handlePasswordChange}
+      style={{marginTop:"20px"}}>
+        <h6>Change Password</h6>
+        <Row gutter={16}>
+          <Col span={12}>
+            <Form.Item
+              label="Old Password"
+              name="oldPassword"
+              rules={[{ required: true, message: 'Please enter your old password' }]}
+            >
+              <Input.Password />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              label="New Password"
+              name="newPassword"
+              rules={[{ required: true, message: 'Please enter your new password' }]}
+            >
+              <Input.Password />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row span={12}>
+        <Col span={8}>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" block>
+            Change Password
+          </Button>
+        </Form.Item>
+        </Col >
+        </Row>
+
+      </Form>
+    </Modal>
+    </div>
+  )
+}
