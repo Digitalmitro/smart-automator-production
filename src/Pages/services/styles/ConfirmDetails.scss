@@ -8,7 +8,19 @@
     border-color: 1px solid grey;
     padding: 1rem;
     background-color: rgb(193 171 130) !important;
-
+h3{
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #5d3502;
+}
+h5{
+    font-size: 1.4rem;
+}
+h4{
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #5d3502;
+}
     p{
         color: rgb(0 0 0);
         font-size: 18px;
@@ -19,38 +31,41 @@
 
 
  .learn-more, .desc{
-    margin: 4rem 0rem;
-    // box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    margin: 1rem 0rem;
     padding: 1rem;
     background-color: #fff9ed !important;
+    h5{
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #5d3502;
+    }
     p{
         color: rgb(0 0 0) !important;
-        font-size: 20px;
+        font-size: 16px;
         font-weight: 600;
     }
 }
-.Profile, .rate{
+.ProfileDetails, .rate{
     margin: 2rem 0rem;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
     padding: 1rem;
     background-color: #fff9ed !important;
 }
-.rate{
-    margin: 3rem 0rem !important;
+.rate, .timeLocation{
+    margin: 3rem 2rem !important;
 }
-.frequency{
+.confirmForm{
     margin: 4rem 0rem;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
     padding: 1rem;
     background-color: #fff9ed !important;
 }
+
 .paymentMethod{
-    margin: 4rem 0rem;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
     padding: 1rem;
-    background-color: #fff9ed !important;
+
     h5{
-        font-size: 2.2rem;
+        font-size: 1.8rem;
         font-weight: 700;
         color: #5d3502;
     }

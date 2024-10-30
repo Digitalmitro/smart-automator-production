@@ -20,6 +20,7 @@ import ConfirmDetails from "../Pages/services/ConfirmDetails";
 import OrderConfirmation from '../Pages/orderConfirmation'
 import { AboutUs } from "../Pages/AboutUs";
 import {TermsAndprivacy} from "../Pages/TermsAndprivacy"
+import {ConfirmAndChat} from "../Pages/services/ConfirmAndChat";
 
 const AllRoute =()=>{
     return (
@@ -36,8 +37,6 @@ const AllRoute =()=>{
         <Route path="/termsandprivacy" element={< TermsAndprivacy />}>Terms And privacy</Route>
         <Route path="/login" element={< Login />}>Tasker Login</Route>
         <Route path="/signup" element={< Signup />}>Tasker Signup</Route>
-        {/* <Route path="/login" element={< Login />}>Login</Route>
-        <Route path="/Signup" element={<Signup/>}>Signup </Route> */}
         <Route path="/services" element={<Services/>}> Services </Route>
         <Route path="/formBookingDetails" element={<FormBooking/>}> FormBooking </Route>
         <Route path="/servicedetails/:servicetype/:specificService" element={<ServiceDetails/>}> Service Details </Route>
@@ -45,6 +44,7 @@ const AllRoute =()=>{
         <Route path="/Popup" element={<Popup/>}>Popup </Route>
         <Route path="/imageupload" element={<ImageUpload/>}>Image Upload</Route>
         <Route path="/confirmdetails/:id" element={<ConfirmDetails/>}>Confirm Details</Route>
+        <Route path="/confirmandchat/:id" element={<ConfirmAndChat/>}>Confirm Details</Route>
         <Route path="/services/:id" element={<OrderConfirmation/>}>order confirmation</Route>
         </Routes>
         </>

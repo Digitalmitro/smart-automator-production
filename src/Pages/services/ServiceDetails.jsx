@@ -9,9 +9,9 @@ import { FAQ } from "./FAQ";
 export const ServiceDetails = () => {
   const navigate = useNavigate()
 
-  useEffect(()=> {
-    window.scrollTo(0,0)
-  },[])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
   return (
     <div>
       <div className="service-details">
@@ -22,7 +22,7 @@ export const ServiceDetails = () => {
             Need someone to put together furniture? Hire a Tasker to assemble
             your furniture and leave the building to them.
           </p>
-          <button onClick={()=> navigate('/serviceform')}>Book now</button>
+          <button onClick={() => navigate('/serviceform')}>Book now</button>
         </div>
       </div>
       <ServiceDescription />
@@ -36,14 +36,16 @@ export const ServiceDescription = () => {
   return (
     <>
       <div className="service-description">
-        <div className="  Links d-flex">
+
+        <div className="Links d-flex">
           <Link to="/"> Home </Link>
           <Link to="/services"> Services </Link>
           <Link to=""> Moving Services </Link>
           <Link to=""> Furniture Assembly </Link>
         </div>
+
         <h3> Furniture Assembly Services</h3>
-        <div className=" desc d-flex">
+        <div className="desc d-flex">
           <div className="para">
             <p>
               Let’s be honest: you were never going to read that furniture
@@ -75,10 +77,12 @@ export const ServiceDescription = () => {
               Don't do it all on your own. Just task!
             </p>
           </div>
+
           <div className="image">
             <img src={image12} alt="img" />
           </div>
         </div>
+
 
         <div className="how-works text-center">
           <h3>How it Works </h3>
@@ -86,7 +90,6 @@ export const ServiceDescription = () => {
             <div className="logo-layout">
               <img src={logoImg} alt="" />
               <h4>
-                {" "}
                 <span> 1 </span> Describe Your Task
               </h4>
               <p>
@@ -96,7 +99,6 @@ export const ServiceDescription = () => {
             <div className="logo-layout">
               <img src={logoImg} alt="" />
               <h4>
-                {" "}
                 <span> 1 </span> Describe Your Task
               </h4>
               <p>
@@ -107,7 +109,6 @@ export const ServiceDescription = () => {
             <div className="logo-layout">
               <img src={logoImg} alt="" />
               <h4>
-                {" "}
                 <span> 1 </span> Describe Your Task
               </h4>
               <p>
