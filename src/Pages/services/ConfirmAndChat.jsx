@@ -127,14 +127,7 @@ export function ConfirmAndChat() {
                         </div>
 
                         <div>
-                            <p>
-                                You may see a temporary hold on your payment method in the amount of
-                                your Tasker’s hourly rate of $50.58. You can cancel at any time.
-                                Tasks cancelled less than 24hrs before the start time may be billed
-                                a <span style={{ color: "#FFC72C" }}>cancellation fee</span> of one
-                                hour. Tasks have a one hour minimum{" "}
-                            </p>
-
+                           
                             <p>
                                 Please follow all public health regulations in your area.{" "}
                                 <span style={{ color: "#FFC72C" }}>Learn more</span>{" "}
