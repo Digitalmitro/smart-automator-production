@@ -72,12 +72,6 @@ export default function VerticalTabs() {
     setShowLogoutModal(false); // Hide modal
   };
 
-  // useEffect(() => {
-  //   if (token) {
-  //   } else {
-  //     return navigate("/login");
-  //   }
-  // }, [token]);
 
   useEffect(() => {
     const storedValue = localStorage.getItem("tabIndex");

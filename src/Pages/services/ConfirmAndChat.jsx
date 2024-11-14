@@ -86,8 +86,8 @@ export function ConfirmAndChat() {
                                     style={{ width: "1.5em", height: "1.5em" }}
                                 />
                                 <p>
-                                    {storageData.date || "Tue, june 20"} at{" "}
-                                    {storageData.time || "9.30am"}
+                                    {storageData?.date || "Tue, june 20"} at{" "}
+                                    {storageData?.time || "9.30am"}
                                 </p>
                             </div>
                             <div class="d-flex gap-3 ">

@@ -5,6 +5,8 @@ import image12 from "./assets/serviceDescription.jpg";
 import "./styles/serviceDetails.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { FAQ } from "./FAQ";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchServices } from '../../redux/services/ServicesSlice';
 
 export const ServiceDetails = () => {
   const navigate = useNavigate()

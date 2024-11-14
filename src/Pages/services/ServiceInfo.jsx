@@ -7,24 +7,39 @@ import image12 from "./assets/serviceDescription.jpg";
 import "./styles/ServiceInfo.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { FAQ } from "./FAQ";
-
+import { useSelector, useDispatch } from "react-redux";
+import { fetchServices } from "../../redux/services/ServicesSlice";
 export const ServiceInfo = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
+
 
   useEffect(() => {
-   window.scrollTo(0,0)
-  },[])
+    dispatch(fetchServices()).then(response => console.log(response));
+  }, [dispatch]);
+
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+ console.log("servicsess", services)
+
+  if (servicesLoading) return <p>Loading...</p>;
+
+  if (servicesError) return <p>Error: {servicesError}</p>;
+
   return (
     <div className="service-info">
       <ServiceContent />
+      <div>
+        <ServiceDescription  services={services}/>
+        <AboutServices />
+        <OtherServices />
+        <FAQ />
+      </div>
 
-<div>
-<ServiceDescription />
-      <AboutServices />
-      <OtherServices/>
-      <FAQ />
-</div>
-     
     </div>
   );
 };
@@ -40,13 +55,13 @@ export const ServiceContent = () => {
           Need someone to put together furniture? Hire a Tasker to assemble your
           furniture and leave the building to them.
         </p>
-        <button  onClick={() => navigate('/serviceform')}>Book now</button>
+        <button onClick={() => navigate('/serviceform')}>Book now</button>
       </div>
     </div>
   );
 };
 
-export const ServiceDescription = () => {
+export const ServiceDescription = ({services}) => {
   const navigate = useNavigate()
 
   return (
@@ -60,26 +75,22 @@ export const ServiceDescription = () => {
 
         <div className="service-section d-flex gap-3">
           <div className="left ">
-            <div className="service-list d-flex gap-3">
+           {services.map((item) => {
+            return(
+
+              <div className="service-list d-flex gap-3">
               <img src={serviceInfo2} alt="" />
               <div>
-                <h3>Door, Cabinet, & Furniture Repair</h3>
+                <h3>{item.serviceName}</h3>
                 <p>
                   Hire a Tasker to fix your doors, cabinets, and even furniture.
                 </p>
                 <button onClick={() => navigate('/serviceform')}>Book Now</button>
               </div>
             </div>
-            <div className="service-list d-flex gap-3">
-              <img src={serviceInfo2} alt="" />
-              <div>
-                <h3>Door, Cabinet, & Furniture Repair</h3>
-                <p>
-                  Hire a Tasker to fix your doors, cabinets, and even furniture.
-                </p>
-                <button onClick={() => navigate('/serviceform')}>Book Now</button>
-              </div>
-            </div>
+            )
+           })}
+            
             <div className="service-list d-flex gap-3">
               <img src={serviceInfo2} alt="" />
               <div>
