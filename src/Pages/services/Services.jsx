@@ -14,23 +14,22 @@ import "react-calendar/dist/Calendar.css";
 import gridLayout7 from "../../assets/grid-layout-7.jpg";
 import { fetchServiceCategories } from '../../redux/services/ServiceCategorySlice';
 import { fetchServices } from '../../redux/services/ServicesSlice';
+import { Category } from "@mui/icons-material";
 
 
 export const Services = () => {
+
   // filter data by id
   const token = Cookies.get("token");
   const decodedToken = token && jwtDecode(token);
   const dispatch = useDispatch();
-
   const { categories, loading: categoriesLoading, error: categoriesError } = useSelector((state) => state.serviceCategories);
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
- 
+  
   useEffect(() => {
     dispatch(fetchServiceCategories());
     dispatch(fetchServices());
@@ -43,7 +42,7 @@ export const Services = () => {
 console.log("categories", categories )
 console.log("services", services)
 
-
+ 
   return (
     <>
       <section style={{ backgroundColor: "#fef6e7" }}>
@@ -67,31 +66,24 @@ export const ServiceGridCard = ({categories, services}) => {
       <div className="grid-card">
        {categories?.length >0 &&
         categories?.map((item) => {
+
+          const filteredServices = services.filter(
+            (service) => service?.serviceCategory?.name === item.name
+          );
+
           return(
             <div className="grid">
             <div className="image-container">
-  
-              <img src={gridLayout7} alt="grilayout1" />
+
+              <img src={item.image} alt="image..." />
             </div>
             <div>
-              <h3 onClick={() => navigate(`/serviceinfo/featuredtask`)}>{item.name}</h3>
+              <h3 onClick={() => navigate(`/serviceinfo/${item._id}`)}>{item.name}</h3>
               <p>{item.description}</p>
               <hr />
-              <Link to={`/servicedetails/servicetype/specificService`}>
-                <p>Furniture Assembly</p>
-              </Link>
-              <Link to={`/servicedetails/servicetype/specificService`}>
-                <p>Home Repairs</p>
-              </Link>
-              <Link to={`/servicedetails/servicetype/specificService`}>
-                <p>Help Moving</p>
-              </Link>
-              <Link to={`/servicedetails/servicetype/specificService`}>
-                <p>Heavy Lifting</p>
-              </Link>
-              <Link to={`/servicedetails/servicetype/specificService`}>
-                <p>Home Cleaning</p>
-              </Link>
+              {filteredServices.map((serviceName) =><Link to={`/servicedetails/${serviceName._id}`}>
+                <p>{serviceName.serviceName}</p>
+              </Link> )}
             </div>
           </div>
           )

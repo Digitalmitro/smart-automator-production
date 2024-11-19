@@ -5,63 +5,72 @@ import serviceInfo2 from "./assets/serviceInfo2.jpg";
 import serviceInfobanner from "./assets/serviceinfobanner.jpg";
 import image12 from "./assets/serviceDescription.jpg";
 import "./styles/ServiceInfo.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { FAQ } from "./FAQ";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchServices } from "../../redux/services/ServicesSlice";
+import { fetchServiceCategories } from "../../redux/services/ServiceCategorySlice";
+
 export const ServiceInfo = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const { id } = useParams()
+  const { categories, loading: categoriesLoading, error: categoriesError } = useSelector((state) => state.serviceCategories);
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
-
-
-  useEffect(() => {
-    dispatch(fetchServices()).then(response => console.log(response));
-  }, [dispatch]);
-
+  const getCategories = categories?.filter((info) => info._id === id)
+  const getServices = services?.filter((data)=> data.serviceCategory.name === getCategories[0].name)
+  console.log(getServices)
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
- console.log("servicsess", services)
+  useEffect(() => {
+    dispatch(fetchServiceCategories());
+    dispatch(fetchServices());
+  }, [dispatch]);
 
-  if (servicesLoading) return <p>Loading...</p>;
-
+  if (categoriesLoading || servicesLoading) return <p>Loading...</p>;
+  if (categoriesError) return <p>Error: {categoriesError}</p>;
   if (servicesError) return <p>Error: {servicesError}</p>;
+
 
   return (
     <div className="service-info">
-      <ServiceContent />
+      <ServiceContent services={services} getCategories={getCategories} />
       <div>
-        <ServiceDescription  services={services}/>
+        <ServiceDescription getServices={getServices} />
         <AboutServices />
         <OtherServices />
         <FAQ />
       </div>
-
     </div>
   );
 };
 
-export const ServiceContent = () => {
+export const ServiceContent = ({ services, getCategories }) => {
   const navigate = useNavigate()
 
   return (
     <div className="service-content">
-      <div className="content">
-        <h1>Furniture Assembly</h1>
-        <p>
-          Need someone to put together furniture? Hire a Tasker to assemble your
-          furniture and leave the building to them.
-        </p>
-        <button onClick={() => navigate('/serviceform')}>Book now</button>
-      </div>
+
+      {getCategories?.map((item) => {
+        return (
+          <div className="content">
+            <h1>{item?.name.toUpperCase()}</h1>
+            <p>
+              {item.description}
+            </p>
+            <button onClick={() => navigate(`/serviceform/${item._id}`)}>Book now</button>
+          </div>
+        )
+      })}
+
     </div>
   );
 };
 
-export const ServiceDescription = ({services}) => {
+export const ServiceDescription = ({ getServices }) => {
   const navigate = useNavigate()
 
   return (
@@ -75,58 +84,29 @@ export const ServiceDescription = ({services}) => {
 
         <div className="service-section d-flex gap-3">
           <div className="left ">
-           {services.map((item) => {
-            return(
+            {getServices.map((item) => {
+              return (
 
-              <div className="service-list d-flex gap-3">
-              <img src={serviceInfo2} alt="" />
-              <div>
-                <h3>{item.serviceName}</h3>
-                <p>
-                  Hire a Tasker to fix your doors, cabinets, and even furniture.
-                </p>
-                <button onClick={() => navigate('/serviceform')}>Book Now</button>
-              </div>
-            </div>
-            )
-           })}
-            
-            <div className="service-list d-flex gap-3">
-              <img src={serviceInfo2} alt="" />
-              <div>
-                <h3>Door, Cabinet, & Furniture Repair</h3>
-                <p>
-                  Hire a Tasker to fix your doors, cabinets, and even furniture.
-                </p>
-                <button onClick={() => navigate('/serviceform')}>Book Now</button>
-              </div>
-            </div>
-            <div className="service-list d-flex gap-3">
-              <img src={serviceInfo2} alt="" />
-              <div>
-                <h3>Door, Cabinet, & Furniture Repair</h3>
-                <p>
-                  Hire a Tasker to fix your doors, cabinets, and even furniture.
-                </p>
-                <button onClick={() => navigate('/serviceform')}>Book Now</button>
-              </div>
-            </div>
-            <div className="service-list d-flex gap-3">
-              <img src={serviceInfo2} alt="" />
-              <div>
-                <h3>Door, Cabinet, & Furniture Repair</h3>
-                <p>
-                  Hire a Tasker to fix your doors, cabinets, and even furniture.
-                </p>
-                <button onClick={() => navigate('/serviceform')}>Book Now</button>
-              </div>
-            </div>
+                <div className="service-list d-flex gap-3">
+                  <img src={serviceInfo2} alt="" />
+                  <div>
+                    <h3>{item.serviceName}</h3>
+                    <p>
+                      Hire a Tasker to fix your doors, cabinets, and even furniture.
+                    </p>
+                    <button onClick={() => navigate(`/serviceform/${item._id}`)}>Book Now</button>
+                  </div>
+                </div>
+              )
+            })}
+
+          
           </div>
           <div className="right">
             <h3>Cross off that to-do</h3>
             <h4>
-              {" "}
-              <span> 1 </span>Select Your Task{" "}
+
+              <span> 1 </span>Select Your Task
             </h4>
             <p>
               Describe your task and choose a background checked and

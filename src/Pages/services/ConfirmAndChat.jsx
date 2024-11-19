@@ -12,10 +12,12 @@ import "./styles/ConfirmDetails.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchServiceCategories } from "../../redux/services/ServiceCategorySlice";
+import { fetchServices } from "../../redux/services/ServicesSlice";
 
 export function ConfirmAndChat() {
 
-    const { id } = useParams();
     const navigate = useNavigate();
     const [data, setData] = useState();
     const [cardNumber, setCardNumber] = useState("");
@@ -31,6 +33,27 @@ export function ConfirmAndChat() {
     const serviceDetailsStorage = JSON.parse(
         localStorage.getItem("serviceDetails")
     );
+
+
+    //   -------  New Code   >>>>>>>>>>>>>>>>>>>
+
+    const { id } = useParams();
+
+    const dispatch = useDispatch();
+    const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
+  
+
+  const getServices = services?.filter((info) => info._id === id)
+
+    useEffect(() => {
+        dispatch(fetchServices());
+      }, [dispatch]);
+    
+
+
+    //  <<<<<<<<<<<<<<<<<<  new Code ---------------
+
+
 
     const handleServiceDetails = async () => {
         try {
@@ -66,7 +89,7 @@ export function ConfirmAndChat() {
                     <div class="ProfileDetails">
 
                         <div class="Profile d-flex flex-column justify-content-center align-items-center">
-                            <h4>{data?.serviceCategory || "Taskers Details"}</h4>
+                            {/* <h4>{data?.serviceCategory || "Taskers Details"}</h4> */}
                             <div>
                                 <img
                                     src={profilePhoto}
@@ -112,7 +135,7 @@ export function ConfirmAndChat() {
                             <h6 style={{ fontWeight: "600" }}>Price Details</h6>
                             <div class="d-flex justify-content-between gap-3">
                                 <p>Hourly Rate</p>
-                                <p>{`$ ${data?.pricePerHour || "40"}/hr`}</p>
+                                <p>{`${getServices[0]?.hourlyCharge || "40**"}/hr`}</p>
                             </div>
                             <div class="d-flex justify-content-between gap-3">
                                 <p>Trust And Support fee</p>
@@ -136,7 +159,7 @@ export function ConfirmAndChat() {
 
                         </div>
 
-                        <button onClick={() => navigate('/services/ids')} >Confirm And Pay</button>
+                        <button onClick={() => navigate(`/services/${id}`)} >Confirm And Pay</button>
                     
                     </div>
                 </div>

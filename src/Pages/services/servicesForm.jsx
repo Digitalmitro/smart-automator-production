@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import '../Styles/ServiceDetails.scss'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -11,6 +11,8 @@ import { TimePicker, Space } from "antd";
 import moment from "moment";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchServices } from "../../redux/services/ServicesSlice";
 
 const servicedetails = () => {
   const [taskLocation, setTaskLocation] = useState("");
@@ -24,7 +26,32 @@ const servicedetails = () => {
   const [ChangeTime, setchangeTime] = useState();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [id, setId] = useState();
+  const [id, setId] = useState(null)
+
+
+  // --------  new  code   >>>>>>>>>>>>>
+
+  const { serviceid } = useParams()
+  console.log("id", serviceid)
+
+  const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
+
+  const getServices = services?.filter((info) => info._id === serviceid)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchServices());
+  }, [dispatch]);
+  console.log("getServices", getServices)
+
+  // if (servicesLoading) return <p>Loading...</p>;
+  //   if (servicesError) return <p>Error: {servicesError}</p>;
+
+
+
+  // <<<<<<<<<<<<  new code   ----------
+
+
+
 
   const showLoading = (currentTaskersID) => {
     setOpen(true);
@@ -40,7 +67,7 @@ const servicedetails = () => {
   };
 
   const handleNavigate = () => {
-    navigate(`/confirmdetails/${id}`);
+    navigate(`/confirmdetails/${serviceid}`);
   };
 
   const onChange = (newDate) => {
@@ -97,9 +124,11 @@ const servicedetails = () => {
 
           >FURNITURE ASSEMBLY</h2>
         </div>
+
         <div className=" services-form container pb-5"
 
         >
+
           <div className="form-box">
 
             <h3 className="mb-3"
@@ -118,53 +147,32 @@ const servicedetails = () => {
 
             <h3 className="mt-5 mb-0"><b>Your Items</b></h3>
             <br />
-            <h4 className="mb-3" >
-              What type of furniture do you need assembled or disassembled?
-            </h4>
-            <div className="form-check"   >
-              <input
-                className="form-check-input"
-                type="radio"
-                name="furnitureType"
-                id="type1"
-                checked={furnitureType === "IKEA furniture items only"}
-                onChange={() => setFurnitureType("IKEA furniture items only")}
-              />
-              <label className="form-check-label" htmlFor="type1">
-                IKEA furniture items only
-              </label>
-            </div>
-            <div className="form-check"   >
-              <input
-                className="form-check-input"
-                type="radio"
-                name="furnitureType"
-                id="type2"
-                checked={furnitureType === "Other furniture items (non-IKEA)"}
-                onChange={() =>
-                  setFurnitureType("Other furniture items (non-IKEA)")
-                }
-              />
-              <label className="form-check-label" htmlFor="type2">
-                Other furniture items (non-IKEA)
-              </label>
-            </div>
+            {getServices[0]?.questions?.map((item) => {
+              return (
+                <>
+                  <h4 className="mb-3" >
+                    {item.question}
+                  </h4>
+                  {item.options.map((option) => (
+                    <div className="form-check"   >
 
-            <div className="form-check"   >
-              <input
-                className="form-check-input"
-                type="radio"
-                name="furnitureType"
-                id="type3"
-                checked={furnitureType === "Both IKEA and non-IKEA furniture"}
-                onChange={() =>
-                  setFurnitureType("Both IKEA and non-IKEA furniture")
-                }
-              />
-              <label className="form-check-label" htmlFor="type3">
-                Both IKEA and non-IKEA furniture
-              </label>
-            </div>
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="furnitureType"
+                        id="type1"
+                        checked={furnitureType === option}
+                        onChange={() => setFurnitureType(option)}
+                      />
+                      <label className="form-check-label" htmlFor="type1">
+                        {option}
+                      </label>
+                    </div>
+                  ))}
+                </>
+              )
+            })}
+
             <div style={{ width: "10%", margin: " 40px auto" }}></div>
 
             <h3 className="mt-5 mb-0 "><b>Task Options</b></h3>
@@ -214,52 +222,23 @@ const servicedetails = () => {
               </label>
             </div>
 
-            <h4 className="my-4"
-
-            >Vehicle requirements</h4>
-
+<br/>
             <div className="form-check "   >
-              {/* <hr style={{ width: "20%", height: "2px", color: "#F9AC25" }} /> */}
               <input
                 className="form-check-input"
                 type="radio"
                 name="vehicleRequirement"
                 id="vehicle1"
-                checked={vehicleRequirement === "Not needed for task"}
-                onChange={() => setVehicleRequirement("Not needed for task")}
+                checked={vehicleRequirement === true}
+                onChange={() => setVehicleRequirement(prev => !prev)}
               />
-              <label className="form-check-label" htmlFor="vehicle1">
-                Not needed for task
-              </label>
+              <h4 className="my-4"
+
+              >Vehicle requirements</h4>
+
             </div>
 
-            <div className="form-check"    >
-              <input
-                className="form-check-input"
-                type="radio"
-                name="vehicleRequirement"
-                id="vehicle2"
-                checked={vehicleRequirement === "Task requires a car"}
-                onChange={() => setVehicleRequirement("Task requires a car")}
-              />
-              <label className="form-check-label" htmlFor="vehicle2">
-                Task requires a car
-              </label>
-            </div>
-
-            <div className="form-check"    >
-              <input
-                className="form-check-input"
-                type="radio"
-                name="vehicleRequirement"
-                id="vehicle3"
-                checked={vehicleRequirement === "Task requires a truck"}
-                onChange={() => setVehicleRequirement("Task requires a truck")}
-              />
-              <label className="form-check-label" htmlFor="vehicle3">
-                Task requires a truck
-              </label>
-            </div>
+           
             <div style={{ width: "10%", margin: " 40px auto" }}></div>
 
             <h3 className="mt-5 mb-4  "

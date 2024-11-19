@@ -32,6 +32,13 @@ function ConfirmDetails() {
     localStorage.getItem("serviceDetails")
   );
 
+//   -------------   new code   >>>>>>>>>>>>>>> 
+
+
+// <<<<<<<<<<<<< new Code ----------------------   
+
+
+
   console.log("decodedToken", decodedToken)
   const handleServiceDetails = async () => {
     try {
@@ -224,7 +231,7 @@ function ConfirmDetails() {
           </div>
           <button
             type="button"
-            onClick={() => navigate('/confirmandchat/idss')}
+            onClick={() => navigate(`/confirmandchat/${id}`)}
             style={{
               backgroundColor: isFormValid ? "#F9AC25" : "#C8C8C8", 
               borderRadius: "20px",
