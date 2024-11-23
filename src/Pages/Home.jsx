@@ -26,6 +26,7 @@ import "./Styles/Home.scss";
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
@@ -145,8 +146,8 @@ const Home = () => {
         </div>
       </section>
 
-      <section style={{ backgroundColor: "#fef6e7" }}>
-        <div className="container">
+      <section style={{ backgroundColor: "#fef6e7", paddingBottom: "3.5rem" }}>
+        <div className="container-fluid">
           <div className="heading">
             <h2
               className="text-center fw-bold p-5 "
@@ -187,64 +188,67 @@ const Home = () => {
               {serviceCategories?.length > 0 &&
                 serviceCategories.slice(0, 6).map((elem, index) => {
                   return (
-                    <li
-                      key={index}
-                      className="nav-item"
-                      role="presentation"
-                      data-aos="fade-up"
-                      data-aos-duration="2000"
-                      style={{
-                        display: "flex",
-                        flexDirection: "column", // Stack image and text vertically
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <button
-                        className="navbutton nav-link active"
-                        id={`pills-${index}-tab`}
-                        data-bs-toggle="pill"
-                        data-bs-target={`#pills-${index}`}
-                        type="button"
-                        role="tab"
-                        aria-controls={`pills-${index}`}
-                        aria-selected={index === 0}
+                    <Link to="/services">
+                      <li
+                        key={index}
+                        className="nav-item"
+                        role="presentation"
+                        data-aos="fade-up"
+                        data-aos-duration="2000"
                         style={{
-                          background: "none",
-                          border: "none",
-                          padding: "0",
-                          cursor: "pointer",
+                          display: "flex",
+                          flexDirection: "column", // Stack image and text vertically
+                          justifyContent: "center",
+                          alignItems: "center",
                         }}
                       >
-                        <img
-                          src={elem.logo ?? elem.image}
-                          alt={elem.name}
+                        <button
+                          className="navbutton nav-link active"
+                          id={`pills-${index}-tab`}
+                          data-bs-toggle="pill"
+                          data-bs-target={`#pills-${index}`}
+                          type="button"
+                          role="tab"
+                          aria-controls={`pills-${index}`}
+                          aria-selected={index === 0}
                           style={{
-                            width: "3rem",
-                            height: "3rem",
-                            objectFit: "cover",
-                            borderRadius: "50%",
-                            boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)", // Optional: Shadow for better aesthetics
+                            background: "none",
+                            border: "none",
+                            padding: "0",
+                            cursor: "pointer",
                           }}
-                        />
-                      </button>
-                      <h4
-                        className="text-center text-secondary mt-2"
-                        style={{
-                          textTransform: "capitalize",
-                          fontSize: "1rem",
-                          marginTop: "10px",
-                        }}
-                      >
-                        {elem.name}
-                      </h4>
-                    </li>
+                        >
+                          <img
+                            src={elem.logo ?? elem.image}
+                            alt={elem.name}
+                            style={{
+                              width: "3rem",
+                              height: "3rem",
+                              objectFit: "cover",
+                              borderRadius: "50%",
+                              boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)", // Optional: Shadow for better aesthetics
+                            }}
+                          />
+                        </button>
+                        <br />
+                        <h4
+                          className="text-center text-secondary mt-2"
+                          style={{
+                            textTransform: "capitalize",
+                            fontSize: "1rem",
+                            marginTop: "10px",
+                          }}
+                        >
+                          {elem.name}
+                        </h4>
+                      </li>
+                    </Link>
                   );
                 })}
             </ul>
           </div>
 
-          <div class="tab-content " id="pills-tabContent">
+          {/* <div class="tab-content " id="pills-tabContent">
             <div
               class="tab-pane fade show active mt-5"
               id="pills-home"
@@ -730,7 +734,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
