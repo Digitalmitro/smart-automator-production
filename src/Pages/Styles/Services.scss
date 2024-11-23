@@ -8,18 +8,6 @@
   position: relative;
   margin: 80px 0px;
 
-  // &::before {
-  //     content: '';
-  //     position: absolute;
-  //     top: 0;
-  //     left: 0;
-  //     right: 0;
-  //     bottom: 0;
-  //     background: rgba(34, 34, 34, 0.7);
-  //     // backdrop-filter: blur(5px);
-  //     z-index: 1;
-  //     pointer-events: none;
-  //   }
   header {
     position: relative;
     z-index: 2;
@@ -58,13 +46,12 @@
         left: 0;
         margin: 0;
         border-radius: 2rem;
-
+        
         img {
           width: 100%;
           border-radius: 0.8rem;
           height: 100%;
           left: 0;
-          //   display: block;
         }
 
         &::before {
@@ -83,12 +70,18 @@
           background: rgba(0, 0, 0, 0);
         }
       }
-
+      h3{
+        cursor: pointer;
+        &:hover{
+          color: #f1ac33;
+        }
+       }
       div {
         margin: 2rem;
         h3 {
           color: #db900e;
           font-weight: 700;
+          font-size: 1.3rem;
           + p {
             color: rgb(102, 102, 102);
           }

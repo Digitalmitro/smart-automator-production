@@ -1,80 +1,87 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import bagImage from "./assets/backgroundImag.jpg";
 import logoImg from "./assets/logo.jpg";
 import image12 from "./assets/serviceDescription.jpg";
 import "./styles/serviceDetails.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { FAQ } from "./FAQ";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchServices } from '../../redux/services/ServicesSlice';
 
 export const ServiceDetails = () => {
   const navigate = useNavigate()
+  const { id } = useParams()
+  console.log("myParams", id)
+  const { categories, loading: categoriesLoading, error: categoriesError } = useSelector((state) => state.serviceCategories);
+  const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
+
+  const getServices = services?.filter((info) => info._id === id)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchServices());
+  }, [dispatch]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  if (categoriesLoading || servicesLoading) return <p>Loading...</p>;
+
   return (
     <div>
       <div className="service-details">
-        <div className="content">
-          <h1>Furniture Assembly</h1>
-          <div className="line my-4"></div>
-          <p>
-            Need someone to put together furniture? Hire a Tasker to assemble
-            your furniture and leave the building to them.
-          </p>
-          <button onClick={()=> navigate('/serviceform')}>Book now</button>
-        </div>
+        {getServices?.map((item) => {
+          return (
+            <div className="content">
+              <h1>{item.serviceCategory.name.toUpperCase()}</h1>
+              <div className="line my-4"></div>
+              <p>
+                {item?.shortDescription}
+              </p>
+              <button onClick={() => navigate(`/serviceform/${item._id}`)}>Book now</button>
+
+            </div>
+          )
+        })}
       </div>
-      <ServiceDescription />
+      <ServiceDescription getServices={getServices} />
       <GetHired />
       <FAQ />
     </div>
   );
 };
 
-export const ServiceDescription = () => {
+export const ServiceDescription = ({ getServices }) => {
   return (
     <>
       <div className="service-description">
-        <div className="  Links d-flex">
+
+        <div className="Links d-flex">
           <Link to="/"> Home </Link>
           <Link to="/services"> Services </Link>
           <Link to=""> Moving Services </Link>
           <Link to=""> Furniture Assembly </Link>
         </div>
-        <h3> Furniture Assembly Services</h3>
-        <div className=" desc d-flex">
-          <div className="para">
-            <p>
-              Let’s be honest: you were never going to read that furniture
-              assembly manual. No matter how the instructions are laid out,
-              furniture assembly is not necessarily a user-friendly task.
-              Taskers on Taskrabbit will come to your home and assemble your
-              furniture for you! Taskers frequently assemble beds, bunk beds,{" "}
-              <span>
-                <a>dressers, desks, couches, tables, chairs</a>
-              </span>
-              , wardrobes—you name it.
-            </p>
-            <p>
-              As official furniture assembly partners with IKEA, Taskers are
-              familiar with popular IKEA furniture collections like MALM,
-              KALLAX, HEMNES, and more. You can fill your space with exactly
-              what you want, no matter how complex the furniture is.{" "}
-            </p>
-            <p></p>
-            <p>
-              Taskers bring their own tools so that they can help you as quickly
-              and efficiently as possible. Taskrabbit also offers furniture
-              disassembly services, and Taskers can help you move or haul away
-              your old furniture!
-            </p>
-            <p>
-              Furniture assembly doesn't need to be a huge hassle. Taskers will
-              put together furniture in a snap and save you time and effort.
-              Don't do it all on your own. Just task!
-            </p>
-          </div>
-          <div className="image">
-            <img src={image12} alt="img" />
-          </div>
-        </div>
+        {getServices.map((item) => {
+          return (
+            <>
+              <h3>{item.serviceName.toUpperCase()}</h3>
+              <div className="desc d-flex">
+                <div className="para">
+                  <p>
+                    {item.description}
+                  </p>
+                </div>
+                <div className="image">
+                  <img src={item.image} alt="img" />
+                </div>
+              </div>
+
+            </>
+          )
+        })}
+
+
 
         <div className="how-works text-center">
           <h3>How it Works </h3>
@@ -82,7 +89,6 @@ export const ServiceDescription = () => {
             <div className="logo-layout">
               <img src={logoImg} alt="" />
               <h4>
-                {" "}
                 <span> 1 </span> Describe Your Task
               </h4>
               <p>
@@ -92,7 +98,6 @@ export const ServiceDescription = () => {
             <div className="logo-layout">
               <img src={logoImg} alt="" />
               <h4>
-                {" "}
                 <span> 1 </span> Describe Your Task
               </h4>
               <p>
@@ -103,7 +108,6 @@ export const ServiceDescription = () => {
             <div className="logo-layout">
               <img src={logoImg} alt="" />
               <h4>
-                {" "}
                 <span> 1 </span> Describe Your Task
               </h4>
               <p>

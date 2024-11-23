@@ -40,7 +40,7 @@ const login = () => {
       console.log(error.response.data.status);
     }
     if (token) {
-      return <Navigate to="/" />;
+      // return <Navigate to="/" />;
     }
   };
 

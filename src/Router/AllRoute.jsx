@@ -20,6 +20,7 @@ import ConfirmDetails from "../Pages/services/ConfirmDetails";
 import OrderConfirmation from '../Pages/orderConfirmation'
 import { AboutUs } from "../Pages/AboutUs";
 import {TermsAndprivacy} from "../Pages/TermsAndprivacy"
+import {ConfirmAndChat} from "../Pages/services/ConfirmAndChat";
 
 const AllRoute =()=>{
     return (
@@ -29,22 +30,21 @@ const AllRoute =()=>{
         <Route path="/Navbar" element={<Navbar/>}>Navbar</Route>
         <Route path="/Footer" element={<Footer/>}>Footer</Route>
         <Route path="/aboutus" element={<AboutUs/>}>AboutUs</Route>
-        <Route path="/serviceform" element={<ServiceForm/>}>ServiceForm</Route>
+        <Route path="/serviceform/:serviceid" element={<ServiceForm/>}>ServiceForm</Route>
         <Route path="/taskdetails" element={<TaskDetails />}>TaskDetails</Route>
         <Route path="/profile" element={< Profile />}>Profile</Route>
         <Route path="/Tasker" element={< Tasker />}>Tasker</Route>
         <Route path="/termsandprivacy" element={< TermsAndprivacy />}>Terms And privacy</Route>
         <Route path="/login" element={< Login />}>Tasker Login</Route>
         <Route path="/signup" element={< Signup />}>Tasker Signup</Route>
-        {/* <Route path="/login" element={< Login />}>Login</Route>
-        <Route path="/Signup" element={<Signup/>}>Signup </Route> */}
         <Route path="/services" element={<Services/>}> Services </Route>
         <Route path="/formBookingDetails" element={<FormBooking/>}> FormBooking </Route>
-        <Route path="/servicedetails/:servicetype/:specificService" element={<ServiceDetails/>}> Service Details </Route>
-        <Route path="/serviceinfo/:servicetype" element={<ServiceInfo/>}> ServiceInfo </Route>
+        <Route path="/servicedetails/:id" element={<ServiceDetails/>}> Service Details </Route>
+        <Route path="/serviceinfo/:id" element={<ServiceInfo/>}> ServiceInfo </Route>
         <Route path="/Popup" element={<Popup/>}>Popup </Route>
         <Route path="/imageupload" element={<ImageUpload/>}>Image Upload</Route>
         <Route path="/confirmdetails/:id" element={<ConfirmDetails/>}>Confirm Details</Route>
+        <Route path="/confirmandchat/:id" element={<ConfirmAndChat/>}>Confirm Details</Route>
         <Route path="/services/:id" element={<OrderConfirmation/>}>order confirmation</Route>
         </Routes>
         </>

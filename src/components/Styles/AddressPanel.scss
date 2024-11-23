@@ -1,56 +1,108 @@
-
-.address1{
-    border: 2px solid #000000;
-    padding: 10px ;
-    margin: 2rem
-    ;
-    margin-top: 4rem;
-    padding: 2rem ;
-  }
-  .addressForm{
-    width: 500px;
-    padding: 10px ;
-    margin: 2rem
-    ;
-  }
-  .address-btn{
-    background-color: transparent;
-    color: #0056b3;
-    border: 0px;
-    padding: 20px;
-    font-weight: 600;
-    font-size: 15px;
-  }
-.addresses h3{
-    text-transform: uppercase;
-}
-.addressForm button{
-    padding: .5rem 4rem;
-    border: 2px solid;
-}
-.addressForm{
-    width: 110%;
-}
-.address-form{
-margin-top: 4rem;
-}
-.address-form label{
-    margin-top: 1.3rem;
-}
-
-
-.address-shadow{
-    border: 2px solid #f1dc8f ;
-    background-color: #faf6e9;
-    box-shadow: 0 8px 10px 2px rgb(199, 195, 195);
-}
-
-@media (max-width:1200px){
-    .addresses{
-        flex-direction: column;
+.addressPanel{
+    padding: 1rem;
+    h4{
+        font-weight: 600;
     }
-    .addressForm{
-        width: 90%;
-        margin-top: 0px;
+    .addressList{
+    padding:2rem 3rem;
+        display: flex;
+        gap: 4rem;
+        justify-content: space-between;
+        p{
+            margin: 0;
+            font-size: .9rem;
+        }
+        .buttonList{
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        button{
+            // height: 2rem;
+            border: none;
+            padding: .2rem 1rem ;
+            color: white;
+        text-align: end;
+        background:#C57336;
+            border-radius: 1rem;
+        }
+        .delete{
+          background: rgb(180, 59, 59);
+        }
+        }
+    }
+
+    .newAddress{
+        text-align: end;
+        margin-top: 3.2rem;
+        .newAddressBtn{
+            padding: 0.5rem 2rem;
+            border: none;
+            background:linear-gradient(to right, rgb(2, 51, 73) , rgb(56, 102, 187))  ;
+           color: white;
+           border-radius: 6px;
+        }
     }
 }
+
+
+
+    :where(.css-dev-only-do-not-override-1c0na6j).ant-drawer .ant-drawer-header{
+    border: 1px solid black;
+
+
+
+}
+:where(.css-dev-only-do-not-override-1c0na6j).ant-drawer .ant-drawer-header{
+background:#C57336;
+border: 1px solid black;
+
+}
+
+:where(.css-dev-only-do-not-override-1c0na6j).ant-form-item .ant-form-item-label >label{
+    border: 11px solid rgb(146, 15, 37);
+    font-size: 28px  !important;
+    }
+
+    :where(.css-dev-only-do-not-override-1c0na6j).ant-input-outlined {
+        border-color:rgb(189, 54, 44) !important;
+    }
+    .drawerHeaders{
+        
+    }
+.columns{
+label{
+        font-size: 18px  !important;
+   text-align: center !important;
+   font-weight: 600;
+        }
+    input{
+        border-color:rgb(189, 54, 44) !important;
+        height: 42px;
+        border-radius: 0px !important;
+    }
+}
+.cancelButton{
+    margin: 3px;
+    margin-top: 20px;
+    width: 150px;
+    height: 43px !important;
+}
+.submitButton{
+    background:#C57336;
+    border-radius: none;
+    margin: 3px;
+    margin-top: 20px;
+    width: 150px;
+    height: 43px !important;
+    &:hover{
+        background: transparent !important;
+        color: black  !important;
+        border: 2px solid  black;
+        border-image-slice: 1;
+        border-width: 2px;
+        border-image-source: linear-gradient(to right, rgb(163, 54, 46) , #EA4824);
+        border-radius: 20px !important;
+    }
+}
+
+
