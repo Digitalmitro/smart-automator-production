@@ -1242,8 +1242,8 @@ const Home = () => {
           </h1>
 
           <div className="row pt-2">
-            {homeData.blogs &&
-              homeData.blogs.map((blog, index) => (
+            {homeData?.blogs &&
+              homeData?.blogs.map((blog, index) => (
                 <div
                   key={index}
                   className="col-md-4 mb-4"
