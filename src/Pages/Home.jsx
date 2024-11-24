@@ -1242,71 +1242,41 @@ const Home = () => {
           </h1>
 
           <div className="row pt-2">
-            <div
-              class="col-md-4 mb-4 "
-              data-aos="flip-left"
-              data-aos-easing="ease-out-cubic"
-              data-aos-duration="2000"
-            >
-              <div class="card blog-card shadow mb-5 bg-body rounded m-4">
-                <img src={blog1} alt="Product 1" class="card-img-top" />
-                <div class="card-body blog-card " style={{ zoom: "0.8" }}>
-                  <h5 class="card-title text-center py-2">
-                    WE NEED A RENT ROOM FOR PARTY
-                  </h5>
-                  <p class="card-text text-center">
-                    many desktop publishing packages and web page editorsnow use
-                    Lorem Ipsum as their default model text
-                  </p>
-                  <p className=" text-center fw-bold">Read More</p>
+            {homeData.blogs &&
+              homeData.blogs.map((blog, index) => (
+                <div
+                  key={index}
+                  className="col-md-4 mb-4"
+                  data-aos="flip-left"
+                  data-aos-easing="ease-out-cubic"
+                  data-aos-duration="2000"
+                >
+                  <div className="card blog-card shadow mb-5 bg-body rounded m-4">
+                    <img
+                      src={blog.images[0]}
+                      alt={blog.title}
+                      className="card-img-top"
+                    />{" "}
+                    {/* Assuming blog has 'images' array */}
+                    <div
+                      className="card-body blog-card"
+                      style={{ zoom: "0.8" }}
+                    >
+                      <h5 className="card-title text-center py-2">
+                        {blog.title}
+                      </h5>
+                      <p className="card-text text-center">
+                        {blog.shortDescription}
+                      </p>
+                      <p className="text-center fw-bold">Read More</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div
-              class="col-md-4 mb-4"
-              data-aos="flip-left"
-              data-aos-easing="ease-out-cubic"
-              data-aos-duration="2000"
-            >
-              <div class="card blog-card shadow mb-5 bg-body rounded m-4">
-                <img src={blog2} alt="Product 1" class="card-img-top" />
-                <div class="card-body blog-card" style={{ zoom: "0.8" }}>
-                  <h5 class="card-title text-center py-2">
-                    WE NEED A RENT ROOM FOR PARTY
-                  </h5>
-                  <p class="card-text text-center">
-                    many desktop publishing packages and web page editorsnow use
-                    Lorem Ipsum as their default model text
-                  </p>
-                  <p className=" text-center fw-bold">Read More</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-              <div
-                class="card blog-card shadow mb-5 bg-body rounded m-4"
-                data-aos="flip-left"
-                data-aos-easing="ease-out-cubic"
-                data-aos-duration="2000"
-              >
-                <img src={blog3} alt="Product 1" class="card-img-top" />
-                <div class="card-body blog-card" style={{ zoom: "0.8" }}>
-                  <h5 class="card-title text-center py-2">
-                    WE NEED A RENT ROOM FOR PARTY
-                  </h5>
-                  <p class="card-text text-center">
-                    many desktop publishing packages and web page editorsnow use
-                    Lorem Ipsum as their default model text
-                  </p>
-                  <p className=" text-center fw-bold">Read More</p>
-                </div>
-              </div>
-            </div>
+              ))}
           </div>
         </div>
       </section>
+
       <div
         className="container-fluid mt-5"
         style={{ backgroundColor: "#F9AC25", height: "180px" }}
