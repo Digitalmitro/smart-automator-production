@@ -1165,6 +1165,7 @@ AOS.init()
             </div>
 
             <div class="col-md-4 mb-4"
+              onClick={() => navigate('/blogdetails/id')}
                data-aos="flip-left"
                data-aos-easing="ease-out-cubic"
                data-aos-duration="2000"
@@ -1186,7 +1187,7 @@ AOS.init()
             </div>
 
             <div class="col-md-4 mb-4"
-             
+               onClick={() => navigate('/blogdetails/id')}
                >
               <div class="card blog-card shadow mb-5 bg-body rounded m-4"   data-aos="flip-left"
                data-aos-easing="ease-out-cubic"
