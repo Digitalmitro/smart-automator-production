@@ -43,14 +43,6 @@ const servicedetails = () => {
   }, [dispatch]);
   console.log("getServices", getServices)
 
-  // if (servicesLoading) return <p>Loading...</p>;
-  //   if (servicesError) return <p>Error: {servicesError}</p>;
-
-
-
-  // <<<<<<<<<<<<  new code   ----------
-
-
 
 
   const showLoading = (currentTaskersID) => {
@@ -120,9 +112,7 @@ const servicedetails = () => {
     <>
       <section className="services-banner" >
         <div className="services-form container pt-md-5 ">
-          <h2 className="pt-5 py-5 mt-5 fw-bold"
-
-          >FURNITURE ASSEMBLY</h2>
+          <h2 className="pt-5 py-5 mt-5 fw-bold">{getServices[0].serviceName}</h2>
         </div>
 
         <div className=" services-form container pb-5"
@@ -291,7 +281,6 @@ const servicedetails = () => {
       >
         <div>
           <h4>Choose your task date and start time</h4>
-
           <div class="d-flex ">
             <div>
               <div class="d-flex gap-3 align-items-center m-3">

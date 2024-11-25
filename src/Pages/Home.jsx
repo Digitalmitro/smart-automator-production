@@ -23,8 +23,10 @@ import { motion, useScroll  } from 'framer-motion';
 import CountUp from 'react-countup';
 
 import "./Styles/Home.scss"
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate()
   const { scrollYProgress } = useScroll();
 AOS.init()
 
@@ -1139,13 +1141,14 @@ AOS.init()
           >LATEST ARTICLES</h1>
 
           <div className="row pt-2">
-            <div class="col-md-4 mb-4 "
+          <div class="col-md-4 mb-4 "
+          onClick={() => navigate('/blogdetails/id')}
               data-aos="flip-left"
               data-aos-easing="ease-out-cubic"
               data-aos-duration="2000"
 
             >
-              <div class="card blog-card shadow mb-5 bg-body rounded m-4">
+              <div  class="card blog-card shadow mb-5 bg-body rounded m-4">
                 <img src={blog1} alt="Product 1" class="card-img-top" />
                 <div class="card-body blog-card " style={{zoom:"0.8"}}>
                   <h5 class="card-title text-center py-2">

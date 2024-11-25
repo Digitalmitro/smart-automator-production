@@ -21,7 +21,7 @@ import OrderConfirmation from '../Pages/orderConfirmation'
 import { AboutUs } from "../Pages/AboutUs";
 import {TermsAndprivacy} from "../Pages/TermsAndprivacy"
 import {ConfirmAndChat} from "../Pages/services/ConfirmAndChat";
-
+import { BlogDetails } from "../Pages/blogDetailsPage/BlogDetails";
 const AllRoute =()=>{
     return (
         <>
@@ -46,6 +46,7 @@ const AllRoute =()=>{
         <Route path="/confirmdetails/:id" element={<ConfirmDetails/>}>Confirm Details</Route>
         <Route path="/confirmandchat/:id" element={<ConfirmAndChat/>}>Confirm Details</Route>
         <Route path="/services/:id" element={<OrderConfirmation/>}>order confirmation</Route>
+        <Route path="/blogdetails/:id" element={<BlogDetails/>}>Blog Details</Route>
         </Routes>
         </>
     )

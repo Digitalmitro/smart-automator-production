@@ -24,7 +24,7 @@
   .grid-card {
     margin: 2rem 3rem;
     display: flex;
-    align-items: center;
+    // align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 0.4rem;
@@ -51,6 +51,8 @@
           width: 100%;
           border-radius: 0.8rem;
           height: 100%;
+          object-fit: cover;
+
           left: 0;
         }
 

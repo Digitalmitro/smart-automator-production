@@ -15,7 +15,7 @@ export const ServiceDetails = () => {
   const { categories, loading: categoriesLoading, error: categoriesError } = useSelector((state) => state.serviceCategories);
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
 
-  const getServices = services?.filter((info) => info._id === id)
+  const getServices = services?.filter((info) => info?._id === id)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchServices());
@@ -29,11 +29,11 @@ export const ServiceDetails = () => {
 
   return (
     <div>
-      <div className="service-details">
+      <div className="service-details" style={{ backgroundImage: `url(${getServices[0]?.image || ''})`}}>
         {getServices?.map((item) => {
           return (
             <div className="content">
-              <h1>{item.serviceCategory.name.toUpperCase()}</h1>
+              <h1>{item?.serviceName.toUpperCase()}</h1>
               <div className="line my-4"></div>
               <p>
                 {item?.shortDescription}
@@ -45,7 +45,7 @@ export const ServiceDetails = () => {
         })}
       </div>
       <ServiceDescription getServices={getServices} />
-      <GetHired />
+      <GetHired getServices={getServices}/>
       <FAQ />
     </div>
   );
@@ -62,26 +62,24 @@ export const ServiceDescription = ({ getServices }) => {
           <Link to=""> Moving Services </Link>
           <Link to=""> Furniture Assembly </Link>
         </div>
-        {getServices.map((item) => {
+        {getServices?.map((item) => {
           return (
             <>
               <h3>{item.serviceName.toUpperCase()}</h3>
               <div className="desc d-flex">
                 <div className="para">
                   <p>
-                    {item.description}
+                    {item?.description}
                   </p>
                 </div>
                 <div className="image">
-                  <img src={item.image} alt="img" />
+                  <img src={item?.image} alt="img" />
                 </div>
               </div>
 
             </>
           )
         })}
-
-
 
         <div className="how-works text-center">
           <h3>How it Works </h3>
@@ -121,11 +119,11 @@ export const ServiceDescription = ({ getServices }) => {
   );
 };
 
-export const GetHired = () => {
+export const GetHired = ({getServices}) => {
   return (
     <div>
       <div className="get-hired d-flex justify-content-center align-items-center gap-5">
-        <img src={bagImage} alt="" />
+        <img src={getServices[0]?.image} alt="" />
         <div>
           <h2>Ready to Hire a Tasker</h2>
           <button>Find Help Now</button>
