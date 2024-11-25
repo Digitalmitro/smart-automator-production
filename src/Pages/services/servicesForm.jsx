@@ -28,21 +28,18 @@ const servicedetails = () => {
   const [loading, setLoading] = useState(true);
   const [id, setId] = useState(null)
 
-
-  // --------  new  code   >>>>>>>>>>>>>
-
   const { serviceid } = useParams()
   console.log("id", serviceid)
 
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
-
+  const { data, error } = useSelector((state) => state.address);
+const addressData = data && data[0]
   const getServices = services?.filter((info) => info._id === serviceid)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchServices());
   }, [dispatch]);
   console.log("getServices", getServices)
-
 
 
   const showLoading = (currentTaskersID) => {
@@ -93,7 +90,10 @@ const servicedetails = () => {
     showLoading()
 
   };
-
+  const handleAddressChange = () => {
+    // Navigate to the profile page address section
+    navigate('/profile#address');
+  };
   useEffect(() => {
     if (
       taskLocation &&
@@ -110,29 +110,40 @@ const servicedetails = () => {
 
   return (
     <>
-      <section className="services-banner" >
-        <div className="services-form container pt-md-5 ">
-          <h2 className="pt-5 py-5 mt-5 fw-bold">{getServices[0].serviceName}</h2>
-        </div>
-
-        <div className=" services-form container pb-5"
-
-        >
+      <section className="services-banner py-5" >
+        <div className=" services-form container pb-5">
+          <h2 className=" py-5 fw-bold">{getServices[0]?.serviceName}</h2>
 
           <div className="form-box">
+            <h3 className="mb-3" ><b>Your task location</b></h3>
+            <div className="form-check">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                // checked={userAddress !== null} // Check if user has an address
+                disabled
+              />
+              <label className="form-check-label">
+                {/* {userAddress ? userAddress : "No address available"} */}
+              </label>
+            </div>
+            {/* {userAddress ? (
+              <Button
+                type="link"
+                onClick={handleAddressChange}
+              >
+                Change Address
+              </Button>
+            ) : (
+              <Button
+                type="link"
+                onClick={handleAddressChange}
+              >
+                Add Address
+              </Button>
+            )} */}
 
-            <h3 className="mb-3"
-
-            ><b>Your task location</b></h3>
-            <input
-              type="text"
-              className="form-control task-location"
-              id="exampleFormControlInput1"
-              placeholder="Enter Your task location"
-              value={taskLocation}
-              onChange={(e) => setTaskLocation(e.target.value)}
-              required
-            />
+             <hr/>
             <div style={{ width: "10%", margin: " 20px auto" }}></div>
 
             <h3 className="mt-5 mb-0"><b>Your Items</b></h3>
@@ -157,17 +168,19 @@ const servicedetails = () => {
                       <label className="form-check-label" htmlFor="type1">
                         {option}
                       </label>
+               
                     </div>
                   ))}
                 </>
               )
             })}
+            <hr/>
 
             <div style={{ width: "10%", margin: " 40px auto" }}></div>
 
             <h3 className="mt-5 mb-0 "><b>Task Options</b></h3>
             <br />
-            <h4   >How big is your task?</h4>
+            <h4>How big is your task?</h4>
 
             <div className="form-check"   >
               {/* <hr style={{ width: "20%", height: "2px", color: "#F9AC25" }} /> */}
@@ -211,7 +224,7 @@ const servicedetails = () => {
                 3 - 5 Hrs
               </label>
             </div>
-
+<hr/>
 <br/>
             <div className="form-check "   >
               <input
@@ -227,7 +240,7 @@ const servicedetails = () => {
               >Vehicle requirements</h4>
 
             </div>
-
+            <hr/>
            
             <div style={{ width: "10%", margin: " 40px auto" }}></div>
 
@@ -257,6 +270,7 @@ const servicedetails = () => {
                 for each Tasker needed.
               </p>
             </div>
+            <hr/>
             <div style={{ width: "10%", margin: " 40px auto" }}></div>
             <button
               type="button"

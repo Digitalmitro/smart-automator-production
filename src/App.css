@@ -211,14 +211,13 @@ height: 6rem
   background-color: var(--bg-color);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   max-width: 340px
-   /* width: 400px; */
-   /* height: 500px; */
+
 }
 
 .blog-card:hover{
 
   background-color: #f9ac25;
-  /* color: #fdfdfd !important; */
+ 
 }
 .blog-card img{
   width: 100%;
@@ -257,9 +256,9 @@ color: #fff !important;
 }
 
 .form-box{
-  background-color: #ffffff;
-  border: 2px solid #000000;
-  padding: 30px 70px;
+  /* background-color: #ffffff; */
+  /* border: 2px solid #000000; */
+  /* padding: 30px 70px; */
   height: auto;
 
 }
