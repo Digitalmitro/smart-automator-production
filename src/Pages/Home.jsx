@@ -17,18 +17,22 @@ import blog2 from "../assets/blog2.png";
 import blog3 from "../assets/blog3.png";
 import $ from "jquery";
 
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { motion, useScroll  } from 'framer-motion';
-import CountUp from 'react-countup';
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { motion, useScroll } from "framer-motion";
+import CountUp from "react-countup";
 
-import "./Styles/Home.scss"
+import "./Styles/Home.scss";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate()
   const { scrollYProgress } = useScroll();
-AOS.init()
+  AOS.init();
 
   $(document).ready(function () {
     $(".counter").each(function () {
@@ -49,40 +53,85 @@ AOS.init()
     });
   });
 
+  const [homeData, setHomeData] = useState(null);
+  const [serviceCategories, setServiceCategories] = useState(null);
+
+  const getHomeContent = async () => {
+    await axios
+      .get(`${import.meta.env.VITE_SOME_KEY}/home-cms`)
+      .then((res) => {
+        console.log(res.data);
+        setHomeData(res.data.homeCMS.homePage);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const getServiceCategories = async () => {
+    await axios
+      .get(`${import.meta.env.VITE_SOME_KEY}/client/service-categories`)
+      .then((res) => {
+        console.log(res.data);
+        setServiceCategories(res.data.categories);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  useEffect(() => {
+    getHomeContent();
+    getServiceCategories();
+  }, []);
 
   return (
     <>
       <section className="home-page">
-        <div className="banner-bg ">
+        <div
+          className="banner-bg"
+          style={{
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${homeData?.banner})`,
+            backgroundBlendMode: "multiply",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
           <div
             className="content"
             style={{ textAlign: "center", padding: "100px", color: "#fff" }}
           >
             <motion.h1
-          className="para my-3 mb-5"
-          style={{ fontWeight: 600, fontSize: "38px", letterSpacing:"5px", wordSpacing:"1px"     }}
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: .9, x: 0 }}
-          transition={{ duration: 2.5}}
-        >
-           
-              CREATE THE BEST HOME
+              className="para my-3 mb-5"
+              style={{
+                fontWeight: 600,
+                fontSize: "38px",
+                letterSpacing: "5px",
+                wordSpacing: "1px",
+                textTransform: "uppercase",
+              }}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 0.9, x: 0 }}
+              transition={{ duration: 2.5 }}
+            >
+              {homeData?.heading}
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, x: -60 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 2.5, delay: 0.2 }}
-           
-            className="banner-heading"
-            
+              className="banner-heading"
             >
-              Ready to dive into the internet of things to automate your home?
-              Start with the op products we’ve tested for every room{" "}
+              {homeData?.description}{" "}
             </motion.p>
 
-            <div className="search-bar"  data-aos="fade-up"
-               data-aos-delay="100" 
-               data-aos-duration="2000">
+            <div
+              className="search-bar"
+              data-aos="fade-up"
+              data-aos-delay="100"
+              data-aos-duration="2000"
+            >
               <input
                 type="text"
                 class="form-control bannersearch"
@@ -91,7 +140,7 @@ AOS.init()
                 aria-describedby="basic-addon1"
               />
 
-              <button type="button"  class="btn btn-primary bannersearchbtn">
+              <button type="button" class="btn btn-primary bannersearchbtn">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
             </div>
@@ -99,15 +148,19 @@ AOS.init()
         </div>
       </section>
 
-      <section style={{ backgroundColor: "#fef6e7" }}>
-        <div className="container">
+      <section style={{ backgroundColor: "#fef6e7", paddingBottom: "3.5rem" }}>
+        <div className="container-fluid">
           <div className="heading">
-            <h2 className="text-center fw-bold p-5 " style={{ padding: "25px 0px", letterSpacing:"2px", wordSpacing:"4px" }} 
-
-             data-aos="fade-up"
-            //  data-aos-delay="300" 
-             data-aos-duration="1300"
-
+            <h2
+              className="text-center fw-bold p-5 "
+              style={{
+                padding: "25px 0px",
+                letterSpacing: "2px",
+                wordSpacing: "4px",
+              }}
+              data-aos="fade-up"
+              //  data-aos-delay="300"
+              data-aos-duration="1300"
             >
               Check Out Our Home Improvement Services
             </h2>
@@ -120,98 +173,84 @@ AOS.init()
               alignItems: "center",
             }}
           >
-            <ul class="nav nav-pills my-3 " id="pills-tab" role="tablist">
-              <li class="nav-item m-3" role="presentation"
-               data-aos="fade-up"
-                data-aos-duration="2000"
-              >
-                <button
-                  class="navbutton nav-link active"
-                  id="pills-home-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-home"
-                  type="button"
-                  role="tab"
-                  aria-controls="pills-home"
-                  aria-selected="true"
-                >
-                  <i class=" fa-solid fa-wrench"></i>
-                </button>
-                <h4 className="text-center mt-4 text-secondary">Assemble</h4>
-              </li>
-              <li class="navbutton nav-item m-3" role="presentation"  data-aos="fade-up"
-                data-aos-delay="200" 
-                data-aos-duration="1000">
-                <button
-                  class="nav-link"
-                  id="pills-profile-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-profile"
-                  type="button"
-                  role="tab"
-                  aria-controls="pills-profile"
-                  aria-selected="false"
-                >
-                  <i class="fa-solid fa-broom"></i>
-                </button>
-                <h4 className="text-center mt-4 text-secondary">Cleaning</h4>
-              </li>
-              <li class="navbutton nav-item m-3" role="presentation"
-               data-aos="fade-up"
-               data-aos-delay="400" 
-               data-aos-duration="1400">
-                <button
-                  class="nav-link"
-                  id="pills-contact-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-contact"
-                  type="button"
-                  role="tab"
-                  aria-controls="pills-contact"
-                  aria-selected="false"
-                >
-                  <i class="fa-solid fa-car-side"></i>
-                </button>
-                <h4 className="text-center mt-4 text-secondary">Moving</h4>
-              </li>
-              <li class="navbutton nav-item m-3" role="presentation"  data-aos="fade-up"
-                data-aos-delay="600" 
-                data-aos-duration="1800">
-                <button
-                  class="nav-link"
-                  id="pills-extra-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-extra"
-                  type="button"
-                  role="tab"
-                  aria-controls="pills-extra"
-                  aria-selected="false"
-                >
-                  <i class="fa-solid fa-paint-roller"></i>
-                </button>
-                <h4 className="text-center mt-4 text-secondary">Painting</h4>
-              </li>
-              <li class="navbutton nav-item m-3" role="presentation"  data-aos="fade-up"
-                data-aos-delay="800" 
-                data-aos-duration="2200">
-                <button
-                  class="nav-link"
-                  id="pills-new-tab"
-                  data-bs-toggle="pill"
-                  data-bs-target="#pills-new"
-                  type="button"
-                  role="tab"
-                  aria-controls="pills-new"
-                  aria-selected="false"
-                >
-                  <i class="fa-solid fa-hammer"></i>
-                </button>
-                <h4 className="text-center mt-4 text-secondary">Home Repair</h4>
-              </li>
+            <ul
+              className="nav nav-pills my-3"
+              id="pills-tab"
+              role="tablist"
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)", // Three items per row
+                gap: "20px", // Space between items
+                justifyContent: "center",
+                alignItems: "center",
+                padding: "0", // Remove padding for a clean grid layout
+                listStyle: "none", // Remove bullet points
+              }}
+            >
+              {serviceCategories?.length > 0 &&
+                serviceCategories.slice(0, 6).map((elem, index) => {
+                  return (
+                    <Link to="/services">
+                      <li
+                        key={index}
+                        className="nav-item"
+                        role="presentation"
+                        data-aos="fade-up"
+                        data-aos-duration="2000"
+                        style={{
+                          display: "flex",
+                          flexDirection: "column", // Stack image and text vertically
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <button
+                          className="navbutton nav-link active"
+                          id={`pills-${index}-tab`}
+                          data-bs-toggle="pill"
+                          data-bs-target={`#pills-${index}`}
+                          type="button"
+                          role="tab"
+                          aria-controls={`pills-${index}`}
+                          aria-selected={index === 0}
+                          style={{
+                            background: "none",
+                            border: "none",
+                            padding: "0",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <img
+                            src={elem.logo ?? elem.image}
+                            alt={elem.name}
+                            style={{
+                              width: "96%",
+                              height: "96%",
+                              objectFit: "cover",
+                              borderRadius: "50%",
+                              boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)", // Optional: Shadow for better aesthetics
+                            }}
+                          />
+                        </button>
+                        <br />
+                        <h4
+                          className="text-center text-secondary mt-2"
+                          style={{
+                            textTransform: "capitalize",
+                            fontSize: "1rem",
+                            marginTop: "10px",
+                          }}
+                        >
+                          {elem.name}
+                        </h4>
+                      </li>
+                    </Link>
+                  );
+                })}
             </ul>
           </div>
 
-          <div class="tab-content " id="pills-tabContent">
+          {/* <div class="tab-content " id="pills-tabContent">
             <div
               class="tab-pane fade show active mt-5"
               id="pills-home"
@@ -219,27 +258,28 @@ AOS.init()
               aria-labelledby="pills-home-tab"
               tabindex="0"
             >
-              <div className="container "
-               data-aos="fade-right"
-              //  data-aos-delay="100" 
-               data-aos-duration="2000"
+              <div
+                className="container "
+                data-aos="fade-right"
+                //  data-aos-delay="100"
+                data-aos-duration="2000"
               >
                 <div className="section-3 d-flex align-items-center">
-                  <div className="desc flex-1" style={{marginRight:"3rem"}}>
-                    <p   data-aos="fade-right"
-                          data-aos-delay="100" 
-                          data-aos-duration="1500">
-                     <strong>
-                     Our handymen are extremely well-qualified and have years
-                      of professional experience under their belt. experience
-                      under their belt
-                     </strong>
+                  <div className="desc flex-1" style={{ marginRight: "3rem" }}>
+                    <p
+                      data-aos="fade-right"
+                      data-aos-delay="100"
+                      data-aos-duration="1500"
+                    >
+                      <strong>
+                        Our handymen are extremely well-qualified and have years
+                        of professional experience under their belt. experience
+                        under their belt
+                      </strong>
                     </p>
-                    <div className="assembly-container container-fluid pt-3 pr-sm-0" >
+                    <div className="assembly-container container-fluid pt-3 pr-sm-0">
                       <div className=" ">
-                        <div className=""
-                         
-                        >
+                        <div className="">
                           <div className="d-flex" style={{ gap: "10px" }}>
                             <button
                               className=" assemblyButton p-1"
@@ -304,11 +344,11 @@ AOS.init()
                         transition: {
                           type: "smooth",
                           repeatType: "mirror",
-                          duration: .8,
+                          duration: 0.8,
                           repeat: 1,
                         },
                       }}
-                      style={{ width:"530px", height:"350px" }}
+                      style={{ width: "530px", height: "350px" }}
                       src={tab1}
                       alt=""
                     />
@@ -569,7 +609,6 @@ AOS.init()
                             >
                               Trim Painting
                             </button>
-                           
                           </div>
                         </div>
                       </div>
@@ -675,7 +714,7 @@ AOS.init()
                       className="p-2"
                       style={{
                         marginTop: "50px",
-                        padding:"1px 10px",
+                        padding: "1px 10px",
                         borderRadius: "15px",
                         // background: "#f9ac25",
                         color: "white",
@@ -697,40 +736,48 @@ AOS.init()
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
       <section>
         <div className=" popular-project container">
-          <motion.h2 className="text-center p-4 fw-bold mt-5"
-          style={{ padding: "25px 0px", letterSpacing:"3px", wordSpacing:"5px" }} 
-          initial={{ opacity: 0, x: -60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 5 }}
-          viewport={{ once: true, amount: 0.5 }} 
+          <motion.h2
+            className="text-center p-4 fw-bold mt-5"
+            style={{
+              padding: "25px 0px",
+              letterSpacing: "3px",
+              wordSpacing: "5px",
+            }}
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 5 }}
+            viewport={{ once: true, amount: 0.5 }}
           >
-            POPULAR PROJECT</motion.h2>
+            POPULAR PROJECT
+          </motion.h2>
 
           <div className="row" style={{ rowGap: "20px" }}>
-            <motion.div class="col-md-4 mb-4 " style={{ columnGap: "60px" }}
-             initial={{ y: -10 }}
-             animate={{ y: 10 }}
-             whileHover={{
-               y: -10,
-               transition: {
-                 type: "smooth",
-                 repeatType: "mirror",
-                 duration: .8,
-                 repeat: 1,
-               },
+            <motion.div
+              class="col-md-4 mb-4 "
+              style={{ columnGap: "60px" }}
+              initial={{ y: -10 }}
+              animate={{ y: 10 }}
+              whileHover={{
+                y: -10,
+                transition: {
+                  type: "smooth",
+                  repeatType: "mirror",
+                  duration: 0.8,
+                  repeat: 1,
+                },
               }}
-            
             >
-              <div class="card project-card mx-5" data-aos="fade-up"
-               data-aos-duration="1300"
-             
-                >
+              <div
+                class="card project-card mx-5"
+                data-aos="fade-up"
+                data-aos-duration="1300"
+              >
                 <img src={project1} alt="Product 1" class="card-img-top" />
                 <div class="card-body project-card">
                   <h6 class="card-title text-center fw-bold">
@@ -742,28 +789,36 @@ AOS.init()
                 </div>
               </div>
             </motion.div>
-            <motion.div class="col-md-4 mb-4"
-             initial={{ y: -10 }}
-             animate={{ y: 10 }}
-             whileHover={{
-               y: -10,
-               transition: {
-                 type: "smooth",
-                 repeatType: "mirror",
-                 duration: .8,
-                 repeat: 1,
-               },
+            <motion.div
+              class="col-md-4 mb-4"
+              initial={{ y: -10 }}
+              animate={{ y: 10 }}
+              whileHover={{
+                y: -10,
+                transition: {
+                  type: "smooth",
+                  repeatType: "mirror",
+                  duration: 0.8,
+                  repeat: 1,
+                },
               }}
             >
-              <div class="card project-card mx-5" data-aos="fade-up"
-               data-aos-delay="200" 
-               data-aos-duration="1300">
-                <img src={project2}  alt="Product 2" class="card-img-top" 
-                // style={{whiteSpace: "nowrap"}}
+              <div
+                class="card project-card mx-5"
+                data-aos="fade-up"
+                data-aos-delay="200"
+                data-aos-duration="1300"
+              >
+                <img
+                  src={project2}
+                  alt="Product 2"
+                  class="card-img-top"
+                  // style={{whiteSpace: "nowrap"}}
                 />
                 <div class="card-body project-card">
-                  <h6 class="card-title text-center fw-bold" 
-                  // style={{whiteSpace: "nowrap"}}
+                  <h6
+                    class="card-title text-center fw-bold"
+                    // style={{whiteSpace: "nowrap"}}
                   >
                     Home Automation Services
                   </h6>
@@ -773,26 +828,27 @@ AOS.init()
                 </div>
               </div>
             </motion.div>
-            <motion.div class="col-md-4 mb-4"
-             initial={{ y: -10 }}
-             animate={{ y: 10 }}
-             whileHover={{
-               y: -10,
-               transition: {
-                 type: "smooth",
-                 repeatType: "mirror",
-                 duration: .8,
-                 repeat: 1,
-               },
+            <motion.div
+              class="col-md-4 mb-4"
+              initial={{ y: -10 }}
+              animate={{ y: 10 }}
+              whileHover={{
+                y: -10,
+                transition: {
+                  type: "smooth",
+                  repeatType: "mirror",
+                  duration: 0.8,
+                  repeat: 1,
+                },
               }}
+            >
+              <div
+                class="card project-card mx-5"
+                data-aos="fade-up"
+                data-aos-delay="400"
+                data-aos-duration="1300"
               >
-
-              <div class="card project-card mx-5"  data-aos="fade-up"
-                data-aos-delay="400" 
-                data-aos-duration="1300">
-                <img src={project3} alt="Product 3" class="card-img-top" 
-               
-                />
+                <img src={project3} alt="Product 3" class="card-img-top" />
                 <div class="card-body project-card">
                   <h6 class="card-title text-center fw-bold">
                     Energy management
@@ -803,23 +859,25 @@ AOS.init()
                 </div>
               </div>
             </motion.div>
-            <motion.div class="col-md-4 mb-4" 
-             initial={{ y: -10 }}
-             animate={{ y: 10 }}
-             whileHover={{
-               y: -10,
-               transition: {
-                 type: "smooth",
-                 repeatType: "mirror",
-                 duration: .8,
-                 repeat: 1,
-               },
+            <motion.div
+              class="col-md-4 mb-4"
+              initial={{ y: -10 }}
+              animate={{ y: 10 }}
+              whileHover={{
+                y: -10,
+                transition: {
+                  type: "smooth",
+                  repeatType: "mirror",
+                  duration: 0.8,
+                  repeat: 1,
+                },
               }}
-              >
-              <div class="card project-card mx-5"
-              data-aos="fade-up"
-              data-aos-delay="600" 
-              data-aos-duration="1300"
+            >
+              <div
+                class="card project-card mx-5"
+                data-aos="fade-up"
+                data-aos-delay="600"
+                data-aos-duration="1300"
               >
                 <img src={project4} alt="Product 4" class="card-img-top" />
                 <div class="card-body project-card">
@@ -832,22 +890,26 @@ AOS.init()
                 </div>
               </div>
             </motion.div>
-            <motion.div class="col-md-4 mb-4"
-             initial={{ y: -10 }}
-             animate={{ y: 10 }}
-             whileHover={{
-               y: -10,
-               transition: {
-                 type: "smooth",
-                 repeatType: "mirror",
-                 duration: .8,
-                 repeat: 1,
-               },
+            <motion.div
+              class="col-md-4 mb-4"
+              initial={{ y: -10 }}
+              animate={{ y: 10 }}
+              whileHover={{
+                y: -10,
+                transition: {
+                  type: "smooth",
+                  repeatType: "mirror",
+                  duration: 0.8,
+                  repeat: 1,
+                },
               }}
+            >
+              <div
+                class="card project-card mx-5"
+                data-aos="fade-up"
+                data-aos-delay="800"
+                data-aos-duration="1300"
               >
-              <div class="card project-card mx-5"  data-aos="fade-up"
-              data-aos-delay="800" 
-              data-aos-duration="1300">
                 <img src={project5} alt="Product 5" class="card-img-top" />
                 <div class="card-body project-card">
                   <h6 class="card-title text-center fw-bold">
@@ -859,22 +921,26 @@ AOS.init()
                 </div>
               </div>
             </motion.div>
-            <motion.div class="col-md-4 mb-4" 
-             initial={{ y: -10 }}
-             animate={{ y: 10 }}
-             whileHover={{
-               y: -10,
-               transition: {
-                 type: "smooth",
-                 repeatType: "mirror",
-                 duration: .8,
-                 repeat: 1,
-               },
+            <motion.div
+              class="col-md-4 mb-4"
+              initial={{ y: -10 }}
+              animate={{ y: 10 }}
+              whileHover={{
+                y: -10,
+                transition: {
+                  type: "smooth",
+                  repeatType: "mirror",
+                  duration: 0.8,
+                  repeat: 1,
+                },
               }}
+            >
+              <div
+                class="card project-card mx-5"
+                data-aos="fade-up"
+                data-aos-delay="1000"
+                data-aos-duration="1300"
               >
-              <div class="card project-card mx-5"  data-aos="fade-up"
-              data-aos-delay="1000" 
-              data-aos-duration="1300">
                 <img src={project6} alt="Product 6" class="card-img-top" />
                 <div class="card-body project-card">
                   <h6 class="card-title text-center fw-bold">
@@ -895,41 +961,53 @@ AOS.init()
           <div className="container pt-lg-4 pt-3">
             <div className="row pt-lg-5 ">
               <div className="col-md-3">
-                <div class="counter-box colored"  data-aos="fade-up"
-                  data-aos-delay="200" 
-                  data-aos-duration="2000"> 
+                <div
+                  class="counter-box colored"
+                  data-aos="fade-up"
+                  data-aos-delay="200"
+                  data-aos-duration="2000"
+                >
                   {/* <CountUp end={642}
                   duration={2}   startOnScroll  /> */}
-                  <span class="counter"
+                  <span
+                    class="counter"
 
-                  // zoom-in
-                  >642</span>
+                    // zoom-in
+                  >
+                    642
+                  </span>
                   <p>Lock Installed</p>
                 </div>
               </div>
 
-              <div className="col-md-3" >
-                <div class="counter-box colored"                   data-aos="fade-up"
-                  data-aos-delay="400" 
-                  data-aos-duration="2000">
+              <div className="col-md-3">
+                <div
+                  class="counter-box colored"
+                  data-aos="fade-up"
+                  data-aos-delay="400"
+                  data-aos-duration="2000"
+                >
                   <span class="counter">746</span>
                   <p>Happy Customers</p>
                 </div>
               </div>
-              <div className="col-md-3"              
-                   data-aos="fade-up"
-                  data-aos-delay="600" 
-                  data-aos-duration="2000">
+              <div
+                className="col-md-3"
+                data-aos="fade-up"
+                data-aos-delay="600"
+                data-aos-duration="2000"
+              >
                 <div class="counter-box colored">
                   <span class="counter">3456</span>
                   <p>Coffe Cups</p>
                 </div>
               </div>
-              <div className="col-md-3"
-                                data-aos="fade-up"
-                                data-aos-delay="800" 
-                                data-aos-duration="2000"
-                                >
+              <div
+                className="col-md-3"
+                data-aos="fade-up"
+                data-aos-delay="800"
+                data-aos-duration="2000"
+              >
                 <div class="counter-box colored">
                   <span class="counter">431</span>
                   <p>Premises Secured</p>
@@ -940,20 +1018,35 @@ AOS.init()
         </div>
       </section>
 
-      <section className="" style={{ backgroundColor: "#fef6e7", padding:"10px",  }}>
-        <div className="container pt-5 mt-5"                   >
-          <h4 className="text-center" style={{ color: "#F9AC25" }} data-aos="zoom-in"
-                  data-aos-delay="100" 
-                  data-aos-duration="2000">
+      <section
+        className=""
+        style={{ backgroundColor: "#fef6e7", padding: "10px" }}
+      >
+        <div className="container pt-5 mt-5">
+          <h4
+            className="text-center"
+            style={{ color: "#F9AC25" }}
+            data-aos="zoom-in"
+            data-aos-delay="100"
+            data-aos-duration="2000"
+          >
             -Testimonials-
           </h4>
-          <h1 className="text-center" data-aos="zoom-in"
-                  data-aos-delay="100" 
-                  data-aos-duration="2000">What Our Client Say</h1>
+          <h1
+            className="text-center"
+            data-aos="zoom-in"
+            data-aos-delay="100"
+            data-aos-duration="2000"
+          >
+            What Our Client Say
+          </h1>
           <div class="gradient-custom">
-            <div class="container " data-aos="zoom-in"
-                  data-aos-delay="100" 
-                  data-aos-duration="2000">
+            <div
+              class="container "
+              data-aos="zoom-in"
+              data-aos-delay="100"
+              data-aos-duration="2000"
+            >
               <div class="row d-flex justify-content-center">
                 <div class="col-md-12">
                   <div class="text-center mb-4 pb-2">
@@ -1127,21 +1220,66 @@ AOS.init()
         </div>
       </section>
 
-      <section className="latest-articles" style={{ backgroundColor: "#fffaf2" }}>
+      <section
+        className="latest-articles"
+        style={{ backgroundColor: "#fffaf2" }}
+      >
         <div className="container pt-5">
-          <h4 className="text-center" style={{ color: "#F9AC25" }} data-aos="zoom-in-out"
-                  data-aos-delay="100" 
-                  data-aos-duration="2000">
+          <h4
+            className="text-center"
+            style={{ color: "#F9AC25" }}
+            data-aos="zoom-in-out"
+            data-aos-delay="100"
+            data-aos-duration="2000"
+          >
             -News-
           </h4>
-          <h1 className="text-center"
-          data-aos="zoom-in"
-          data-aos-delay="300" 
-          data-aos-duration="2000"
-          >LATEST ARTICLES</h1>
+          <h1
+            className="text-center"
+            data-aos="zoom-in"
+            data-aos-delay="300"
+            data-aos-duration="2000"
+          >
+            LATEST ARTICLES
+          </h1>
 
-          <div className="row pt-2">
-          <div class="col-md-4 mb-4 "
+          <div className="row pt-2" >
+            {homeData?.blogs &&
+              homeData?.blogs.map((blog, index) => (
+                <div
+                  key={index}
+                  onClick={() => navigate(`/blogdetails/${blog._id}`)}
+                  className="col-md-4 mb-4"
+                  data-aos="flip-left"
+                  data-aos-easing="ease-out-cubic"
+                  data-aos-duration="2000"
+                >
+                  <div className="card blog-card shadow mb-5 bg-body rounded m-4"
+                  style={{maxWidth: "500px",  height:"420px"}}>
+                    <img
+                      src={blog.images[0]}
+                      alt={blog.title}
+                      className="card-img-top"
+                    />{" "}
+                    {/* Assuming blog has 'images' array */}
+                    <div
+                      className="card-body blog-card"
+                      style={{ zoom: "0.8" }}
+                    >
+                      <h5 className="card-title text-center py-2">
+                        {blog.title}
+                      </h5>
+                      <p className="card-text text-center"
+                      style={{  height:"70px"}}
+                      >
+                        {blog.shortDescription}
+                      </p>
+                      <p className="text-center fw-bold">Read More</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+          {/* <div class="col-md-4 mb-4 "
           onClick={() => navigate('/blogdetails/id')}
               data-aos="flip-left"
               data-aos-easing="ease-out-cubic"
@@ -1205,10 +1343,11 @@ AOS.init()
                   <p className=" text-center fw-bold">Read More</p>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
+
       <div
         className="container-fluid mt-5"
         style={{ backgroundColor: "#F9AC25", height: "180px" }}
@@ -1228,9 +1367,15 @@ AOS.init()
               />
               <button
                 className="mx-2"
-                style={{ width: "80px", border: "none", margin:"", borderRadius: "20px", border:"2px solid grey" }}
+                style={{
+                  width: "80px",
+                  border: "none",
+                  margin: "",
+                  borderRadius: "20px",
+                  border: "2px solid grey",
+                }}
               >
-              <strong style={{color:"grey"}}>SIGN UP</strong>
+                <strong style={{ color: "grey" }}>SIGN UP</strong>
               </button>
             </div>
           </div>

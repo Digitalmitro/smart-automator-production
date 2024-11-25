@@ -1,7 +1,11 @@
 import "./styles/blogDetails.scss";
 import img1 from "../../assets/tab1.png";
+import { useEffect } from "react";
 
 export const BlogDetails = () => {
+    useEffect(()=>{
+   window.scrollTo(0,0)
+    },[])
   return (
     <div className="blogDetailsPage">
      <div className="blogWrapper">

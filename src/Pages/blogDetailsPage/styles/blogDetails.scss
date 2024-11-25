@@ -1,16 +1,19 @@
 .blogDetailsPage {
-  background-color: #C1AB82;
+//   background-color: #C1AB82;
+background-color: #fef6e7;
+
   padding-block: 1rem;
    .blogWrapper{
     max-width: 997px;
+
     border: 1px solid #ddd;
     margin: auto;
     margin-block: 6rem;
     box-shadow: 1px 1px 2px grey;
     min-height: 60vh;
     padding: 2rem;
-    background-color: #fef6e7;
     border-radius: 8px;
+    background-color: white ;
     .backButton {
         text-align: start;
         background-color: #f9ac25;
@@ -101,10 +104,12 @@ text-align: center;
     
           .blogCard {
             // flex: 1;
+            width: 250px;
             border: 1px solid #ddd;
             box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            background-color: #fff;
+            background-color: #fef6e7;
+
             padding: 1rem;
             text-align: center;
     
@@ -118,13 +123,13 @@ text-align: center;
             h5 {
               font-size: 1.2rem;
               color: #f9ac25;
-              margin: 1rem 0;
+              margin: .5rem 0;
             }
     
             p {
               font-size: 0.9rem;
               color: #666;
-              line-height: 1.4;
+              line-height: 1;
               overflow: hidden;
               text-overflow: ellipsis;
               white-space: nowrap;
@@ -134,7 +139,7 @@ text-align: center;
               background-color: #f9ac25;
               color: #fff;
               border: none;
-              padding: 0.5rem 1rem;
+              padding: 0.4rem .8rem;
               border-radius: 4px;
               cursor: pointer;
               margin-top: 1rem;
