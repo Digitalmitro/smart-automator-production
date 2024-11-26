@@ -9,6 +9,7 @@ import { Api } from "../../network/Api";
 // Fetch all addresses
 export const fetchAddresses = createAsyncThunk("address/fetchAddresses", async () => {
   const response = await Api.get(`/address/${userid}`); // Fetch all addresses
+  console.log("respodn", response.data)
   return response.data;
 });
 
@@ -34,6 +35,7 @@ export const updateAddress = createAsyncThunk("address/updateAddress", async ({ 
 // Delete an address
 export const deleteAddress = createAsyncThunk("address/deleteAddress", async (id) => {
   await Api.delete(`/address/${id}`); // Delete address by ID
+  const response = await Api.get(`/address/${userid}`);
   return id; // Return the deleted address ID to update the state
 });
 
@@ -53,6 +55,8 @@ const addressSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchAddresses.fulfilled, (state, action) => {
+  console.log("respodn", action.payload)
+
         state.loading = false;
         state.data = action.payload;
       })
@@ -68,7 +72,7 @@ const addressSlice = createSlice({
       .addCase(FetchAddressById.fulfilled, (state, action) => {
         state.loading = false;
         const index = state.data.findIndex((addr) => addr._id === action.payload._id);
-        if (index === -1) state.data.push(action.payload); // Add if not already in state
+        if (index === -1) state.data.push(action.payload);
       })
       .addCase(FetchAddressById.rejected, (state, action) => {
         state.loading = false;

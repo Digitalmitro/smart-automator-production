@@ -6,7 +6,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import user from "../assets/user.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import { message } from "antd";
@@ -48,16 +48,24 @@ function a11yProps(index) {
 }
 
 export default function VerticalTabs() {
-  const [value, setValue] = React.useState(0);
+
 
   const token = Cookies.get("token");
   const decodedToken = token && jwtDecode(token);
   const user_id = decodedToken?._id;
   const navigate = useNavigate();
   const [orderDetails, setOrderDetails] = useState();
-
+const [activeTab, setActiveTab] = useState()
   const [clientDetails, setClientDetails] = useState();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+  const [searchParams] = useSearchParams();
+  const initialTab = parseInt(searchParams.get('tab'), 10) || 0;
+  const [value, setValue] = useState(initialTab);
+
+
+  const location = useLocation();
+ 
 
   const handelLogout = () => {
     localStorage.clear();
@@ -72,13 +80,14 @@ export default function VerticalTabs() {
     setShowLogoutModal(false); // Hide modal
   };
 
-
   useEffect(() => {
     const storedValue = localStorage.getItem("tabIndex");
     if (storedValue !== null) {
       setValue(parseInt(storedValue, 10));
+    } else {
+      setValue(initialTab); // Set tab based on query param
     }
-  }, []);
+  }, [initialTab]);
 
   const handleOrderDetails = async () => {
     try {

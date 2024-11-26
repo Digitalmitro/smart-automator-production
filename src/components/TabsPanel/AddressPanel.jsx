@@ -1,30 +1,48 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../Styles/AddressPanel.scss";
+import { Button, Drawer, Form, Input, Row, Col, Space, Modal, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { Button, Drawer, Form, Input, Row, Col, Space, Modal } from 'antd';
-import { useDispatch, useSelector } from "react-redux";
-import { deleteAddress, createAddress, FetchAddressById, fetchAddresses, updateAddress } from "../../redux/profile/AddressSlice";
+import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
+import { Api } from "../../network/Api";
 
 export const AddressPanel = () => {
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
   const token = localStorage.getItem("token");
   const decodeToken = token && jwtDecode(token);
   const userId = decodeToken?._id || null;
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const serviceid = searchParams.get("serviceid");
+console.log("serviceid", serviceid )
+  const [open, setOpen] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false); // State to track delete confirmation
   const [addressToDelete, setAddressToDelete] = useState(null); // Store address to delete
   const [currentAddress, setCurrentAddress] = useState(null);
-  const dispatch = useDispatch();
-  const { data: addresses, loading, error } = useSelector((state) => state.address);
+  const [addresses, setAddresses] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [reloadAddresses, setReloadAddresses] = useState(false);
+
+  const fetchAddresses = async () => {
+    try {
+      setLoading(true);
+      const response = await Api.get(`/address/${userId}`);
+      setAddresses(response.data);
+    } catch (error) {
+      console.error("Error fetching addresses:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (userId) {
-      dispatch(FetchAddressById(userId)); // Fetch addresses using user ID
+      fetchAddresses();
     }
-  }, [dispatch, userId]);
-  console.log("addresses", addresses)
+  }, [userId, reloadAddresses]);
+
   const showDrawer = (address = null) => {
     setOpen(true);
     if (address) {
@@ -33,68 +51,95 @@ export const AddressPanel = () => {
       setCurrentAddress(null); // Reset if creating a new address
     }
   };
+
   const handleDelete = (addressId) => {
     setAddressToDelete(addressId);
     setConfirmDelete(true); // Open confirmation modal
   };
 
   // Confirm the delete action
-  const handleConfirmDelete = () => {
-    if (addressToDelete) {
-      dispatch(deleteAddress(addressToDelete)); // Dispatch delete action
+  const handleConfirmDelete = async () => {
+    try {
+      if (addressToDelete) {
+        await Api.delete(`/address/${addressToDelete}`); // Call delete API
+        message.success("Address deleted successfully");
+        fetchAddresses(); // Refresh addresses after deletion
+      }
+    } catch (error) {
+      console.error("Error deleting address:", error);
+    } finally {
       setConfirmDelete(false); // Close modal
-      dispatch(fetchAddresses(userId))
     }
   };
+
   // Cancel the delete action
   const handleCancelDelete = () => {
     setConfirmDelete(false); // Close modal without deleting
   };
 
- 
+  const handleSetDefaultAddress = async (addressId) => {
+    if (!userId || !addressId) return;
+
+    try {
+      // API call to set the default address
+      const response = await axios.put(`${import.meta.env.VITE_SOME_KEY}/update-default-address`, {
+        userId,
+        addressId,
+      });
+
+      if (response.status === 200) {
+
+      
+        message.success("Default address changed successfully");
+        fetchAddresses(); // Refresh addresses after setting default address
+        if (serviceid) {
+          // Handle the logic that is specific to coming from the service form page
+          navigate(`/serviceform/${serviceid}`)
+        }
+      } else {
+        console.error("Error:", response.data.message);
+      }
+    } catch (error) {
+      console.error("Error updating default address:", error.response?.data?.message || error.message);
+    }
+  };
+
   return (
     <div className="addressPanel">
       <h4>Saved Addresses</h4>
       {loading && <p>Loading addresses...</p>}
-      {error && <p>Error fetching addresses: {error}</p>}
-      {addresses && addresses[0]?.length > 0 ? (
+      {addresses.length > 0 ? (
         <table className="addressTable">
           <thead>
             <tr>
               <th style={{ width: "20%" }}>Name & Type</th>
               <th style={{ width: "40%" }}>Delivery Address</th>
               <th style={{ width: "20%" }}>Actions</th>
-
             </tr>
           </thead>
           <tbody>
-            {addresses[0]?.map((address, index) => (
+            {addresses.map((address, index) => (
               <tr key={index}>
                 <td>
-                  <p>
-                    <b>{address.name || "Name not provided"}</b>
-                  </p>
-                  <p>
-                    <i>({address.addressType || "Address type not specified"})</i>
-                  </p>
+                  <p><b>{address.name || "Name not provided"}</b></p>
+                  <p><i>({address.addressType || "Address type not specified"})</i></p>
                 </td>
                 <td>
-                  <p>
-                    {address.street || "Street not provided"}, {address.city || "City not provided"}
-                  </p>
-                  <p>
-                    {address.state || "State not provided"} - {address.zip || "zip not provided"}
-                  </p>
+                  <p>{address.street || "Street not provided"}, {address.city || "City not provided"}</p>
+                  <p>{address.state || "State not provided"} - {address.zip || "Zip not provided"}</p>
                   <p>{address.country || "Country not provided"}</p>
                 </td>
                 <td className="buttonList">
-                  <button  onClick={() => showDrawer(address)} className="editBtn">
-                    Edit
-                  </button>
-                  <button className="delete" onClick={() => handleDelete(address._id)} >Delete</button>
-                  <input type="radio" name="address" id={`address${index}`} />
+                  <button onClick={() => showDrawer(address)} className="editBtn">Edit</button>
+                  <button className="delete" onClick={() => handleDelete(address._id)}>Delete</button>
+                  <input
+                    type="radio"
+                    name="address"
+                    id={`address${index}`}
+                    checked={address.default}
+                    onChange={() => handleSetDefaultAddress(address._id)}
+                  />
                 </td>
-
               </tr>
             ))}
           </tbody>
@@ -107,7 +152,7 @@ export const AddressPanel = () => {
           New Address
         </button>
       </div>
-      <AntDrawer setOpen={setOpen} open={open} userId={userId}  currentAddress={currentAddress} />
+      <AntDrawer setOpen={setOpen} open={open} userId={userId} currentAddress={currentAddress} setCurrentAddress={setCurrentAddress} fetchAddresses={fetchAddresses} />
       <Modal
         title="Confirm Deletion"
         visible={confirmDelete}
@@ -119,18 +164,18 @@ export const AddressPanel = () => {
         <p>Are you sure you want to delete this address?</p>
       </Modal>
     </div>
-
   );
 };
 
-const AntDrawer = ({ setOpen, open, userId, currentAddress }) => {
-  const dispatch = useDispatch();
+const AntDrawer = ({ setOpen, open, userId, currentAddress, setCurrentAddress, fetchAddresses  }) => {
+ 
   const [form] = Form.useForm();
-
   const onClose = () => {
     setOpen(false);
+    setCurrentAddress(null); // Reset currentAddress on drawer close
     form.resetFields();
   };
+
   useEffect(() => {
     if (currentAddress) {
       form.setFieldsValue(currentAddress); // Populate form fields with address data
@@ -139,18 +184,22 @@ const AntDrawer = ({ setOpen, open, userId, currentAddress }) => {
     }
   }, [form, currentAddress]);
 
-
-
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     const dataWithUserId = { ...values, user_id: userId };
-    if (currentAddress) {
-      dispatch(updateAddress({ id: currentAddress._id, updatedData: dataWithUserId })); // Update the address
-      dispatch(fetchAddresses(userId))
-    } else {
-      dispatch(createAddress(dataWithUserId)); // Create new address
-
+    try {
+      if (currentAddress._id) {
+        // Update the address
+        await Api.put(`/address/${currentAddress._id}`, dataWithUserId);
+        message.success("Address updated successfully");
+      } else {
+        // Create new address
+        await Api.post("/address", dataWithUserId);
+        message.success("New address created successfully");
+      }
+      fetchAddresses(); // Refresh addresses after update/create
+    } catch (error) {
+      console.error("Error saving address:", error);
     }
-
     onClose();
   };
 

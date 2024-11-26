@@ -17,6 +17,7 @@ export const ServiceDetails = () => {
 
   const getServices = services?.filter((info) => info?._id === id)
   const dispatch = useDispatch()
+  console.log("ger", getServices)
   useEffect(() => {
     dispatch(fetchServices());
   }, [dispatch]);

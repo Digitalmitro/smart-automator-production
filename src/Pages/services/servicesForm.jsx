@@ -13,8 +13,14 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchServices } from "../../redux/services/ServicesSlice";
+import { Api } from "../../network/Api";
 
 const servicedetails = () => {
+
+  const token = localStorage.getItem("token");
+  const decodeToken = token && jwtDecode(token);
+  const userId = decodeToken?._id || null;
+
   const [taskLocation, setTaskLocation] = useState("");
   const [furnitureType, setFurnitureType] = useState("");
   const [taskSize, setTaskSize] = useState("");
@@ -26,14 +32,14 @@ const servicedetails = () => {
   const [ChangeTime, setchangeTime] = useState();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [id, setId] = useState(null)
+
 
   const { serviceid } = useParams()
   console.log("id", serviceid)
 
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
-  const { data, error } = useSelector((state) => state.address);
-const addressData = data && data[0]
+  const [defaultAddress, setDefaultAddress] = useState()
+
   const getServices = services?.filter((info) => info._id === serviceid)
   const dispatch = useDispatch()
   useEffect(() => {
@@ -62,6 +68,28 @@ const addressData = data && data[0]
   const onChange = (newDate) => {
     setDate(newDate);
   };
+
+
+  const fetchAddresses = async () => {
+    try {
+      setLoading(true);
+      const response = await Api.get(`/address/${userId}`)
+      const data = response.data
+      const addressData = data.find((address) => address.default)
+      console.log("ddress dta", addressData)
+      setDefaultAddress(addressData)
+    } catch (error) {
+      console.error("Error fetching ", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchAddresses();
+  }, []);
+
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -92,8 +120,11 @@ const addressData = data && data[0]
   };
   const handleAddressChange = () => {
     // Navigate to the profile page address section
-    navigate('/profile#address');
+    navigate(`/profile?serviceid=${serviceid}`);
   };
+
+
+
   useEffect(() => {
     if (
       taskLocation &&
@@ -120,30 +151,20 @@ const addressData = data && data[0]
               <input
                 type="checkbox"
                 className="form-check-input"
-                // checked={userAddress !== null} // Check if user has an address
+                checked={defaultAddress !== undefined}
                 disabled
               />
               <label className="form-check-label">
-                {/* {userAddress ? userAddress : "No address available"} */}
+                {defaultAddress ? `${defaultAddress.street}, ${defaultAddress.city}` : "No address available"}
               </label>
             </div>
-            {/* {userAddress ? (
-              <Button
-                type="link"
-                onClick={handleAddressChange}
-              >
-                Change Address
-              </Button>
-            ) : (
-              <Button
-                type="link"
-                onClick={handleAddressChange}
-              >
-                Add Address
-              </Button>
-            )} */}
-
-             <hr/>
+            <Button
+              type="link"
+              onClick={handleAddressChange}
+            >
+              {defaultAddress ? "Change Address" : "Add Address"}
+            </Button>
+            <hr />
             <div style={{ width: "10%", margin: " 20px auto" }}></div>
 
             <h3 className="mt-5 mb-0"><b>Your Items</b></h3>
@@ -168,13 +189,13 @@ const addressData = data && data[0]
                       <label className="form-check-label" htmlFor="type1">
                         {option}
                       </label>
-               
+
                     </div>
                   ))}
                 </>
               )
             })}
-            <hr/>
+            <hr />
 
             <div style={{ width: "10%", margin: " 40px auto" }}></div>
 
@@ -224,8 +245,8 @@ const addressData = data && data[0]
                 3 - 5 Hrs
               </label>
             </div>
-<hr/>
-<br/>
+            <hr />
+            <br />
             <div className="form-check "   >
               <input
                 className="form-check-input"
@@ -240,8 +261,8 @@ const addressData = data && data[0]
               >Vehicle requirements</h4>
 
             </div>
-            <hr/>
-           
+            <hr />
+
             <div style={{ width: "10%", margin: " 40px auto" }}></div>
 
             <h3 className="mt-5 mb-4  "
@@ -265,12 +286,70 @@ const addressData = data && data[0]
                 onChange={(e) => setTaskDetails(e.target.value)}
               />
               <label htmlFor="floatingTextarea2">Comments</label>
+
+
+              <div class="frequency">
+     
+          <h3>Select a frequency</h3>
+          <p>
+            Save time and money by setting up a repeat cleaning with your Tasker
+          </p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="flexRadioDefault1"
+              checked
+            />
+            <label class="form-check-label" for="flexRadioDefault1">
+              Just Once
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="flexRadioDefault2"
+            />
+            <label class="form-check-label" for="flexRadioDefault2">
+              Weekly
+            </label>
+            <p style={{ color: "#FFC72C" }}>save 15%</p>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="flexRadioDefault2"
+            />
+            <label class="form-check-label" for="flexRadioDefault2">
+              Every 2 weeks
+            </label>
+            <p style={{ color: "#FFC72C" }}>Save 10% - MOST POPULAR</p>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="flexRadioDefault2"
+            />
+            <label class="form-check-label" for="flexRadioDefault2">
+              Every 4 weeks
+            </label>
+            <p style={{ color: "#FFC72C" }}>save 5%</p>
+          </div>
+          <div class=" lineBorder border border-2  my-4"></div>
+        </div>
               <p>
                 If you need two or more Taskers, please post additional tasks
                 for each Tasker needed.
               </p>
             </div>
-            <hr/>
+            <hr />
             <div style={{ width: "10%", margin: " 40px auto" }}></div>
             <button
               type="button"
