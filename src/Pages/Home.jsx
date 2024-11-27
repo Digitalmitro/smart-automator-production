@@ -22,9 +22,9 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { scrollYProgress } = useScroll();
-  const [blogs, setBlogs] = useState()
+  const [blogs, setBlogs] = useState();
   AOS.init();
 
   $(document).ready(function () {
@@ -75,27 +75,29 @@ const Home = () => {
       });
   };
 
-  const getBlogs = async () => {
-    await axios
-      .get(`${import.meta.env.VITE_SOME_KEY}/blog`)
-      .then((res) => {
-        console.log("blogssss", res.data.blog);
-        setBlogs(res.data.blog);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  // const getBlogs = async () => {
+  //   await axios
+  //     .get(`${import.meta.env.VITE_SOME_KEY}/blog`)
+  //     .then((res) => {
+  //       console.log("blogssss", res.data.blog);
+  //       setBlogs(res.data.blog);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // };
 
   const getService = async () => {
     await axios
       .get(`${import.meta.env.VITE_SOME_KEY}/client/services`)
       .then((res) => {
         console.log("res?.data", res?.data.services);
-        const isFeatured = res?.data?.services.filter((item) =>  item.isFeatured)
-        console.log("isFeatured", isFeatured)
+        const isFeatured = res?.data?.services.filter(
+          (item) => item.isFeatured
+        );
+        console.log("isFeatured", isFeatured);
         setService(res?.data?.services);
-        setFeaturedServices(isFeatured)
+        setFeaturedServices(isFeatured);
       })
       .catch((e) => {
         console.log(e);
@@ -105,8 +107,8 @@ const Home = () => {
   useEffect(() => {
     getHomeContent();
     getServiceCategories();
-    getService()
-    getBlogs()
+    getService();
+    // getBlogs()
   }, []);
 
   return (
@@ -782,43 +784,48 @@ const Home = () => {
           </motion.h2>
 
           <div className="row" style={{ rowGap: "20px" }}>
-           {featuredServices?.map((serviceList) => (
-            <>
-             <motion.div
-              class="col-md-4 mb-4 "
-              style={{ columnGap: "60px" }}
-              initial={{ y: -10 }}
-              animate={{ y: 10 }}
-              whileHover={{
-                y: -10,
-                transition: {
-                  type: "smooth",
-                  repeatType: "mirror",
-                  duration: 0.8,
-                  repeat: 1,
-                },
-              }}
-            >
-              <div
-                class="card project-card mx-5"
-                data-aos="fade-up"
-                data-aos-duration="1300"
-                onClick={() => navigate(`/servicedetails/${serviceList._id}`)}
-              >
-                <img src={serviceList.image} alt="Product 1" class="card-img-top" />
-                <div class="card-body ">
-                  <h6 class="card-title text-center fw-bold">
-                   {serviceList.serviceName}
-                  </h6>
-                  <p class="card-text text-center pb-4">
-                    Projects starting at $49
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-            </>
-           ))}
-          
+            {featuredServices?.map((serviceList) => (
+              <>
+                <motion.div
+                  class="col-md-4 mb-4 "
+                  style={{ columnGap: "60px" }}
+                  initial={{ y: -10 }}
+                  animate={{ y: 10 }}
+                  whileHover={{
+                    y: -10,
+                    transition: {
+                      type: "smooth",
+                      repeatType: "mirror",
+                      duration: 0.8,
+                      repeat: 1,
+                    },
+                  }}
+                >
+                  <div
+                    class="card project-card mx-5"
+                    data-aos="fade-up"
+                    data-aos-duration="1300"
+                    onClick={() =>
+                      navigate(`/servicedetails/${serviceList._id}`)
+                    }
+                  >
+                    <img
+                      src={serviceList.image}
+                      alt="Product 1"
+                      class="card-img-top"
+                    />
+                    <div class="card-body ">
+                      <h6 class="card-title text-center fw-bold">
+                        {serviceList.serviceName}
+                      </h6>
+                      <p class="card-text text-center pb-4">
+                        Projects starting at $49
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </>
+            ))}
           </div>
         </div>
       </section>
@@ -1110,107 +1117,43 @@ const Home = () => {
             LATEST ARTICLES
           </h1>
 
-          <div className="row pt-2" >
-            {blogs?.length >= 0 &&
-              blogs?.map((blog, index) => (
+          <div className="row pt-2">
+            {homeData?.blogs &&
+              homeData?.blogs?.map((blog, index) => (
                 <div
                   key={index}
-                  onClick={() => navigate(`/blogdetails/${blog._id}`)}
                   className="col-md-4 mb-4"
                   data-aos="flip-left"
                   data-aos-easing="ease-out-cubic"
                   data-aos-duration="2000"
                 >
-                  <div className="card blog-card shadow mb-5 bg-body rounded m-4"
-                  style={{maxWidth: "380px",  height:"420px"}}>
-                    <img
-                      src={blog.images[0]}
-                      alt={blog.title}
-                      className="card-img-top"
-                    />{" "}
-                    {/* Assuming blog has 'images' array */}
-                    <div
-                      className="card-body blog-card"
-                      style={{ zoom: "0.8" }}
-                    >
-                      <h5 className="card-title text-center py-2">
-                        {blog.title}
-                      </h5>
-                      <p className="card-text text-center"
-                      style={{  height:"70px"}}
+                  <Link
+                    to={`/blogdetails/${blog._id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <div className="card blog-card shadow mb-5 bg-body rounded m-4">
+                      <img
+                        src={blog.images[0]}
+                        alt={blog.title}
+                        className="card-img-top"
+                      />{" "}
+                      {/* Assuming blog has 'images' array */}
+                      <div
+                        className="card-body blog-card"
+                        style={{ zoom: "0.8" }}
                       >
-                        {blog.shortDescription}
-                      </p>
-                      <p className="text-center fw-bold">Read More</p>
+                        <h5 className="card-title text-center py-2">
+                          {blog.title}
+                        </h5>
+                        <p className="card-text text-center">
+                          {blog.shortDescription}
+                        </p>
+                        <p className="text-center fw-bold">Read More</p>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               ))}
-          {/* <div class="col-md-4 mb-4 "
-          onClick={() => navigate('/blogdetails/id')}
-              data-aos="flip-left"
-              data-aos-easing="ease-out-cubic"
-              data-aos-duration="2000"
-
-            >
-              <div  class="card blog-card shadow mb-5 bg-body rounded m-4">
-                <img src={blog1} alt="Product 1" class="card-img-top" />
-                <div class="card-body blog-card " style={{zoom:"0.8"}}>
-                  <h5 class="card-title text-center py-2">
-                    WE NEED A 
-                    RENT ROOM FOR PARTY
-                  </h5>
-                  <p class="card-text text-center">
-                    many desktop publishing packages and web page editorsnow use
-                    Lorem Ipsum as their default model text
-                  </p>
-                  <p className=" text-center fw-bold">Read More</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 mb-4"
-              onClick={() => navigate('/blogdetails/id')}
-               data-aos="flip-left"
-               data-aos-easing="ease-out-cubic"
-               data-aos-duration="2000"
-               >
-              <div class="card blog-card shadow mb-5 bg-body rounded m-4">
-                <img src={blog2} alt="Product 1" class="card-img-top" />
-                <div class="card-body blog-card" style={{zoom:"0.8"}}>
-                  <h5 class="card-title text-center py-2">
-                    WE NEED A
-                    RENT ROOM FOR PARTY
-                  </h5>
-                  <p class="card-text text-center">
-                    many desktop publishing packages and web page editorsnow use
-                    Lorem Ipsum as their default model text
-                  </p>
-                  <p className=" text-center fw-bold">Read More</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-4 mb-4"
-               onClick={() => navigate('/blogdetails/id')}
-               >
-              <div class="card blog-card shadow mb-5 bg-body rounded m-4"   data-aos="flip-left"
-               data-aos-easing="ease-out-cubic"
-               data-aos-duration="2000">
-                <img src={blog3} alt="Product 1" class="card-img-top" />
-                <div class="card-body blog-card" style={{zoom:"0.8"}}>
-                  <h5 class="card-title text-center py-2">
-                    WE NEED A 
-                    RENT ROOM FOR PARTY
-                  </h5>
-                  <p class="card-text text-center">
-                    many desktop publishing packages and web page editorsnow use
-                    Lorem Ipsum as their default model text
-                  </p>
-                  <p className=" text-center fw-bold">Read More</p>
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
       </section>

@@ -2,12 +2,15 @@ import "./styles/blogDetails.scss";
 import img1 from "../../assets/tab1.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import {format} from "timeago.js"
+import { Link, useParams } from "react-router-dom";
+import { format } from "timeago.js";
+import moment from "moment";
+
 export const BlogDetails = () => {
-  const { id } = useParams()
-  const [blogsWithID, setBlogsWithID] = useState(null)
-  const [blogs, setBlogs] = useState(null)
+  const { id } = useParams();
+  const [blogsWithID, setBlogsWithID] = useState(null);
+  const [blogs, setBlogs] = useState(null);
+  const [selectedBlog, setSelectedBlog] = useState(null)
 
   const getBlogsWithID = async () => {
     await axios
@@ -21,28 +24,25 @@ export const BlogDetails = () => {
       });
   };
 
-
   const getBlogs = async () => {
     await axios
-      .get(`${import.meta.env.VITE_SOME_KEY}/blog`)
+      .get(`${import.meta.env.VITE_SOME_KEY}/get-blogs`)
       .then((res) => {
-        console.log("blogssss", res.data.blog);
-        setBlogs(res.data.blog);
+        setBlogs(res.data.blogs);
       })
       .catch((e) => {
         console.log(e);
       });
   };
   useEffect(() => {
-    window.scrollTo(0, 0)
-    getBlogsWithID()
-    getBlogs()
-  }, [])
+    window.scrollTo(0, 0);
+    getBlogsWithID();
+    getBlogs();
+  }, [id]);
   return (
     <div className="blogDetailsPage">
       <div className="blogWrapper">
-
-        <button className="backButton" onClick={() => window.history.back()}>
+        <button className="backButton" onClick={() => window.location.replace('/')}>
           Go Back
         </button>
 
@@ -51,34 +51,36 @@ export const BlogDetails = () => {
             <img src={blogsWithID?.images[0]} alt="Blog Image" />
           </div>
           <div className="parawrapper">
-
             <h2 className="blogTitle">{blogsWithID?.title}</h2>
-            <p className="blogDate" >Published on:{blogsWithID?.createdAt}</p>
-
-            <p className="" style={{ color: "grey" }}>{blogsWithID?.shortDescription}</p>
-
-            <p className="blogDescription">
-              {blogsWithID?.description}
+            <p className="blogDate">
+              Published on:{" "}
+              {moment(blogsWithID?.createdAt).format("DD/MM/YYYY")}
             </p>
+
+            <p className="" style={{ color: "grey" }}>
+              {blogsWithID?.shortDescription}
+            </p>
+
+            <p className="blogDescription">{blogsWithID?.description}</p>
           </div>
         </div>
 
         <div className="relatedBlogs">
           <h3>Related Blogs</h3>
           <div className="relatedBlogList">
-            {blogs?.slice(0, 3).map((list) => (
-
-              <div className="blogCard">
-                <img src={list.images[0]} alt="Related Blog" />
-                <h5>{list.title}</h5>
-                <p>
-                  {list.description}...
-                </p>
-                <button className="readMore">Read More</button>
-              </div>
+            {blogs?.map((list) => (
+              <Link
+                to={`/blogdetails/${list._id}`}
+                style={{ textDecoration: "none" }}
+              >
+                <div className="blogCard">
+                  <img src={list.images[0]} alt="Related Blog" />
+                  <h5>{list.title}</h5>
+                  <p>{list.description}...</p>
+                  <button className="readMore">Read More</button>
+                </div>
+              </Link>
             ))}
-
-
           </div>
         </div>
       </div>
