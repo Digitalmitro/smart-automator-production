@@ -15,6 +15,7 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchServiceCategories } from "../../redux/services/ServiceCategorySlice";
 import { fetchServices } from "../../redux/services/ServicesSlice";
+import { SvgRepo } from "../../components/SvgRepo/SvgRepo";
 
 export function ConfirmAndChat() {
 
@@ -23,37 +24,46 @@ export function ConfirmAndChat() {
     const [cardNumber, setCardNumber] = useState("");
     const [cardDetails, setCardDetails] = useState("");
     const [isFormValid, setIsFormValid] = useState(false);
-
+    const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("cashOnDelivery");
     const token = Cookies.get("token");
     const decodedToken = token && jwtDecode(token);
     const user = decodedToken?.firstName + " " + decodedToken?.lastName;
     const userId = decodedToken?._id;
-
+    const trustAndSupportFee = 10
     const storageData = JSON.parse(localStorage.getItem("DateAndTime"));
     const serviceDetailsStorage = JSON.parse(
         localStorage.getItem("serviceDetails")
     );
 
-
+    const handlePaymentMethodChange = (method) => {
+        setSelectedPaymentMethod(method);
+    };
     //   -------  New Code   >>>>>>>>>>>>>>>>>>>
 
     const { id } = useParams();
 
     const dispatch = useDispatch();
     const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
-  
 
-  const getServices = services?.filter((info) => info._id === id)
+
+    const getServices = services?.filter((info) => info._id === id)
 
     useEffect(() => {
         dispatch(fetchServices());
-      }, [dispatch]);
-    
+    }, [dispatch]);
+
 
 
     //  <<<<<<<<<<<<<<<<<<  new Code ---------------
 
-
+    useEffect(() => {
+        // Check if all required fields are filled
+        if (cardNumber && cardDetails) {
+            setIsFormValid(true);
+        } else {
+            setIsFormValid(false);
+        }
+    }, [cardNumber, cardDetails]);
 
     const handleServiceDetails = async () => {
         try {
@@ -83,9 +93,9 @@ export function ConfirmAndChat() {
 
 
     return (
-        <div class="confirmDetails container  d-flex justify-content-around  m-auto ">
-            <div class="container border rounded p-5 mt-3">
-                <div class="border rounded p-5 mt-5">
+        <div class="confirmDetails  d-flex justify-content-around  ">
+            <div class="container rounded  mt-3">
+                <div class="border rounded  mt-5">
                     <div class="ProfileDetails">
 
                         <div class="Profile d-flex flex-column justify-content-center align-items-center">
@@ -139,18 +149,84 @@ export function ConfirmAndChat() {
                             </div>
                             <div class="d-flex justify-content-between gap-3">
                                 <p>Trust And Support fee</p>
-                                <p>$1/hr</p>
+                                <p>${parseInt(trustAndSupportFee)}/hr</p>
                             </div>
                             <div class="d-flex justify-content-between gap-3">
                                 <p style={{ fontWeight: "600" }}>Total Rate</p>
                                 <p style={{ fontWeight: "600" }}>
-                                    ${data?.pricePerHour + 1 || "62"}/hr
+                                    ${parseInt(getServices[0]?.hourlyCharge) + 1 || "62*"}/hr
                                 </p>
                             </div>
                         </div>
 
+
+                        <div className="paymentMethod">
+                            <h5>Payment Method</h5>
+
+                            {/* Payment method selection */}
+                            <div className="d-flex flex-wrap gap-3 mb-3">
+                                <button
+                                    className={`btn ${selectedPaymentMethod === "cashOnDelivery" ? "btn-primary" : "btn-outline-primary"
+                                        }`}
+                                    onClick={() => handlePaymentMethodChange("cashOnDelivery")}
+                                >
+                                    <span style={{paddingInline:"1px"}}>{SvgRepo.cash}</span>
+                                    Cash on Delivery
+                                </button>
+                                <button
+                                    className={`btn ${selectedPaymentMethod === "creditCard" ? "btn-primary" : "btn-outline-primary"
+                                        }`}
+                                    onClick={() => handlePaymentMethodChange("creditCard")}
+                                >
+                                    
+                                    <img src={CardNumber} alt="Credit Card" style={{ width: "20px", marginRight: "8px" }} />
+                                    Credit Card
+                                </button>
+
+
+                                <button
+                                    className={`btn ${selectedPaymentMethod === "wallet" ? "btn-primary" : "btn-outline-primary"
+                                        }`}
+                                    onClick={() => handlePaymentMethodChange("wallet")}
+                                >
+                                    <span>{SvgRepo.wallet}</span>
+                                    Wallet
+                                </button>
+
+
+                            </div>
+
+
+                            {/* Conditional input for Credit Card */}
+                            {selectedPaymentMethod === "creditCard" && (
+                                <div className="cardNumber d-flex justify-content-around border p-3">
+                                    <div className="d-flex gap-3">
+                                        <img src={CardNumber} alt="Credit Card Icon" />
+                                        <input
+                                            type="number"
+                                            placeholder="Card Number"
+                                            required
+                                            value={cardNumber}
+                                            onChange={(e) => setCardNumber(e.target.value)}
+                                        />
+                                    </div>
+                                    <input
+                                        type="number"
+                                        placeholder="MM/YY/CVC"
+                                        required
+                                        value={cardDetails}
+                                        onChange={(e) => setCardDetails(e.target.value)}
+                                    />
+                                </div>
+                            )}
+
+                            {/* Info about payment */}
+                            <p>Do you have a promo code?</p>
+                            <br />
+                        </div>
+
                         <div>
-                           
+
                             <p>
                                 Please follow all public health regulations in your area.{" "}
                                 <span style={{ color: "#FFC72C" }}>Learn more</span>{" "}
@@ -159,8 +235,8 @@ export function ConfirmAndChat() {
 
                         </div>
 
-                        <button onClick={() => navigate(`/services/${id}`)} >Confirm And Pay</button>
-                    
+                        <button className="confirm-button" onClick={() => navigate(`/services/${id}`)} >Confirm And Pay</button>
+
                     </div>
                 </div>
             </div>

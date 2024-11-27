@@ -1,64 +1,87 @@
 import "./styles/blogDetails.scss";
 import img1 from "../../assets/tab1.png";
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import {format} from "timeago.js"
 export const BlogDetails = () => {
-    useEffect(()=>{
-   window.scrollTo(0,0)
-    },[])
+  const { id } = useParams()
+  const [blogsWithID, setBlogsWithID] = useState(null)
+  const [blogs, setBlogs] = useState(null)
+
+  const getBlogsWithID = async () => {
+    await axios
+      .get(`${import.meta.env.VITE_SOME_KEY}/blog/${id}`)
+      .then((res) => {
+        console.log(res.data.blog);
+        setBlogsWithID(res.data.blog);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+
+  const getBlogs = async () => {
+    await axios
+      .get(`${import.meta.env.VITE_SOME_KEY}/blog`)
+      .then((res) => {
+        console.log("blogssss", res.data.blog);
+        setBlogs(res.data.blog);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    getBlogsWithID()
+    getBlogs()
+  }, [])
   return (
     <div className="blogDetailsPage">
-     <div className="blogWrapper">
+      <div className="blogWrapper">
 
-     <button className="backButton" onClick={() => window.history.back()}>
-        Go Back
-      </button>
-      <div className="contentWrapper">
-        <div className="imageWrapper">
-          <img src={img1} alt="Blog Image" />
-        </div>
-        <div className="parawrapper">
+        <button className="backButton" onClick={() => window.history.back()}>
+          Go Back
+        </button>
 
-        <h2 className="blogTitle">Blog Title</h2>
-        <p className="blogDate">Published on: November 25, 2024</p>
-        <p className="blogDescription">
-          This is the detailed description of the blog post. It can have multiple
-          paragraphs explaining the content of the blog. Lorem ipsum dolor sit
-          amet, consectetur adipiscing elit.
-        </p>
-        </div>
-      </div>
-      <div className="relatedBlogs">
-        <h3>Related Blogs</h3>
-        <div className="relatedBlogList">
-          <div className="blogCard">
-            <img src={img1} alt="Related Blog" />
-            <h5>Related Blog Title</h5>
-            <p>
-              A brief description of the related blog goes here, max two lines...
-            </p>
-            <button className="readMore">Read More</button>
+        <div className="contentWrapper">
+          <div className="imageWrapper">
+            <img src={blogsWithID?.images[0]} alt="Blog Image" />
           </div>
+          <div className="parawrapper">
 
-          <div className="blogCard">
-            <img src={img1} alt="Related Blog" />
-            <h5>Related Blog Title</h5>
-            <p>
-              A brief description of the related blog goes here, max two lines...
+            <h2 className="blogTitle">{blogsWithID?.title}</h2>
+            <p className="blogDate" >Published on:{blogsWithID?.createdAt}</p>
+
+            <p className="" style={{ color: "grey" }}>{blogsWithID?.shortDescription}</p>
+
+            <p className="blogDescription">
+              {blogsWithID?.description}
             </p>
-            <button className="readMore">Read More</button>
           </div>
-          <div className="blogCard">
-            <img src={img1} alt="Related Blog" />
-            <h5>Another Blog Title</h5>
-            <p>
-              Another brief description of the related blog, max two lines...
-            </p>
-            <button className="readMore">Read More</button>
+        </div>
+
+        <div className="relatedBlogs">
+          <h3>Related Blogs</h3>
+          <div className="relatedBlogList">
+            {blogs?.slice(0, 3).map((list) => (
+
+              <div className="blogCard">
+                <img src={list.images[0]} alt="Related Blog" />
+                <h5>{list.title}</h5>
+                <p>
+                  {list.description}...
+                </p>
+                <button className="readMore">Read More</button>
+              </div>
+            ))}
+
+
           </div>
         </div>
       </div>
-     </div>
     </div>
   );
 };

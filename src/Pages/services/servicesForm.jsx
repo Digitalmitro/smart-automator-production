@@ -32,10 +32,7 @@ const servicedetails = () => {
   const [ChangeTime, setchangeTime] = useState();
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-
-
   const { serviceid } = useParams()
-  console.log("id", serviceid)
 
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
   const [defaultAddress, setDefaultAddress] = useState()
@@ -45,7 +42,7 @@ const servicedetails = () => {
   useEffect(() => {
     dispatch(fetchServices());
   }, [dispatch]);
-  console.log("getServices", getServices)
+
 
 
   const showLoading = (currentTaskersID) => {
@@ -62,13 +59,12 @@ const servicedetails = () => {
   };
 
   const handleNavigate = () => {
-    navigate(`/confirmdetails/${serviceid}`);
+    navigate(`/confirmandchat/${serviceid}`);
   };
 
   const onChange = (newDate) => {
     setDate(newDate);
   };
-
 
   const fetchAddresses = async () => {
     try {
@@ -76,7 +72,7 @@ const servicedetails = () => {
       const response = await Api.get(`/address/${userId}`)
       const data = response.data
       const addressData = data.find((address) => address.default)
-      console.log("ddress dta", addressData)
+      console.log("address dta", addressData)
       setDefaultAddress(addressData)
     } catch (error) {
       console.error("Error fetching ", error);
@@ -101,7 +97,6 @@ const servicedetails = () => {
     });
   }, []);
 
-
   const handleServiceDetails = (e) => {
     console.log("hello services")
     e.preventDefault();
@@ -120,10 +115,9 @@ const servicedetails = () => {
   };
   const handleAddressChange = () => {
     // Navigate to the profile page address section
-    navigate(`/profile?serviceid=${serviceid}`);
+    navigate(`/profile?serviceid=${serviceid}`,  { state: { tabIndex: 1 } });
+
   };
-
-
 
   useEffect(() => {
     if (
@@ -143,7 +137,7 @@ const servicedetails = () => {
     <>
       <section className="services-banner py-5" >
         <div className=" services-form container pb-5">
-          <h2 className=" py-5 fw-bold">{getServices[0]?.serviceName}</h2>
+          <h2 className=" py-5 fw-bold">{getServices[0]?.serviceName || "Loading..."}</h2>
 
           <div className="form-box">
             <h3 className="mb-3" ><b>Your task location</b></h3>
@@ -154,16 +148,16 @@ const servicedetails = () => {
                 checked={defaultAddress !== undefined}
                 disabled
               />
-              <label className="form-check-label">
-                {defaultAddress ? `${defaultAddress.street}, ${defaultAddress.city}` : "No address available"}
+              <label className="">
+                {defaultAddress ? `${defaultAddress.street} ${defaultAddress.zip}, ${defaultAddress.city},  ${defaultAddress.state}` : "No address available"}
               </label>
             </div>
-            <Button
-              type="link"
+            <button
+              className="addressBtn"
               onClick={handleAddressChange}
             >
               {defaultAddress ? "Change Address" : "Add Address"}
-            </Button>
+            </button>
             <hr />
             <div style={{ width: "10%", margin: " 20px auto" }}></div>
 
@@ -256,10 +250,7 @@ const servicedetails = () => {
                 checked={vehicleRequirement === true}
                 onChange={() => setVehicleRequirement(prev => !prev)}
               />
-              <h4 className="my-4"
-
-              >Vehicle requirements</h4>
-
+              <h4 className="my-4" >Vehicle requirements</h4>
             </div>
             <hr />
 
@@ -316,7 +307,7 @@ const servicedetails = () => {
             <label class="form-check-label" for="flexRadioDefault2">
               Weekly
             </label>
-            <p style={{ color: "#FFC72C" }}>save 15%</p>
+            <p style={{ color: "#d69d00" }}>save 15%</p>
           </div>
           <div class="form-check">
             <input
@@ -328,7 +319,7 @@ const servicedetails = () => {
             <label class="form-check-label" for="flexRadioDefault2">
               Every 2 weeks
             </label>
-            <p style={{ color: "#FFC72C" }}>Save 10% - MOST POPULAR</p>
+            <p style={{ color: "#d69d00" }}>Save 10% - MOST POPULAR</p>
           </div>
           <div class="form-check">
             <input
@@ -340,7 +331,7 @@ const servicedetails = () => {
             <label class="form-check-label" for="flexRadioDefault2">
               Every 4 weeks
             </label>
-            <p style={{ color: "#FFC72C" }}>save 5%</p>
+            <p style={{ color: "#d69d00" }}>save 5%</p>
           </div>
           <div class=" lineBorder border border-2  my-4"></div>
         </div>

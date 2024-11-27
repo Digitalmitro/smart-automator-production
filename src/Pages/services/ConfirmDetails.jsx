@@ -34,11 +34,6 @@ function ConfirmDetails() {
     setSelectedPaymentMethod(method);
   };
 
-//   -------------   new code   >>>>>>>>>>>>>>> 
-
-
-// <<<<<<<<<<<<< new Code ----------------------   
-
 
 
   console.log("decodedToken", decodedToken)

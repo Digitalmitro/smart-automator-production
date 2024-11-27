@@ -4,8 +4,7 @@
     background-blend-mode: multiply;
     background-position: center;
     position: relative;
-    background-color: #FEF6E7;
-
+    background-color: #C1AB82;
 }
 
 .services-form {
@@ -13,11 +12,13 @@
     z-index: 2;
     margin-top: 4rem;
     zoom: 0.8;
-    background-color: #ffffff;
+    background-color: #f5f5f5;
     border: 2px solid rgb(224, 224, 224);
     box-shadow:  -2px -2px 5px rgb(163 162 158),  1px 1px 5px rgba(167, 163, 163, 0.6);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
     padding: 30px 70px;
+    // background-color: #FEF6E7;
 
     .form-box {
         height: auto;
@@ -28,17 +29,27 @@
             border-radius: 0;
         }
 
-       
+        .addressBtn{
+            background:#2ea4f3;
+          padding:  10px 15px;
+          font-weight: 600;
+          color: white;
+          border-radius: 4px;
+        }
     }
     button{
-        background:linear-gradient(to right, #C77839, #D79D45);
-        font-weight: 600;
-        padding:1.2rem 3.5rem !important;
-        border-radius: 6px;
+
+        &:last-child{
+            background:linear-gradient(to right, #C77839, #D79D45);
+            font-weight: 600;
+            padding:1.2rem 3.5rem !important;
+            border-radius: 6px;
+        }
+       
     }
-    label {
+    label, p {
         font-size: 1.1rem;
-        color: rgb(87, 85, 85);
+        color: rgb(44, 44, 44);
     }
 
     h2 {
@@ -53,7 +64,7 @@
     }
 
     h4 {
-        color: #4b4a49;
+        color: #2e2e2e;
     }
 }
 .service-content{

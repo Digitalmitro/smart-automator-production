@@ -7,14 +7,6 @@ import project3 from "../assets/Rectangle 15 (1).png";
 import project4 from "../assets/Rectangle 15 (2).png";
 import project5 from "../assets/Rectangle 15.png";
 import project6 from "../assets/Rectangle 9.png";
-import tab1 from "../assets/tab1.png";
-import tab2 from "../assets/tab2.png";
-import tab3 from "../assets/tab3.png";
-import tab4 from "../assets/Rectangle10.png";
-import tab5 from "../assets/MaskGroup.jpg";
-import blog1 from "../assets/blog1 (1).png";
-import blog2 from "../assets/blog2.png";
-import blog3 from "../assets/blog3.png";
 import $ from "jquery";
 
 import AOS from "aos";
@@ -32,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate()
   const { scrollYProgress } = useScroll();
+  const [blogs, setBlogs] = useState()
   AOS.init();
 
   $(document).ready(function () {
@@ -55,6 +48,8 @@ const Home = () => {
 
   const [homeData, setHomeData] = useState(null);
   const [serviceCategories, setServiceCategories] = useState(null);
+  const [service, setService] = useState(null);
+  const [featuredServices, setFeaturedServices] = useState(null);
 
   const getHomeContent = async () => {
     await axios
@@ -80,9 +75,38 @@ const Home = () => {
       });
   };
 
+  const getBlogs = async () => {
+    await axios
+      .get(`${import.meta.env.VITE_SOME_KEY}/blog`)
+      .then((res) => {
+        console.log("blogssss", res.data.blog);
+        setBlogs(res.data.blog);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const getService = async () => {
+    await axios
+      .get(`${import.meta.env.VITE_SOME_KEY}/client/services`)
+      .then((res) => {
+        console.log("res?.data", res?.data.services);
+        const isFeatured = res?.data?.services.filter((item) =>  item.isFeatured)
+        console.log("isFeatured", isFeatured)
+        setService(res?.data?.services);
+        setFeaturedServices(isFeatured)
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   useEffect(() => {
     getHomeContent();
     getServiceCategories();
+    getService()
+    getBlogs()
   }, []);
 
   return (
@@ -758,7 +782,9 @@ const Home = () => {
           </motion.h2>
 
           <div className="row" style={{ rowGap: "20px" }}>
-            <motion.div
+           {featuredServices?.map((serviceList) => (
+            <>
+             <motion.div
               class="col-md-4 mb-4 "
               style={{ columnGap: "60px" }}
               initial={{ y: -10 }}
@@ -777,11 +803,12 @@ const Home = () => {
                 class="card project-card mx-5"
                 data-aos="fade-up"
                 data-aos-duration="1300"
+                onClick={() => navigate(`/servicedetails/${serviceList._id}`)}
               >
-                <img src={project1} alt="Product 1" class="card-img-top" />
-                <div class="card-body project-card">
+                <img src={serviceList.image} alt="Product 1" class="card-img-top" />
+                <div class="card-body ">
                   <h6 class="card-title text-center fw-bold">
-                    Smart Home Devices
+                   {serviceList.serviceName}
                   </h6>
                   <p class="card-text text-center pb-4">
                     Projects starting at $49
@@ -789,169 +816,9 @@ const Home = () => {
                 </div>
               </div>
             </motion.div>
-            <motion.div
-              class="col-md-4 mb-4"
-              initial={{ y: -10 }}
-              animate={{ y: 10 }}
-              whileHover={{
-                y: -10,
-                transition: {
-                  type: "smooth",
-                  repeatType: "mirror",
-                  duration: 0.8,
-                  repeat: 1,
-                },
-              }}
-            >
-              <div
-                class="card project-card mx-5"
-                data-aos="fade-up"
-                data-aos-delay="200"
-                data-aos-duration="1300"
-              >
-                <img
-                  src={project2}
-                  alt="Product 2"
-                  class="card-img-top"
-                  // style={{whiteSpace: "nowrap"}}
-                />
-                <div class="card-body project-card">
-                  <h6
-                    class="card-title text-center fw-bold"
-                    // style={{whiteSpace: "nowrap"}}
-                  >
-                    Home Automation Services
-                  </h6>
-                  <p class="card-text text-center pb-4">
-                    Projects starting at $49
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-            <motion.div
-              class="col-md-4 mb-4"
-              initial={{ y: -10 }}
-              animate={{ y: 10 }}
-              whileHover={{
-                y: -10,
-                transition: {
-                  type: "smooth",
-                  repeatType: "mirror",
-                  duration: 0.8,
-                  repeat: 1,
-                },
-              }}
-            >
-              <div
-                class="card project-card mx-5"
-                data-aos="fade-up"
-                data-aos-delay="400"
-                data-aos-duration="1300"
-              >
-                <img src={project3} alt="Product 3" class="card-img-top" />
-                <div class="card-body project-card">
-                  <h6 class="card-title text-center fw-bold">
-                    Energy management
-                  </h6>
-                  <p class="card-text text-center pb-4">
-                    Projects starting at $49
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-            <motion.div
-              class="col-md-4 mb-4"
-              initial={{ y: -10 }}
-              animate={{ y: 10 }}
-              whileHover={{
-                y: -10,
-                transition: {
-                  type: "smooth",
-                  repeatType: "mirror",
-                  duration: 0.8,
-                  repeat: 1,
-                },
-              }}
-            >
-              <div
-                class="card project-card mx-5"
-                data-aos="fade-up"
-                data-aos-delay="600"
-                data-aos-duration="1300"
-              >
-                <img src={project4} alt="Product 4" class="card-img-top" />
-                <div class="card-body project-card">
-                  <h6 class="card-title text-center fw-bold">
-                    Security and Surveillance
-                  </h6>
-                  <p class="card-text text-center pb-4">
-                    Projects starting at $49
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-            <motion.div
-              class="col-md-4 mb-4"
-              initial={{ y: -10 }}
-              animate={{ y: 10 }}
-              whileHover={{
-                y: -10,
-                transition: {
-                  type: "smooth",
-                  repeatType: "mirror",
-                  duration: 0.8,
-                  repeat: 1,
-                },
-              }}
-            >
-              <div
-                class="card project-card mx-5"
-                data-aos="fade-up"
-                data-aos-delay="800"
-                data-aos-duration="1300"
-              >
-                <img src={project5} alt="Product 5" class="card-img-top" />
-                <div class="card-body project-card">
-                  <h6 class="card-title text-center fw-bold">
-                    Integration and Compatibility
-                  </h6>
-                  <p class="card-text text-center pb-4">
-                    Projects starting at $49
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-            <motion.div
-              class="col-md-4 mb-4"
-              initial={{ y: -10 }}
-              animate={{ y: 10 }}
-              whileHover={{
-                y: -10,
-                transition: {
-                  type: "smooth",
-                  repeatType: "mirror",
-                  duration: 0.8,
-                  repeat: 1,
-                },
-              }}
-            >
-              <div
-                class="card project-card mx-5"
-                data-aos="fade-up"
-                data-aos-delay="1000"
-                data-aos-duration="1300"
-              >
-                <img src={project6} alt="Product 6" class="card-img-top" />
-                <div class="card-body project-card">
-                  <h6 class="card-title text-center fw-bold">
-                    Professional installation
-                  </h6>
-                  <p class="card-text text-center pb-4">
-                    Projects starting at $49
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+            </>
+           ))}
+          
           </div>
         </div>
       </section>
@@ -1244,8 +1111,8 @@ const Home = () => {
           </h1>
 
           <div className="row pt-2" >
-            {homeData?.blogs &&
-              homeData?.blogs.map((blog, index) => (
+            {blogs?.length >= 0 &&
+              blogs?.map((blog, index) => (
                 <div
                   key={index}
                   onClick={() => navigate(`/blogdetails/${blog._id}`)}
@@ -1255,7 +1122,7 @@ const Home = () => {
                   data-aos-duration="2000"
                 >
                   <div className="card blog-card shadow mb-5 bg-body rounded m-4"
-                  style={{maxWidth: "500px",  height:"420px"}}>
+                  style={{maxWidth: "380px",  height:"420px"}}>
                     <img
                       src={blog.images[0]}
                       alt={blog.title}

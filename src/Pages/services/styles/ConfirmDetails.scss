@@ -1,12 +1,8 @@
-
-
-
-
 .confirmDetails{
     box-shadow: inset 2px 2px 10px rgb(49, 49, 47), inset -1px -1px 5px rgba(26, 25, 25, 0.6);
     border-radius: 10px;
     border-color: 1px solid grey;
-    padding: 1rem;
+    // padding: 1rem;
     background-color: rgb(193 171 130) !important;
 h3{
     font-size: 1.6rem;
@@ -48,8 +44,11 @@ h4{
 .ProfileDetails, .rate{
     margin: 2rem 0rem;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
-    padding: 1rem;
-    background-color: #fff9ed !important;
+    padding: 2rem 4rem ;
+    max-width: 980px;
+    margin:auto;
+    margin-block: 2rem;
+    background-color: #fdfbf6 !important;
 }
 .rate, .timeLocation{
     margin: 3rem 2rem !important;
@@ -71,12 +70,15 @@ h4{
     }
    
 }
- .confirmDetails button {
-          border: none;
-    border-radius: .6rem;
-    color: rgb(255 255 255) !important;
-    background-color: #5f3e04;
-    padding: .3rem 5rem;
+ .confirmDetails .confirm-button {
+ 
+        border: none;
+        border-radius: .6rem;
+        color: rgb(255 255 255) !important;
+        background-color: #5f3e04;
+        padding: .3rem 5rem;
+    
+        
     }
   
 @media (max-width:978px){

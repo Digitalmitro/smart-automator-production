@@ -60,8 +60,7 @@ const [activeTab, setActiveTab] = useState()
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const [searchParams] = useSearchParams();
-  const initialTab = parseInt(searchParams.get('tab'), 10) || 0;
-  const [value, setValue] = useState(initialTab);
+  const [value, setValue] = useState(0);
 
 
   const location = useLocation();
@@ -79,15 +78,18 @@ const [activeTab, setActiveTab] = useState()
   const closeLogoutModal = () => {
     setShowLogoutModal(false); // Hide modal
   };
-
+console.log(location.state)
   useEffect(() => {
-    const storedValue = localStorage.getItem("tabIndex");
-    if (storedValue !== null) {
-      setValue(parseInt(storedValue, 10));
+    const stateTabIndex = location.state?.tabIndex;
+    if (stateTabIndex !== undefined) {
+      setValue(stateTabIndex); // Set tab based on location state
     } else {
-      setValue(initialTab); // Set tab based on query param
+      const storedValue = localStorage.getItem("tabIndex");
+      if (storedValue !== null) {
+        setValue(parseInt(storedValue, 10));
+      }
     }
-  }, [initialTab]);
+  }, [location.state]);
 
   const handleOrderDetails = async () => {
     try {
@@ -101,7 +103,6 @@ const [activeTab, setActiveTab] = useState()
       console.log(error);
     }
   };
-
   React.useEffect(() => {
     handleOrderDetails();
   }, []);
