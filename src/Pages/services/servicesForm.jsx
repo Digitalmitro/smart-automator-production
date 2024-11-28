@@ -35,6 +35,9 @@ const servicedetails = () => {
   const { serviceid } = useParams()
 
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
+  const { categories, loading: categoriesLoading, error: categoriesError } = useSelector((state) => state.serviceCategories);
+  const getCategories = categories?.filter((info) => info._id === serviceid )
+
   const [defaultAddress, setDefaultAddress] = useState()
 
   const getServices = services?.filter((info) => info._id === serviceid)
@@ -137,7 +140,7 @@ const servicedetails = () => {
     <>
       <section className="services-banner py-5" >
         <div className=" services-form container pb-5">
-          <h2 className=" py-5 fw-bold">{getServices[0]?.serviceName || "Loading..."}</h2>
+          <h2 className=" py-5 fw-bold">{getServices[0]?.serviceName || getCategories[0]?.name || "Loading..."}</h2>
 
           <div className="form-box">
             <h3 className="mb-3" ><b>Your task location</b></h3>

@@ -10,7 +10,7 @@ const Tasker = () => {
                         <div class="col-md-6 py-5">
                             <div className="tasker-form">
                                 <h2 className="fw-bold fs-1 text">Earn money your way</h2>
-                                <p style={{fontSize:"18px"}}>See how much you can make tasking on TaskRabbit</p>
+                                <p style={{fontSize:"18px"}}>See how much you can make tasking on Smart Automator</p>
                                 <div className="tasker-form-select">
                                    <label><b>Select your area</b></label>
                                 <select class="form-select" aria-label="Default select example">

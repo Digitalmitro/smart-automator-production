@@ -1,6 +1,6 @@
 import React from 'react'
-import './Styles/TermsAndPolicy.scss'
-export const TermsAndprivacy = () => {
+import './Styles/TermsOfService.scss'
+export const TermsOfService = () => {
     return (
         <div className='termsandprivacy d-flex mt-5'>
             <Sidebar />
@@ -12,32 +12,8 @@ export const TermsAndprivacy = () => {
 export const Sidebar = () => {
     return (
         <div className='sidebar'>
-            <h3>Articles in this section</h3>
-            <h4>
-                Global Terms Of Services
-            </h4>
-            <p>
-                Global Privacy Policy
-            </p>
-            <p>
-                Happiness Pledge
-            </p>
-            <p>Global Cookie Policy </p>
-            <p>Platform Acceptable USe Privacy</p>
-            <p> Cancellation Supplement Terms</p>
-            <p>Contact Details </p>
-            <p>SMS erms and condition </p>
-            <p>referal Program</p>
-        </div>
-    )
-}
-export const MainContent = () => {
-
-    return (
-        <div className='main-content'>
-            <h1>Smart Automator Global Terms of Service</h1>
-            <div>
-                <ol>
+            <h3>Global Terms Of Service</h3>
+            <ol>
                     <li>
                         1. The Platform.
                     </li>
@@ -52,6 +28,16 @@ export const MainContent = () => {
                         11. Copyright Complaints and Copyright Agent.
                     </li>
                 </ol>
+        </div>
+    )
+}
+export const MainContent = () => {
+
+    return (
+        <div className='main-content'>
+            <h1>Smart Automator Global Terms of Service</h1>
+            <div>
+               
             </div>
             <div>
                 <p>
@@ -64,8 +50,8 @@ export const MainContent = () => {
 
 
                 </p>
-                <p>These Terms, together with the Privacy Policy and the <a>Taskrabbit Happiness Pledge</a> (the “Happiness Pledge”) for the country in which the Task is performed (which are each incorporated by reference, and referred to collectively, herein as the <b>“Agreement”</b>), governs your access to and use of the Platform.  The Agreement also includes all other supplemental policies and terms referenced and/or linked to within these Terms or which are otherwise made available to you, all of which also apply to your use of the Platform and are incorporated into the Agreement by reference (including, without limitation, the IKEA Pre-Paid Assembly Service Terms and Conditions for IKEA Pre-paid Assembly Tasks, as applicable ). </p>
-                <p>FOR U.S. AND CANADIAN USERS, SECTION 24 CONTAINS AN ARBITRATION AGREEMENT. THIS ARBITRATION AGREEMENT, WITH LIMITED EXCEPTION, REQUIRES YOU TO SUBMIT DISPUTES AND CLAIMS YOU HAVE AGAINST TASKRABBIT TO BINDING AND FINAL ARBITRATION ON AN INDIVIDUAL BASIS. PLEASE READ IT CAREFULLY AS IT AFFECTS YOUR LEGAL RIGHTS, INCLUDING, IF APPLICABLE, YOUR RIGHT TO OPT OUT OF ARBITRATION.
+                <p>These Terms, together with the Privacy Policy and the <a>Smart Automator Happiness Pledge</a> (the “Happiness Pledge”) for the country in which the Task is performed (which are each incorporated by reference, and referred to collectively, herein as the <b>“Agreement”</b>), governs your access to and use of the Platform.  The Agreement also includes all other supplemental policies and terms referenced and/or linked to within these Terms or which are otherwise made available to you, all of which also apply to your use of the Platform and are incorporated into the Agreement by reference (including, without limitation, the IKEA Pre-Paid Assembly Service Terms and Conditions for IKEA Pre-paid Assembly Tasks, as applicable ). </p>
+                <p>FOR U.S. AND CANADIAN USERS, SECTION 24 CONTAINS AN ARBITRATION AGREEMENT. THIS ARBITRATION AGREEMENT, WITH LIMITED EXCEPTION, REQUIRES YOU TO SUBMIT DISPUTES AND CLAIMS YOU HAVE AGAINST Smart Automator TO BINDING AND FINAL ARBITRATION ON AN INDIVIDUAL BASIS. PLEASE READ IT CAREFULLY AS IT AFFECTS YOUR LEGAL RIGHTS, INCLUDING, IF APPLICABLE, YOUR RIGHT TO OPT OUT OF ARBITRATION.
 
                 </p>
                 <p>
@@ -83,15 +69,15 @@ export const MainContent = () => {
 
                 <h5>A. Online Marketplace.</h5>
                 <p>The Platform is an online web- and app-based two-sided marketplace which enables connections between Clients and Taskers. “Client(s)” are individuals and/or businesses seeking to obtain short-term services (“Task(s)”), and “Tasker(s)” are businesses seeking to perform Tasks for Clients.  Clients and Taskers are referred to herein together as “User(s)”. </p>
-                <p>Taskers are independent business owners, providing services under their own name or business name (and not under Taskrabbit’s name), using their own tools and supplies.  Taskers choose the applicable rates for Tasks, without deduction by Taskrabbit.  Taskers may (a) maintain a clientele without any restrictions from Taskrabbit; (b) offer and provide their services elsewhere, including through competing platforms; and (c) accept or reject Clients and Service Agreements (defined below). Taskers are independent contractors of Clients, and Clients are therefore clients of Taskers, not Taskrabbit.  </p>
+                <p>Taskers are independent business owners, providing services under their own name or business name (and not under Smart Automator’s name), using their own tools and supplies.  Taskers choose the applicable rates for Tasks, without deduction by Smart Automator.  Taskers may (a) maintain a clientele without any restrictions from Smart Automator; (b) offer and provide their services elsewhere, including through competing platforms; and (c) accept or reject Clients and Service Agreements (defined below). Taskers are independent contractors of Clients, and Clients are therefore clients of Taskers, not Smart Automator.  </p>
 
-                <p>Any reference to a Tasker being licensed or credentialed in some manner, or being "badged”, “reliable”, “reliability rate”, “elite”, “great value”, "background checked", “vetted” (or similar language) indicates only that the Tasker has completed a relevant user account registration process or met certain criteria and does not, and shall not be deemed to, represent anything else. Any such description: (i) is intended to be useful information for Clients to evaluate when they make their own decisions about the identity and suitability of Taskers whom they select or interact, or contract with via the Platform; and (ii) is not an endorsement, certification or guarantee by Taskrabbit of a Tasker’s skills or qualifications or whether they are licensed, insured, trustworthy, safe or suitable.  </p>
+                <p>Any reference to a Tasker being licensed or credentialed in some manner, or being "badged”, “reliable”, “reliability rate”, “elite”, “great value”, "background checked", “vetted” (or similar language) indicates only that the Tasker has completed a relevant user account registration process or met certain criteria and does not, and shall not be deemed to, represent anything else. Any such description: (i) is intended to be useful information for Clients to evaluate when they make their own decisions about the identity and suitability of Taskers whom they select or interact, or contract with via the Platform; and (ii) is not an endorsement, certification or guarantee by Smart Automator of a Tasker’s skills or qualifications or whether they are licensed, insured, trustworthy, safe or suitable.  </p>
 
                 <h5>B. Smart Automator Role.</h5>
-                <p>The Platform is not an employment agency service or business, and Taskrabbit is not an employer of any User. Users are not employees, partners, representatives, agents, joint venturers, independent contractors or franchisees of Taskrabbit.
+                <p>The Platform is not an employment agency service or business, and Smart Automator is not an employer of any User. Users are not employees, partners, representatives, agents, joint venturers, independent contractors or franchisees of Smart Automator.
 
                 </p>
-                <p>Users hereby acknowledge and agree that (a) Taskrabbit does not (i) perform Tasks nor employ individuals to perform Tasks, (ii) supervise, scope, direct, control or monitor Taskers’ work (including that Taskrabbit does not set Taskers’ work locations, work hours, or terms of work), nor provide tools or supplies to, or pay any expenses of, Taskers, or (iii) have any control over the quality, timing, legality, failure to provide, or any other aspect whatsoever of Tasks or Users (or the acts or omissions thereof), nor of the integrity, responsibility, competence, qualifications, communications, or the ratings or reviews provided by Users with respect to each other; and (b) the formation of a Service Agreement will not, under any circumstances, create any responsibility or liability for Taskrabbit, nor any employment or other relationship between Taskrabbit and the Users or between the Client and the Tasker.  Users do not have authority to, and may not act as agent for, nor bind or make any representations on behalf of, Taskrabbit (including that Taskers may not modify all or any part of the Taskrabbit fees (see Section 3 below).
+                <p>Users hereby acknowledge and agree that (a) Smart Automator does not (i) perform Tasks nor employ individuals to perform Tasks, (ii) supervise, scope, direct, control or monitor Taskers’ work (including that Smart Automator does not set Taskers’ work locations, work hours, or terms of work), nor provide tools or supplies to, or pay any expenses of, Taskers, or (iii) have any control over the quality, timing, legality, failure to provide, or any other aspect whatsoever of Tasks or Users (or the acts or omissions thereof), nor of the integrity, responsibility, competence, qualifications, communications, or the ratings or reviews provided by Users with respect to each other; and (b) the formation of a Service Agreement will not, under any circumstances, create any responsibility or liability for Smart Automator, nor any employment or other relationship between Smart Automator and the Users or between the Client and the Tasker.  Users do not have authority to, and may not act as agent for, nor bind or make any representations on behalf of, Smart Automator (including that Taskers may not modify all or any part of the Smart Automator fees (see Section 3 below).
 
                 </p>
                 <h5><b>c. License</b></h5>
@@ -109,7 +95,7 @@ export const MainContent = () => {
                         have the right, authority and capacity to enter into the Agreement (including that you have the right and authority to act on behalf of, and bind to the Agreement, any company or organization on whose behalf you are entering into the Agreement);
                     </li>
                     <li>will only request and/or perform (as applicable) Tasks in a country where the Platform has a presence;</li>
-                    <li>will respect the privacy (including, without limitation, private, family and home life), property, and data protection rights of Users and will not record (whether video or audio or otherwise) any Task or any interaction by or with any User and/or Taskrabbit without obtaining the prior written consent of Taskrabbit and/or the relevant User, as applicable;</li>
+                    <li>will respect the privacy (including, without limitation, private, family and home life), property, and data protection rights of Users and will not record (whether video or audio or otherwise) any Task or any interaction by or with any User and/or Smart Automator without obtaining the prior written consent of Smart Automator and/or the relevant User, as applicable;</li>
                     <li>will act professionally and responsibly in your interactions with, and fulfill the commitments you make to, other Users (including by communicating clearly and promptly through the Chat Thread, and being present and/or available at the time you agree upon with other Users); </li>
                     <li>will only utilize the third-party PSP (as defined in the Fees, <a href=''>Payments and Cancellation Supplemental Terms</a>) to make or receive payment for Tasks;
                         will use your legal name and/or legal business name (as per your government issued identification and registration documents) and an up-to-date photo on your profile;</li>
@@ -128,7 +114,7 @@ export const MainContent = () => {
                     <li>have and will maintain (at your own expense) any licenses, permits, and/or registrations required by applicable laws that apply to your performance of Tasks (including, as applicable, a business license, business tax registration, and/or contractor’s license);</li>
                     <li>have and will maintain all insurance required to operate your business and perform the Tasks;</li>
                     <li>will respond to invitations promptly; provide timely, high-quality services for your Clients as agreed in the Chat Thread (defined below); only offer and provide Tasks for which you have the necessary expertise to perform; and perform the Tasks as agreed upon with your Client in a safe manner; and </li>
-                    <li>will promptly disclose to Taskrabbit in writing if you have any potentially relevant criminal convictions (other than minor fixed penalty parking or speeding offenses) that arise during your use of the Platform.</li>
+                    <li>will promptly disclose to Smart Automator in writing if you have any potentially relevant criminal convictions (other than minor fixed penalty parking or speeding offenses) that arise during your use of the Platform.</li>
                 </ul>
             </div>
         </div>

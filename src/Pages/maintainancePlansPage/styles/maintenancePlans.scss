@@ -1,0 +1,170 @@
+$primary-bg: #FFF8EB;
+$card-bg: #FFEDD5;
+$highlight-color: #FFB74D;
+$icon-color: #FF8C00;
+
+.maintenance-plans {
+  // background-color: $primary-bg;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  padding: 2rem;
+margin-top: 6rem;
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 2.5rem;
+      color: $icon-color;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+  }
+
+  .features {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+gap: 25px;
+    .feature-card {
+      background-color: $card-bg;
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      .icon {
+        font-size: 2.5rem;
+        color: $icon-color;
+        margin-bottom: 1rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #555;
+      }
+    }
+  }
+
+  .plans {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 2rem;
+      color: $icon-color;
+      margin-bottom: 1rem;
+    }
+
+    .plan-cards {
+      display: flex;
+      justify-content: space-around;
+
+      .plan-card {
+        background-color: $card-bg;
+        padding: 1.5rem;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.9s ease, background-color 0.9s ease;
+
+        &:hover {
+          transform: translateY(-10px);
+          background-color: lighten($card-bg, 10%);
+        }
+
+        &.popular {
+          border: 2px solid $highlight-color;
+        }
+
+        h3 {
+          font-size: 1.5rem;
+          color: $highlight-color;
+          margin-bottom: 0.5rem;
+        }
+
+        p {
+          font-size: 1rem;
+          margin: 0.5rem 0;
+        }
+
+        .price {
+          font-size: 1.8rem;
+          font-weight: bold;
+          color: $icon-color;
+          margin-bottom: 1rem;
+        }
+
+        button {
+          background-color: $icon-color;
+          color: white;
+          border: none;
+          padding: 0.8rem 1.5rem;
+          border-radius: 5px;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+
+          &:hover {
+            background-color: darken($icon-color, 10%);
+          }
+        }
+      }
+    }
+  }
+
+  .signup {
+    text-align: center;
+    margin-top: 2rem;
+
+    h2 {
+      font-size: 1.8rem;
+      color: $icon-color;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    button {
+      background-color: $highlight-color;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken($highlight-color, 10%);
+      }
+    }
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

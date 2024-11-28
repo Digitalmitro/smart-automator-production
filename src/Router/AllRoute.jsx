@@ -8,8 +8,6 @@ import {ServiceDetails} from "../Pages/services/ServiceDetails"
 import ServiceForm from "../Pages/services/servicesForm"
 import Profile from "../Pages/Profile";
 import Tasker from "../Pages/Tasker/Tasker";
-import TaskerLogin from "../Pages/Tasker/TaskerLogin";
-import TaskerSignup from "../Pages/Tasker/TaskerSignup";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import {Services} from "../Pages/services/Services";
@@ -19,9 +17,14 @@ import ImageUpload from "../Pages/imageUpload";
 import ConfirmDetails from "../Pages/services/ConfirmDetails";
 import OrderConfirmation from '../Pages/orderConfirmation'
 import { AboutUs } from "../Pages/AboutUs";
-import {TermsAndprivacy} from "../Pages/TermsAndprivacy"
+import {TermsOfService} from "../Pages/TermsOfService"
 import {ConfirmAndChat} from "../Pages/services/ConfirmAndChat";
 import { BlogDetails } from "../Pages/blogDetailsPage/BlogDetails";
+import {PricingPage} from "../Pages/PricingPlansPage";
+import MaintenancePlans from "../Pages/maintainancePlansPage/MaintainancePlansPage";
+import { FAQ } from "../Pages/FAQ/FAQ";
+import { PrivacyPolicy } from "../Pages/privacyPolicy/PrivacyPolicy";
+
 const AllRoute =()=>{
     return (
         <>
@@ -34,7 +37,8 @@ const AllRoute =()=>{
         <Route path="/taskdetails" element={<TaskDetails />}>TaskDetails</Route>
         <Route path="/profile" element={< Profile />}>Profile</Route>
         <Route path="/Tasker" element={< Tasker />}>Tasker</Route>
-        <Route path="/termsandprivacy" element={< TermsAndprivacy />}>Terms And privacy</Route>
+        <Route path="/terms-of-service" element={< TermsOfService />}>Terms And privacy</Route>
+        <Route path="/privacy-policy" element={< PrivacyPolicy />}>Terms And privacy</Route>
         <Route path="/login" element={< Login />}>Tasker Login</Route>
         <Route path="/signup" element={< Signup />}>Tasker Signup</Route>
         <Route path="/services" element={<Services/>}> Services </Route>
@@ -47,6 +51,9 @@ const AllRoute =()=>{
         <Route path="/confirmandchat/:id" element={<ConfirmAndChat/>}>Confirm Details</Route>
         <Route path="/services/:id" element={<OrderConfirmation/>}>order confirmation</Route>
         <Route path="/blogdetails/:id" element={<BlogDetails/>}>Blog Details</Route>
+        <Route path="/pricing-plans/:id" element={<PricingPage/>}>Pricing Page</Route>
+        <Route path="/maintenance-plans/:id" element={<MaintenancePlans/>}>Maintenance Plans</Route>
+        <Route path="/faq" element={<FAQ/>}>Frequently Asked Questions</Route>
         </Routes>
         </>
     )

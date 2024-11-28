@@ -18,8 +18,8 @@ export const ServiceInfo = () => {
   const { categories, loading: categoriesLoading, error: categoriesError } = useSelector((state) => state.serviceCategories);
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
   const getCategories = categories?.filter((info) => info._id === id)
+
   const getServices = services?.filter((data)=> data.serviceCategory.name === getCategories[0].name)
-  console.log(getServices)
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -34,7 +34,8 @@ export const ServiceInfo = () => {
   if (categoriesError) return <p>Error: {categoriesError}</p>;
   if (servicesError) return <p>Error: {servicesError}</p>;
 
-
+ console.log("getServices", getCategories )
+ console.log("Services", services )
   return (
     <div className="service-info">
       <ServiceContent services={services} getCategories={getCategories} />
@@ -52,7 +53,7 @@ export const ServiceContent = ({ services, getCategories }) => {
   const navigate = useNavigate()
 
   return (
-    <div className="service-content">
+    <div className="service-content"  style={{ backgroundImage: `url(${getCategories[0]?.image || ''})`}}>
 
       {getCategories?.map((item) => {
         return (
@@ -61,7 +62,7 @@ export const ServiceContent = ({ services, getCategories }) => {
             <p>
               {item.description}
             </p>
-            <button onClick={() => navigate(`/serviceform/${item._id}`)}>Book now</button>
+            <button onClick={() => navigate(`/maintenance-plans/${item._id}`)}>Book now</button>
           </div>
         )
       })}

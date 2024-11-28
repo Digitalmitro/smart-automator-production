@@ -1,9 +1,8 @@
+import { Link } from "react-router-dom";
 import logo from "../assets/logo 1.png";
 const Footer = () => {
     return (
         <>
-       
-
             <footer>
             <div className="footer-bg" style={{width:"100%",padding:"70px 50px", backgroundColor:"#121212",color:"#fff"}}>
                 <div className="container">
@@ -18,7 +17,6 @@ const Footer = () => {
                                 <i class="fa-brands fa-x-twitter"></i>
                                 <i class="fa-brands fa-linkedin"></i>
                             </div>
-
                         </div>
 
                         <div className="col-md-3">
@@ -28,7 +26,8 @@ const Footer = () => {
                                 <li><a href="">Chicken Tinga nachos</a></li>
                                 <li><a href="">Pork chops</a></li>
                                 <li><a href="">Wraps</a></li>
-                                <li><a href="/termsandprivacy">Terms and privacy</a></li>
+                                <li><a href="/terms-of-service">Terms Of Service</a></li>
+                                <li><a href="/privacy-policy">privacy privacy</a></li>
                             </ul>
                         </div>
 
@@ -39,6 +38,7 @@ const Footer = () => {
                                 <li><a href="">Home</a></li>
                                 <li><a href="">About us</a></li>
                                 <li><a href="">Blog</a></li>
+                                <li> <Link to="/faq" style={{color:"white"}}> FAQ</Link></li>
                                 <li><a href="">Contact Us</a></li>
                             </ul>
                         </div>
@@ -48,8 +48,8 @@ const Footer = () => {
                             <hr style={{ width: "50%", color:"#F9AC25"}} />
                             <ul>
                                 <li> <i class="fa-solid fa-phone"></i> <span style={{ marginLeft: "7px" }}>+1 405 638-5343</span></li>
-                                <li><i class="fa-regular fa-envelope"></i> homeautomator@gmail.com</li>
-                                <li><i class="fa-solid fa-location-dot"></i> 2919 nW Cache rd, lawton, oK 73505,
+                                <li><i class="fa-regular fa-envelope"></i>homeautomator@gmail.com</li>
+                                <li><i class="fa-solid fa-location-dot"></i>2919 nW Cache rd, lawton, oK 73505,
                                     United States</li>
                             </ul>
                         </div>
