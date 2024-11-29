@@ -1,6 +1,6 @@
 import { message } from "antd";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -27,14 +27,18 @@ const Signup = () => {
     await axios
       .post(`${import.meta.env.VITE_SOME_KEY}/registerclient`, credentials)
       .then((res) => {
-        console.log(res.data)
-        navigate('/login')
+        console.log(res.data);
+        navigate("/login");
       })
       .catch((e) => {
         console.log(e);
         message.warning("signup unsuccessful");
       });
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

@@ -68,7 +68,9 @@ export const BlogDetails = () => {
         <div className="relatedBlogs">
           <h3>Related Blogs</h3>
           <div className="relatedBlogList">
-            {blogs?.map((list) => (
+            {blogs?.filter((el) => {
+              return el._id !== id
+            }).map((list) => (
               <Link
                 to={`/blogdetails/${list._id}`}
                 style={{ textDecoration: "none" }}

@@ -50,6 +50,7 @@ const Home = () => {
   const [serviceCategories, setServiceCategories] = useState(null);
   const [service, setService] = useState(null);
   const [featuredServices, setFeaturedServices] = useState(null);
+  const [testimonials, setTestimonials] = useState([]);
 
   const getHomeContent = async () => {
     await axios
@@ -69,6 +70,18 @@ const Home = () => {
       .then((res) => {
         console.log(res.data);
         setServiceCategories(res.data.categories);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const getTestimonials = async () => {
+    await axios
+      .get(`${import.meta.env.VITE_SOME_KEY}/get-testimonials`)
+      .then((res) => {
+        console.log(res.data);
+        setTestimonials(res.data.testimonials);
       })
       .catch((e) => {
         console.log(e);
@@ -108,6 +121,7 @@ const Home = () => {
     getHomeContent();
     getServiceCategories();
     getService();
+    getTestimonials();
     // getBlogs()
   }, []);
 
@@ -912,11 +926,11 @@ const Home = () => {
             data-aos-delay="100"
             data-aos-duration="2000"
           >
-            What Our Client Say
+            What Our Clients Say
           </h1>
           <div class="gradient-custom">
             <div
-              class="container "
+              class="container"
               data-aos="zoom-in"
               data-aos-delay="100"
               data-aos-duration="2000"
@@ -933,127 +947,57 @@ const Home = () => {
                         id="carouselDarkVariant"
                         class="carousel slide carousel-dark"
                         data-bs-ride="carousel"
+                        data-bs-interval="5000"
                       >
                         <div class="carousel-indicators mb-0">
-                          <button
-                            type="button"
-                            data-bs-target="#carouselDarkVariant"
-                            data-bs-slide-to="0"
-                            class="active"
-                            aria-current="true"
-                            aria-label="Slide 1"
-                          ></button>
-                          <button
-                            type="button"
-                            data-bs-target="#carouselDarkVariant"
-                            data-bs-slide-to="1"
-                            aria-label="Slide 2"
-                          ></button>
-                          <button
-                            type="button"
-                            data-bs-target="#carouselDarkVariant"
-                            data-bs-slide-to="2"
-                            aria-label="Slide 3"
-                          ></button>
+                          {testimonials?.map((el, index) => (
+                            <button
+                              key={index} // Ensure unique key for each indicator
+                              type="button"
+                              data-bs-target="#carouselDarkVariant"
+                              data-bs-slide-to={index}
+                              className={index === 0 ? "active" : ""} // Set active for the first indicator
+                              aria-current={index === 0 ? "true" : "false"}
+                              aria-label={`Slide ${index + 1}`} // Adjust slide label dynamically
+                            ></button>
+                          ))}
                         </div>
 
                         <div class="carousel-inner pb-5">
-                          <div class="carousel-item active">
-                            <div class="row d-flex justify-content-center">
-                              <div class="col-lg-10 col-xl-8">
-                                <div class="row">
-                                  <div class="col-lg-4 d-flex justify-content-center">
-                                    <img
-                                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
-                                      class="rounded-circle shadow-1 mb-4 mb-lg-0"
-                                      alt="woman avatar"
-                                      width="150"
-                                      height="150"
-                                    />
-                                  </div>
-                                  <div class="col-9 col-md-9 col-lg-7 col-xl-8 text-center text-lg-start mx-auto mx-lg-0">
-                                    <h4 class="mb-4">
-                                      Maria Smantha - Web Developer
-                                    </h4>
-                                    <p class="mb-0 pb-3">
-                                      Lorem ipsum dolor sit amet, consectetur
-                                      adipisicing elit. A aliquam amet animi
-                                      blanditiis consequatur debitis dicta
-                                      distinctio, enim error eum iste libero
-                                      modi nam natus perferendis possimus quasi
-                                      sint sit tempora voluptatem. Est,
-                                      exercitationem id ipsa ipsum laboriosam
-                                      perferendis.
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="carousel-item">
-                            <div class="row d-flex justify-content-center">
-                              <div class="col-lg-10 col-xl-8">
-                                <div class="row">
-                                  <div class="col-lg-4 d-flex justify-content-center">
-                                    <img
-                                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
-                                      class="rounded-circle shadow-1 mb-4 mb-lg-0"
-                                      alt="woman avatar"
-                                      width="150"
-                                      height="150"
-                                    />
-                                  </div>
-                                  <div class="col-9 col-md-9 col-lg-7 col-xl-8 text-center text-lg-start mx-auto mx-lg-0">
-                                    <h4 class="mb-4">
-                                      Lisa Cudrow - Graphic Designer
-                                    </h4>
-                                    <p class="mb-0 pb-3">
-                                      Sed ut perspiciatis unde omnis iste natus
-                                      error sit voluptatem accusantium
-                                      doloremque laudantium, totam rem aperiam,
-                                      eaque ipsa quae ab illo inventore
-                                      veritatis et quasi architecto beatae vitae
-                                      dicta sunt explicabo. Nemo enim ipsam
-                                      voluptatem quia voluptas sit aspernatur.
-                                    </p>
+                          {testimonials?.map((testimonial, idx) => {
+                            return (
+                              <div
+                                key={testimonial.id || idx}
+                                className={`carousel-item ${
+                                  idx === 0 ? "active" : ""
+                                }`}
+                              >
+                                <div class="row d-flex justify-content-center">
+                                  <div class="col-lg-10 col-xl-8">
+                                    <div class="row">
+                                      <div class="col-lg-4 d-flex justify-content-center">
+                                        <img
+                                          src={testimonial.image}
+                                          class="rounded-circle shadow-1 mb-4 mb-lg-0"
+                                          alt="woman avatar"
+                                          width="150"
+                                          height="150"
+                                        />
+                                      </div>
+                                      <div class="col-9 col-md-9 col-lg-7 col-xl-8 text-center text-lg-start mx-auto mx-lg-0">
+                                        <h4 class="mb-4">
+                                          {testimonial.title}
+                                        </h4>
+                                        <p class="mb-0 pb-3">
+                                          {testimonial.description}
+                                        </p>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-
-                          <div class="carousel-item">
-                            <div class="row d-flex justify-content-center">
-                              <div class="col-lg-10 col-xl-8">
-                                <div class="row">
-                                  <div class="col-lg-4 d-flex justify-content-center">
-                                    <img
-                                      src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp"
-                                      class="rounded-circle shadow-1 mb-4 mb-lg-0"
-                                      alt="woman avatar"
-                                      width="150"
-                                      height="150"
-                                    />
-                                  </div>
-                                  <div class="col-9 col-md-9 col-lg-7 col-xl-8 text-center text-lg-start mx-auto mx-lg-0">
-                                    <h4 class="mb-4">
-                                      John Smith - Marketing Specialist
-                                    </h4>
-                                    <p class="mb-0 pb-3">
-                                      At vero eos et accusamus et iusto odio
-                                      dignissimos qui blanditiis praesentium
-                                      voluptatum deleniti atque corrupti quos
-                                      dolores et quas molestias excepturi sint
-                                      occaecati cupiditate non provident,
-                                      similique sunt in culpa qui officia
-                                      mollitia animi id laborum et dolorum fuga.
-                                    </p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                            );
+                          })}
                         </div>
 
                         <button
@@ -1171,7 +1115,7 @@ const Home = () => {
               <input
                 type="text"
                 class="form-control footer-input"
-                placeholder="serach"
+                placeholder="search"
                 aria-label="search"
                 aria-describedby="basic-addon1"
               />
@@ -1184,6 +1128,7 @@ const Home = () => {
                   borderRadius: "20px",
                   border: "2px solid grey",
                 }}
+                onClick={() => navigate("/signup")}
               >
                 <strong style={{ color: "grey" }}>SIGN UP</strong>
               </button>
