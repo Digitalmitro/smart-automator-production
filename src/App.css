@@ -535,6 +535,14 @@ input[type=range]:focus::-ms-fill-upper {
   z-index: 3;
 }
 
+table , td, th{
+  caption-side: bottom;
+  border-collapse: separate;
+
+  /* border: 10px solid rgb(209, 20, 20) !important ; */
+
+}
+
 /* media query for tab view */
 
 @media (min-width:960px) and (max-width:1140px) {

@@ -39,7 +39,7 @@ export const ServiceDetails = () => {
               <p>
                 {item?.shortDescription}
               </p>
-              <button onClick={() => navigate(`/pricing-plans/${item._id}`)}>Book now</button>
+              <button onClick={() => navigate(`/serviceform/${item._id}`)}>Book now</button>
 
             </div>
           )

@@ -21,7 +21,7 @@ import {TermsOfService} from "../Pages/TermsOfService"
 import {ConfirmAndChat} from "../Pages/services/ConfirmAndChat";
 import { BlogDetails } from "../Pages/blogDetailsPage/BlogDetails";
 import {PricingPage} from "../Pages/PricingPlansPage";
-import MaintenancePlans from "../Pages/maintainancePlansPage/MaintainancePlansPage";
+import {MaintenancePlans} from "../Pages/maintainancePlansPage/MaintainancePlansPage";
 import { FAQ } from "../Pages/FAQ/FAQ";
 import { PrivacyPolicy } from "../Pages/privacyPolicy/PrivacyPolicy";
 
@@ -51,7 +51,8 @@ const AllRoute =()=>{
         <Route path="/confirmandchat/:id" element={<ConfirmAndChat/>}>Confirm Details</Route>
         <Route path="/services/:id" element={<OrderConfirmation/>}>order confirmation</Route>
         <Route path="/blogdetails/:id" element={<BlogDetails/>}>Blog Details</Route>
-        <Route path="/pricing-plans/:id" element={<PricingPage/>}>Pricing Page</Route>
+        <Route path="/pricing-plans" element={<PricingPage/>}>Pricing Page</Route>
+        <Route path="/maintenance-plans" element={<MaintenancePlans/>}>Maintenance Plans</Route>
         <Route path="/maintenance-plans/:id" element={<MaintenancePlans/>}>Maintenance Plans</Route>
         <Route path="/faq" element={<FAQ/>}>Frequently Asked Questions</Route>
         </Routes>

@@ -97,6 +97,28 @@ button {
     display: none;
    }
 
+
+
+   .navbar-nav .dropdown-menu {
+    background-color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-nav .dropdown-menu .dropdown-item {
+    color: #282936;
+    font-size: 14px;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #f7d976;
+    color: #ffffff;
+  }
+
+  
+  
    @media (max-width: 978px) {
     .navbar-btn {
         display: block;

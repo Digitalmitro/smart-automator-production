@@ -1,18 +1,18 @@
-$primary-color: #6ca86f;
+$primary-color: #4d4b4b;
 /* Bright green */
 $secondary-color: #ffffff;
-$accent-color: #996203;
+$accent-color: #524e48;
 /* Amber */
 $background-color: #f9f9f9;
-$text-color: #333;
+$text-color: #350101;
 
 .pricing-page {
-  margin-top: 6rem;
+  margin-top: 5rem;
   background-color: $background-color;
   font-family: 'Poppins', sans-serif;
-  padding: 2rem;
+  padding: 3rem;
   color: $text-color;
-
+background-color: #fcf8f2;
   .pricing-header {
     text-align: center;
     margin-bottom: 2.5rem;
@@ -29,116 +29,97 @@ $text-color: #333;
     }
   }
 
-  .pricing-breakdown {
-    margin-block: 4rem;
-
-    h2 {
-      font-size: 1.8rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      color: $primary-color;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1.5rem;
-      justify-content: center;
-      /* Aligns the grid items horizontally */
-      align-content: center;
-
-      .service-card {
-        background-color: $secondary-color;
-        max-width: 350px;
-        text-align: center;
-        border-radius: 8px;
-        border: 1px solid #f0c274;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-        background-color: #fff3df;
-
-        img {
-          overflow: hidden;
-          width: 100%;
-        }
-
-        .flex {
-          padding: 10px;
-          display: flex;
-          justify-content: center;
-          gap: 10px;
-
-          .icon {
-            width: 20px !important;
-            height: 20px !important;
-          }
-        }
-
-        &:hover {
-          transform: translateY(-5px);
-        }
-
-        .icon {
-          font-size: 2rem;
-          color: $accent-color;
-          margin-bottom: 0.5rem;
-        }
-
-        h3 {
-          font-size: 1.2rem;
-          margin: 0.5rem 0;
-          color: $primary-color;
-        }
-
-        p {
-          font-size: 1rem;
-          color: $text-color;
-        }
-      }
-    }
-  }
-
+ 
   .pricing-packages {
     margin: 5rem 0;
-
+margin-bottom: 8rem;
     h2 {
-      font-size: 1.8rem;
+      font-size: 2.2rem;
+      font-weight: 700;
       text-align: center;
-      margin-bottom: 1rem;
-      color: $primary-color;
+      margin: 2.5rem;
     }
 
     .package-grid {
       display: flex;
       gap: 1.5rem;
-      justify-content: center;
+      justify-content: space-around;
+      max-width: 1080px;
+      margin: auto;
 
       .package-card {
-
         background-color: $secondary-color;
-        padding: 1.5rem;
         text-align: center;
-        height: 400px;
         border-radius: 8px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease;
         border: 1px solid rgb(201, 201, 201);
         border-top: 1px solid transparent;
         border-top-color: rgb(201, 201, 201);
+        width: 330px;
+        box-shadow: 1px 1px 8px grey;
+
+        img {
+          width: 80px;
+          height: 80px;
+        }
+        .basicImage, .premImage{
+          width: 90px;
+          height: 90px;
+        }
+        
+
+        >div {
+          margin: 10px;
+        }
+
+        button {
+          padding: 5px 40px;
+          border: 1px solid rgb(197, 196, 196);
+          margin-bottom: 20px;
+          color: white;
+          font-weight: 700;
+          background-color: #FF7F45;
+          border-radius: 30px;
+        }
+
+        .features {
+          display: flex;
+          gap: 10px;
+          padding: 3px 10px;
+          text-align: start;
+        }
 
         &:hover {
           transform: translateY(-5px);
-          border-top: 5px solid $primary-color;
+          border-bottom: 5px solid $primary-color;
+          border-bottom-color: rgb(82, 80, 80);
+        }
 
-          border-top-color: $primary-color;
+        .Basic {
+          background-color: #ca5172;
+
+          &:hover {
+            transform: translateY(-5px);
+          }
+        }
+
+        .Advance {
+          background-color: #307AAB;
+        }
+
+        .premium {
+          background-color: #53BBB4;
         }
 
         h3 {
-          font-size: 1.8rem;
+          font-size: 1.3rem;
           margin-bottom: 1rem;
           color: $accent-color;
-          font-weight: 700;
+          font-weight: 500;
           letter-spacing: 1px;
+          color: white;
+          padding: 10px;
         }
 
         p {
@@ -150,23 +131,26 @@ $text-color: #333;
         .price {
           font-size: 1.8rem;
           font-weight: bold;
-          color: $primary-color;
           margin-bottom: 2rem;
+          span{
+            font-size: 20px;
+          }
         }
 
         &.highlighted {
-          background-color: lighten($primary-color, 38%);
-          border-top-color: lighten($primary-color, 5%);
+          background-color: rgb(243, 243, 252);
+          border-top-color: lighten(black, 5%);
         }
       }
     }
   }
 
   .custom-quote {
+    margin: 2rem;
     h2 {
       font-size: 1.8rem;
       text-align: center;
-      margin-bottom: 1rem;
+      margin: 2rem;
       color: $primary-color;
     }
 
@@ -175,19 +159,28 @@ $text-color: #333;
       flex-direction: column;
       align-items: center;
       gap: 1rem;
-
+      // box-shadow: 1px 1px 5px grey;
+max-width: 500px;
+margin: auto;
+.flex{
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: space-between;
+}
       input,
       textarea {
         width: 100%;
-        max-width: 500px;
-        padding: 0.8rem;
+        // max-width: 500px;
+        padding: 0.3rem .8rem;
         border: 1px solid $primary-color;
-        border-radius: 5px;
-        background-color: $secondary-color;
+        border-radius: 25px;
+        background-color:white;
         font-size: 1rem;
 
-        &:focus {
-          border-color: $accent-color;
+        &:focus, &:hover {
+          border-color: #FF7F45;
+          box-shadow: 1px 1px 2px #FF7F45;
           outline: none;
         }
       }
@@ -200,8 +193,11 @@ $text-color: #333;
         color: $secondary-color;
         border: none;
         padding: 0.8rem 1.5rem;
-        border-radius: 5px;
+        border-radius: 25px;
         font-size: 1rem;
+        width: 100%;
+      
+
         cursor: pointer;
 
         .button-icon {
@@ -209,7 +205,11 @@ $text-color: #333;
         }
 
         &:hover {
-          background-color: $accent-color;
+          background-color:#FF7F45;
+          color: black;
+          border:1px solid #FF7F45;
+          box-shadow: 1px 1px 2px #fab99b;
+
         }
       }
     }
