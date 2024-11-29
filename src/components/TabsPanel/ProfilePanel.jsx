@@ -6,15 +6,25 @@ import "../Styles/Profile.scss";
 import axios from "axios";
 import { useEffect } from "react";
 
-
 import { useNavigate } from "react-router-dom";
-import { createStyles, useTheme } from 'antd-style';
-import { Row, Col, Button, ConfigProvider, Modal, Space, Form, Input, message, Upload } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import { createStyles, useTheme } from "antd-style";
+import {
+  Row,
+  Col,
+  Button,
+  ConfigProvider,
+  Modal,
+  Space,
+  Form,
+  Input,
+  message,
+  Upload,
+} from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 
 export const ProfilePanel = () => {
   const token = localStorage.getItem("token");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // const decodedToken = token && jwtDecode(token);
   // const user_id = decodedToken?._id;
   const [firstName, setFirstName] = useState();
@@ -35,7 +45,6 @@ export const ProfilePanel = () => {
     zip: "",
   });
 
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // const token = useTheme();
@@ -43,63 +52,61 @@ export const ProfilePanel = () => {
     setIsModalOpen(false);
   };
 
+  const getUser = async () => {
+    await axios
+      .get(`${import.meta.env.VITE_SOME_KEY}/get-client`, {
+        headers: { token },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setUser(res.data.user);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
-  // const getUser = async () => {
-  //   await axios
-  //     .get(`${import.meta.env.VITE_SOME_KEY}/get-client`, {
-  //       headers: { token },
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setUser(res.data.user);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // };
+  const handleClientsDetails = async (e) => {
+    e.preventDefault();
+    try {
+      const payload = {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        zip: user.zip,
+        phone: user.phone,
+        email: user.email,
+        newPassword: newPassword,
+        oldPassword: oldPassword,
+      };
+      const response = await axios.put(
+        `${import.meta.env.VITE_SOME_KEY}/updateclient`,
+        payload,
+        { headers: { token } }
+      );
 
-  // const handleClientsDetails = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const payload = {
-  //       firstName: user.firstName,
-  //       lastName: user.lastName,
-  //       zip: user.zip,
-  //       phone: user.phone,
-  //       email: user.email,
-  //       newPassword: newPassword,
-  //       oldPassword: oldPassword,
-  //     };
-  //     const response = await axios.put(
-  //       `${import.meta.env.VITE_SOME_KEY}/updateclient`,
-  //       payload,
-  //       { headers: { token } }
-  //     );
+      console.log(response);
 
-  //     console.log(response);
+      if (response.status === 200) {
+        setCallApi(!callApi);
+        message.success("Profile Updated successfully");
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 1200); // 1.2 seconds
+      } else {
+        message.error("An error occurred while updating the profile");
+      }
+    } catch (e) {
+      message.error(e.response.data.error);
+    }
+  };
 
-  //     if (response.status === 200) {
-  //       setCallApi(!callApi);
-  //       message.success("Profile Updated successfully");
-  //       // setTimeout(() => {
-  //       //   window.location.reload();
-  //       // }, 1200); // 1.2 seconds
-  //     } else {
-  //       message.error("An error occurred while updating the profile");
-  //     }
-  //   } catch (e) {
-  //     message.error(e.response.data.error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (token) {
-  //     getUser();
-  //   } else {
-  //     return navigate("/login");
-  //   }
-  // }, [token, callApi]);
-
+  useEffect(() => {
+    if (token) {
+      getUser();
+    } else {
+      return navigate("/login");
+    }
+  }, [token, callApi]);
 
   return (
     <>
@@ -113,24 +120,21 @@ export const ProfilePanel = () => {
                     <img src={profile} />
                   </div>
                   <div className="info col-md-6">
-
-                    <p >
-                      {/* {user?.firstName.toUpperCase()}{" "}
+                    <p>
+                      {user?.firstName.toUpperCase()}{" "}
                       {user?.lastName.toUpperCase()}
-                       */}
-                      <span>kajal gupta</span>
+                      {/* <span>kajal gupta</span> */}
                     </p>
                     <ul
                       style={{
                         marginTop: "10px",
                       }}
                     >
-                      {/* <li>{user?.email}</li>
-                      <li>{user?.phone}</li>
-                       */}
+                      <li>Email: {user?.email}</li>
+                      <li>Mobile: {user?.phone}</li>
 
-                      <li><span><b>Email :</b> </span>  <span>kajl@gmail.com </span></li>
-                      <li><span><b>Number :</b> </span> <span>21765 34876 345</span></li>
+                      {/* <li><span><b>Email :</b> </span>  <span>kajl@gmail.com </span></li>
+                      <li><span><b>Number :</b> </span> <span>21765 34876 345</span></li> */}
                     </ul>
                   </div>
                 </div>
@@ -144,12 +148,13 @@ export const ProfilePanel = () => {
                     type="button"
                     style={{ width: "100px", height: "35px", fontSize: "13px" }}
                     onClick={() => setIsModalOpen(true)}
-
-
                   >
                     EDIT PROFILE
                   </button>
-                  <AntDrawer isModalOpen={isModalOpen} toggleModal={toggleModal} />
+                  <AntDrawer
+                    isModalOpen={isModalOpen}
+                    toggleModal={toggleModal}
+                  />
                 </div>
               </div>
             </div>
@@ -286,66 +291,61 @@ export const ProfilePanel = () => {
 };
 
 const AntDrawer = ({ isModalOpen, toggleModal }) => {
-
   const modalStyles = {
     header: {
       // borderLeft: `5px solid ${token.colorPrimary}`,
       borderRadius: 0,
       paddingInlineStart: 5,
-      
     },
     body: {
-      boxShadow: 'inset 0 0 5px #999',
+      boxShadow: "inset 0 0 5px #999",
       borderRadius: 5,
-      padding:20,
+      padding: 20,
     },
     mask: {
-      backdropFilter: 'blur(10px)',
+      backdropFilter: "blur(10px)",
     },
     footer: {
-      borderTop: '1px solid #333',
+      borderTop: "1px solid #333",
     },
     content: {
-      boxShadow: '0 0 30px #999',
+      boxShadow: "0 0 30px #999",
     },
   };
 
   const useStyle = createStyles(({ token }) => ({
-    'my-modal-body': {
+    "my-modal-body": {
       background: token.blue1,
       padding: token.paddingSM,
     },
-    'my-modal-mask': {
+    "my-modal-mask": {
       boxShadow: `inset 0 0 15px #fff`,
     },
-    'my-modal-header': {
+    "my-modal-header": {
       borderBottom: `1px dotted ${token.colorPrimary}`,
     },
-    'my-modal-footer': {
+    "my-modal-footer": {
       color: token.colorPrimary,
     },
-    'my-modal-content': {
-      border: '1px solid #333',
+    "my-modal-content": {
+      border: "1px solid #333",
     },
   }));
   const { styles } = useStyle();
   const classNames = {
-    body: styles['my-modal-body'],
-    mask: styles['my-modal-mask'],
-    header: styles['my-modal-header'],
-    footer: styles['my-modal-footer'],
-    content: styles['my-modal-content'],
+    body: styles["my-modal-body"],
+    mask: styles["my-modal-mask"],
+    header: styles["my-modal-header"],
+    footer: styles["my-modal-footer"],
+    content: styles["my-modal-content"],
   };
-
 
   const handleFinish = async (values) => {
     try {
       // Assume API endpoint here for updating profile
-      await axios.put(
-        `${import.meta.env.VITE_SOME_KEY}/updateclient`,
-        values,
-        { headers: { token: localStorage.getItem("token") } }
-      );
+      await axios.put(`${import.meta.env.VITE_SOME_KEY}/updateclient`, values, {
+        headers: { token: localStorage.getItem("token") },
+      });
       message.success("Profile Updated successfully");
       toggleModal(false);
     } catch (e) {
@@ -353,14 +353,11 @@ const AntDrawer = ({ isModalOpen, toggleModal }) => {
     }
   };
 
-
   const handleProfileUpdate = async (values) => {
     try {
-      await axios.put(
-        `${import.meta.env.VITE_SOME_KEY}/updateclient`,
-        values,
-        { headers: { token: localStorage.getItem("token") } }
-      );
+      await axios.put(`${import.meta.env.VITE_SOME_KEY}/updateclient`, values, {
+        headers: { token: localStorage.getItem("token") },
+      });
       message.success("Profile Updated successfully");
       toggleModal(false);
     } catch (e) {
@@ -394,130 +391,135 @@ const AntDrawer = ({ isModalOpen, toggleModal }) => {
     }
   };
 
-
   return (
     <div>
       <Modal
-      title="Edit Profile"
-      open={isModalOpen}
-      onOk={() => toggleModal(false)}
-      onCancel={() => toggleModal(false)}
-      classNames={classNames}
-      width="650px"
-      footer={null}
-      styles={modalStyles}
-    >
-      <Form
-        layout="vertical"
-        onFinish={handleProfileUpdate}
-        initialValues={{
-          firstName: "Kajal",
-          lastName: "Gupta",
-          email: "kajl@gmail.com",
-          phone: "2176534876",
-        }}
+        title="Edit Profile"
+        open={isModalOpen}
+        onOk={() => toggleModal(false)}
+        onCancel={() => toggleModal(false)}
+        classNames={classNames}
+        width="650px"
+        footer={null}
+        styles={modalStyles}
       >
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item
-              label="First Name"
-              name="firstName"
-              rules={[{ required: true, message: 'Please enter your first name' }]}
-            >
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              label="Last Name"
-              name="lastName"
-              rules={[{ required: true, message: 'Please enter your last name' }]}
-            >
-              <Input />
-            </Form.Item>
-          </Col>
-        </Row>
+        <Form
+          layout="vertical"
+          onFinish={handleProfileUpdate}
+          initialValues={{
+            firstName: "Kajal",
+            lastName: "Gupta",
+            email: "kajl@gmail.com",
+            phone: "2176534876",
+          }}
+        >
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                label="First Name"
+                name="firstName"
+                rules={[
+                  { required: true, message: "Please enter your first name" },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="Last Name"
+                name="lastName"
+                rules={[
+                  { required: true, message: "Please enter your last name" },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+          </Row>
 
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[{ required: true, message: 'Please enter your email' }]}
-            >
-              <Input type="email" />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              label="Phone"
-              name="phone"
-              rules={[{ required: true, message: 'Please enter your phone number' }]}
-            >
-              <Input type="tel" />
-            </Form.Item>
-          </Col>
-        </Row>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                label="Email"
+                name="email"
+                rules={[{ required: true, message: "Please enter your email" }]}
+              >
+                <Input type="email" />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="Phone"
+                name="phone"
+                rules={[
+                  { required: true, message: "Please enter your phone number" },
+                ]}
+              >
+                <Input type="tel" />
+              </Form.Item>
+            </Col>
+          </Row>
 
-        <Row gutter={16}>
-       
-        <Col span={12}>
-        <Form.Item label="Profile Photo" name="profilePhoto">
-          <Upload>
-            <Button icon={<UploadOutlined />}>Upload</Button>
-          </Upload>
-          </Form.Item>
-       </Col>
-          <Col span={10}>
-          <Form.Item style={{marginTop:"23px"}}>
-          <Button type="primary" htmlType="submit" block>
-            Update Profile
-          </Button>
-          </Form.Item>
-          </Col>
-       
-       
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item label="Profile Photo" name="profilePhoto">
+                <Upload>
+                  <Button icon={<UploadOutlined />}>Upload</Button>
+                </Upload>
+              </Form.Item>
+            </Col>
+            <Col span={10}>
+              <Form.Item style={{ marginTop: "23px" }}>
+                <Button type="primary" htmlType="submit" block>
+                  Update Profile
+                </Button>
+              </Form.Item>
+            </Col>
+          </Row>
+        </Form>
 
-</Row>
-      
-        
-      </Form>
-
-      <Form layout="vertical" onFinish={handlePasswordChange}
-      style={{marginTop:"20px"}}>
-        <h6>Change Password</h6>
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item
-              label="Old Password"
-              name="oldPassword"
-              rules={[{ required: true, message: 'Please enter your old password' }]}
-            >
-              <Input.Password />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              label="New Password"
-              name="newPassword"
-              rules={[{ required: true, message: 'Please enter your new password' }]}
-            >
-              <Input.Password />
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row span={12}>
-        <Col span={8}>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" block>
-            Change Password
-          </Button>
-        </Form.Item>
-        </Col >
-        </Row>
-
-      </Form>
-    </Modal>
+        <Form
+          layout="vertical"
+          onFinish={handlePasswordChange}
+          style={{ marginTop: "20px" }}
+        >
+          <h6>Change Password</h6>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                label="Old Password"
+                name="oldPassword"
+                rules={[
+                  { required: true, message: "Please enter your old password" },
+                ]}
+              >
+                <Input.Password />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="New Password"
+                name="newPassword"
+                rules={[
+                  { required: true, message: "Please enter your new password" },
+                ]}
+              >
+                <Input.Password />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row span={12}>
+            <Col span={8}>
+              <Form.Item>
+                <Button type="primary" htmlType="submit" block>
+                  Change Password
+                </Button>
+              </Form.Item>
+            </Col>
+          </Row>
+        </Form>
+      </Modal>
     </div>
-  )
-}
+  );
+};
