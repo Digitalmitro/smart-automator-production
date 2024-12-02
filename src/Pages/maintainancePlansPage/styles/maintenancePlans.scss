@@ -9,12 +9,15 @@ $accent-color: #524e48;
 /* Amber */
 $background-color: #f9f9f9;
 $text-color: #350101;
+
 .maintenance-plans {
   // background-color: $primary-bg;
   font-family: 'Poppins', sans-serif;
   color: #333;
   padding: 2rem;
-margin-top: 6rem;
+
+  margin: auto;
+
   .header {
     text-align: center;
     margin-bottom: 2rem;
@@ -23,6 +26,15 @@ margin-top: 6rem;
       font-size: 2.5rem;
       color: $icon-color;
       animation: fadeInDown 1s ease-in-out;
+    }
+
+    h2 {
+      font-size: 2.9rem;
+      font-weight: 700;
+      text-align: center;
+      margin: 1rem;
+      animation: fadeInDown 1s ease-in-out;
+
     }
 
     p {
@@ -35,7 +47,8 @@ margin-top: 6rem;
     display: flex;
     justify-content: space-around;
     margin-bottom: 2rem;
-gap: 25px;
+    gap: 25px;
+
     .feature-card {
       background-color: $card-bg;
       padding: 1.5rem;
@@ -135,7 +148,7 @@ gap: 25px;
 
   .signup {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 5.5rem;
 
     h2 {
       font-size: 1.8rem;
@@ -148,7 +161,7 @@ gap: 25px;
     }
 
     button {
-      background-color: $highlight-color;
+      background: linear-gradient(to right, #C77839, #D79D45);
       color: white;
       border: none;
       padding: 0.8rem 1.5rem;
@@ -168,6 +181,7 @@ gap: 25px;
       opacity: 0;
       transform: translateY(-20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -189,34 +203,69 @@ gap: 25px;
   .services-grid {
     display: flex;
     gap: 10px;
-    // grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1.5rem;
     justify-content: center;
-    /* Aligns the grid items horizontally */
     align-content: center;
 
     .service-card {
       background-color: $secondary-color;
-      max-width: 350px;
+      // position: relative;
+      width: 400px;
       text-align: center;
+      padding: 1.7rem;
       border-radius: 8px;
-      border: 1px solid #f0c274;
+      border: 1px solid #e4e4e4;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
-      background-color: #fff3df;
-      >p{
+      background-color: #ffffff;
+      .button-container{
+      display: flex;
+      gap: 10px;
+      font-size: 16px;
+justify-content: center;
+        button{
+          &:first-of-type{
+            color: black;
+            border-radius: 10px;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #C77839;
+            font-weight: 600;
+          }
+           
+          &:last-of-type{
+            background: linear-gradient(to right, #C77839, #D79D45);
+            color: white;
+            border-radius: 10px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+          }
+          }
+          
+      }
+
+
+      >p {
         margin: .2rem;
       }
->div{
-  display: flex;
-  gap: 10px;
-  margin: 10px;
-}
+
+      >div {
+        margin-bottom: 2rem;
+        >div{
+          display: flex;
+          gap: 10px;
+          margin: 10px;
+        // position :relative;
+
+        }
+        
+      }
+
       img {
         overflow: hidden;
         object-fit: cover;
         height: 200px;
-        width: 100%;
+        width: 200px;
+        border-radius: 50%;
       }
 
       .flex {
@@ -258,115 +307,135 @@ gap: 25px;
 
 .pricing-packages {
   margin: 5rem 0;
-margin-bottom: 8rem;
+  margin-bottom: 8rem;
+
+  // display: flex;
+  // align-items:  center  ;
   h2 {
     font-size: 2.2rem;
     font-weight: 700;
-    text-align: center;
-    margin: 2.5rem;
+    // text-align: center;
+    margin: 1.5rem 2.5rem;
   }
 
-  .package-grid {
+  >div {
     display: flex;
-    gap: 1.5rem;
-    justify-content: space-around;
-    max-width: 1080px;
-    margin: auto;
+    justify-content: center;
 
-    .package-card {
-      background-color: $secondary-color;
-      text-align: center;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-      border: 1px solid rgb(201, 201, 201);
-      border-top: 1px solid transparent;
-      border-top-color: rgb(201, 201, 201);
-      width: 330px;
-      box-shadow: 1px 1px 8px grey;
+    button {
+      padding: 12px 30px;
 
-      img {
-        width: 80px;
-        height: 80px;
-      }
-      .basicImage, .premImage{
-        width: 90px;
-        height: 90px;
-      }
-      
+      border: 1px solid grey;
+      border-radius: 10px;
 
-      >div {
-        margin: 10px;
-      }
 
-      button {
-        padding: 5px 40px;
-        border: 1px solid rgb(197, 196, 196);
-        margin-bottom: 20px;
-        color: white;
-        font-weight: 700;
-        background-color: #FF7F45;
-        border-radius: 30px;
-      }
 
-      .features {
-        display: flex;
-        gap: 10px;
-        padding: 3px 10px;
-        text-align: start;
-      }
-
-      &:hover {
-        transform: translateY(-5px);
-        border-bottom: 5px solid $primary-color;
-        border-bottom-color: rgb(82, 80, 80);
-      }
-
-      .Basic {
-        background-color: #ca5172;
-
-        &:hover {
-          transform: translateY(-5px);
-        }
-      }
-
-      .Advance {
-        background-color: #307AAB;
-      }
-
-      .premium {
-        background-color: #53BBB4;
-      }
-
-      h3 {
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-        color: $accent-color;
-        font-weight: 500;
-        letter-spacing: 1px;
-        color: white;
-        padding: 10px;
-      }
-
-      p {
-        font-size: 1rem;
-        color: $text-color;
-        margin: 1rem 0;
-      }
-
-      .price {
-        font-size: 1.8rem;
-        font-weight: bold;
-        margin-bottom: 2rem;
-        span{
-          font-size: 20px;
-        }
-      }
-
-      &.highlighted {
-        background-color: rgb(243, 243, 252);
-        border-top-color: lighten(black, 5%);
-      }
     }
   }
+
+  .pricing-packages {}
+
+  // .package-grid {
+  //   display: flex;
+  //   gap: 1.5rem;
+  //   justify-content: space-around;
+  //   max-width: 1080px;
+  //   margin: auto;
+
+  //   .package-card {
+  //     background-color: $secondary-color;
+  //     text-align: center;
+  //     border-radius: 8px;
+  //     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  //     transition: transform 0.3s ease;
+  //     border: 1px solid rgb(201, 201, 201);
+  //     border-top: 1px solid transparent;
+  //     border-top-color: rgb(201, 201, 201);
+  //     width: 330px;
+  //     box-shadow: 1px 1px 8px grey;
+
+  //     img {
+  //       width: 80px;
+  //       height: 80px;
+  //     }
+  //     .basicImage, .premImage{
+  //       width: 90px;
+  //       height: 90px;
+  //     }
+
+
+  //     >div {
+  //       margin: 10px;
+  //     }
+
+  //     button {
+  //       padding: 5px 40px;
+  //       border: 1px solid rgb(197, 196, 196);
+  //       margin-bottom: 20px;
+  //       color: white;
+  //       font-weight: 700;
+  //       background-color: #FF7F45;
+  //       border-radius: 30px;
+  //     }
+
+  //     .features {
+  //       display: flex;
+  //       gap: 10px;
+  //       padding: 3px 10px;
+  //       text-align: start;
+  //     }
+
+  //     &:hover {
+  //       transform: translateY(-5px);
+  //       border-bottom: 5px solid $primary-color;
+  //       border-bottom-color: rgb(82, 80, 80);
+  //     }
+
+  //     .Basic {
+  //       background-color: #ca5172;
+
+  //       &:hover {
+  //         transform: translateY(-5px);
+  //       }
+  //     }
+
+  //     .Advance {
+  //       background-color: #307AAB;
+  //     }
+
+  //     .premium {
+  //       background-color: #53BBB4;
+  //     }
+
+  //     h3 {
+  //       font-size: 1.3rem;
+  //       margin-bottom: 1rem;
+  //       color: $accent-color;
+  //       font-weight: 500;
+  //       letter-spacing: 1px;
+  //       color: white;
+  //       padding: 10px;
+  //     }
+
+  //     p {
+  //       font-size: 1rem;
+  //       color: $text-color;
+  //       margin: 1rem 0;
+  //     }
+
+  //     .price {
+  //       font-size: 1.8rem;
+  //       font-weight: bold;
+  //       margin-bottom: 2rem;
+  //       span{
+  //         font-size: 20px;
+  //       }
+  //     }
+
+  //     &.highlighted {
+  //       background-color: rgb(243, 243, 252);
+  //       border-top-color: lighten(black, 5%);
+  //     }
+  //   }
+  // }
 }

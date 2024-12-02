@@ -10,16 +10,17 @@ import { FAQ } from "./FAQ";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchServices } from "../../redux/services/ServicesSlice";
 import { fetchServiceCategories } from "../../redux/services/ServiceCategorySlice";
+import { MaintenancePlans } from "../maintainancePlansPage/MaintainancePlansPage";
 
 export const ServiceInfo = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { id } = useParams()
+  const [filterService, setFilterService] = useState(null)
   const { categories, loading: categoriesLoading, error: categoriesError } = useSelector((state) => state.serviceCategories);
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
   const getCategories = categories?.filter((info) => info._id === id)
 
-  const getServices = services?.filter((data)=> data.serviceCategory.name === getCategories[0].name)
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,19 +31,25 @@ export const ServiceInfo = () => {
     dispatch(fetchServices());
   }, [dispatch]);
 
+  useEffect(() => {
+    const checkMyService = services?.filter((data) => data.serviceCategory.name === getCategories[0].name)
+    setFilterService(checkMyService)
+  }, [])
+
   if (categoriesLoading || servicesLoading) return <p>Loading...</p>;
   if (categoriesError) return <p>Error: {categoriesError}</p>;
   if (servicesError) return <p>Error: {servicesError}</p>;
 
- console.log("getServices", getCategories )
- console.log("Services", services )
+
   return (
     <div className="service-info">
       <ServiceContent services={services} getCategories={getCategories} />
       <div>
-        <ServiceDescription getServices={getServices} />
-        <AboutServices />
-        <OtherServices />
+        <ServiceDescription filterService={filterService} />
+
+        <MaintenancePlans />
+        <AboutServices getCategories={getCategories} />
+        <OtherServices categories={categories}/>
         <FAQ />
       </div>
     </div>
@@ -53,7 +60,7 @@ export const ServiceContent = ({ services, getCategories }) => {
   const navigate = useNavigate()
 
   return (
-    <div className="service-content"  style={{ backgroundImage: `url(${getCategories[0]?.image || ''})`}}>
+    <div className="service-content" style={{ backgroundImage: `url(${getCategories[0]?.image || ''})` }}>
 
       {getCategories?.map((item) => {
         return (
@@ -62,7 +69,7 @@ export const ServiceContent = ({ services, getCategories }) => {
             <p>
               {item.description}
             </p>
-            <button onClick={() => navigate(`/maintenance-plans/${item._id}`)}>Book now</button>
+            <button onClick={() => navigate(`/serviceform/${item._id}`)}>Book now</button>
           </div>
         )
       })}
@@ -71,7 +78,7 @@ export const ServiceContent = ({ services, getCategories }) => {
   );
 };
 
-export const ServiceDescription = ({ getServices }) => {
+export const ServiceDescription = ({ filterService }) => {
   const navigate = useNavigate()
 
   return (
@@ -83,9 +90,9 @@ export const ServiceDescription = ({ getServices }) => {
           <Link to=""> Handyman </Link>
         </div>
 
-        <div className="service-section d-flex gap-3">
+        {/* <div className="service-section d-flex gap-3">
           <div className="left ">
-            {getServices.map((item) => {
+            {filterService?.map((item) => {
               return (
 
                 <div className="service-list d-flex gap-3">
@@ -165,92 +172,76 @@ export const ServiceDescription = ({ getServices }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
 };
 
-export const AboutServices = () => {
+export const AboutServices = ({ getCategories }) => {
   return (
-    <div className="aboutServices">
-      <h1>Handyman Services</h1>
+    <div className="aboutServices text-center">
+      <h1>{getCategories[0]?.name}</h1>
 
-      <div className="d-flex">
-        <div className="desc">
-          <p>
-            A handyman is a skilled man (or woman) who can perform various tasks
-            around the house that don’t necessarily require a license. Anything
-            around the house that just needs a small tweak or repair is the
-            perfect type of task for a handyman near you.
-          </p>
+      {getCategories?.map((item) => (
 
-          <p>
-            <span> Why hire a handyman?</span>
-          </p>
-          <p>
-            {" "}
-            Everyone has different skillsets, and some of us are better off not
-            trying to fix things around the house… and some of us just can’t be
-            bothered. Either way, Taskers are happy to help provide all sorts of
-            handyman services to help you keep your house in good order.{" "}
-          </p>
+        <div className=" m-auto">
+          <div>
+            <img src={item.image} alt="" />
+          </div>
+          <div className="desc m-auto">
+            <p>
+             {item.description}
+            </p>
 
-          <p>
-            A handyman is the perfect person to call for a quick fix, like a
-            clogged drain, fixing a hole in the wall, or putting together some
-            shelving. The nature of tasks that a handyman performs are generally
-            not dangerous or emergency home repairs--those are things that
-            generally require a licensed specialist.
-          </p>
+            <p>
+              <span> Why hire a {item.name}?</span>
+            </p>
+            <p>
+              {" "}
+              Everyone has different skillsets, and some of us are better off not
+              trying to fix things around the house… and some of us just can’t be
+              bothered. Either way, Taskers are happy to help provide all sorts of
+              handyman services to help you keep your house in good order.{" "}
+            </p>
+           
+            <p>
+              <span> No tools? No problem.</span>
+            </p>
+            <p>
+              Taskers will come with their own supplies needed for the job. Let
+              your Tasker know if you’d like an estimate before starting a large
+              project, and chat with them to ensure they have the necessary
+              licenses for the job, if a license is needed.{" "}
+            </p>
+            <p>
+              <span>Same day services available</span>
+            </p>
 
-          <p>
-            Many Taskers have multiple licenses that enable them to perform
-            handyman services as well as more specialized services. Llicensing
-            requirements vary depending on where you live, but your local
-            Taskers should be able to tell you if they are qualified to help
-            with your project.
-          </p>
-          <p>
-            <span> No tools? No problem.</span>
-          </p>
-          <p>
-            Taskers will come with their own supplies needed for the job. Let
-            your Tasker know if you’d like an estimate before starting a large
-            project, and chat with them to ensure they have the necessary
-            licenses for the job, if a license is needed.{" "}
-          </p>
-          <p>
-            <span>Same day services available</span>
-          </p>
+            <p>
+              Most Taskers live right around the corner from you, and are
+              available for same-day services. Just let them know when you’d like
+              them to come by and see who’s available!
+            </p>
+          </div>
 
-          <p>
-            Most Taskers live right around the corner from you, and are
-            available for same-day services. Just let them know when you’d like
-            them to come by and see who’s available!
-          </p>
+
         </div>
-
-        <div>
-          <img src={serviceInfo2} alt="" />
-        </div>
-      </div>
+      ))}
     </div>
   );
 };
 
-export const OtherServices = () => {
-
+export const OtherServices = ({categories}) => {
 
   return (
     <div className="other-services">
       <h1> Search other tasks</h1>
       <div className="grid-container">
-        <p>Furniture Assembly</p>
-        <p>Commercial Handyman</p>
-        <p>Moving Services</p>
-        <p>Yardwork</p>
-        <p>Pressure Washing</p> <p>Wait in Line</p>
+        {categories.map((item) => (
+          <p>{item.name}</p>
+        ))}
+       
       </div>
     </div>
   );

@@ -15,6 +15,7 @@ import gridLayout7 from "../../assets/grid-layout-7.jpg";
 import { fetchServiceCategories } from "../../redux/services/ServiceCategorySlice";
 import { fetchServices } from "../../redux/services/ServicesSlice";
 import { Category } from "@mui/icons-material";
+import { MaintenancePlans } from "../maintainancePlansPage/MaintainancePlansPage";
 
 export const Services = () => {
   // filter data by id
@@ -83,6 +84,7 @@ export const ServiceGridCard = ({ categories, services }) => {
                 <div>
                   <h3
                     style={{ textTransform: "capitalize" }}
+                    // onClick={() => navigate(`/serviceinfo/${item._id}`)}
                     onClick={() => navigate(`/serviceinfo/${item._id}`)}
                   >
                     {item.name}

@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 
 export const FAQ = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleFAQ = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
     <div className="FAQ-Accordion">
-      <h1 className="my-5">FREQUENTLY ASKED QUESTION </h1>
+      <h1 className="my-4">FREQUENTLY ASKED QUESTION </h1>
       <div class="accordion  accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">

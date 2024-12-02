@@ -39,7 +39,7 @@ export const PricingPage = () => {
       {/* <PricBreakDown getServices={getServices} /> */}
 
       {/* Packages Section */}
-      <PricePackages services={services}/>
+      <PricePackages services={services} />
 
       {/* Custom Quote */}
       <CustomQuote />
@@ -47,9 +47,50 @@ export const PricingPage = () => {
   );
 };
 
+const PricBreakDown = ({ getServices }) => {
+  return (
+    <div>
+
+      <section className="pricing-breakdown">
+        <h2>Pricing Discounts</h2>
+        <div className="services-grid">
+          {
+            getServices.map((serviceItem) => (
+              <div className="service-card">
+                <img src={serviceItem?.image} alt="" />
+                <br />
+                <p><b>{serviceItem.serviceName}</b></p>
+                {Features.map((featureList) =>
+                  <>
+                    <div>
+                      <span>
+                        {SvgRepo.tick}
+                      </span>
+                      <p>{featureList}</p>
+                    </div>
+                  </>
+                )}
+              </div>
+
+            ))
+          }
+
+          <div className="service-card">
+            <img src={getServices[0]?.image} alt="" />
+            <div className='flex'>
+              <h3>For monthly SubsCriber All time lowest Price </h3>
+            </div>
+            <p>$35/hr</p>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  )
+}
 
 
-const PricePackages = ({services}) => {
+const PricePackages = ({ services }) => {
   return (
 
     <section className="pricing-packages">
@@ -58,24 +99,24 @@ const PricePackages = ({services}) => {
         <div className="package-card">
           <h3 className='Basic'>Basic</h3>
           <div>
-          <p><b>Essential services for small projects.</b></p>
-          {/* <span>{SvgRepo.}</span> */}
-          <span style={{ marginTop: "3rem !important" }}>
-            <img className="basicImage" src={image1} alt="" />
-            {/* {SvgRepo.advance}  */}
+            <p><b>Essential services for small projects.</b></p>
+            {/* <span>{SvgRepo.}</span> */}
+            <span style={{ marginTop: "3rem !important" }}>
+              <img className="basicImage" src={image1} alt="" />
+              {/* {SvgRepo.advance}  */}
 
-          </span>
-          <div className="price">$199/<span>month</span></div>
-         
-          {GeneralFeatures.basic.features.map((basicITems) => (
-            <div className='features'>
-            <span>{SvgRepo.tick}</span>
-            <span>{basicITems}</span>
+            </span>
+            <div className="price">$199/<span>month</span></div>
 
-            </div>
-          ))}
-          <br/>
-          <button>Subscribe Today</button>
+            {GeneralFeatures.basic.features.map((basicITems) => (
+              <div className='features'>
+                <span>{SvgRepo.tick}</span>
+                <span>{basicITems}</span>
+
+              </div>
+            ))}
+            <br />
+            <button>Subscribe Today</button>
           </div>
 
         </div>
@@ -88,28 +129,28 @@ const PricePackages = ({services}) => {
           <div className="price">$399/<span>month</span></div>
           {GeneralFeatures.basic.features.map((basicITems) => (
             <div className='features'>
-            <span>{SvgRepo.tick}</span>
-            <span>{basicITems}</span>
+              <span>{SvgRepo.tick}</span>
+              <span>{basicITems}</span>
 
             </div>
           ))}
-          <br/>
+          <br />
           <button>Subscribe Today</button>
 
         </div>
         <div className="package-card">
-          <h3  className='premium'>Premium</h3>
+          <h3 className='premium'>Premium</h3>
           <p><b>All-inclusive for complete peace of mind.</b></p>
           <span>
             <img src={image3} className='premImage' alt="" />
-          </span>  
+          </span>
           <div className="price">$599/<span>month</span></div>
           {GeneralFeatures.basic.features.map((basicITems) => (
             <div className='features'>
-            <span>{SvgRepo.tick}</span>
-            <span>{basicITems}</span>
+              <span>{SvgRepo.tick}</span>
+              <span>{basicITems}</span>
             </div>
-          ))} <br/>
+          ))} <br />
           <button>Subscribe Today</button>
 
         </div>
@@ -124,10 +165,10 @@ const CustomQuote = () => {
     <section className="custom-quote">
       <h2>Request a Custom Quote</h2>
       <form>
-       <div className='flex'>
-       <input type="text" placeholder="Your Name" required />
-       <input type="email" placeholder="Your Email" required />
-       </div>
+        <div className='flex'>
+          <input type="text" placeholder="Your Name" required />
+          <input type="email" placeholder="Your Email" required />
+        </div>
         <textarea placeholder="Describe your requirements" required></textarea>
         <button type="submit">
           <FaPaperPlane className="button-icon" /> Submit

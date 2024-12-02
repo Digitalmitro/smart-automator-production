@@ -3,11 +3,12 @@ import './styles/maintenancePlans.scss';
 import { FaCheckCircle, FaWrench, FaClock, FaCloudDownloadAlt } from 'react-icons/fa';
 import { fetchServices } from '../../redux/services/ServicesSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { fetchServiceCategories } from '../../redux/services/ServiceCategorySlice';
 import { SvgRepo } from '../../components/SvgRepo/SvgRepo';
 import image1 from "./assets/basics2.png"
 import image2 from "./assets/advance2.png"
+import serviceInfo2 from "./assets/serviceInfo2.jpg";
 import image3 from "./assets/premium3.png"
 export const MaintenancePlans = () => {
 
@@ -16,83 +17,155 @@ export const MaintenancePlans = () => {
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
   const getServices = services?.filter((info) => info.serviceCategory._id === id)
   console.log("getServices", getServices)
+
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(fetchServices());
-    dispatch(fetchServiceCategories());
+    if (!services.length) dispatch(fetchServices());
+    if (!categories.length) dispatch(fetchServiceCategories());
   }, [dispatch]);
   return (
     <div className="maintenance-plans">
       <header className="header">
-        <h1>Maintenance & Support Plans</h1>
+        <h2>Maintenance & Support Plans</h2>
         <p>Keep your systems running smoothly with our comprehensive services.</p>
       </header>
-<PricBreakDown getServices={getServices}/>
-      {/* <section className="features">
-        <div className="feature-card">
-          <FaWrench className="icon" />
-          <h3>Routine Check-ups</h3>
-          <p>Scheduled inspections to ensure peak performance.</p>
-        </div>
-        <div className="feature-card">
-          <FaClock className="icon" />
-          <h3>On-Call Support</h3>
-          <p>24/7 assistance to resolve any issues swiftly.</p>
-        </div>
-        <div className="feature-card">
-          <FaCloudDownloadAlt className="icon" />
-          <h3>Software Updates</h3>
-          <p>Keep your systems updated with the latest features.</p>
-        </div>
-      </section> */}
-<PricePackages/>
-      {/* <section className="plans">
-        <h2>Choose Your Plan</h2>
-        <div className="plan-cards">
-          <div className="plan-card">
-            <h3>Basic</h3>
-            <p>Essential support for minimal needs.</p>
-            <p className="price">$99/month</p>
-            <button>Sign Up</button>
-          </div>
-          <div className="plan-card popular">
-            <h3>Advanced</h3>
-            <p>Best for small to medium businesses.</p>
-            <p className="price">$199/month</p>
-            <button>Sign Up</button>
-          </div>
-          <div className="plan-card">
-            <h3>Premium</h3>
-            <p>Comprehensive coverage for all needs.</p>
-            <p className="price">$299/month</p>
-            <button>Sign Up</button>
-          </div>
-        </div>
-      </section> */}
+      {/* <ServiceDescription getServices={getServices} /> */}
+      <PricBreakDown getServices={getServices} />
+
 
       <footer className="signup">
-        <h2>Ready to Get Started?</h2>
-        <p>Sign up today and enjoy seamless maintenance and support!</p>
-        <button>Get a Custom Quote</button>
-      </footer>
+            <h2>Ready to Get Started?</h2>
+            <p>Sign up today and enjoy seamless maintenance and support!</p>
+            <button>Get a Custom Quote</button>
+          </footer>
+
     </div>
   );
 };
 
-const PricePackages = ({services}) => {
-  return (
+const ServiceDescription = ({ getServices }) => {
+  const navigate = useNavigate()
 
+  return (
+    <>
+      <div className="service-description">
+
+
+        <div className="service-section ">
+          <div className="left ">
+            {getServices?.map((item) => {
+              return (
+
+                <div className="service-list d-flex gap-3">
+                  <img src={item.image} alt="" />
+                  <div>
+                    <h3>{item.serviceName}</h3>
+                    <p>
+                      Hire a Tasker to fix your doors, cabinets, and even furniture.
+                    </p>
+                    <button onClick={() => navigate(`/serviceform/${item._id}`)}>Book Now</button>
+                  </div>
+                </div>
+              )
+            })}
+
+
+          </div>
+
+          <section className="pricing-packages">
+            <h2>Explore our transparent pricing options below and pick what fits your budget.</h2>
+            <div>
+              <button onClick={() => navigate('/pricing-plans')}>Package Plans</button>
+            </div>
+
+          </section>
+
+
+      
+
+
+          <div className="right">
+            {/* <h3>Cross off that to-do</h3>
+            <h4>
+
+              <span> 1 </span>Select Your Task
+            </h4>
+            <p>
+              Describe your task and choose a background checked and
+              client-reviewed Tasker for the job
+            </p>
+            <h4>
+              {" "}
+              <span> 2 </span>Select Your Task{" "}
+            </h4>
+            <p>
+              Describe your task and choose a background checked and
+              client-reviewed Tasker for the job
+            </p>
+
+            <h4>
+              {" "}
+              <span> 3 </span>Select Your Task{" "}
+            </h4>
+            <p>
+              Describe your task and choose a background checked and
+              client-reviewed Tasker for the job
+            </p> */}
+
+            {/* <div>
+              <h3>Hear What People Are Saying</h3>
+              <div className="people-say d-flex ">
+                <img src={serviceInfo2} alt="" />
+                <p>
+                  Alfonso was great! He knew the best way to mount the wire in
+                  the drywall and I feel confident that the curtain wire he
+                  reinstalled is secure and won't come crashing down again! He
+                  was a pleasure to have around and I would hire him again.
+                  Thanks, Alfonso! – Wendell A.
+                </p>
+              </div>
+              <div className="people-say d-flex ">
+                <img src={serviceInfo2} alt="" />
+                <p>
+                  Alfonso was great! He knew the best way to mount the wire in
+                  the drywall and I feel confident that the curtain wire he
+                  reinstalled is secure and won't come crashing down again! He
+                  was a pleasure to have around and I would hire him again.
+                  Thanks, Alfonso! – Wendell A.
+                </p>
+              </div>
+              <div className="people-say d-flex ">
+                <img src={serviceInfo2} alt="" />
+                <p>
+                  Alfonso was great! He knew the best way to mount the wire in
+                  the drywall and I feel confident that the curtain wire he
+                  reinstalled is secure and won't come crashing down again! He
+                  was a pleasure to have around and I would hire him again.
+                  Thanks, Alfonso! – Wendell A.
+                </p>
+              </div>
+            </div> */}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+const PricePackages = ({ services }) => {
+  return (
     <section className="pricing-packages">
-      <h2>Choose a Package</h2>
-      <div className="package-grid">
+      <h2>Explore our transparent pricing options below and pick what fits your budget.</h2>
+      <div>
+        <button>Pricing Plans</button>
+      </div>
+      {/* <div className="package-grid">
         <div className="package-card">
           <h3 className='Basic'>Basic</h3>
           <div>
           <p><b>Essential services for small projects.</b></p>
-          {/* <span>{SvgRepo.}</span> */}
           <span style={{ marginTop: "3rem !important" }}>
             <img className="basicImage" src={image1} alt="" />
-            {/* {SvgRepo.advance}  */}
 
           </span>
           <div className="price">$199/<span>month</span></div>
@@ -112,7 +185,6 @@ const PricePackages = ({services}) => {
         <div className="package-card highlighted">
           <h3 className='Advance'>Advanced</h3>
           <p><b>Best for larger projects and frequent tasks.</b></p>
-          {/* <span>{SvgRepo.daimondRed}</span> */}
           <img src={image2} className="advImage" alt="" />
 
           <div className="price">$399/<span>month</span></div>
@@ -143,43 +215,54 @@ const PricePackages = ({services}) => {
           <button>Subscribe Today</button>
 
         </div>
-      </div>
+      </div> */}
     </section>
   )
 }
 
-
-
 const PricBreakDown = ({ getServices }) => {
+  const navigate = useNavigate()
   return (
     <div>
-
       <section className="pricing-breakdown">
-        <h2>Pricing Discounts</h2>
         <div className="services-grid">
-{
-            getServices.map((serviceItem)=> (
+          {
+            getServices.map((serviceItem) => (
               <div className="service-card">
-              <img src={serviceItem?.image} alt="" />
-              <br/>
-              <p><b>{serviceItem.serviceName}</b></p>
-              {Features.map((featureList) => 
+                <img src={serviceItem?.image} alt="" />
+                <br />
+                <div className='d-flex justify-content-between my-3 mt-4 text-start' >
+                  <h3><b>{serviceItem.serviceName}</b></h3>
+                  <h3 style={{ color: "#D79D45" }}><b>${serviceItem.hourlyCharge}/hr</b></h3>
+                </div>
+                <p className=''>{serviceItem.shortDescription}</p>
+                <div>
+                  {Features.map((featureList) =>
 
-             <>
-            
-              <div>
-              <span>
-                {SvgRepo.tick}
-                </span>
-               <p>{featureList}</p>
+                    <>
+
+                      <div>
+                        <span>
+                          {SvgRepo.tick}
+                        </span>
+                        <p>{featureList}</p>
+                      </div>
+                    </>
+                  )}
+                </div>
+                <div className='button-container'>
+
+                <button onClick={() => navigate(`/servicedetails/${serviceItem._id}`)}>Know more</button>
+                <button onClick={() => navigate(`/serviceform/${serviceItem._id}`)}>
+                    Book now
+                  </button>
+                  </div>
+               
               </div>
-             </>
-             )}
-            </div>
 
             ))
           }
-         
+
           {/* <div className="service-card">
             <img src={getServices[0]?.image} alt="" />
             <div className='flex'>
@@ -193,7 +276,6 @@ const PricBreakDown = ({ getServices }) => {
     </div>
   )
 }
-
 
 const GeneralFeatures = {
   basic: {
@@ -234,7 +316,7 @@ const GeneralFeatures = {
   },
 };
 
-const Features= [
+const Features = [
   "All basic features",
   "Edge trimming and leveling",
   "Hedge trimming",
