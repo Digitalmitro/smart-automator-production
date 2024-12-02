@@ -67,9 +67,8 @@ const Navbar = () => {
       <header>
         <div className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
           <nav
-            className={`navbar navbar-expand-lg ${
-              scrolled ? "navbar-scrolled" : ""
-            }`}
+            className={`navbar navbar-expand-lg ${scrolled ? "navbar-scrolled" : ""
+              }`}
           >
             {/* Logo Section */}
             <a className="navbar-brand" style={{ cursor: "pointer" }}>
@@ -87,7 +86,10 @@ const Navbar = () => {
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNav"
-              aria-controls="navbarNav"
+              aria-controls="n
+              
+              
+              avbarNav"
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
@@ -96,97 +98,97 @@ const Navbar = () => {
 
             {/* Menu Items */}
             <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav main-nav">
-  <li className="nav-item">
-    <a
-      style={{ cursor: "pointer" }}
-      className="nav-link active"
-      aria-current="page"
-      onClick={() => navigate("/")}
-    >
-      Home
-    </a>
-  </li>
-  <li className="nav-item">
-    <a
-      style={{ cursor: "pointer" }}
-      className="nav-link"
-      onClick={() => navigate("/aboutus")}
-    >
-      About Us
-    </a>
-  </li>
-  <li className="nav-item">
-    <a
-      style={{ cursor: "pointer" }}
-      className="nav-link"
-      onClick={() => navigate("/services")}
-    >
-      Services
-    </a>
-  </li>
-  <li className="nav-item dropdown">
-    <a
-      className="nav-link dropdown-toggle"
-      id="navbarDropdown"
-      role="button"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-      style={{ cursor: "pointer" }}
-    >
-      Plans
-    </a>
-    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-      <li>
-        <a
-          className="dropdown-item"
-          onClick={() => navigate("/pricing-plans")}
-        >
-          Pricing Plans
-        </a>
-      </li>
-      <li>
-        <a
-          className="dropdown-item"
-          onClick={() => navigate("/maintenance-plans")}
-        >
-          Maintenance and Support Plans
-        </a>
-      </li>
-    </ul>
-  </li>
-  {!token ? (
-    <li className="nav-item">
-      <a
-        style={{ cursor: "pointer" }}
-        className="nav-link"
-        onClick={() => navigate("/login")}
-      >
-        Sign Up/Log in
-      </a>
-    </li>
-  ) : (
-    ""
-  )}
-</ul>
+              <ul className="navbar-nav main-nav">
+                <li className="nav-item">
+                  <a
+                    style={{ cursor: "pointer" }}
+                    className="nav-link active"
+                    aria-current="page"
+                    onClick={() => navigate("/")}
+                  >
+                    Home
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    style={{ cursor: "pointer" }}
+                    className="nav-link"
+                    onClick={() => navigate("/aboutus")}
+                  >
+                    About Us
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    style={{ cursor: "pointer" }}
+                    className="nav-link"
+                    onClick={() => navigate("/services")}
+                  >
+                    Services
+                  </a>
+                </li>
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    style={{ cursor: "pointer" }}
+                  >
+                    Plans
+                  </a>
+                  <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                      <a
+                        className="dropdown-item"
+                        onClick={() => navigate("/pricing-plans")}
+                      >
+                        Pricing Plans
+                      </a>
+                    </li>
+                    {/* <li>
+                      <a
+                        className="dropdown-item"
+                        onClick={() => navigate("/maintenance-plans")}
+                      >
+                        Maintenance and Support Plans
+                      </a>
+                    </li> */}
+                  </ul>
+                </li>
+                {!token ? (
+                  <li className="nav-item">
+                    <a
+                      style={{ cursor: "pointer" }}
+                      className="nav-link"
+                      onClick={() => navigate("/login")}
+                    >
+                      Sign Up/Log in
+                    </a>
+                  </li>
+                ) : (
+                  ""
+                )}
+              </ul>
 
               {/* User Panel */}
               <div className="user-panel" style={{ width: "", height: "" }}>
                 {token ? (
                   <>
-                    <Tooltip title="Profile" style={{cursor:"pointer"}}>
+                    <Tooltip title="Profile" style={{ cursor: "pointer" }}>
                       <i
                         onClick={() => navigate("/profile")}
                         className="fa-solid fa-user"
                       ></i>
                     </Tooltip>
                     <Tooltip title="Logout">
-                    <li className="nav-item">
-                      <a
-                      style={{cursor: "pointer"}}
-                        onClick={openLogoutModal}
-                      >Logout</a>
-                    </li>
+                      <li className="nav-item">
+                        <a
+                          style={{ cursor: "pointer" }}
+                          onClick={openLogoutModal}
+                        >Logout</a>
+                      </li>
                     </Tooltip>
                   </>
                 ) : (

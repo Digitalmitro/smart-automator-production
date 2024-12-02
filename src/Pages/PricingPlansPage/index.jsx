@@ -25,6 +25,44 @@ export const PricingPage = () => {
   useEffect(() => {
     dispatch(fetchServices());
   }, [dispatch]);
+
+
+
+  const [plans, setPlans] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+
+  const fetchPlans = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('/get-all-plans', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`, // Add token for adminAuth
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log("plans", response)
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setPlans(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPlans();
+  }, []);
+
+
   // const getServices = services?.filter((data)=> data.serviceCategory.name === getCategories[0].name)
 
   return (
@@ -160,9 +198,11 @@ const PricePackages = ({ services }) => {
 }
 
 const CustomQuote = () => {
-
+useEffect(() => {
+  window.scrollTo(0,0);
+},[])
   return (
-    <section className="custom-quote">
+    <section id="custom-quote" className="custom-quote">
       <h2>Request a Custom Quote</h2>
       <form>
         <div className='flex'>

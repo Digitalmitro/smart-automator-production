@@ -13,6 +13,7 @@ import image3 from "./assets/premium3.png"
 export const MaintenancePlans = () => {
 
   const { id } = useParams()
+  const navigate = useNavigate()
   const { categories, loading: categoriesLoading, error: categoriesError } = useSelector((state) => state.serviceCategories);
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
   const getServices = services?.filter((info) => info.serviceCategory._id === id)
@@ -36,7 +37,7 @@ export const MaintenancePlans = () => {
       <footer className="signup">
             <h2>Ready to Get Started?</h2>
             <p>Sign up today and enjoy seamless maintenance and support!</p>
-            <button>Get a Custom Quote</button>
+            <button onClick={()=> navigate('/pricing-plans#custom-quote')}>Get a Custom Quote</button>
           </footer>
 
     </div>
@@ -263,13 +264,7 @@ const PricBreakDown = ({ getServices }) => {
             ))
           }
 
-          {/* <div className="service-card">
-            <img src={getServices[0]?.image} alt="" />
-            <div className='flex'>
-              <h3>For monthly SubsCriber All time lowest Price </h3>
-            </div>
-            <p>$35/hr</p>
-          </div> */}
+     
 
         </div>
       </section>
