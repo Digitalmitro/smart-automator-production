@@ -30,6 +30,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0,0)
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -147,14 +148,14 @@ const Navbar = () => {
                         Pricing Plans
                       </a>
                     </li>
-                    {/* <li>
+                    <li>
                       <a
                         className="dropdown-item"
                         onClick={() => navigate("/maintenance-plans")}
                       >
                         Maintenance and Support Plans
                       </a>
-                    </li> */}
+                    </li>
                   </ul>
                 </li>
                 {!token ? (

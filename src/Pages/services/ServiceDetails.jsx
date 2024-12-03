@@ -7,6 +7,10 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { FAQ } from "./FAQ";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchServices } from '../../redux/services/ServicesSlice';
+import { message } from "antd";
+
+
+const token = localStorage.getItem("token"); 
 
 export const ServiceDetails = () => {
   const navigate = useNavigate()
@@ -26,6 +30,16 @@ export const ServiceDetails = () => {
     window.scrollTo(0, 0)
   }, [])
 
+  const handleBooking = (serviceId) => {
+    if (token) {
+      // If the token exists, navigate to the booking form
+      navigate(`/serviceform/${serviceId}`);
+    } else {
+      // If the token does not exist, navigate to the login page
+      message.warning("Please Login")
+      navigate("/login");
+    }
+  };
   if (categoriesLoading || servicesLoading) return <p>Loading...</p>;
 
   return (
@@ -39,7 +53,7 @@ export const ServiceDetails = () => {
               <p>
                 {item?.shortDescription}
               </p>
-              <button onClick={() => navigate(`/serviceform/${item._id}`)}>Book now</button>
+              <button onClick={() => handleBooking(item._id)}>Book now</button>
 
             </div>
           )

@@ -63,8 +63,6 @@ export const PricingPage = () => {
   }, []);
 
 
-  // const getServices = services?.filter((data)=> data.serviceCategory.name === getCategories[0].name)
-
   return (
     <div className="pricing-page">
       {/* Header Section */}
@@ -73,13 +71,8 @@ export const PricingPage = () => {
         <p>Explore our transparent pricing options and pick what fits your budget.</p>
       </header>
       <Plans />
-      {/* Price Breakdown */}
       {/* <PricBreakDown getServices={getServices} /> */}
-
-      {/* Packages Section */}
       <PricePackages services={services} />
-
-      {/* Custom Quote */}
       <CustomQuote />
     </div>
   );
@@ -203,7 +196,8 @@ useEffect(() => {
 },[])
   return (
     <section id="custom-quote" className="custom-quote">
-      <h2>Request a Custom Quote</h2>
+      <h2>Request a Custom Service</h2>
+      <p className='text-center'>Please login first to apply for custom services </p>
       <form>
         <div className='flex'>
           <input type="text" placeholder="Your Name" required />

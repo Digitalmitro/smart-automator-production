@@ -11,9 +11,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchServices } from "../../redux/services/ServicesSlice";
 import { fetchServiceCategories } from "../../redux/services/ServiceCategorySlice";
 import { MaintenancePlans } from "../maintainancePlansPage/MaintainancePlansPage";
+import { message } from "antd";
+
+
+
+const token = localStorage.getItem("token"); 
 
 export const ServiceInfo = () => {
   const navigate = useNavigate()
+
   const dispatch = useDispatch()
   const { id } = useParams()
   const [filterService, setFilterService] = useState(null)
@@ -24,7 +30,7 @@ export const ServiceInfo = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     dispatch(fetchServiceCategories());
@@ -36,6 +42,7 @@ export const ServiceInfo = () => {
     setFilterService(checkMyService)
   }, [])
 
+
   if (categoriesLoading || servicesLoading) return <p>Loading...</p>;
   if (categoriesError) return <p>Error: {categoriesError}</p>;
   if (servicesError) return <p>Error: {servicesError}</p>;
@@ -46,10 +53,9 @@ export const ServiceInfo = () => {
       <ServiceContent services={services} getCategories={getCategories} />
       <div>
         <ServiceDescription filterService={filterService} />
-
         <MaintenancePlans />
         <AboutServices getCategories={getCategories} />
-        <OtherServices categories={categories}/>
+        <OtherServices categories={categories} />
         <FAQ />
       </div>
     </div>
@@ -58,7 +64,16 @@ export const ServiceInfo = () => {
 
 export const ServiceContent = ({ services, getCategories }) => {
   const navigate = useNavigate()
-
+  const handleBooking = (serviceId) => {
+    if (token) {
+      // If the token exists, navigate to the booking form
+      navigate(`/serviceform/${serviceId}`);
+    } else {
+      // If the token does not exist, navigate to the login page
+      message.warning("Please Login")
+      navigate("/login");
+    }
+  };
   return (
     <div className="service-content" style={{ backgroundImage: `url(${getCategories[0]?.image || ''})` }}>
 
@@ -69,7 +84,7 @@ export const ServiceContent = ({ services, getCategories }) => {
             <p>
               {item.description}
             </p>
-            <button onClick={() => navigate(`/serviceform/${item._id}`)}>Book now</button>
+            <button onClick={() => handleBooking(item._id)}>Book now</button>
           </div>
         )
       })}
@@ -87,92 +102,9 @@ export const ServiceDescription = ({ filterService }) => {
         <div className="  Links d-flex">
           <Link to="/"> Home </Link>
           <Link to="/services"> Services </Link>
-          <Link to=""> Handyman </Link>
         </div>
 
-        {/* <div className="service-section d-flex gap-3">
-          <div className="left ">
-            {filterService?.map((item) => {
-              return (
-
-                <div className="service-list d-flex gap-3">
-                  <img src={serviceInfo2} alt="" />
-                  <div>
-                    <h3>{item.serviceName}</h3>
-                    <p>
-                      Hire a Tasker to fix your doors, cabinets, and even furniture.
-                    </p>
-                    <button onClick={() => navigate(`/serviceform/${item._id}`)}>Book Now</button>
-                  </div>
-                </div>
-              )
-            })}
-
-          
-          </div>
-          <div className="right">
-            <h3>Cross off that to-do</h3>
-            <h4>
-
-              <span> 1 </span>Select Your Task
-            </h4>
-            <p>
-              Describe your task and choose a background checked and
-              client-reviewed Tasker for the job
-            </p>
-            <h4>
-              {" "}
-              <span> 2 </span>Select Your Task{" "}
-            </h4>
-            <p>
-              Describe your task and choose a background checked and
-              client-reviewed Tasker for the job
-            </p>
-
-            <h4>
-              {" "}
-              <span> 3 </span>Select Your Task{" "}
-            </h4>
-            <p>
-              Describe your task and choose a background checked and
-              client-reviewed Tasker for the job
-            </p>
-
-            <div>
-              <h3>Hear What People Are Saying</h3>
-              <div className="people-say d-flex ">
-                <img src={serviceInfo2} alt="" />
-                <p>
-                  Alfonso was great! He knew the best way to mount the wire in
-                  the drywall and I feel confident that the curtain wire he
-                  reinstalled is secure and won't come crashing down again! He
-                  was a pleasure to have around and I would hire him again.
-                  Thanks, Alfonso! – Wendell A.
-                </p>
-              </div>
-              <div className="people-say d-flex ">
-                <img src={serviceInfo2} alt="" />
-                <p>
-                  Alfonso was great! He knew the best way to mount the wire in
-                  the drywall and I feel confident that the curtain wire he
-                  reinstalled is secure and won't come crashing down again! He
-                  was a pleasure to have around and I would hire him again.
-                  Thanks, Alfonso! – Wendell A.
-                </p>
-              </div>
-              <div className="people-say d-flex ">
-                <img src={serviceInfo2} alt="" />
-                <p>
-                  Alfonso was great! He knew the best way to mount the wire in
-                  the drywall and I feel confident that the curtain wire he
-                  reinstalled is secure and won't come crashing down again! He
-                  was a pleasure to have around and I would hire him again.
-                  Thanks, Alfonso! – Wendell A.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div> */}
+       
       </div>
     </>
   );
@@ -191,7 +123,7 @@ export const AboutServices = ({ getCategories }) => {
           </div>
           <div className="desc m-auto">
             <p>
-             {item.description}
+              {item.description}
             </p>
 
             <p>
@@ -204,7 +136,7 @@ export const AboutServices = ({ getCategories }) => {
               bothered. Either way, Taskers are happy to help provide all sorts of
               handyman services to help you keep your house in good order.{" "}
             </p>
-           
+
             <p>
               <span> No tools? No problem.</span>
             </p>
@@ -232,16 +164,26 @@ export const AboutServices = ({ getCategories }) => {
   );
 };
 
-export const OtherServices = ({categories}) => {
+export const OtherServices = ({ categories }) => {
+  const navigate = useNavigate()
+
+  const handleServiceCategory = (serviceId) => {
+
+    navigate(`/serviceinfo/${serviceId}`)
+
+    window.scrollTo(0, 0)
+  }
+
 
   return (
     <div className="other-services">
       <h1> Search other tasks</h1>
       <div className="grid-container">
-        {categories.map((item) => (
-          <p>{item.name}</p>
+        {categories?.map((item) => (
+
+          <p onClick={() => handleServiceCategory(item._id)}>{item.name}</p>
         ))}
-       
+
       </div>
     </div>
   );

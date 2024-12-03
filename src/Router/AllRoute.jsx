@@ -22,8 +22,9 @@ import {ConfirmAndChat} from "../Pages/services/ConfirmAndChat";
 import { BlogDetails } from "../Pages/blogDetailsPage/BlogDetails";
 import {PricingPage} from "../Pages/PricingPlansPage";
 import {MaintenancePlans} from "../Pages/maintainancePlansPage/MaintainancePlansPage";
-import { FAQ } from "../Pages/FAQ/FAQ";
+import { FAQ } from "../Pages/FAQ/FAQ2";
 import { PrivacyPolicy } from "../Pages/privacyPolicy/PrivacyPolicy";
+import { AboutUs2 } from "../Pages/aboutUsPage2/AboutUsPage";
 
 const AllRoute =()=>{
     return (
@@ -33,6 +34,7 @@ const AllRoute =()=>{
         <Route path="/Navbar" element={<Navbar/>}>Navbar</Route>
         <Route path="/Footer" element={<Footer/>}>Footer</Route>
         <Route path="/aboutus" element={<AboutUs/>}>AboutUs</Route>
+        <Route path="/aboutus2" element={<AboutUs2/>}>AboutUs</Route>
         <Route path="/serviceform/:serviceid" element={<ServiceForm/>}>ServiceForm</Route>
         <Route path="/taskdetails" element={<TaskDetails />}>TaskDetails</Route>
         <Route path="/profile" element={< Profile />}>Profile</Route>
@@ -53,7 +55,7 @@ const AllRoute =()=>{
         <Route path="/blogdetails/:id" element={<BlogDetails/>}>Blog Details</Route>
         <Route path="/pricing-plans" element={<PricingPage/>}>Pricing Page</Route>
         <Route path="/maintenance-plans" element={<MaintenancePlans/>}>Maintenance Plans</Route>
-        <Route path="/maintenance-plans/:id" element={<MaintenancePlans/>}>Maintenance Plans</Route>
+        {/* <Route path="/maintenance-plans/:id" element={<MaintenancePlans/>}>Maintenance Plans</Route> */}
         <Route path="/faq" element={<FAQ/>}>Frequently Asked Questions</Route>
         </Routes>
         </>
