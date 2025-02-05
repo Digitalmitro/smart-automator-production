@@ -1,0 +1,168 @@
+.blogDetailsPage {
+//   background-color: #C1AB82;
+background-color: #fef6e7;
+
+  padding-block: 1rem;
+   .blogWrapper{
+    max-width: 997px;
+
+    border: 1px solid #ddd;
+    margin: auto;
+    margin-block: 6rem;
+    box-shadow: 1px 1px 2px grey;
+    min-height: 60vh;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: white ;
+    .backButton {
+        text-align: start;
+        background-color: #f9ac25;
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        &:hover {
+          background-color: #ffffff;
+          border: 1px solid  #8d5900;
+          color: #8d5900;
+        }
+      }
+      .contentWrapper {
+            max-width: 760px;
+            margin: auto;
+            padding: 2rem;
+text-align: center;
+        .imageWrapper {
+          margin: auto;
+          img {
+            border: 3px solid #c1ab82;
+            border-radius: 8px;
+            max-width: 700px;
+            width: 80vw;
+            height: 45vh;
+            max-height: 300px;
+            object-fit: cover;
+          }
+        }
+    .parawrapper{
+        max-width: 700px;
+        margin: auto;
+        text-align: start;
+        .blogTitle {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ec9d15;
+            margin: 1rem 0;
+          }
+          .blogDate {
+            font-size: 1rem;
+            color: #c1ab82;
+            margin-bottom: 1rem;
+          }
+          .blogDescription {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #000000;
+            text-align: left;
+          }
+    }   
+
+    // &:hover{
+    //     background-color: #C1AB82;
+    //    .parawrapper{
+    //     h2{
+    //     color: white;
+    //    }
+    //      p{
+    //         color: rgb(236, 236, 236);
+    //     }
+    //    }
+    // }
+      }
+    
+      .relatedBlogs {
+        margin: 3rem;
+        margin-top: 6rem;
+        text-align: left;
+    
+        h3 {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #f9ac25;
+          margin-bottom: 1.5rem;
+          text-align: center;
+        }
+    
+        .relatedBlogList {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 2rem;
+    
+          .blogCard {
+            // flex: 1;
+            width: 250px;
+            border: 1px solid #ddd;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background-color: #fef6e7;
+
+            padding: 1rem;
+            text-align: center;
+    
+            img {
+              border-radius: 8px;
+              width: 100%;
+              height: 150px;
+              object-fit: cover;
+            }
+    
+            h5 {
+              font-size: 1.2rem;
+              color: #f9ac25;
+              margin: .5rem 0;
+            }
+    
+            p {
+              font-size: 0.9rem;
+              color: #666;
+              line-height: 1;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+    
+            .readMore {
+              background-color: #f9ac25;
+              color: #fff;
+              border: none;
+              padding: 0.4rem .8rem;
+              border-radius: 4px;
+              cursor: pointer;
+              margin-top: 1rem;
+             
+            }
+            &:hover{
+                cursor: pointer;
+          
+                border: 1px solid rgb(190, 189, 189);
+                box-shadow: 3px 3px 10px 3px rgb(201, 201, 201);
+              background-color: #f9ac25;
+              color: white;
+              h5, p{
+                color: white;
+              }
+              button{
+                color: #8d5900;
+                background-color: white;
+              }
+            }
+          }
+        }
+      }
+   }
+  }
+  

@@ -1,0 +1,170 @@
+
+.plans{
+    margin: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem auto;
+    flex-direction: column;
+    p{
+        text-align: start;
+        // font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 0;
+        margin-top: 1.5rem;
+    }
+    table{
+        margin: 2.5rem auto  !important;
+        z-index: 1000;
+        // text-align: start; 
+        thead{
+            td{
+            font-size: 30px;
+            font-weight: 400 !important;
+            }
+        }
+        th{
+            font-size: 30px;
+            font-weight: 500;
+            padding-inline: 10px;
+
+        }
+        .premium{
+            color: grey;
+        }
+        .advance{
+            color: rgb(27, 182, 253);
+        }
+        .basic{
+            color: rgb(231, 165, 41);
+        }
+        tr{
+            border: solid;
+        }
+        td:first-child {
+            width: 35vw;
+            text-align: start;
+        }
+         td:not(:first-child), th:not(:first-child) {
+            text-align: center; 
+            width: 15vw;
+           white-space: nowrap;
+         
+p{
+    text-align: center; 
+
+}
+          }
+        td{
+            padding:5px 30px;
+        }
+        .plansList{
+           display: flex;
+           align-items: center;
+            span{
+                padding: 0px 10px;
+                font-weight: 600;
+                white-space: nowrap;
+
+            }
+        }
+        .discount{
+            p{
+                margin: 0;
+            }
+            p:last-child{
+                 font-size: 18px;
+                 font-weight: 600;
+                 span{
+                    color: grey;
+                    font-size: 12px;
+                 }
+            }
+        }
+        .discountPercnt{
+           color: red;
+           font-size: 17px;
+           font-weight: 600;
+        }
+
+        @media (max-width:909px) {
+            zoom: 0.8;
+            td{
+                padding: 10px 10px;
+            }
+            thead{
+                td{
+                font-size: 24px;
+                font-weight: 400 !important;
+                }
+            }
+                th{
+                    font-size: 23px;
+                    font-weight: 500;
+                }
+           
+        }
+        @media (max-width:786px) {
+            zoom: 0.7;
+            td {
+                white-space: nowrap;
+
+                &:nth-child(1) {
+                  white-space: normal;
+                }
+              }
+        }
+    
+        @media (max-width:560px) {
+            zoom: 0.6;
+            
+            p{
+                font-size:12px;
+
+            }
+            .plansList{
+                img, span:last-child{
+                    border: solid;
+                    display: none;
+                }
+                
+            }
+        }
+        
+    }
+    
+    .footerText{
+        margin: 2rem 3rem  ;
+        p{
+            font-size: 14px ;
+            color: rgb(97, 97, 97);
+        }
+        @media (max-width:750px) {
+        margin: 1rem ;
+
+            p{
+                font-size: 10px;
+            }
+        }
+    }
+}
+.headingPara{
+    max-width: 430px;
+}
+
+.tableHeading{
+    font-size: 1.5rem;
+}
+.premiumHeading{
+    color: rgb(24, 86, 201);
+}
+.advance{
+ color: grey;
+}
+.basics{
+    color: rgb(255, 187, 0);
+}
+.firstRow{
+
+
+}

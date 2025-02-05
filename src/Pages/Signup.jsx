@@ -1,11 +1,10 @@
 import { message } from "antd";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const navigate = useNavigate();
-  
 
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
@@ -17,29 +16,29 @@ const Signup = () => {
     e.preventDefault();
 
     const credentials = {
-      firstName:firstName,
-      lastName:lastName,
-      email:email,
-      password:password,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
       phone: phone,
       zip: zip,
     };
-console.log(credentials)
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_SOME_KEY}/registerclient`,
-        credentials
-      );
-      console.log(response);
-      message.success(response.data, {});
-      setTimeout(() => {
+
+    await axios
+      .post(`${import.meta.env.VITE_SOME_KEY}/registerclient`, credentials)
+      .then((res) => {
+        console.log(res.data);
         navigate("/login");
-      }, 1200);
-    } catch (error) {
-      // message.warning(error.response.data.status, {});
-      console.log(error);
-    }
+      })
+      .catch((e) => {
+        console.log(e);
+        message.warning("signup unsuccessful");
+      });
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
@@ -53,62 +52,47 @@ console.log(credentials)
                   type="text"
                   class="form-control"
                   placeholder="First name"
+                  required
                   value={firstName}
-                  onChange={(e) =>
-                    setFirstName( e.target.value)
-                    
-                  }
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
-              </div>
-              <div data-mdb-input-init class="form-outline mb-4">
+
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Last name"
+                  required
                   value={lastName}
-                  onChange={(e) =>
-                    setLastName( e.target.value)
-                  
-                  }
+                  onChange={(e) => setLastName(e.target.value)}
                 />
-              </div>
 
-              <div data-mdb-input-init class="form-outline mb-4">
                 <input
                   type="email"
                   class="form-control"
                   placeholder="Email Address"
+                  required
                   value={email}
-                  onChange={(e) =>
-                    setEmail(e.target.value )
-                  }
+                  onChange={(e) => setEmail(e.target.value)}
                 />
-              </div>
 
-              <div data-mdb-input-init class="form-outline mb-4">
                 <input
-                
-                 
                   type="number"
                   id="typeNumber"
                   class="form-control"
                   placeholder="Enter Phone No"
+                  required
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
-              </div>
 
-              <div data-mdb-input-init class="form-outline mb-4">
                 <input
                   type="password"
                   id="form2Example2"
                   class="form-control"
                   placeholder="Password"
+                  required
                   value={password}
-                  onChange={(e) =>
-                    setPassword( e.target.value
-                    )
-                  }
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
 
@@ -145,6 +129,19 @@ console.log(credentials)
               >
                 Create Account
               </button>
+              <div class="text-center">
+                have account ?
+                <p>
+                  <button
+                    className="fw-bold"
+                    style={{ border: "none" }}
+                    onClick={() => navigate("/login")}
+                  >
+                    Sign In
+                  </button>{" "}
+                </p>
+                <br></br>
+              </div>
             </form>
           </div>
         </div>

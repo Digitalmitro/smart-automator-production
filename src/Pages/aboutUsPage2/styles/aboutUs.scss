@@ -1,0 +1,57 @@
+.about-us {
+    padding: 2rem;
+    background-color: #f9f9f9;
+  
+    .about-us-header {
+      text-align: center;
+      margin-bottom: 2rem;
+  
+      h1 {
+        font-size: 2.5rem;
+        color: #1890ff;
+      }
+  
+      p {
+        font-size: 1.2rem;
+        color: #555;
+      }
+    }
+  
+    .mission, .values, .team-introduction, .certifications, .unique-selling-points {
+      margin-bottom: 2rem;
+  
+      h2 {
+        font-size: 1.8rem;
+        color: #333;
+        border-bottom: 2px solid #1890ff;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+      }
+  
+      p, ul {
+        font-size: 1rem;
+        color: #666;
+        line-height: 1.6;
+      }
+  
+      ul {
+        padding-left: 1.5rem;
+        li {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  
+    .values {
+      .ant-card {
+        text-align: center;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        h3 {
+          color: #1890ff;
+        }
+      }
+    }
+  }
+  

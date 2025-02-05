@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { message } from "antd";
 const login = () => {
   const navigate = useNavigate();
-  const token = Cookies.get("token");
+  const token = localStorage.getItem("token");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = async (e) => {
@@ -22,21 +22,33 @@ const login = () => {
         credentials
       );
       console.log(response);
-      Cookies.set("token", response.data.token);
+      localStorage.setItem("token", response.data.token)
+      localStorage.setItem("user", JSON.stringify(response.data.user))
+      // Cookies.set("token", response.data.token);
       message.success(response.data.status, {});
       setTimeout(() => {
-        window.location.href = "/profile";
-      }, 1200);
+        navigate('/')
+      }, 1000);
     } catch (error) {
-      message.warning(error.response.data.status, {});
+      if(error.response.data.status){
+        message.warning(error.response.data.status, {});
+
+      }else{
+      message.warning("login unsuccessful");
+
+      }
       console.log(error.response.data.status);
     }
     if (token) {
-      return <Navigate to="/" />;
+      // return <Navigate to="/" />;
     }
   };
 
   useEffect(() => {
+window.scrollTo(0,0)
+  },[])
+  useEffect(() => {
+    
     if (token) {
       return navigate("/");
     } else {
@@ -96,7 +108,7 @@ const login = () => {
                   <button
                     className="fw-bold"
                     style={{ border: "none" }}
-                    onClick={() => navigate("/Signup")}
+                    onClick={() => navigate("/signup")}
                   >
                     Sign Up
                   </button>{" "}

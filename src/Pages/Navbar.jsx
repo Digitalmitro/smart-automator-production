@@ -2,79 +2,169 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo 1.png";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "./Styles/Navbar.scss";
+import { useEffect, useState } from "react";
+import { svg } from "./Svg";
+import { LogoutModal } from "./modals/Logoutmodals";
+import Tooltip from "@mui/material/Tooltip";
+
 const Navbar = () => {
   const navigate = useNavigate();
-  const token = Cookies.get("token");
-  const decodedToken = token && jwtDecode(token);
-  const user = decodedToken?.email;
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
+
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+  AOS.init();
+
+  const [scrolled, setScrolled] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 300) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.scrollTo(0,0)
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handelLogout = () => {
-    Cookies.remove("token");
+    localStorage.clear();
     window.location.href = "/login";
   };
+
+  const openLogoutModal = () => {
+    setShowLogoutModal(true); // Show modal when logout button is clicked
+  };
+
+  const closeLogoutModal = () => {
+    setShowLogoutModal(false); // Hide modal
+  };
+
   return (
-    <>
+    <div className="navbarContainer">
       <div className="container-fluid top-header">
-        <p>
+        <p style={{ fontSize: "12px" }}>
           <i className="fa-solid fa-location-dot"></i> 12880 SW Scholls Ferry Rd
           Tigard, OR 97223
         </p>
-        <p>
-          <i className="fa-solid fa-envelope"></i>{" "}
-          info@GreatGreekMediterraneanGrill.com
-        </p>
         <div className="icon">
-          <i class="fa-brands fa-x-twitter"></i>{" "}
+          <i className="fa-brands fa-x-twitter"></i>{" "}
           <i className="fa-brands fa-facebook"></i>{" "}
           <i className="fa-brands fa-instagram"></i>
-          <i class="fa-brands fa-pinterest"></i>
+          <i className="fa-brands fa-pinterest"></i>
         </div>
       </div>
 
       <header>
-        <div className="container">
-          <nav class="navbar navbar-expand-lg ">
-            <a class="navbar-brand"  style={{cursor:"pointer"}}>
-              <img onClick={() => navigate("/")} src={logo} />
+        <div className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
+          <nav
+            className={`navbar navbar-expand-lg ${scrolled ? "navbar-scrolled" : ""
+              }`}
+          >
+            {/* Logo Section */}
+            <a className="navbar-brand" style={{ cursor: "pointer" }}>
+              <img
+                onClick={() => navigate("/")}
+                style={{ width: "80px", height: "60px" }}
+                src={logo}
+                alt="Logo"
+              />
             </a>
+
+            {/* Mobile View Menu Toggle Button */}
             <button
-              class="navbar-toggler"
+              className="navbar-btn"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNav"
-              aria-controls="navbarNav"
+              aria-controls="n
+              
+              
+              avbarNav"
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="">{svg.menubar}</span>
             </button>
-            <div
-              class="collapse navbar-collapse justify-content-end"
-              id="navbarNav"
-            >
-              <ul class="navbar-nav main-nav">
-                <li class="nav-item">
+
+            {/* Menu Items */}
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav main-nav">
+                <li className="nav-item">
                   <a
-                  style={{cursor:"pointer"}}
-                    class="nav-link active"
+                    style={{ cursor: "pointer" }}
+                    className="nav-link active"
                     aria-current="page"
                     onClick={() => navigate("/")}
                   >
                     Home
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a style={{cursor:"pointer"}} class="nav-link" onClick={() => navigate("/Servicedetails")}>
+                <li className="nav-item">
+                  <a
+                    style={{ cursor: "pointer" }}
+                    className="nav-link"
+                    onClick={() => navigate("/aboutus")}
+                  >
+                    About Us
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    style={{ cursor: "pointer" }}
+                    className="nav-link"
+                    onClick={() => navigate("/services")}
+                  >
                     Services
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a  class="nav-link" href="#">
-                    System Funnels
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    style={{ cursor: "pointer" }}
+                  >
+                    Plans
                   </a>
+                  <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li>
+                      <a
+                        className="dropdown-item"
+                        onClick={() => navigate("/pricing-plans")}
+                      >
+                        Pricing Plans
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="dropdown-item"
+                        onClick={() => navigate("/maintenance-plans")}
+                      >
+                        Maintenance and Support Plans
+                      </a>
+                    </li>
+                  </ul>
                 </li>
-                {!decodedToken ? (
-                  <li class="nav-item">
-                    <a style={{cursor:"pointer"}} class="nav-link" onClick={() => navigate("/login")}>
+                {!token ? (
+                  <li className="nav-item">
+                    <a
+                      style={{ cursor: "pointer" }}
+                      className="nav-link"
+                      onClick={() => navigate("/login")}
+                    >
                       Sign Up/Log in
                     </a>
                   </li>
@@ -82,33 +172,47 @@ const Navbar = () => {
                   ""
                 )}
               </ul>
-              <a
-                onClick={() => navigate("/Tasker")}
-                class="btn btn-primary headerbtn"
-              >
-                Become a Tasker{" "}
-              </a>
-              <div className="user-pannel">
-                <i class="fa-regular fa-heart"></i>
-                {decodedToken ? (
-                  <i
-                    onClick={() => navigate("/profile")}
-                    class="fa-solid fa-user"
-                  ></i>
+
+              {/* User Panel */}
+              <div className="user-panel" style={{ width: "", height: "" }}>
+                {token ? (
+                  <>
+                    <Tooltip title="Profile" style={{ cursor: "pointer" }}>
+                      <i
+                        onClick={() => navigate("/profile")}
+                        className="fa-solid fa-user"
+                      ></i>
+                    </Tooltip>
+                    <Tooltip title="Logout">
+                      <li className="nav-item">
+                        <a
+                          style={{ cursor: "pointer" }}
+                          onClick={openLogoutModal}
+                        >Logout</a>
+                      </li>
+                    </Tooltip>
+                  </>
                 ) : (
                   ""
                 )}
-                {decodedToken ? (
-                  <i onClick={handelLogout} class="fa-solid fa-right-from-bracket"></i>
-                ) : (
-                  ""
-                )}
+
+                {/* <button className="learn-more">
+                  <span className="circle" aria-hidden="true">
+                    <span className="icon arrow"></span>
+                  </span>
+                  <span className="button-text" onClick={() => navigate('/Tasker')}>Become a Tasker</span>
+                </button> */}
               </div>
             </div>
           </nav>
         </div>
       </header>
-    </>
+      <LogoutModal
+        handelLogout={handelLogout}
+        closeLogoutModal={closeLogoutModal}
+        showLogoutModal={showLogoutModal}
+      />
+    </div>
   );
 };
 

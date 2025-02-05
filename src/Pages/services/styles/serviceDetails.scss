@@ -1,0 +1,247 @@
+.service-details {
+  width: 100vw;
+  // background: url(../assets/backgroundImag.jpg), rgba(0, 0, 0, 0.7);
+  background-position: center;
+  background-size: cover;
+  height: 610px;
+  object-fit: cover;
+  position: relative;
+  margin-top: 80px;
+  padding-top: 1rem;
+  z-index: 0;
+  overflow: hidden;
+  opacity: .9 ;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+  left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black overlay with transparency */
+    z-index: 1; /* Overlay appears above the background image */
+  }
+  
+  .content {
+    position: relative;
+    z-index: 2900;
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    margin-top: 80px;
+    background-color: white;
+    padding: 3rem;
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: black;
+    }
+    .line {
+      width: 10rem;
+      height: 1px;
+      text-align: center;
+      margin: auto;
+      background-color: #ec9805;
+    }
+    p {
+      width: 80%;
+      margin: auto;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 3rem;
+    }
+    button {
+      padding: 0.8rem 2.3rem;
+      background-color: #e99505;
+      border-radius: 0.5rem;
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    @media (max-width: 1290px) {
+      width: 60%;
+      height: 300px;
+      margin: auto;
+      margin-top: 7rem;
+      height: 300px;
+      padding: 2rem;
+      h1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: black;
+      }
+      p {
+        width: 80%;
+        margin: auto;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+    }
+   
+    @media (max-width: 596px) {
+      width: 70%;
+      height: 300px;
+      margin: auto;
+      margin-top: 7rem;
+      height: 340px;
+      padding: 2rem;
+      h1 {
+        font-size: 2rem;
+        font-weight: 800;
+        color: black;
+      }
+      p {
+        width: 80%;
+        margin: auto;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+    }
+    @media (max-width: 689px) {
+      height: 380px;
+    }
+    @media (max-width: 449px) {
+     width: 90%;
+    }
+  }
+}
+
+.service-description {
+  margin: 2rem;
+  .Links {
+    margin: 1rem;
+    a {
+      margin: 0.3rem;
+    }
+  }
+  h3 {
+    margin: 1rem 2rem;
+    font-size: 2.2rem;
+    font-weight: 900;
+  }
+  .desc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    .para {
+      flex: 2;
+      margin: 2rem;
+      width: 50%;
+      padding: 1rem;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .image {
+      flex: 1;
+      img {
+        width: 600px;
+        @media (max-width: 817px) {
+          width: 400px;
+        }
+        //   margin-top: 2rem;
+      }
+    }
+  }
+
+  .how-works {
+    h4 {
+      span {
+        border: 1px solid grey;
+        padding: 0.3rem 0.8rem;
+        margin: 1rem;
+        border-radius: 50%;
+      }
+    }
+    p {
+      width: 60%;
+      margin: auto;
+    }
+    @media (max-width: 598px) {
+      margin: auto;
+      width: 80%;
+      > div {
+        flex-direction: column;
+        justify-content: center;
+        .image {
+          img {
+            width: 80%;
+          }
+        }
+      }
+    }
+    @media (max-width: 598px) {
+      margin: 0.2rem;
+    }
+  }
+  @media (max-width: 718px){
+    flex-direction: column;
+  }
+  @media (max-width: 1290px) {
+    .desc {
+      flex-direction: column;
+      .para {
+        width: 100%;
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+.get-hired {
+  background-color: #fef6e7;
+  width: 100%;
+  height: 600px;
+  margin: 2rem 0rem;
+  margin-bottom: 7rem;
+  img {
+    width: 600px;
+    height: 400px;
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 800;
+  }
+  button {
+    font-size: 1.5rem;
+  }
+  @media (max-width: 1290px) {
+    img{
+      width: 500px;
+    }
+  }
+  @media (max-width: 798px) {
+    flex-direction: column;
+  }
+}
+
+.FAQ-Accordion {
+  max-width: 890px;
+  margin: auto;
+  margin-bottom: 4rem;
+  h1 {
+    color: #a36a08;
+    font-weight: 800;
+  }
+  p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.9rem;
+  }
+  h2 {
+    margin: 1rem 0rem;
+  }
+  .accordion-button:focus {
+    background-color: #f8f2e8;
+    color: #a36a08;
+    box-shadow: 0 0 0 0.25rem #fddb9f;
+  }
+  .accordion-button:not(.collapsed) {
+    color: #a36a08;
+    background-color: #fef6e7;
+    box-shadow: 0 0 0 0.25rem #fddb9f;
+  }
+}

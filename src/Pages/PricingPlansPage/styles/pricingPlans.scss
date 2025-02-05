@@ -1,0 +1,223 @@
+$primary-color: #4d4b4b;
+/* Bright green */
+$secondary-color: #ffffff;
+$accent-color: #524e48;
+/* Amber */
+$background-color: #f9f9f9;
+$text-color: #350101;
+
+.pricing-page {
+  margin-top: 5rem;
+  background-color: $background-color;
+  font-family: 'Poppins', sans-serif;
+  padding: 3rem;
+  color: $text-color;
+background-color: #fcf8f2;
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: $primary-color;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: $text-color;
+    }
+  }
+
+ 
+  .pricing-packages {
+    margin: 5rem 0;
+margin-bottom: 8rem;
+margin: auto;
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-align: center;
+      margin: 2.5rem;
+    }
+
+    .package-grid {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: space-around;
+      max-width: 1080px;
+      margin: auto;
+
+      .package-card {
+        background-color: $secondary-color;
+        text-align: center;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        border: 1px solid rgb(201, 201, 201);
+        border-top: 1px solid transparent;
+        border-top-color: rgb(201, 201, 201);
+        width: 330px;
+        box-shadow: 1px 1px 8px grey;
+
+        img {
+          width: 80px;
+          height: 80px;
+        }
+        .basicImage, .premImage{
+          width: 90px;
+          height: 90px;
+        }
+        
+
+        >div {
+          margin: 10px;
+        }
+
+        button {
+          padding: 5px 40px;
+          border: 1px solid rgb(197, 196, 196);
+          margin-bottom: 20px;
+          color: white;
+          font-weight: 700;
+          background-color: #FF7F45;
+          border-radius: 30px;
+        }
+
+        .features {
+          display: flex;
+          gap: 10px;
+          padding: 3px 10px;
+          text-align: start;
+        }
+
+        &:hover {
+          transform: translateY(-5px);
+          border-bottom: 5px solid $primary-color;
+          border-bottom-color: rgb(82, 80, 80);
+        }
+
+        .Basic {
+          background-color: #ca5172;
+
+          &:hover {
+            transform: translateY(-5px);
+          }
+        }
+
+        .Advance {
+          background-color: #307AAB;
+        }
+
+        .premium {
+          background-color: #53BBB4;
+        }
+
+        h3 {
+          font-size: 1.3rem;
+          margin-bottom: 1rem;
+          color: $accent-color;
+          font-weight: 500;
+          letter-spacing: 1px;
+          color: white;
+          padding: 10px;
+        }
+
+        p {
+          font-size: 1rem;
+          color: $text-color;
+          margin: 1rem 0;
+        }
+
+        .price {
+          font-size: 1.8rem;
+          font-weight: bold;
+          margin-bottom: 2rem;
+          span{
+            font-size: 20px;
+          }
+        }
+
+        &.highlighted {
+          background-color: rgb(243, 243, 252);
+          border-top-color: lighten(black, 5%);
+        }
+      }
+    }
+  }
+
+  .custom-quote {
+    margin: 2rem;
+    h2 {
+      font-size: 1.8rem;
+      text-align: center;
+      margin-top: 7rem;
+      margin-bottom: .5rem;
+      color: $primary-color;
+    }
+p{
+  // color: lighten($primary-color, 90%);
+  color: $primary-color;
+font-size: 14px;
+}
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      // box-shadow: 1px 1px 5px grey;
+max-width: 500px;
+margin: auto;
+.flex{
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: space-between;
+}
+      input,
+      textarea {
+        width: 100%;
+        // max-width: 500px;
+        padding: 0.3rem .8rem;
+        border: 1px solid $primary-color;
+        border-radius: 25px;
+        background-color:white;
+        font-size: 1rem;
+
+        &:focus, &:hover {
+          border-color: #FF7F45;
+          box-shadow: 1px 1px 2px #FF7F45;
+          outline: none;
+        }
+      }
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primary-color;
+        color: $secondary-color;
+        border: none;
+        padding: 0.8rem 1.5rem;
+        border-radius: 25px;
+        font-size: 1rem;
+        width: 100%;
+      
+
+        cursor: pointer;
+
+        .button-icon {
+          margin-right: 0.5rem;
+        }
+
+        &:hover {
+          background-color:#FF7F45;
+          color: black;
+          border:1px solid #FF7F45;
+          box-shadow: 1px 1px 2px #fab99b;
+
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+.bg-white{
+    box-shadow: inset 2px 2px 10px rgb(49, 49, 47), inset -1px -1px 5px rgba(26, 25, 25, 0.6);
+    border-radius: 10px;
+    border-color: 1px solid grey ;
+    padding: 1rem;
+}
+.taskers-info{
+
+    > div > img{
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+        width: 150px;
+        height: auto; 
+        border-radius: 50%;
+        border: solid;
+    }
+  
+}
+.taskers-details{
+
+    .profile-details{
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+        margin:  1rem;
+        margin-bottom: 3rem;
+                padding: 1rem;
+                background-color: #fff9ed !important;
+    }
+    .user{
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+margin: 1rem 0rem;
+        padding: 1rem;
+        background-color: #fff9ed;
+    }
+    button{
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+margin-bottom: 1rem;
+    }
+}
+
+.services-page{
+    // background-color: rgb(193 171 130);
+.comment{
+    margin: 4rem 0rem;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    background-color: #fff9ed !important;
+}
+}.form-details{
+    background-color: rgb(193 171 130) !important;
+margin: 0;
+border: solid;
+// margin: auto!important;
+padding-left: 10%;
+}
