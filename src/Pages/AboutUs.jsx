@@ -21,7 +21,7 @@ export const Content = () => {
   return (
     <div className="about-content">
       <div className="content">
-        <h1>About Us</h1>
+        <h2>About Us</h2>
       </div>
     </div>
   );
@@ -67,7 +67,7 @@ export const AboutDescription = () => {
 export const LeadershipTeam = () => {
   return (
     <div className="leader-team">
-      <h1>Leadership Team</h1>
+      <h2>Leadership Team</h2>
       <div className="grid-list">
         <div className="grid">
           <img src={leader} alt="" />

@@ -33,7 +33,7 @@ const servicedetails = () => {
         <>
            <section style={{ backgroundColor: "#fef6e7" }}>
     <div className="container">
-        <h1>Furniture Assembly</h1>
+        <h2>Furniture Assembly</h2>
     </div>
     <div className="container">
         <div className="form-box">

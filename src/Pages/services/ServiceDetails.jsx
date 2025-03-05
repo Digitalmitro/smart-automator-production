@@ -3,7 +3,7 @@ import bagImage from "./assets/backgroundImag.jpg";
 import logoImg from "./assets/logo.jpg";
 import image12 from "./assets/serviceDescription.jpg";
 import "./styles/serviceDetails.scss";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams,useLocation } from "react-router-dom";
 import { FAQ } from "./FAQ";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchServices } from '../../redux/services/ServicesSlice';
@@ -14,14 +14,16 @@ const token = localStorage.getItem("token");
 
 export const ServiceDetails = () => {
   const navigate = useNavigate()
-  const { id } = useParams()
-  console.log("myParams", id)
+  // const { id } = useParams()
+  // console.log("myParams", id)
+  const location = useLocation();
+  const { id } = location.state || {};
   const { categories, loading: categoriesLoading, error: categoriesError } = useSelector((state) => state.serviceCategories);
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
 
   const getServices = services?.filter((info) => info?._id === id)
   const dispatch = useDispatch()
-  console.log("ger", getServices)
+  // console.log("ger", getServices)
   useEffect(() => {
     dispatch(fetchServices());
   }, [dispatch]);
@@ -48,7 +50,7 @@ export const ServiceDetails = () => {
         {getServices?.map((item) => {
           return (
             <div className="content">
-              <h1>{item?.serviceName.toUpperCase()}</h1>
+              <h2>{item?.serviceName.toUpperCase()}</h2>
               <div className="line my-4"></div>
               <p>
                 {item?.shortDescription}

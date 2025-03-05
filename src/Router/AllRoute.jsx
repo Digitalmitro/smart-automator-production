@@ -27,6 +27,7 @@ import { PrivacyPolicy } from "../Pages/privacyPolicy/PrivacyPolicy";
 import { AboutUs2 } from "../Pages/aboutUsPage2/AboutUsPage";
 import  {PortfolioGallery} from "../Pages/PortfolioGallery"
 import {ContactUs} from "../Pages/Contact"
+import BlogPage from "../Pages/blogDetailsPage/BlogPage"
 const AllRoute =()=>{
     return (
         <>
@@ -60,6 +61,7 @@ const AllRoute =()=>{
         <Route path="/faq" element={<FAQ/>}>Frequently Asked Questions</Route>
         <Route path="/PortfolioGallery" element={<PortfolioGallery/>}>Portfolio Gallery</Route>
         <Route path="/contact" element={<ContactUs/>}>Contact Us</Route>
+        <Route path="/blog" element={<BlogPage/>}>Blog Page</Route>
         </Routes>
         </>
     )

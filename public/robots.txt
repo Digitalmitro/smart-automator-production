@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://smartautomator.com/sitemap.xml

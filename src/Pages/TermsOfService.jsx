@@ -35,7 +35,7 @@ export const MainContent = () => {
 
     return (
         <div className='main-content'>
-            <h1>Smart Automator Global Terms of Service</h1>
+            <h2>Smart Automator Global Terms of Service</h2>
             <div>
                
             </div>

@@ -21,7 +21,7 @@ export const MaintenancePlans = () => {
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
   const getServices = services?.filter((info) => info.serviceCategory._id === id)
   const isFilteredServices = getServices && getServices.length > 0 ? getServices : services;
-
+console.log(getServices)
   const dispatch = useDispatch()
   useEffect(() => {
     if (!services.length) dispatch(fetchServices());
@@ -102,7 +102,7 @@ const PricBreakDown = ({ isFilteredServices }) => {
                 </div>
                 <p className=''>{serviceItem.shortDescription}</p>
                 <div className='serviceFetaure'>
-                  {Features.map((featureList) =>
+                  {serviceItem?.features.map((featureList) =>
                     <>
                       <div>
                         <span>

@@ -7,7 +7,7 @@ export const AboutUs2 = () => {
   return (
     <div className="about-us">
       <div className="about-us-header">
-        <h1>About Us</h1>
+        <h2>About Us</h2>
         <p>Building trust through expertise, quality, and innovation.</p>
       </div>
 

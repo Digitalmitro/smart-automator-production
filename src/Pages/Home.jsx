@@ -920,14 +920,14 @@ const Home = () => {
           >
             -Testimonials-
           </h4>
-          <h1
+          <h2
             className="text-center"
             data-aos="zoom-in"
             data-aos-delay="100"
             data-aos-duration="2000"
           >
             What Our Clients Say
-          </h1>
+          </h2>
           <div class="gradient-custom">
             <div
               class="container"
@@ -1052,14 +1052,14 @@ const Home = () => {
           >
             -News-
           </h4>
-          <h1
+          <h2
             className="text-center"
             data-aos="zoom-in"
             data-aos-delay="300"
             data-aos-duration="2000"
           >
             LATEST ARTICLES
-          </h1>
+          </h2>
 
           <div className="row pt-2">
             {homeData?.blogs &&
@@ -1123,10 +1123,8 @@ const Home = () => {
                 className="mx-2"
                 style={{
                   width: "80px",
-                  border: "none",
-                  margin: "",
                   borderRadius: "20px",
-                  border: "2px solid grey",
+                  border: "2px solid white",
                 }}
                 onClick={() => navigate("/signup")}
               >

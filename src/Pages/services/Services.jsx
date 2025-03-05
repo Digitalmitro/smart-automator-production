@@ -54,7 +54,7 @@ export const Services = () => {
       <section style={{ backgroundColor: "#fef6e7" }}>
         <div className="service-page-banner">
           <header className="content">
-            <h1>Outdoor Smart Solutions with Control4</h1>
+            <h2>Outdoor Smart Solutions with Control4</h2>
             <p>Create the ultimate outdoor experience with custom smart home features tailored to your needs.</p>
           </header>
         </div>
@@ -69,14 +69,14 @@ export const ServiceGridCard = ({ categories, services }) => {
 
   return (
     <div className="service-grid-card">
-      <h1>Hire a trusted tasker</h1>
+      <h2>Hire a trusted tasker</h2>
       <div className="grid-card">
         {categories?.length > 0 &&
           categories?.map((item) => {
             const filteredServices = services.filter(
               (service) => service?.serviceCategory?.name === item.name
             );
-
+           const serviceCattext = item?.name.split(" ").join("-")
             return (
               <div className="grid">
                 <div className="image-container">
@@ -86,16 +86,22 @@ export const ServiceGridCard = ({ categories, services }) => {
                   <h3
                     style={{ textTransform: "capitalize" }}
                     // onClick={() => navigate(`/serviceinfo/${item._id}`)}
-                    onClick={() => navigate(`/serviceinfo/${item._id}`)}
+                    onClick={() => navigate(`/serviceinfo/${serviceCattext}`, {
+                      state: { id: item._id }
+                    })}
                   >
                     {item.name}
                   </h3>
                   <p>{item.description}</p>
                   <hr />
                   {filteredServices.map((serviceName) => (
-                    <Link to={`/servicedetails/${serviceName._id}`}>
-                      <p>{serviceName.serviceName}</p>
-                    </Link>
+                     <p
+                     key={serviceName._id}
+                     onClick={() => navigate(`/servicedetails/${serviceName.serviceName.split(" ").join("-")}`, { state: { id: serviceName._id } })}
+                     style={{ cursor: "pointer", color: "greay", textDecoration: "underline" }}
+                   >
+                     {serviceName.serviceName}
+                   </p>
                   ))}
                 </div>
               </div>

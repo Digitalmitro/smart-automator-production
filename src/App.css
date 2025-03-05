@@ -233,7 +233,7 @@ height: 6rem
   background-color: transparent;
   border-radius: 20px;
   width:70%;
-color: #fff !important;
+color: #fff;
   border: 2px solid #fff ;
 }
 .counter {
@@ -400,7 +400,7 @@ max-width: 500px;
 }
 
 input[type=range] {
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
   border: 1px solid white;
   width: 300px;
   position: absolute;

@@ -4,7 +4,7 @@ export const FAQ = () => {
 
   return (
     <div className="FAQ-Accordion">
-      <h1 className="my-4">FREQUENTLY ASKED QUESTION </h1>
+      <h2 className="my-4">FREQUENTLY ASKED QUESTION </h2>
       <div class="accordion  accordion-flush" id="accordionFlushExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="flush-headingOne">

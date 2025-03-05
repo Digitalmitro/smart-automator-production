@@ -37,7 +37,7 @@ export const MainContent = () => {
     return (
         <div className='main-content'>
             <div style={{ marginBottom: "2rem" }}>
-                <h1>Smart Automator Privacy Policy</h1>
+                <h2>Smart Automator Privacy Policy</h2>
                 <span style={{ color: "#aeaeae", marginBottom: "1rem" }}>
                     Last Updated : 7 aug 2024
                 </span>

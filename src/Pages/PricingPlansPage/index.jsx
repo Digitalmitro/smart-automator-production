@@ -67,7 +67,7 @@ export const PricingPage = () => {
     <div className="pricing-page">
       {/* Header Section */}
       <header className="pricing-header">
-        <h1>Affordable Plans for Every Need</h1>
+        <h2>Affordable Plans for Every Need</h2>
         <p>Explore our transparent pricing options and pick what fits your budget.</p>
       </header>
       <Plans />

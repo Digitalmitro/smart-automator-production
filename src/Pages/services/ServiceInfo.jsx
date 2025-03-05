@@ -5,7 +5,7 @@ import serviceInfo2 from "./assets/serviceInfo2.jpg";
 import serviceInfobanner from "./assets/serviceinfobanner.jpg";
 import image12 from "./assets/serviceDescription.jpg";
 import "./styles/ServiceInfo.scss";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams,useLocation  } from "react-router-dom";
 import { FAQ } from "./FAQ";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchServices } from "../../redux/services/ServicesSlice";
@@ -21,7 +21,9 @@ export const ServiceInfo = () => {
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
-  const { id } = useParams()
+  // const { id } = useParams()
+  const location = useLocation();
+  const { id } = location.state || {};
   const [filterService, setFilterService] = useState(null)
   const { categories, loading: categoriesLoading, error: categoriesError } = useSelector((state) => state.serviceCategories);
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
@@ -80,7 +82,7 @@ export const ServiceContent = ({ services, getCategories }) => {
       {getCategories?.map((item) => {
         return (
           <div className="content">
-            <h1>{item?.name.toUpperCase()}</h1>
+            <h2>{item?.name.toUpperCase()}</h2>
             <p>
               {item.description}
             </p>
@@ -113,7 +115,7 @@ export const ServiceDescription = ({ filterService }) => {
 export const AboutServices = ({ getCategories }) => {
   return (
     <div className="aboutServices text-center">
-      <h1>{getCategories[0]?.name}</h1>
+      <h2>{getCategories[0]?.name}</h2>
 
       {getCategories?.map((item) => (
 
@@ -177,7 +179,7 @@ export const OtherServices = ({ categories }) => {
 
   return (
     <div className="other-services">
-      <h1> Search other tasks</h1>
+      <h2> Search other tasks</h2>
       <div className="grid-container">
         {categories?.map((item) => (
 
