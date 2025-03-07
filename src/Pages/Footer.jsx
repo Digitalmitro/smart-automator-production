@@ -13,10 +13,20 @@ const Footer = () => {
                                     today!</p>
 
                                 <div className="social" style={{ display: "flex", gap: "40px", fontSize: "20px" }}>
-                                    <i class="fa-brands fa-facebook"></i>
-                                    <i class="fa-brands fa-x-twitter"></i>
-                                    <i class="fa-brands fa-linkedin"></i>
+                                    <a href="https://www.facebook.com/smartautomator/" target="_blank" rel="noopener noreferrer">
+                                        <i className="fa-brands fa-facebook"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/smartautomator/" target="_blank" rel="noopener noreferrer">
+                                        <i className="fa-brands fa-instagram"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/company/smart-automator/" target="_blank" rel="noopener noreferrer">
+                                        <i className="fa-brands fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://www.pinterest.com/smartautomator/" target="_blank" rel="noopener noreferrer">
+                                        <i className="fa-brands fa-pinterest"></i>
+                                    </a>
                                 </div>
+
                             </div>
 
                             <div className="col-md-3">
@@ -48,10 +58,10 @@ const Footer = () => {
                                 <h4>Contact</h4>
                                 <hr style={{ width: "50%", color: "#F9AC25" }} />
                                 <ul>
-                                    <li> <i class="fa-solid fa-phone"></i> <span style={{ marginLeft: "7px" }}>+12026157235</span></li>
-                                    <li><i class="fa-regular fa-envelope"></i>homeautomator@gmail.com</li>
-                                    <li><i class="fa-solid fa-location-dot"></i>2919 nW Cache rd, lawton, oK 73505,
-                                        United States</li>
+                                    <li> <i class="fa-solid fa-phone"></i> <span style={{ marginLeft: "7px" }}>405 638-5343</span></li>
+                                    <li><i class="fa-regular fa-envelope"></i>irvinmason@hotmail.com</li>
+                                    {/* <li><i class="fa-solid fa-location-dot"></i>2919 nW Cache rd, lawton, oK 73505,
+                                        United States</li> */}
                                 </ul>
                             </div>
                         </div>
@@ -61,11 +71,6 @@ const Footer = () => {
 
                 </div>
             </footer>
-
-
-
-
-
         </>
     )
 }

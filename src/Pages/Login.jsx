@@ -16,15 +16,15 @@ const login = () => {
     };
 
     try {
-      console.log("try");
+   
       const response = await axios.post(
         `${import.meta.env.VITE_SOME_KEY}/loginclient`,
         credentials
       );
-      console.log(response);
+    
       localStorage.setItem("token", response.data.token)
       localStorage.setItem("user", JSON.stringify(response.data.user))
-      // Cookies.set("token", response.data.token);
+    
       message.success(response.data.status, {});
       setTimeout(() => {
         navigate('/')
@@ -37,7 +37,7 @@ const login = () => {
       message.warning("login unsuccessful");
 
       }
-      console.log(error.response.data.status);
+   
     }
     if (token) {
       // return <Navigate to="/" />;

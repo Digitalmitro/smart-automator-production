@@ -19,8 +19,7 @@ export const Plans = () => {
   
     // const getServices = services?.filter((data)=> data.serviceCategory.name === getCategories[0].name)
 
-console.log("service", services)
-console.log("categories", categories)
+
     useEffect(() => {
       dispatch(fetchServiceCategories());
       dispatch(fetchServices());

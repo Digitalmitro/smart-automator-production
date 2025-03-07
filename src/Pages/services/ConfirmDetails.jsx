@@ -34,16 +34,12 @@ function ConfirmDetails() {
     setSelectedPaymentMethod(method);
   };
 
-
-
-  console.log("decodedToken", decodedToken)
   const handleServiceDetails = async () => {
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_SOME_KEY}/service/${id}`
       );
       setData(response.data);
-      console.log("res", response.data);
     } catch (error) {
       console.log(error);
     }
@@ -87,13 +83,11 @@ function ConfirmDetails() {
         `${import.meta.env.VITE_SOME_KEY}/order`,
         payload
       );
-      console.log("order response", response);
       message.success(response.data);
       setTimeout(() => {
         navigate(`/services/${id}`);
       }, 1200);
     } catch (error) {
-      // message.warning(error.response.data.status, {});
       console.log(error);
     }
   };

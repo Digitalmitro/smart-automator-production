@@ -16,7 +16,6 @@ export const AddressPanel = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const serviceid = searchParams.get("serviceid");
-console.log("serviceid", serviceid )
   const [open, setOpen] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false); // State to track delete confirmation
   const [addressToDelete, setAddressToDelete] = useState(null); // Store address to delete

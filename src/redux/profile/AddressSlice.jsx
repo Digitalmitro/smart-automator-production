@@ -9,7 +9,6 @@ import { Api } from "../../network/Api";
 // Fetch all addresses
 export const fetchAddresses = createAsyncThunk("address/fetchAddresses", async () => {
   const response = await Api.get(`/address/${userid}`); // Fetch all addresses
-  console.log("respodn", response.data)
   return response.data;
 });
 
@@ -28,7 +27,6 @@ export const createAddress = createAsyncThunk("address/createAddress", async (ne
 // Update an address
 export const updateAddress = createAsyncThunk("address/updateAddress", async ({ id, updatedData }) => {
   const response = await Api.put(`/address/${id}`, updatedData); // Update address by ID
-  console.log("updatedData", updatedData)
   return response.data;
 });
 
@@ -55,8 +53,7 @@ const addressSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchAddresses.fulfilled, (state, action) => {
-  console.log("respodn", action.payload)
-
+ 
         state.loading = false;
         state.data = action.payload;
       })
@@ -97,7 +94,6 @@ const addressSlice = createSlice({
         state.loading = true;
       })
       .addCase(updateAddress.fulfilled, (state, action) => {
-        console.log("paylod", action.payload)
         state.loading = false;
         const index = state.data.findIndex((addr) => addr._id === action.payload._id);
         if (index !== -1) state.data[index] = action.payload; // Update the address in the state

@@ -15,7 +15,7 @@ export const ContactUs = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+
   };
 
   return (
@@ -64,8 +64,8 @@ export const ContactUs = () => {
         {/* Direct Contact Info */}
         <div className="contact-info">
           <h3>Contact Information</h3>
-          <p><strong>Phone:</strong> +1 234 567 890</p>
-          <p><strong>Email:</strong> info@yourdomain.com</p>
+          <p><strong>Phone:</strong>405 638-5343</p>
+          <p><strong>Email:</strong> irvinmason@hotmail.com</p>
 
           {/* CTA Buttons */}
           <div className="cta-buttons">

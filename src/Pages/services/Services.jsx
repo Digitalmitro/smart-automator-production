@@ -46,9 +46,6 @@ export const Services = () => {
   if (categoriesError) return <p>Error: {categoriesError}</p>;
   if (servicesError) return <p>Error: {servicesError}</p>;
 
-  // console.log("categories", categories);
-  // console.log("services", services);
-
   return (
     <>
       <section style={{ backgroundColor: "#fef6e7" }}>
@@ -92,12 +89,12 @@ export const ServiceGridCard = ({ categories, services }) => {
                   >
                     {item.name}
                   </h3>
-                  <p>{item.description}</p>
+                  <p>{item.description}</p> 
                   <hr />
                   {filteredServices.map((serviceName) => (
                      <p
                      key={serviceName._id}
-                     onClick={() => navigate(`/servicedetails/${serviceName.serviceName.split(" ").join("-")}`, { state: { id: serviceName._id } })}
+                     onClick={() => navigate(`/servicedetails/${serviceName.serviceName.toLowerCase().split(" ").join("-")}`, { state: { id: serviceName._id } })}
                      style={{ cursor: "pointer", color: "greay", textDecoration: "underline" }}
                    >
                      {serviceName.serviceName}

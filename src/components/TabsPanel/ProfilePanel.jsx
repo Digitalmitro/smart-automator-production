@@ -58,7 +58,6 @@ export const ProfilePanel = () => {
         headers: { token },
       })
       .then((res) => {
-        console.log(res.data);
         setUser(res.data.user);
       })
       .catch((e) => {
@@ -84,14 +83,11 @@ export const ProfilePanel = () => {
         { headers: { token } }
       );
 
-      console.log(response);
 
       if (response.status === 200) {
         setCallApi(!callApi);
         message.success("Profile Updated successfully");
-        // setTimeout(() => {
-        //   window.location.reload();
-        // }, 1200); // 1.2 seconds
+        
       } else {
         message.error("An error occurred while updating the profile");
       }

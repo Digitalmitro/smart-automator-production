@@ -16,22 +16,7 @@ const TaskerSignup = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    const credentials = {
-      firstName:firstName,
-      lastName:lastName,
-      email:email,
-      password:password,
-      phone: phone,
-      zip: zip,
-    };
-console.log(credentials)
     try {
-      // const response = await axios.post(
-      //   `${import.meta.env.VITE_SOME_KEY}/registerclient`,
-      //   credentials
-      // );
-      // console.log(response);
-      // message.success(response.data, {});
       setTimeout(() => {
         navigate("/login");
       }, 1200);

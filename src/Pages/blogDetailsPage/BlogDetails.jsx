@@ -2,12 +2,14 @@ import "./styles/blogDetails.scss";
 import img1 from "../../assets/tab1.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams,useLocation } from "react-router-dom";
 import { format } from "timeago.js";
 import moment from "moment";
 
 export const BlogDetails = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
+  const location = useLocation();
+  const id = location.state?.id;
   const [blogsWithID, setBlogsWithID] = useState(null);
   const [blogs, setBlogs] = useState(null);
   const [selectedBlog, setSelectedBlog] = useState(null)
@@ -16,7 +18,6 @@ export const BlogDetails = () => {
     await axios
       .get(`${import.meta.env.VITE_SOME_KEY}/blog/${id}`)
       .then((res) => {
-        console.log(res.data.blog);
         setBlogsWithID(res.data.blog);
       })
       .catch((e) => {

@@ -56,7 +56,6 @@ const Home = () => {
     await axios
       .get(`${import.meta.env.VITE_SOME_KEY}/home-cms`)
       .then((res) => {
-        console.log(res.data);
         setHomeData(res.data.homeCMS.homePage);
       })
       .catch((e) => {
@@ -68,7 +67,7 @@ const Home = () => {
     await axios
       .get(`${import.meta.env.VITE_SOME_KEY}/client/service-categories`)
       .then((res) => {
-        console.log(res.data);
+    
         setServiceCategories(res.data.categories);
       })
       .catch((e) => {
@@ -80,7 +79,7 @@ const Home = () => {
     await axios
       .get(`${import.meta.env.VITE_SOME_KEY}/get-testimonials`)
       .then((res) => {
-        console.log(res.data);
+  
         setTestimonials(res.data.testimonials);
       })
       .catch((e) => {
@@ -88,27 +87,14 @@ const Home = () => {
       });
   };
 
-  // const getBlogs = async () => {
-  //   await axios
-  //     .get(`${import.meta.env.VITE_SOME_KEY}/blog`)
-  //     .then((res) => {
-  //       console.log("blogssss", res.data.blog);
-  //       setBlogs(res.data.blog);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // };
 
   const getService = async () => {
     await axios
       .get(`${import.meta.env.VITE_SOME_KEY}/client/services`)
       .then((res) => {
-        console.log("res?.data", res?.data.services);
         const isFeatured = res?.data?.services.filter(
           (item) => item.isFeatured
-        );
-        console.log("isFeatured", isFeatured);
+        );      
         setService(res?.data?.services);
         setFeaturedServices(isFeatured);
       })

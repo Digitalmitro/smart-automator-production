@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import './styles/maintenancePlans.scss';
-import { FaCheckCircle, FaWrench, FaClock, FaCloudDownloadAlt, FaPaperPlane } from 'react-icons/fa';
+import {  FaPaperPlane } from 'react-icons/fa';
 import { fetchServices } from '../../redux/services/ServicesSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { fetchServiceCategories } from '../../redux/services/ServiceCategorySlice';
 import { SvgRepo } from '../../components/SvgRepo/SvgRepo';
-import image1 from "./assets/basics2.png"
-import image2 from "./assets/advance2.png"
-import serviceInfo2 from "./assets/serviceInfo2.jpg";
-import image3 from "./assets/premium3.png"
+// import image1 from "./assets/basics2.png"
+// import image2 from "./assets/advance2.png"
+// import serviceInfo2 from "./assets/serviceInfo2.jpg";
+// import image3 from "./assets/premium3.png"
 import { message } from 'antd';
 
 const token = localStorage.getItem("token");
@@ -21,7 +21,7 @@ export const MaintenancePlans = () => {
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
   const getServices = services?.filter((info) => info.serviceCategory._id === id)
   const isFilteredServices = getServices && getServices.length > 0 ? getServices : services;
-console.log(getServices)
+
   const dispatch = useDispatch()
   useEffect(() => {
     if (!services.length) dispatch(fetchServices());
@@ -87,6 +87,7 @@ const PricBreakDown = ({ isFilteredServices }) => {
       navigate("/login");
     }
   };
+ 
   return (
     <section className="pricing-breakdown">
       <div className="services-grid mb-5">
@@ -115,7 +116,9 @@ const PricBreakDown = ({ isFilteredServices }) => {
                 </div>
               </div>
               <div className='button-container'>
-                <button onClick={() => navigate(`/servicedetails/${serviceItem._id}`)}>Know more</button>
+                <button onClick={() => navigate(`/servicedetails/${serviceItem?.serviceName.toLowerCase().split(" ").join("-")}`,{
+                      state: { id: serviceItem?._id }
+                    })}>Know more</button>
                 <button onClick={() => handleBooking(serviceItem._id)}>
                   Book now
                 </button>
@@ -129,15 +132,5 @@ const PricBreakDown = ({ isFilteredServices }) => {
 
   )
 }
-
-
-
-const Features = [
-  "All basic features",
-  "Edge trimming and leveling",
-  "Hedge trimming",
-  "Basic fertilizer application",
-  "Seasonal care suggestions",
-]
 
 

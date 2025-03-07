@@ -24,11 +24,10 @@ const servicedetails = () => {
             taskDetails: taskDetails
           }
        localStorage.setItem("serviceDetails", JSON.stringify(servicDetailsObj))
-         console.log(servicDetailsObj)
+     
          navigate("/services")
 
     }
-// console.log(selectedRadio)
     return (
         <>
            <section style={{ backgroundColor: "#fef6e7" }}>

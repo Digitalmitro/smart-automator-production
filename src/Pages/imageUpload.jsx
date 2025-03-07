@@ -29,7 +29,6 @@ function ImageUpload() {
     } catch (error) {
       console.log(error);
     }
-    console.log("taskers", taskers)
 
   };
 
@@ -63,8 +62,7 @@ function ImageUpload() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log("post data",response); // Log the response from the server
-     
+ 
       setImage(null);
       setCover(null);
     } catch (error) {

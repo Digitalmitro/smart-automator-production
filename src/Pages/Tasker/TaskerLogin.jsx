@@ -19,28 +19,7 @@ const Taskerslogin = () => {
       password: password,
     };
 
-    // try {
-    //   console.log("try");
-    // //   const response = await axios.post(
-    // //     `${import.meta.env.VITE_SOME_KEY}/loginclient`,
-    // //     credentials
-    // //   );
-    //   console.log(response);
-    // //   Cookies.set("token", response.data.token);
-    //   message.success(response.data.status, {});
-    //   setTimeout(() => {
-    //     window.location.href = "/profile";
-    //   }, 800);
-    // } catch (error) {
-    //     if(error.response.data.status){
-    //         message.warning(error.response.data.status, {});
-
-    //     }else{
-    //   message.warning("Login Unsuccessfull");
-
-    //     }
-    //   console.log(error.response.data.status);
-    // }
+   
 
     window.location.href = "/profile";
 

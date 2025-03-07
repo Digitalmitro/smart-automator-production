@@ -27,7 +27,6 @@ const Signup = () => {
     await axios
       .post(`${import.meta.env.VITE_SOME_KEY}/registerclient`, credentials)
       .then((res) => {
-        console.log(res.data);
         navigate("/login");
       })
       .catch((e) => {

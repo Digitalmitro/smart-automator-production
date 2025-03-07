@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './styles/pricingPlans.scss';
-import { Space, Table, Tag } from 'antd';
-import styles from "./styles/plans.module.scss"
-import axios from 'axios';
-import { FaTools, FaPaintRoller, FaBroom, FaBolt, FaPaperPlane } from 'react-icons/fa';
+import {  FaPaperPlane } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchServices } from '../../redux/services/ServicesSlice';
 import { SvgRepo } from '../../components/SvgRepo/SvgRepo';
-import basics from "./assets/basics.png"
-import premium from "./assets/premium.png"
-import { get } from 'jquery';
+// import basics from "./assets/basics.png"
+// import premium from "./assets/premium.png"
+// import { get } from 'jquery';
 import { Plans } from './components/plans';
 import image1 from "./assets/basics2.png"
 import image2 from "./assets/advance2.png"
@@ -20,18 +17,15 @@ export const PricingPage = () => {
   const { categories, loading: categoriesLoading, error: categoriesError } = useSelector((state) => state.serviceCategories);
   const { services, loading: servicesLoading, error: servicesError } = useSelector((state) => state.services);
   const getServices = services?.filter((info) => info._id === id)
-  console.log("getServices", getServices)
+ 
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchServices());
   }, [dispatch]);
 
-
-
   const [plans, setPlans] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-
 
   const fetchPlans = async () => {
     setLoading(true);
@@ -43,7 +37,6 @@ export const PricingPage = () => {
           'Content-Type': 'application/json',
         },
       });
-      console.log("plans", response)
 
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
@@ -61,7 +54,6 @@ export const PricingPage = () => {
   useEffect(() => {
     fetchPlans();
   }, []);
-
 
   return (
     <div className="pricing-page">

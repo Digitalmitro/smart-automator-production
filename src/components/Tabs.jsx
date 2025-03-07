@@ -78,7 +78,7 @@ const [activeTab, setActiveTab] = useState()
   const closeLogoutModal = () => {
     setShowLogoutModal(false); // Hide modal
   };
-console.log(location.state)
+
   useEffect(() => {
     const stateTabIndex = location.state?.tabIndex;
     if (stateTabIndex !== undefined) {
@@ -96,7 +96,7 @@ console.log(location.state)
       const res = await axios.get(
         `${import.meta.env.VITE_SOME_KEY}/order/${user_id}`
       );
-      console.log("order details", res.data.order);
+
       setOrderDetails(res.data.order);
     } catch (error) {
       // message.warning(error.response.data.status, {});
@@ -106,7 +106,7 @@ console.log(location.state)
   React.useEffect(() => {
     handleOrderDetails();
   }, []);
-  console.log(orderDetails);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(3);
   // Calculate the index of the first and last item of the current page

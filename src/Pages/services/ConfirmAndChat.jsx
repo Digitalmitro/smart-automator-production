@@ -71,7 +71,7 @@ export function ConfirmAndChat() {
                 `${import.meta.env.VITE_SOME_KEY}/service/${id}`
             );
             setData(response.data);
-            console.log("res", response.data);
+            // console.log("res", response.data);
         } catch (error) {
             console.log(error);
         }

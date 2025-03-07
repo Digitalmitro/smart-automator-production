@@ -29,7 +29,6 @@ const services = () => {
 
   const handleServiceDetails = async () => {
     try {
-      console.log("try");
       const response = await axios.get(
         `${import.meta.env.VITE_SOME_KEY}/service`
       );
@@ -43,15 +42,12 @@ const services = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  console.log(taskers);
   useEffect(() => {
     if (!token) {
       return navigate("/login");
     }
     handleServiceDetails();
   }, []);
-
-  console.log(serviceForm);
   function getVals() {
     // Get slider values
     let parent = this.parentNode;
@@ -99,9 +95,9 @@ const services = () => {
   // data filter by Id
 
   const handleOrder = async (id) => {
-    console.log(id);
+   
     const [filteredData] = taskers.filter((data) => id === data._id);
-    console.log(filteredData);
+  
 
     try {
       const payload = {
@@ -133,7 +129,6 @@ const services = () => {
         `${import.meta.env.VITE_SOME_KEY}/order`,
         payload
       );
-      console.log(response);
       message.success(response.data);
       setTimeout(() => {
         navigate(`/services/${id}`);
@@ -169,7 +164,6 @@ const services = () => {
 
   const onChangeTime = (time, timeString) => {
     setchangeTime(timeString);
-    console.log(timeString);
   };
 
   const handleNavigate = () => {

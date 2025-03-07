@@ -58,7 +58,6 @@ const servicedetails = () => {
 
   const onChangeTime = (time, timeString) => {
     setchangeTime(timeString);
-    console.log(timeString);
   };
 
   const handleNavigate = () => {
@@ -75,7 +74,6 @@ const servicedetails = () => {
       const response = await Api.get(`/address/${userId}`)
       const data = response.data
       const addressData = data.find((address) => address.default)
-      console.log("address dta", addressData)
       setDefaultAddress(addressData)
     } catch (error) {
       console.error("Error fetching ", error);
@@ -100,8 +98,7 @@ const servicedetails = () => {
     });
   }, []);
 
-  const handleServiceDetails = (e) => {
-    console.log("hello services")
+  const handleServiceDetails = (e) => { 
     e.preventDefault();
     const servicDetailsObj = {
       taskLocation: taskLocation,
@@ -111,7 +108,6 @@ const servicedetails = () => {
       taskDetails: taskDetails,
     };
     localStorage.setItem("serviceDetails", JSON.stringify(servicDetailsObj));
-    console.log(servicDetailsObj);
     // navigate("/formBookingDetails");
     showLoading()
 
@@ -336,7 +332,7 @@ const servicedetails = () => {
             </label>
             <p style={{ color: "#d69d00" }}>save 5%</p>
           </div>
-          <div class=" lineBorder border border-2  my-4"></div>
+          <div class=" lineBorder  border-2  my-4"></div>
         </div>
               <p>
                 If you need two or more Taskers, please post additional tasks

@@ -26,7 +26,7 @@ export const FormBooking = () => {
 
   const handleServiceDetails = async () => {
     try {
-      console.log("try");
+
       const response = await axios.get(
         `${import.meta.env.VITE_SOME_KEY}/service`
       );
@@ -40,7 +40,6 @@ export const FormBooking = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  console.log(taskers);
   useEffect(() => {
     if (!token) {
       return navigate("/login");
@@ -48,7 +47,6 @@ export const FormBooking = () => {
     handleServiceDetails();
   }, []);
 
-  console.log(serviceForm);
   function getVals() {
     // Get slider values
     let parent = this.parentNode;
@@ -96,9 +94,9 @@ export const FormBooking = () => {
   // data filter by Id
 
   const handleOrder = async (id) => {
-    console.log(id);
+ 
     const [filteredData] = taskers.filter((data) => id === data._id);
-    console.log(filteredData);
+   
 
     try {
       const payload = {
@@ -130,7 +128,7 @@ export const FormBooking = () => {
         `${import.meta.env.VITE_SOME_KEY}/order`,
         payload
       );
-      console.log(response);
+   
       message.success(response.data);
       setTimeout(() => {
         navigate(`/services/${id}`);
@@ -166,7 +164,6 @@ export const FormBooking = () => {
 
   const onChangeTime = (time, timeString) => {
     setchangeTime(timeString);
-    console.log(timeString);
   };
 
   const handleNavigate = () => {

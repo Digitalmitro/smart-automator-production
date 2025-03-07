@@ -13,12 +13,11 @@ const OrderConfirmation = () => {
   const handleServiceDetails = async () => {
 
     try {
-      console.log("try");
       const response = await axios.get(
         `${import.meta.env.VITE_SOME_KEY}/service/${id}`
       );
       setOrder(response.data);
-      console.log("res", response.data)
+  
     } catch (error) {
       console.log(error);
     }

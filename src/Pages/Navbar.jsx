@@ -30,7 +30,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -54,15 +54,24 @@ const Navbar = () => {
     <div className="navbarContainer">
       <div className="container-fluid top-header">
         <p style={{ fontSize: "12px" }}>
-          <i className="fa-solid fa-location-dot"></i> 12880 SW Scholls Ferry Rd
-          Tigard, OR 97223
+          {/* <i className="fa-solid fa-location-dot"></i> 12880 SW Scholls Ferry Rd
+          Tigard, OR 97223 */}
         </p>
-        <div className="icon">
-          <i className="fa-brands fa-x-twitter"></i>{" "}
-          <i className="fa-brands fa-facebook"></i>{" "}
-          <i className="fa-brands fa-instagram"></i>
-          <i className="fa-brands fa-pinterest"></i>
+        <div className="social" style={{ display: "flex", gap: "40px", fontSize: "20px" }}>
+          <a href="https://www.facebook.com/smartautomator/" target="_blank" rel="noopener noreferrer">
+            <i className="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://www.instagram.com/smartautomator/" target="_blank" rel="noopener noreferrer">
+            <i className="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/smart-automator/" target="_blank" rel="noopener noreferrer">
+            <i className="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="https://www.pinterest.com/smartautomator/" target="_blank" rel="noopener noreferrer">
+            <i className="fa-brands fa-pinterest"></i>
+          </a>
         </div>
+
       </div>
 
       <header>
@@ -87,10 +96,7 @@ const Navbar = () => {
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNav"
-              aria-controls="n
-              
-              
-              avbarNav"
+              aria-controls="navbarNav"
               aria-expanded="false"
               aria-label="Toggle navigation"
             >

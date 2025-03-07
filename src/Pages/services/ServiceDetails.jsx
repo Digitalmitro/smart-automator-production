@@ -14,8 +14,7 @@ const token = localStorage.getItem("token");
 
 export const ServiceDetails = () => {
   const navigate = useNavigate()
-  // const { id } = useParams()
-  // console.log("myParams", id)
+ 
   const location = useLocation();
   const { id } = location.state || {};
   const { categories, loading: categoriesLoading, error: categoriesError } = useSelector((state) => state.serviceCategories);
@@ -23,7 +22,6 @@ export const ServiceDetails = () => {
 
   const getServices = services?.filter((info) => info?._id === id)
   const dispatch = useDispatch()
-  // console.log("ger", getServices)
   useEffect(() => {
     dispatch(fetchServices());
   }, [dispatch]);
