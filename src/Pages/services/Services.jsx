@@ -73,7 +73,7 @@ export const ServiceGridCard = ({ categories, services }) => {
             const filteredServices = services.filter(
               (service) => service?.serviceCategory?.name === item.name
             );
-           const serviceCattext = item?.name.split(" ").join("-")
+           const serviceCattext = item?.name.toLowerCase().split(" ").join("-")
             return (
               <div className="grid">
                 <div className="image-container">
