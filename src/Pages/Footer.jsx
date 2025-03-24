@@ -65,7 +65,12 @@ const Footer = () => {
                                 </ul>
                             </div>
                         </div>
-                        <p style={{ textAlign: "center", color: "#fff" }}>Copyright by  Great Greek Mediterranean grill @ 2024. All rights reserved</p>
+                        <p style={{ textAlign: "center", color: "#fff", fontSize: "14px", padding: "10px 0" }}>
+                            Copyright by <strong>Great Greek Mediterranean Grill</strong> © 2025. All rights reserved.
+                            <br />
+                            Designed & Developed by <strong>Digital Mitro</strong> 
+                        </p>
+
                     </div>
 
 
