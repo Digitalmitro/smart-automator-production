@@ -24,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
   const { scrollYProgress } = useScroll();
-  const [blogs, setBlogs] = useState();
+  // const [blogs, setBlogs] = useState();
   AOS.init();
 
   $(document).ready(function () {
@@ -67,7 +67,7 @@ const Home = () => {
     await axios
       .get(`${import.meta.env.VITE_SOME_KEY}/client/service-categories`)
       .then((res) => {
-    
+
         setServiceCategories(res.data.categories);
       })
       .catch((e) => {
@@ -79,7 +79,7 @@ const Home = () => {
     await axios
       .get(`${import.meta.env.VITE_SOME_KEY}/get-testimonials`)
       .then((res) => {
-  
+
         setTestimonials(res.data.testimonials);
       })
       .catch((e) => {
@@ -94,7 +94,7 @@ const Home = () => {
       .then((res) => {
         const isFeatured = res?.data?.services.filter(
           (item) => item.isFeatured
-        );      
+        );
         setService(res?.data?.services);
         setFeaturedServices(isFeatured);
       })
@@ -276,493 +276,6 @@ const Home = () => {
             </ul>
           </div>
 
-          {/* <div class="tab-content " id="pills-tabContent">
-            <div
-              class="tab-pane fade show active mt-5"
-              id="pills-home"
-              role="tabpanel"
-              aria-labelledby="pills-home-tab"
-              tabindex="0"
-            >
-              <div
-                className="container "
-                data-aos="fade-right"
-                //  data-aos-delay="100"
-                data-aos-duration="2000"
-              >
-                <div className="section-3 d-flex align-items-center">
-                  <div className="desc flex-1" style={{ marginRight: "3rem" }}>
-                    <p
-                      data-aos="fade-right"
-                      data-aos-delay="100"
-                      data-aos-duration="1500"
-                    >
-                      <strong>
-                        Our handymen are extremely well-qualified and have years
-                        of professional experience under their belt. experience
-                        under their belt
-                      </strong>
-                    </p>
-                    <div className="assembly-container container-fluid pt-3 pr-sm-0">
-                      <div className=" ">
-                        <div className="">
-                          <div className="d-flex" style={{ gap: "10px" }}>
-                            <button
-                              className=" assemblyButton p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              IKEA Assembly
-                            </button>
-                            <button
-                              className="assemblyButton p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Furniture Assembly
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className=" assemblyButton p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Crib Assembly
-                            </button>
-                            <button
-                              className=" assemblyButton p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              PAX Assembly
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className=" assemblyButton p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Desk Assembly
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <button
-                      className="p-2 px-4"
-                      style={{
-                        marginTop: "50px",
-                        marginLeft: "10px",
-                        borderRadius: "10px",
-                        background: "#f9ac25",
-                        color: "white",
-                        border: "none",
-                      }}
-                    >
-                      View More
-                    </button>
-                  </div>
-
-                  <div className="assemblyImage m-3">
-                    <motion.img
-                      className="img-fluid"
-                      initial={{ y: -10 }}
-                      animate={{ y: 10 }}
-                      whileHover={{
-                        y: -10,
-                        transition: {
-                          type: "smooth",
-                          repeatType: "mirror",
-                          duration: 0.8,
-                          repeat: 1,
-                        },
-                      }}
-                      style={{ width: "530px", height: "350px" }}
-                      src={tab1}
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="tab-pane fade  mt-5"
-              id="pills-profile"
-              role="tabpanel"
-              aria-labelledby="pills-profile-tab"
-              tabindex="0"
-            >
-              <div className="container">
-                <div className="row">
-                  <div className="col">
-                    <p>
-                      Clean your home or office; deep clean appliances and other
-                      spaces. Now Trending: Eco-friendly products, home cleaning
-                      checklists, and cleaning hacks
-                    </p>
-                    <div className="container-fluid">
-                      <div className="row">
-                        <div className="col-9">
-                          <div className="d-flex" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Home Cleaning
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Office Cleaning
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Carpet Cleaning
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Window Cleaning
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Upholstery Cleaning
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Tile & Grout Cleaning
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <button
-                      className="p-2"
-                      style={{
-                        marginTop: "50px",
-                        marginLeft: "30px",
-                        borderRadius: "15px",
-                        background: "#f9ac25",
-                        color: "white",
-                        border: "none",
-                      }}
-                    >
-                      View More
-                    </button>
-                  </div>
-
-                  <div className="col">
-                    <img
-                      className="img-fluid"
-                      style={{ zoom: "0.7" }}
-                      src={tab2}
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="tab-pane fade mt-5"
-              id="pills-contact"
-              role="tabpanel"
-              aria-labelledby="pills-contact-tab"
-              tabindex="0"
-            >
-              <div className="container">
-                <div className="row">
-                  <div className="col">
-                    <p>
-                      Moving help such as packing/unpacking, loading, and
-                      lifting heavy items. Now Trending: Single-item moves,
-                      apartment moves, and junk removal.
-                    </p>
-                    <div className="container-fluid">
-                      <div className="row">
-                        <div className="col-9">
-                          <div className="d-flex" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Local Moving
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Long Distance Moving
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Furniture Moving
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Packing and unpacking
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Loading & Unloading
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Piano moving
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Storage Services
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <button
-                      className="p-2"
-                      style={{
-                        marginTop: "50px",
-                        marginLeft: "30px",
-                        borderRadius: "15px",
-                        background: "#f9ac25",
-                        color: "white",
-                        border: "none",
-                      }}
-                    >
-                      View More
-                    </button>
-                  </div>
-
-                  <div className="col">
-                    <img
-                      className="img-fluid"
-                      // style={{ zoom: "0.7" }}
-                      src={tab3}
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="tab-pane fade mt-5"
-              id="pills-extra"
-              role="tabpanel"
-              aria-labelledby="pills-extra-tab"
-              tabindex="0"
-            >
-              <div className="container">
-                <div className="row">
-                  <div className="col">
-                    <p>
-                      Paint walls, ceilings, molding, and doors; includes prep
-                      and cleanup. Now Trending: Color blocking, stripe details,
-                      and statement colors
-                    </p>
-                    <div className="container-fluid">
-                      <div className="row">
-                        <div className="col-9">
-                          <div className="d-flex" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Interior Painting
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Exterior Painting
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Wall Painting
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Fence Painting
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Cabinet Painting
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Texture Painting
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Trim Painting
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <button
-                      className="p-2"
-                      style={{
-                        marginTop: "50px",
-                        marginLeft: "30px",
-                        borderRadius: "15px",
-                        background: "#f9ac25",
-                        color: "white",
-                        border: "none",
-                      }}
-                    >
-                      View More
-                    </button>
-                  </div>
-
-                  <div className="col">
-                    <img
-                      className="img-fluid"
-                      style={{ zoom: "0.7" }}
-                      src={tab4}
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="tab-pane fade mt-5"
-              id="pills-new"
-              role="tabpanel"
-              aria-labelledby="pills-new-tab"
-              tabindex="0"
-            >
-              <div className="container ">
-                <div className="row mt-5">
-                  <div className="col">
-                    <p>
-                      Our handymen are extremely well-qualified and have years
-                      of professional experience under their belt. experience
-                      under their belt
-                    </p>
-                    <div className="container-fluid">
-                      <div className="row">
-                        <div className="col-9">
-                          <div className="d-flex" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Plumbing Repairs
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Exterior Painting
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              HVAC Repairs
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Carpentry Work
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Drywall Repair
-                            </button>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Door & Window Repair
-                            </button>
-                          </div>
-                          <div className="d-flex mt-3" style={{ gap: "10px" }}>
-                            <button
-                              className="p-1"
-                              style={{ borderRadius: "15px" }}
-                            >
-                              Roof Repair
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <button
-                      className="p-2"
-                      style={{
-                        marginTop: "50px",
-                        padding: "1px 10px",
-                        borderRadius: "15px",
-                        // background: "#f9ac25",
-                        color: "white",
-                        border: "none",
-                      }}
-                    >
-                      View More
-                    </button>
-                  </div>
-
-                  <div className="col">
-                    <img
-                      className="img-fluid"
-                      style={{ zoom: "0.7", height: "500px", width: "500px" }}
-                      src={tab5}
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
       </section>
 
@@ -846,7 +359,7 @@ const Home = () => {
                   <span
                     class="counter"
 
-                    // zoom-in
+                  // zoom-in
                   >
                     642
                   </span>
@@ -954,9 +467,8 @@ const Home = () => {
                             return (
                               <div
                                 key={testimonial.id || idx}
-                                className={`carousel-item ${
-                                  idx === 0 ? "active" : ""
-                                }`}
+                                className={`carousel-item ${idx === 0 ? "active" : ""
+                                  }`}
                               >
                                 <div class="row d-flex justify-content-center">
                                   <div class="col-lg-10 col-xl-8">
@@ -1058,8 +570,10 @@ const Home = () => {
                   data-aos-duration="2000"
                 >
                   <Link
-                    to={`/blogdetails/${blog._id}`}
-                    style={{ textDecoration: "none" }}
+                     to={`/blogdetails/${blog?.title.toLowerCase().split(" ").join("-")}`}
+                     state={{ id: blog._id }} // ✅ Correct way to pass state
+                     style={{ textDecoration: "none" }}
+                    
                   >
                     <div className="card blog-card shadow mb-5 bg-body rounded m-4">
                       <img

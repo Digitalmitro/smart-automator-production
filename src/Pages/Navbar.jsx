@@ -120,7 +120,7 @@ const Navbar = () => {
                   <a
                     style={{ cursor: "pointer" }}
                     className="nav-link"
-                    onClick={() => navigate("/aboutus")}
+                    onClick={() => navigate("/about-us")}
                   >
                     About Us
                   </a>

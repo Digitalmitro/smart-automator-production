@@ -46,8 +46,8 @@ const Footer = () => {
                                 <hr style={{ width: "50%", color: "#F9AC25" }} />
                                 <ul className="footer-nav">
                                     <li><Link to="/">Home</Link></li>
-                                    <li><Link to="/aboutus">About Us</Link></li>
-                                    <li><Link to="/PortfolioGallery">Gallery</Link></li>
+                                    <li><Link to="/about-us">About Us</Link></li>
+                                    <li><Link to="/portfolio-gallery">Gallery</Link></li>
                                     <li><Link to="/blog">Blog</Link></li>
                                     <li><Link to="/faq" style={{ color: "white" }}>FAQ</Link></li>
                                     <li><Link to="/contact">Contact Us</Link></li>
@@ -59,7 +59,7 @@ const Footer = () => {
                                 <hr style={{ width: "50%", color: "#F9AC25" }} />
                                 <ul>
                                     <li> <i class="fa-solid fa-phone"></i> <span style={{ marginLeft: "7px" }}>405 638-5343</span></li>
-                                    <li><i class="fa-regular fa-envelope"></i>irvinmason@hotmail.com</li>
+                                    <li><i class="fa-regular fa-envelope" ></i><span style={{ marginLeft: "7px" }}>irvinmason@hotmail.com</span></li>
                                     {/* <li><i class="fa-solid fa-location-dot"></i>2919 nW Cache rd, lawton, oK 73505,
                                         United States</li> */}
                                 </ul>

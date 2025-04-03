@@ -35,8 +35,8 @@ const AllRoute =()=>{
         <Route path="/" element={<Home/>}>Home</Route>
         <Route path="/Navbar" element={<Navbar/>}>Navbar</Route>
         <Route path="/Footer" element={<Footer/>}>Footer</Route>
-        <Route path="/aboutus" element={<AboutUs/>}>AboutUs</Route>
-        <Route path="/aboutus2" element={<AboutUs2/>}>AboutUs</Route>
+        <Route path="/about-us" element={<AboutUs/>}>AboutUs</Route>
+        {/* <Route path="/aboutus2" element={<AboutUs2/>}>AboutUs</Route> */}
         <Route path="/serviceform/:serviceid" element={<ServiceForm/>}>ServiceForm</Route>
         <Route path="/taskdetails" element={<TaskDetails />}>TaskDetails</Route>
         <Route path="/profile" element={< Profile />}>Profile</Route>
@@ -59,7 +59,7 @@ const AllRoute =()=>{
         <Route path="/maintenance-plans" element={<MaintenancePlans/>}>Maintenance Plans</Route>
         {/* <Route path="/maintenance-plans/:id" element={<MaintenancePlans/>}>Maintenance Plans</Route> */}
         <Route path="/faq" element={<FAQ/>}>Frequently Asked Questions</Route>
-        <Route path="/PortfolioGallery" element={<PortfolioGallery/>}>Portfolio Gallery</Route>
+        <Route path="/portfolio-gallery" element={<PortfolioGallery/>}>Portfolio Gallery</Route>
         <Route path="/contact" element={<ContactUs/>}>Contact Us</Route>
         <Route path="/blog" element={<BlogPage/>}>Blog Page</Route>
         </Routes>

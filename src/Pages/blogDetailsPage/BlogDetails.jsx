@@ -2,7 +2,7 @@ import "./styles/blogDetails.scss";
 import img1 from "../../assets/tab1.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useParams,useLocation } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { format } from "timeago.js";
 import moment from "moment";
 
@@ -10,11 +10,12 @@ export const BlogDetails = () => {
   // const { id } = useParams();
   const location = useLocation();
   const id = location.state?.id;
+  // console.log("id", id)
   const [blogsWithID, setBlogsWithID] = useState(null);
   const [blogs, setBlogs] = useState(null);
   const [selectedBlog, setSelectedBlog] = useState(null)
 
-  const getBlogsWithID = async () => {
+  const getBlogsWithID = async (id) => {
     await axios
       .get(`${import.meta.env.VITE_SOME_KEY}/blog/${id}`)
       .then((res) => {
@@ -37,7 +38,7 @@ export const BlogDetails = () => {
   };
   useEffect(() => {
     window.scrollTo(0, 0);
-    getBlogsWithID();
+    getBlogsWithID(id);
     getBlogs();
   }, [id]);
   return (
@@ -73,7 +74,8 @@ export const BlogDetails = () => {
               return el._id !== id
             }).map((list) => (
               <Link
-                to={`/blogdetails/${list._id}`}
+                to={`/blogdetails/${list?.title.toLowerCase().split(" ").join("-")}`}
+                state={{ id: list._id }} // ✅ Correct way to pass state
                 style={{ textDecoration: "none" }}
               >
                 <div className="blogCard">

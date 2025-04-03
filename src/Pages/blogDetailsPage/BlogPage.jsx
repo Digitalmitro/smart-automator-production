@@ -1,12 +1,15 @@
 import React,{useState,useEffect} from "react";
-import { Link,useParams } from 'react-router-dom';
+import { Link,useParams,useLoaderData, useLocation } from 'react-router-dom';
 import "./styles/blog.scss";
 import axios from "axios";
 const BlogPage = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
+  const location = useLocation();
+  const id = location.state?.id;
+  // console.log("id2",id)
   const [blogsWithID, setBlogsWithID] = useState(null);
   const [blogs, setBlogs] = useState(null);
-  const getBlogsWithID = async () => {
+  const getBlogsWithID = async (id) => {
     await axios
       .get(`${import.meta.env.VITE_SOME_KEY}/blog/${id}`)
       .then((res) => {
@@ -29,14 +32,14 @@ const BlogPage = () => {
   };
   useEffect(() => {
     window.scrollTo(0, 0);
-    getBlogsWithID();
+    // getBlogsWithID(id);
     getBlogs();
   }, [id]);
   return (
     <div className="blog-container">
       {/* <h2>Outdoor Smart Living Blog</h2> */}
       <div className="blog-header">
-        <h2>Outdoor Smart Solutions with Control4</h2>
+        <h2>Outdoor Smart Solutions with Control</h2>
         <p>Create the ultimate outdoor experience with custom smart home features tailored to your needs.</p>
       </div>
       {blogs?.map((post, index) => (
@@ -48,14 +51,14 @@ const BlogPage = () => {
               </div>
               <div className="blog-content">
                 <h2>{post?.title}</h2>
-                <p>{post?.intro}</p>
+                <p>{post?.description}</p>
                 <ul>
                   {post?.content?.map((item, i) => (
                     <li key={i}>{item}</li>
                   ))}
                 </ul>
                 <p >
-                  <Link  to={`/blogdetails/${post.slug}`} state={{ id: post._id }}  className="cta">
+                  <Link  to={`/blogdetails/${post?.title.toLowerCase().split(" ").join("-")}`} state={{ id: post._id }}  className="cta">
                    readMore
                   </Link>
                 </p>
@@ -65,14 +68,14 @@ const BlogPage = () => {
             <>
               <div className="blog-content">
                 <h2>{post?.title}</h2>
-                <p>{post?.intro}</p>
+                <p>{post?.description}</p>
                 <ul>
                   {post?.content?.map((item, i) => (
                     <li key={i}>{item}</li>
                   ))}
                 </ul>
                 <p >
-                <Link  to={`/blogdetails/${post.slug}`} state={{ id: post._id }}  className="cta">
+                <Link  to={`/blogdetails/${post.title.toLowerCase().split(" ").join("-")}`} state={{ id: post._id }}  className="cta">
                    readMore
                   </Link>
               

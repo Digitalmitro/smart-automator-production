@@ -24,15 +24,11 @@ export const Services = () => {
   const dispatch = useDispatch();
   const {
     categories,
-    loading: categoriesLoading,
-    error: categoriesError,
   } = useSelector((state) => state.serviceCategories);
   const {
     services,
-    loading: servicesLoading,
-    error: servicesError,
+ 
   } = useSelector((state) => state.services);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -42,16 +38,12 @@ export const Services = () => {
     dispatch(fetchServices());
   }, [dispatch]);
 
-  if (categoriesLoading || servicesLoading) return <p>Loading...</p>;
-  if (categoriesError) return <p>Error: {categoriesError}</p>;
-  if (servicesError) return <p>Error: {servicesError}</p>;
-
   return (
     <>
       <section style={{ backgroundColor: "#fef6e7" }}>
         <div className="service-page-banner">
           <header className="content">
-            <h2>Outdoor Smart Solutions with Control4</h2>
+            <h2>Outdoor Smart Solutions with Control</h2>
             <p>Create the ultimate outdoor experience with custom smart home features tailored to your needs.</p>
           </header>
         </div>
