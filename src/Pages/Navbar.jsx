@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo 1.png";
+import logo from "../assets/smartAutologo.png";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
 import AOS from "aos";
@@ -84,7 +84,7 @@ const Navbar = () => {
             <a className="navbar-brand" style={{ cursor: "pointer" }}>
               <img
                 onClick={() => navigate("/")}
-                style={{ width: "80px", height: "60px" }}
+                style={{ width: "120px", height: "90px" }}
                 src={logo}
                 alt="Logo"
               />
