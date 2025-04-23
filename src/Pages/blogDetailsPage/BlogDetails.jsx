@@ -13,7 +13,7 @@ export const BlogDetails = () => {
   // console.log("id", id)
   const [blogsWithID, setBlogsWithID] = useState(null);
   const [blogs, setBlogs] = useState(null);
-  const [selectedBlog, setSelectedBlog] = useState(null)
+  const [selectedBlog, setSelectedBlog] = useState(null);
 
   const getBlogsWithID = async (id) => {
     await axios
@@ -44,7 +44,10 @@ export const BlogDetails = () => {
   return (
     <div className="blogDetailsPage">
       <div className="blogWrapper">
-        <button className="backButton" onClick={() => window.location.replace('/')}>
+        <button
+          className="backButton"
+          onClick={() => window.location.replace("/")}
+        >
           Go Back
         </button>
 
@@ -63,29 +66,37 @@ export const BlogDetails = () => {
               {blogsWithID?.shortDescription}
             </p>
 
-            <p className="blogDescription">{blogsWithID?.description}</p>
+            <div
+              className="blogDescription"
+              dangerouslySetInnerHTML={{ __html: blogsWithID?.description }}
+            ></div>
           </div>
         </div>
 
         <div className="relatedBlogs">
           <h3>Related Blogs</h3>
           <div className="relatedBlogList">
-            {blogs?.filter((el) => {
-              return el._id !== id
-            }).map((list) => (
-              <Link
-                to={`/blogdetails/${list?.title.toLowerCase().split(" ").join("-")}`}
-                state={{ id: list._id }} // ✅ Correct way to pass state
-                style={{ textDecoration: "none" }}
-              >
-                <div className="blogCard">
-                  <img src={list.images[0]} alt="Related Blog" />
-                  <h5>{list.title}</h5>
-                  <p>{list.description}...</p>
-                  <button className="readMore">Read More</button>
-                </div>
-              </Link>
-            ))}
+            {blogs
+              ?.filter((el) => {
+                return el._id !== id;
+              })
+              .map((list) => (
+                <Link
+                  to={`/blogdetails/${list?.title
+                    .toLowerCase()
+                    .split(" ")
+                    .join("-")}`}
+                  state={{ id: list._id }} // ✅ Correct way to pass state
+                  style={{ textDecoration: "none" }}
+                >
+                  <div className="blogCard">
+                    <img src={list.images[0]} alt="Related Blog" />
+                    <h5>{list.title}</h5>
+                    <p>{list.description}...</p>
+                    <button className="readMore">Read More</button>
+                  </div>
+                </Link>
+              ))}
           </div>
         </div>
       </div>

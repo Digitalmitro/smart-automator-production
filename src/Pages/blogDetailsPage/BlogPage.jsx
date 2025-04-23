@@ -52,7 +52,7 @@ const BlogPage = () => {
               </div>
               <div className="blog-content">
                 <h2>{post?.title}</h2>
-                <p>{post?.description}</p>
+                <p>{post?.shortDescription}</p>
                 <ul>
                   {post?.content?.map((item, i) => (
                     <li key={i}>{item}</li>
