@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Row, Col, Card } from "antd";
 import "./styles/aboutUs.scss";
@@ -14,11 +13,9 @@ export const AboutUs2 = () => {
       <div className="mission">
         <h2>Our Mission</h2>
         <p>
-          At <strong>SmartLiving Solutions</strong>, our mission is to enhance
-          everyday living through cutting-edge home automation and household
-          services. We are dedicated to providing innovative, reliable, and
-          efficient solutions that make life safer, more comfortable, and
-          hassle-free.
+          To empower New Yorkers to live smarter, safer, and more comfortably
+          through personalized home improvement solutions that fuse innovation
+          with everyday practicality.
         </p>
       </div>
 
@@ -58,8 +55,8 @@ export const AboutUs2 = () => {
         <p>
           We are certified by industry leaders like <strong>KNX</strong>,{" "}
           <strong>Crestron</strong>, and <strong>Z-Wave Alliance</strong>. With
-          years of experience, we’ve successfully completed hundreds of
-          projects in smart home installations and household services.
+          years of experience, we’ve successfully completed hundreds of projects
+          in smart home installations and household services.
         </p>
       </div>
 
