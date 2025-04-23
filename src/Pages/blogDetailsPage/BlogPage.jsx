@@ -69,7 +69,7 @@ const BlogPage = () => {
             <>
               <div className="blog-content">
                 <h2>{post?.title}</h2>
-                <p>{post?.description}</p>
+                <div dangerouslySetInnerHTML={{ __html: post?.shortDescription }}></div>
                 <ul>
                   {post?.content?.map((item, i) => (
                     <li key={i}>{item}</li>
