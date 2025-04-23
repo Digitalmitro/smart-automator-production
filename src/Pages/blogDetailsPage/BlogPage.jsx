@@ -25,6 +25,7 @@ const BlogPage = () => {
       .get(`${import.meta.env.VITE_SOME_KEY}/get-blogs`)
       .then((res) => {
         setBlogs(res.data.blogs);
+        console.log("added",res.data.blogs)
       })
       .catch((e) => {
         console.log(e);
