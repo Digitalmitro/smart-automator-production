@@ -62,9 +62,12 @@ export const BlogDetails = () => {
               {moment(blogsWithID?.createdAt).format("DD/MM/YYYY")}
             </p>
 
-            <p className="" style={{ color: "grey" }}>
-              {blogsWithID?.shortDescription}
-            </p>
+            <div
+              style={{ color: "grey" }}
+              dangerouslySetInnerHTML={{
+                __html: blogsWithID?.shortDescription,
+              }}
+            ></div>
 
             <div
               className="blogDescription"
