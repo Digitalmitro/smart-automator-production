@@ -293,7 +293,7 @@ const Home = () => {
             transition={{ duration: 5 }}
             viewport={{ once: true, amount: 0.5 }}
           >
-            POPULAR PROJECT
+            POPULAR PROJECTS
           </motion.h2>
 
           <div className="row" style={{ rowGap: "20px" }}>
