@@ -83,6 +83,7 @@ export const BlogDetails = () => {
               ?.filter((el) => {
                 return el._id !== id;
               })
+              .slice(0, 3)
               .map((list) => (
                 <Link
                   to={`/blogdetails/${list?.title
@@ -95,7 +96,12 @@ export const BlogDetails = () => {
                   <div className="blogCard">
                     <img src={list.images[0]} alt="Related Blog" />
                     <h5>{list.title}</h5>
-                    <p>{list.description}...</p>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: list.shortDescription + "...",
+                      }}
+                    ></div>
+
                     <button className="readMore">Read More</button>
                   </div>
                 </Link>
