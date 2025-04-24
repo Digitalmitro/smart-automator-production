@@ -24,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const navigate = useNavigate();
   const { scrollYProgress } = useScroll();
-  // const [blogs, setBlogs] = useState();
+  
   AOS.init();
 
   $(document).ready(function () {
@@ -51,19 +51,30 @@ const Home = () => {
   const [service, setService] = useState(null);
   const [featuredServices, setFeaturedServices] = useState(null);
   const [testimonials, setTestimonials] = useState([]);
-
-  const getBlogs = async () => {
+  const [blogs, setBlogs] = useState();
+  const getHomeContent = async () => {
     await axios
-      .get(`${import.meta.env.VITE_SOME_KEY}/get-blogs`)
+      .get(`${import.meta.env.VITE_SOME_KEY}/home-cms`)
       .then((res) => {
-        setHomeData(res.data.blogs);
-        console.log("added latest blog",res.data.blogs);
+        setHomeData(res.data.homeCMS.homePage);
+        console.log("hffghy", res.data.homeCMS.homePage);
       })
       .catch((e) => {
         console.log(e);
       });
   };
 
+  const getBlogs = async () => {
+    await axios
+      .get(`${import.meta.env.VITE_SOME_KEY}/get-blogs`)
+      .then((res) => {
+        setBlogs(res.data.blogs);
+        console.log("added",res.data.blogs)
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
   const getServiceCategories = async () => {
     await axios
       .get(`${import.meta.env.VITE_SOME_KEY}/client/service-categories`)
@@ -102,11 +113,11 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getBlogs();
+    getHomeContent();
     getServiceCategories();
     getService();
     getTestimonials();
-
+    getBlogs()
   }, []);
 
   return (
@@ -657,7 +668,7 @@ const Home = () => {
 
           <div className="row pt-2">
             {
-              homeData?.slice(0, 3).map((blog, index) => (
+              blogs?.slice(0,3).map((blog, index) => (
                 <div
                   key={index}
                   className="col-md-4 mb-4"
