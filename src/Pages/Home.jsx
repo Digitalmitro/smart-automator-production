@@ -57,7 +57,7 @@ const Home = () => {
       .get(`${import.meta.env.VITE_SOME_KEY}/home-cms`)
       .then((res) => {
         setHomeData(res.data.homeCMS.homePage);
-        console.log("hffghy",res.data.homeCMS.homePage)
+        console.log("hffghy", res.data.homeCMS.homePage);
       })
       .catch((e) => {
         console.log(e);
@@ -180,6 +180,7 @@ const Home = () => {
                 padding: "10px 200px",
                 letterSpacing: "2px",
                 wordSpacing: "4px",
+                textAlign: "justify",
               }}
               className="pt-5"
             >
@@ -314,6 +315,7 @@ const Home = () => {
               padding: "10px 200px",
               letterSpacing: "2px",
               wordSpacing: "4px",
+              textAlign: "justify",
             }}
             className="pt-5"
           >
@@ -474,28 +476,31 @@ const Home = () => {
               padding: "10px 200px",
               letterSpacing: "2px",
               wordSpacing: "4px",
+              textAlign: "justify",
+              listStyleType: "disc", 
+              listStylePosition: "inside",
             }}
             className="pt-5"
           >
-            <li>
-              <b>NYC Experts:</b> We know the city—its apartments, townhomes, and
-              co-ops—and we know how to navigate building codes, permits, and
-              space limitations to get the job done right.
+            <li style={{ marginBottom: "12px" ,listStyleType: "disc"}}>
+              <b>NYC Experts:</b> We know the city—its apartments, townhomes,
+              and co-ops—and we know how to navigate building codes, permits,
+              and space limitations to get the job done right.
             </li>
-            <li>
-             <b> Tailored Solutions:</b>Your home is unique, and your improvement plan
-              should be too. We offer customized packages designed to meet your
-              exact needs.
+            <li style={{ marginBottom: "12px",listStyleType: "disc" }}>
+              <b>Tailored Solutions:</b> Your home is unique, and your
+              improvement plan should be too. We offer customized packages
+              designed to meet your exact needs.
             </li>
-            <li>
-              <b>Future-Ready:</b> We don’t just follow trends—we help set them. Our
-              team stays ahead of technology so your home is always one step
+            <li style={{ marginBottom: "12px" ,listStyleType: "disc"}}>
+              <b>Future-Ready:</b> We don’t just follow trends—we help set them.
+              Our team stays ahead of technology so your home is always one step
               ahead.
             </li>
-            <li>
-              <b>End-to-End Service:</b> From consultation and design to installation
-              and support, we handle it all so you can relax and enjoy the
-              transformation.
+            <li style={{ marginBottom: "12px" ,listStyleType: "disc"}}>
+              <b>End-to-End Service:</b> From consultation and design to
+              installation and support, we handle it all so you can relax and
+              enjoy the transformation.
             </li>
           </ul>
         </div>
@@ -694,21 +699,28 @@ const Home = () => {
           </div>
         </div>
         <div>
-          <h2 className="text-center fw-bold pt-5 "
-              style={{
-                padding: "5px 0px",
-                letterSpacing: "2px",
-                wordSpacing: "4px",
-              }}
-              data-aos="fade-up"
-              //  data-aos-delay="300"
-              data-aos-duration="1300">Ready to Elevate Your Home?</h2>
-          <p style={{
-                padding: "10px 200px",
-                letterSpacing: "2px",
-                wordSpacing: "4px",
-              }} 
-              className="">
+          <h2
+            className="text-center fw-bold pt-5 "
+            style={{
+              padding: "5px 0px",
+              letterSpacing: "2px",
+              wordSpacing: "4px",
+            }}
+            data-aos="fade-up"
+            //  data-aos-delay="300"
+            data-aos-duration="1300"
+          >
+            Ready to Elevate Your Home?
+          </h2>
+          <p
+            style={{
+              padding: "10px 200px",
+              letterSpacing: "2px",
+              wordSpacing: "4px",
+              textAlign: "justify",
+            }}
+            className=""
+          >
             Let Smart Automator bring your vision to life with seamless
             technology, elegant design, and expert craftsmanship. Whether
             you&#39;re looking to automate your lighting, renovate your living
