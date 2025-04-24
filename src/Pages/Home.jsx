@@ -57,6 +57,7 @@ const Home = () => {
       .get(`${import.meta.env.VITE_SOME_KEY}/home-cms`)
       .then((res) => {
         setHomeData(res.data.homeCMS.homePage);
+        console.log("hffghy",res.data.homeCMS.homePage)
       })
       .catch((e) => {
         console.log(e);
@@ -67,7 +68,6 @@ const Home = () => {
     await axios
       .get(`${import.meta.env.VITE_SOME_KEY}/client/service-categories`)
       .then((res) => {
-
         setServiceCategories(res.data.categories);
       })
       .catch((e) => {
@@ -79,14 +79,12 @@ const Home = () => {
     await axios
       .get(`${import.meta.env.VITE_SOME_KEY}/get-testimonials`)
       .then((res) => {
-
         setTestimonials(res.data.testimonials);
       })
       .catch((e) => {
         console.log(e);
       });
   };
-
 
   const getService = async () => {
     await axios
@@ -177,10 +175,28 @@ const Home = () => {
       <section style={{ backgroundColor: "#fef6e7", paddingBottom: "3.5rem" }}>
         <div className="container-fluid">
           <div className="heading">
+            <p
+              style={{
+                padding: "10px 200px",
+                letterSpacing: "2px",
+                wordSpacing: "4px",
+              }}
+              className="pt-5"
+            >
+              Welcome to Smart Automator, your trusted partner in turning
+              ordinary spaces into extraordinary homes across New York City.
+              Whether you&#39;re dreaming of a high-tech smart home, a
+              beautifully renovated kitchen, or energy-efficient lighting that
+              responds to your voice, we deliver innovative solutions tailored
+              to your lifestyle. At Smart Automator, we don’t just improve
+              homes—we reimagine them. With years of experience in home
+              automation, renovation, and tech-enabled design, our mission is to
+              make your home smarter, more efficient, and effortlessly elegant.
+            </p>
             <h2
               className="text-center fw-bold p-5 "
               style={{
-                padding: "25px 0px",
+                padding: "5px 0px",
                 letterSpacing: "2px",
                 wordSpacing: "4px",
               }}
@@ -275,11 +291,41 @@ const Home = () => {
                 })}
             </ul>
           </div>
-
         </div>
       </section>
 
       <section>
+        <div>
+          <h2
+            className="text-center fw-bold pt-5 "
+            style={{
+              padding: "5px 0px",
+              letterSpacing: "2px",
+              wordSpacing: "4px",
+            }}
+            data-aos="fade-up"
+            //  data-aos-delay="300"
+            data-aos-duration="1300"
+          >
+            Discover the Future of Home Living
+          </h2>
+          <p
+            style={{
+              padding: "10px 200px",
+              letterSpacing: "2px",
+              wordSpacing: "4px",
+            }}
+            className="pt-5"
+          >
+            New York is fast-paced, and your home should be your sanctuary. We
+            specialize in combining style, function, and technology to create
+            customized home improvement solutions that reflect how you live
+            today—and how you’ll live tomorrow. From cozy apartments to spacious
+            brownstones, we understand the unique challenges of NYC properties.
+            Our team works closely with you to design, build, and integrate
+            improvements that align with your vision, budget, and space.
+          </p>
+        </div>
         <div className=" popular-project container">
           <motion.h2
             className="text-center p-4 fw-bold mt-5"
@@ -359,7 +405,7 @@ const Home = () => {
                   <span
                     class="counter"
 
-                  // zoom-in
+                    // zoom-in
                   >
                     642
                   </span>
@@ -409,6 +455,50 @@ const Home = () => {
         className=""
         style={{ backgroundColor: "#fef6e7", padding: "10px" }}
       >
+        <div>
+          <h2
+            className="text-center fw-bold pt-5 "
+            style={{
+              padding: "5px 0px",
+              letterSpacing: "2px",
+              wordSpacing: "4px",
+            }}
+            data-aos="fade-up"
+            //  data-aos-delay="300"
+            data-aos-duration="1300"
+          >
+            Why Choose Smart Automator?
+          </h2>
+          <ul
+            style={{
+              padding: "10px 200px",
+              letterSpacing: "2px",
+              wordSpacing: "4px",
+            }}
+            className="pt-5"
+          >
+            <li>
+              <b>NYC Experts:</b> We know the city—its apartments, townhomes, and
+              co-ops—and we know how to navigate building codes, permits, and
+              space limitations to get the job done right.
+            </li>
+            <li>
+             <b> Tailored Solutions:</b>Your home is unique, and your improvement plan
+              should be too. We offer customized packages designed to meet your
+              exact needs.
+            </li>
+            <li>
+              <b>Future-Ready:</b> We don’t just follow trends—we help set them. Our
+              team stays ahead of technology so your home is always one step
+              ahead.
+            </li>
+            <li>
+              <b>End-to-End Service:</b> From consultation and design to installation
+              and support, we handle it all so you can relax and enjoy the
+              transformation.
+            </li>
+          </ul>
+        </div>
         <div className="container pt-5 mt-5">
           <h4
             className="text-center"
@@ -467,8 +557,9 @@ const Home = () => {
                             return (
                               <div
                                 key={testimonial.id || idx}
-                                className={`carousel-item ${idx === 0 ? "active" : ""
-                                  }`}
+                                className={`carousel-item ${
+                                  idx === 0 ? "active" : ""
+                                }`}
                               >
                                 <div class="row d-flex justify-content-center">
                                   <div class="col-lg-10 col-xl-8">
@@ -570,10 +661,12 @@ const Home = () => {
                   data-aos-duration="2000"
                 >
                   <Link
-                     to={`/blogdetails/${blog?.title.toLowerCase().split(" ").join("-")}`}
-                     state={{ id: blog._id }} // ✅ Correct way to pass state
-                     style={{ textDecoration: "none" }}
-                    
+                    to={`/blogdetails/${blog?.title
+                      .toLowerCase()
+                      .split(" ")
+                      .join("-")}`}
+                    state={{ id: blog._id }} // ✅ Correct way to pass state
+                    style={{ textDecoration: "none" }}
                   >
                     <div className="card blog-card shadow mb-5 bg-body rounded m-4">
                       <img
@@ -599,6 +692,30 @@ const Home = () => {
                 </div>
               ))}
           </div>
+        </div>
+        <div>
+          <h2 className="text-center fw-bold pt-5 "
+              style={{
+                padding: "5px 0px",
+                letterSpacing: "2px",
+                wordSpacing: "4px",
+              }}
+              data-aos="fade-up"
+              //  data-aos-delay="300"
+              data-aos-duration="1300">Ready to Elevate Your Home?</h2>
+          <p style={{
+                padding: "10px 200px",
+                letterSpacing: "2px",
+                wordSpacing: "4px",
+              }} 
+              className="">
+            Let Smart Automator bring your vision to life with seamless
+            technology, elegant design, and expert craftsmanship. Whether
+            you&#39;re looking to automate your lighting, renovate your living
+            space, or install a full home security system, our NYC-based team is
+            ready to help. Contact us today to schedule your consultation and
+            start your home transformation journey.
+          </p>
         </div>
       </section>
 
