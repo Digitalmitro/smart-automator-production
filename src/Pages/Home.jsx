@@ -52,12 +52,12 @@ const Home = () => {
   const [featuredServices, setFeaturedServices] = useState(null);
   const [testimonials, setTestimonials] = useState([]);
 
-  const getHomeContent = async () => {
+  const getBlogs = async () => {
     await axios
-      .get(`${import.meta.env.VITE_SOME_KEY}/home-cms`)
+      .get(`${import.meta.env.VITE_SOME_KEY}/get-blogs`)
       .then((res) => {
-        setHomeData(res.data.homeCMS.homePage);
-        console.log("hffghy", res.data.homeCMS.homePage);
+        setHomeData(res.data.blogs);
+        console.log("added latest blog",res.data.blogs);
       })
       .catch((e) => {
         console.log(e);
@@ -102,11 +102,11 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getHomeContent();
+    getBlogs();
     getServiceCategories();
     getService();
     getTestimonials();
-    // getBlogs()
+
   }, []);
 
   return (
@@ -656,8 +656,8 @@ const Home = () => {
           </h2>
 
           <div className="row pt-2">
-            {homeData?.blogs &&
-              homeData?.blogs?.map((blog, index) => (
+            {
+              homeData?.slice(0, 3).map((blog, index) => (
                 <div
                   key={index}
                   className="col-md-4 mb-4"
